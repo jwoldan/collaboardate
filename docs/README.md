@@ -41,7 +41,7 @@ Collaboardate is a web application inspired by Trello and built using Ruby on Ra
 
 ### Phase 5: Notifications (1 day)
 
-**Objective:** Activities performed on cards you are assigned to or comments mentioning you trigger user notifications.
+**Objective:** Activities performed on cards a user is assigned to or comments mentioning a user trigger user notifications.
 
 ### Phase 6: Search and Card Filtering (2 days)
 
@@ -53,6 +53,8 @@ Collaboardate is a web application inspired by Trello and built using Ruby on Ra
 
 
 ### Bonus (TBD)
+- [ ] Teams
+- [ ] Card attachments
 - [ ] Board settings
 - [ ] Hotkeys
 - [ ] Desktop notifications
