@@ -43,11 +43,12 @@ board_id    | integer   | not null, foreign key, indexed
 ### cards
 
 column name | data type | details
-------------|-----------|---------------------------------
+------------|-----------|-----------------------------------
 id          | integer   | not null, primary key
 title       | string    | not null
 description | text      |
 due_date    | datetime  |
+order       | integer   | not null, indexed (with list_id)
 list_id     | integer   | not null, foreign key, indexed
 author_id   | integer   | not null, foreign key, indexed
 
@@ -78,19 +79,21 @@ author_id   | integer   | not null, foreign key, indexed
 ### checklists
 
 column name    | data type | details
----------------|-----------|---------------------------------
+---------------|-----------|-----------------------------------
 id             | integer   | not null, primary key
 title          | string    | not null
-show_completed | boolean   | not null, default: false
+hide_completed | boolean   | not null, default: false
+order          | integer   | not null, indexed (with card_id)
 card_id        | integer   | not null, foreign key, indexed
 
 ### checklist_items
 
 column name  | data type | details
--------------|-----------|---------------------------------
+-------------|-----------|----------------------------------------
 id           | integer   | not null, primary key
 title        | string    | not null
 done         | boolean   | not null, default: false
+order        | integer   | not null, indexed (with checklist_id)
 checklist_id | integer   | not null, foreign key, indexed
 
 ### labels
