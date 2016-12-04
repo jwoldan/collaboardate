@@ -129,6 +129,8 @@ column name | data type | details
 ------------|-----------|---------------------------------
 id          | integer   | not null, primary key
 name        | string    | not null
+short_name  | string    | not null
+website     | string    |
 description | text      |
 owner_id    | integer   | not null, foreign key, indexed
 

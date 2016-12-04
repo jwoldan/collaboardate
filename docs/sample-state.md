@@ -1,7 +1,7 @@
 ```js
 {
 
-  currentUser: {
+  current_user: {
     id: 1,
     username: 'app-academy',
   },
@@ -12,6 +12,8 @@
       email: [],
       password: [],
     },
+    profile: [],
+    team: [],
   },
 
   boards: {
