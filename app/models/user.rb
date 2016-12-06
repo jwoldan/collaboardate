@@ -19,17 +19,12 @@
 #
 
 class User < ApplicationRecord
+  validates :email, :password_digest, :session_token, :full_name, presence: true
+  validates :username, :initials, presence: true, on: :update
   validates :username, :email, :session_token, uniqueness: true
   validates :password, length: { minimum: 8, allow_nil: true }
   validates :initials, length: { maximum: 3 }
   validates :email, format: /@/
-  validates :username,
-            :email,
-            :password_digest,
-            :session_token,
-            :full_name,
-            :initials,
-            presence: true
 
   attr_reader :password
 
