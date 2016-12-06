@@ -1,5 +1,5 @@
 import * as CurrentUserAPIUtil from '../util/current_user_api_util';
-import { receiveSessionErrors } from './errors_actions';
+import { receiveSignupErrors, receiveLoginErrors } from './errors_actions';
 
 export const RECEIVE_USER = 'RECEIVE_USER';
 
@@ -15,11 +15,11 @@ export const login = (user) => {
     return CurrentUserAPIUtil.login(user).then(
       currentUser => {
         dispatch(receiveUser(currentUser));
-        dispatch(receiveSessionErrors({}));
+        dispatch(receiveLoginErrors({}));
         return currentUser;
       },
       errors => {
-        dispatch(receiveSessionErrors(errors.responseJSON));
+        dispatch(receiveLoginErrors(errors.responseJSON));
         return errors;
       }
     );
@@ -29,9 +29,9 @@ export const login = (user) => {
 export const logout = () => {
   return dispatch => {
     return CurrentUserAPIUtil.logout().then(
-      () => {
+      user => {
         dispatch(receiveUser(null));
-        return null;
+        return user;
       }
     );
   };
@@ -42,11 +42,11 @@ export const signup = (user) => {
     return CurrentUserAPIUtil.signup(user).then(
       currentUser => {
         dispatch(receiveUser(currentUser));
-        dispatch(receiveSessionErrors({}));
+        dispatch(receiveSignupErrors({}));
         return currentUser;
       },
       errors => {
-        dispatch(receiveSessionErrors(errors.responseJSON));
+        dispatch(receiveSignupErrors(errors.responseJSON));
         return errors;
       }
     );

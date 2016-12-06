@@ -1,7 +1,8 @@
 import * as ErrorsActions from '../actions/errors_actions';
 
 const initialState = {
-  session: {},
+  signup: {},
+  login: [],
   profile: [],
   team: [],
 };
@@ -11,10 +12,16 @@ export default (state = initialState, action) => {
 
   switch(action.type) {
 
-    case ErrorsActions.RECEIVE_SESSION_ERRORS:
+    case ErrorsActions.RECEIVE_SIGNUP_ERRORS:
       return Object.assign({}, state, {
-        session: action.errors
+        signup: action.errors
       });
+
+    case ErrorsActions.RECEIVE_LOGIN_ERRORS:
+      return Object.assign({}, state, {
+        login: action.errors
+      });
+
 
     default:
       return state;
