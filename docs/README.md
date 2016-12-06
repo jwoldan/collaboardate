@@ -2,6 +2,8 @@
 
 <--Heroku link-->
 
+[Trello Link](https://trello.com/b/m0YDD5ZF/collaboardate)
+
 ## Minimum Viable Product
 
 Collaboardate is a web application inspired by Trello and built using Ruby on Rails and React/Redux.  The minimum viable product will include the following:
@@ -23,15 +25,15 @@ Collaboardate is a web application inspired by Trello and built using Ruby on Ra
 
 ## Implementation Timeline
 
-### Phase 1: Backend setup and front end user authentication (1 day)
+### Phase 1: Backend setup and front end user authentication (2 days)
 
 **Objective:** Functioning backend and front end with user login capability.
 
-### Phase 2: Boards, Lists, and Cards Models, API, and basic Components (2 days)
+### Phase 2: Boards, Lists, and Cards Models, API, and basic Components (3 days)
 
 **Objective:** Boards, Lists and Cards can be created, read, edited, and destroyed.
 
-### Phase 3: Sharing Boards, Comments, and Due Dates (1 day)
+### Phase 3: Sharing Boards, Comments, and Due Dates (2 days)
 
 **Objective:** Boards can be shared with other users.  Comments and due dates can be added to cards.
 
@@ -43,16 +45,9 @@ Collaboardate is a web application inspired by Trello and built using Ruby on Ra
 
 **Objective:** Activities performed on cards a user is assigned to or comments mentioning a user trigger user notifications.
 
-### Phase 6: Search and Card Filtering (2 days)
-
-**Objective:** Cards can be searched and filtered by various criteria.
-
-### Phase 7: Activity History (1 day)
-
-**Objective:** History of user activity is saved and displayed.
-
-
 ### Bonus (TBD)
+- [ ] Search and Card Filtering
+- [ ] Activity History
 - [ ] Teams
 - [ ] Card attachments
 - [ ] Board settings
