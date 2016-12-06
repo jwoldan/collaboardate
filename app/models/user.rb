@@ -37,7 +37,7 @@ class User < ApplicationRecord
 
   def self.generate_session_token
     token = nil
-    while !token && User.find_by(session_token: token)
+    while !token || User.find_by(session_token: token)
       token = SecureRandom.urlsafe_base64
     end
     token
@@ -67,10 +67,33 @@ class User < ApplicationRecord
     self.session_token
   end
 
+  def generate_defaults
+
+    unless self.username
+      base_username = self.full_name.downcase.delete(' ')
+      username = base_username
+      number = 0
+      while User.find_by(username: username)
+        number += 1
+        username = "#{base_username}#{number}"
+      end
+      self.username = username
+    end
+
+    unless self.initials
+      initials = ''
+      self.full_name.split(' ').each do |word|
+        initials += word[0].upcase
+      end
+      self.initials = initials.slice(0, 3)
+    end
+
+  end
+
   private
 
   def ensure_session_token
-    self.session_token = User.generate_session_token
+    self.session_token ||= User.generate_session_token
   end
 
 

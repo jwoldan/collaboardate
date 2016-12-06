@@ -4,11 +4,12 @@ class Api::UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+    @user.generate_defaults
     if @user.save
       login(@user)
       render :show
     else
-      render json: { session: @user.errors }, status: 422
+      render json: @user.errors, status: 422
     end
   end
 
