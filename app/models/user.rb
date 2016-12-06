@@ -33,7 +33,7 @@ class User < ApplicationRecord
 
   attr_reader :password
 
-  after_initialize :ensure_session_token
+  after_initialize :ensure_session_token, :generate_defaults
 
   def self.generate_session_token
     token = nil
@@ -67,6 +67,12 @@ class User < ApplicationRecord
     self.session_token
   end
 
+  private
+
+  def ensure_session_token
+    self.session_token ||= User.generate_session_token
+  end
+
   def generate_defaults
 
     unless self.username
@@ -88,12 +94,6 @@ class User < ApplicationRecord
       self.initials = initials.slice(0, 3)
     end
 
-  end
-
-  private
-
-  def ensure_session_token
-    self.session_token ||= User.generate_session_token
   end
 
 
