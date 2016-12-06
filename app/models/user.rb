@@ -75,23 +75,25 @@ class User < ApplicationRecord
 
   def generate_defaults
 
-    unless self.username
-      base_username = self.full_name.downcase.delete(' ')
-      username = base_username
-      number = 0
-      while User.find_by(username: username)
-        number += 1
-        username = "#{base_username}#{number}"
+    if self.full_name
+      unless self.username
+        base_username = self.full_name.downcase.delete(' ')
+        username = base_username
+        number = 0
+        while User.find_by(username: username)
+          number += 1
+          username = "#{base_username}#{number}"
+        end
+        self.username = username
       end
-      self.username = username
-    end
 
-    unless self.initials
-      initials = ''
-      self.full_name.split(' ').each do |word|
-        initials += word[0].upcase
+      unless self.initials
+        initials = ''
+        self.full_name.split(' ').each do |word|
+          initials += word[0].upcase
+        end
+        self.initials = initials.slice(0, 3)
       end
-      self.initials = initials.slice(0, 3)
     end
 
   end
