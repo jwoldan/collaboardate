@@ -1,12 +1,5 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { withRouter, Link } from 'react-router';
-
-import { logout } from '../actions/current_user_actions';
-
-const mapDispatchToProps = (dispatch) => ({
-  logout: () => dispatch(logout()),
-});
 
 class Home extends React.Component {
 
@@ -32,7 +25,4 @@ class Home extends React.Component {
   }
 }
 
-export default connect(
-  null,
-  mapDispatchToProps
-)(withRouter(Home));
+export default withRouter(Home);
