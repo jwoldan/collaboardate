@@ -82,7 +82,7 @@ class LoginForm extends React.Component {
         </form>
 
         <p>
-          Don't have an account?&nbsp;
+          Don&#8217;t have an account?&nbsp;
           <Link to="/signup">Create a Collaboardate account.</Link>
         </p>
       </section>
