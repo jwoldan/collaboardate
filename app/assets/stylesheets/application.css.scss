@@ -389,7 +389,7 @@ a:not(.button):visited:hover {
     a {
       display: block;
       padding: 5px 9px;
-      color: rgb(68, 68, 68);
+      color: #444;
       font-weight: bold;
       text-decoration: none;
 
@@ -420,6 +420,10 @@ a:not(.button):visited:hover {
       filter: opacity(50%);
 
       cursor: pointer;
+
+      &:hover {
+        filter: opacity(80%);
+      }
     }
   }
 
