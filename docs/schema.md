@@ -22,14 +22,14 @@ avatar          | attachment |
 ### boards
 
 column name | data type | details
-------------|-----------|---------------------------------
+------------|-----------|-------------------------------------------------------
 id          | integer   | not null, primary key
 title       | string    | not null
 starred     | boolean   | not null, default: false
 visibility  | string    | not null
 background  | string    | not null
 creator_id  | integer   | not null, foreign key, indexed
-team_id     | integer   | not null, foreign key, indexed
+team_id     | integer   | not null, foreign key, indexed **(BONUS ONLY)**
 
 ### lists
 
