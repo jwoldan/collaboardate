@@ -1,0 +1,136 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+body, main, section, div, h1, p, label, input, a, ul, li {
+  padding: 0;
+  border: 0;
+  margin: 0;
+  outline: 0;
+
+  font: inherit;
+  color: inherit;
+  text-align: inherit;
+  text-decoration: inherit;
+  vertical-align: inherit;
+
+  box-sizing: inherit;
+
+  background: transparent;
+}
+
+html {
+  color: #4d4d4d;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.44em;
+}
+
+ul {
+  list-style: none;
+}
+
+.user-form {
+  width: 560px;
+  padding-top: 100px;
+  margin: 0 auto;
+
+  .user-errors {
+    padding: .5em 1em;
+    border: 1px solid #eb5a46;
+    border-radius: 4px;
+    background: #f5d3ce;
+  }
+
+  h1 {
+    font-size: 36px;
+    font-weight: bold;
+    margin: 1.2em 0;
+
+  }
+
+  a {
+    color: #0079bf;
+    text-decoration: underline;
+  }
+
+  a:hover {
+    color: #0c3953;
+  }
+
+  label, input {
+    display: block;
+  }
+
+  label {
+    font-size: 20px;
+    margin-bottom: .5em;
+  }
+
+  .quiet, .quiet a {
+    color: #999;
+  }
+
+  .quiet a:hover {
+    color: #333
+  }
+
+  .input {
+    box-sizing: border-box;
+    width: 100%;
+    padding: .5em;
+    margin-bottom: 1.2em;
+
+    background-color: #edeff0;
+    border-radius: 4px;
+    border: 1px solid #cdd2d4;
+  }
+
+  .input.error {
+    background: #fbedeb;
+    border: 1px solid #ec9488;
+  }
+
+  .input:focus {
+    border-color: #a5acb0;
+    box-shadow: 0 0 6px #cdd2d4;
+  }
+
+  .input.error:focus {
+    background: #fbedeb;
+    border: 1px solid #ec9488;
+    box-shadow: 0 0 6px #ec9488;
+  }
+
+  .submit {
+    padding: .5em 1.4em;
+    margin-bottom: 1em;
+
+    font-size: 20px;
+    font-weight: bold;
+    color: #fff;
+    background: linear-gradient(to bottom, #61bd4f 0, #5aac44 100%);
+    border-radius: 6px;
+    box-shadow: 0 2px 0 #3f6f21;
+
+    cursor: pointer;
+  }
+
+  .submit:hover {
+    background: linear-gradient(to bottom, #5aac44 0, #519839 100%)
+  }
+
+}

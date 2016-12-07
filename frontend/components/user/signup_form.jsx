@@ -66,6 +66,21 @@ class SignupForm extends React.Component {
     const errorList = this.errorList(errors);
     const { full_name, email, password } = this.state;
 
+    let fullNameClass = 'input';
+    if (typeof errors.full_name !== 'undefined') {
+      fullNameClass += ' error';
+    }
+
+    let emailClass = 'input';
+    if (typeof errors.email !== 'undefined') {
+      emailClass += ' error';
+    }
+
+    let passwordClass = 'input';
+    if (typeof errors.password !== 'undefined') {
+      passwordClass += ' error';
+    }
+
     return (
       <section className="user-form signup-form">
 
@@ -76,6 +91,7 @@ class SignupForm extends React.Component {
 
           <label htmlFor="signup-name">Name</label>
           <input id="signup-name"
+            className={ fullNameClass }
             type="text"
             placeholder="e.g., Calvin"
             value={ full_name }
@@ -84,6 +100,7 @@ class SignupForm extends React.Component {
 
           <label htmlFor="signup-email">Email</label>
           <input id="signup-email"
+            className={ emailClass }
             type="text"
             placeholder="e.g., spaceman.spiff@gross.club"
             value={ email }
@@ -92,20 +109,21 @@ class SignupForm extends React.Component {
 
           <label htmlFor="signup-password">Password</label>
           <input id="signup-password"
+            className={ passwordClass }
             type="password"
             value={ password }
             placeholder="e.g., ∙∙∙∙∙∙∙∙∙∙∙∙"
             onChange={ this.update('password') }
           />
 
-          <input type="submit" value="Create New Account" />
+          <input type="submit" className="submit" value="Create New Account" />
 
         </form>
 
-        <p>
+        <span className="quiet">
           Already have an account?&nbsp;
           <Link to="/login">Log in.</Link>
-        </p>
+        </span>
       </section>
     );
   }

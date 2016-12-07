@@ -54,11 +54,14 @@ class LoginForm extends React.Component {
 
         { errorList }
 
-        <h1>Login in to Collaboardate</h1>
+        <h1>Log in to Collaboardate</h1>
         <form onSubmit={ this.submit }>
 
-          <label htmlFor="login-username">Email (or username)</label>
+          <label htmlFor="login-username">
+            Email <span className="quiet">(or username)</span>
+          </label>
           <input id="login-username"
+            className="input"
             type="text"
             placeholder="e.g., spaceman.spiff@gross.club"
             value={ username }
@@ -67,13 +70,14 @@ class LoginForm extends React.Component {
 
           <label htmlFor="login-password">Password</label>
           <input id="login-password"
+            className="input"
             type="password"
             value={ password }
             placeholder="e.g., ∙∙∙∙∙∙∙∙∙∙∙∙"
             onChange={ this.update('password') }
           />
 
-          <input type="submit" value="Create New Account" />
+        <input type="submit" className="submit" value="Log In" />
 
         </form>
 
