@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import { signup } from '../../actions/current_user_actions';
+import { signup, login } from '../../actions/current_user_actions';
 
 import SignupForm from './signup_form';
 
@@ -10,6 +10,10 @@ const mapStateToProps = ({ errors }) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   signup: (user) => dispatch(signup(user)),
+  loginGuest: () => dispatch(login({
+    username: 'guest',
+    password: 'collaboardate'
+  })),
 });
 
 export default connect(

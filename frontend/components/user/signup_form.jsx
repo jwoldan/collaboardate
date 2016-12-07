@@ -13,6 +13,7 @@ class SignupForm extends React.Component {
 
     this.update = this.update.bind(this);
     this.submit = this.submit.bind(this);
+    this.loginGuest = this.loginGuest.bind(this);
   }
 
   update(property) {
@@ -22,6 +23,12 @@ class SignupForm extends React.Component {
   submit(e) {
     e.preventDefault();
     this.props.signup(this.state).then(
+      () => this.props.router.push('/')
+    );
+  }
+
+  loginGuest() {
+    this.props.loginGuest().then(
       () => this.props.router.push('/')
     );
   }
@@ -120,10 +127,13 @@ class SignupForm extends React.Component {
 
         </form>
 
-        <span className="quiet">
+        <p className="quiet">
           Already have an account?&nbsp;
           <Link to="/login">Log in.</Link>
-        </span>
+        </p>
+        <p className="quiet">Just want to try it out?&nbsp;
+          <a onClick={ this.loginGuest }>Log in as Guest.</a>
+        </p>
       </section>
     );
   }

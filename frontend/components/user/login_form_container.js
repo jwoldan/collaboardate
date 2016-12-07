@@ -10,6 +10,10 @@ const mapStateToProps = ({ errors }) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   login: (user) => dispatch(login(user)),
+  loginGuest: () => dispatch(login({
+    username: 'guest',
+    password: 'collaboardate'
+  })),
 });
 
 export default connect(

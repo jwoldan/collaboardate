@@ -12,6 +12,7 @@ class LoginForm extends React.Component {
 
     this.update = this.update.bind(this);
     this.submit = this.submit.bind(this);
+    this.loginGuest = this.loginGuest.bind(this);
   }
 
   update(property) {
@@ -21,6 +22,12 @@ class LoginForm extends React.Component {
   submit(e) {
     e.preventDefault();
     this.props.login(this.state).then(
+      () => this.props.router.push('/')
+    );
+  }
+
+  loginGuest() {
+    this.props.loginGuest().then(
       () => this.props.router.push('/')
     );
   }
@@ -84,6 +91,9 @@ class LoginForm extends React.Component {
         <p>
           Don&#8217;t have an account?&nbsp;
           <Link to="/signup">Create a Collaboardate account.</Link>
+        </p>
+        <p className="quiet">Just want to try it out?&nbsp;
+          <a onClick={ this.loginGuest }>Log in as Guest.</a>
         </p>
       </section>
     );

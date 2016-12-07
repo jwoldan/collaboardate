@@ -226,10 +226,15 @@ a:not(.button):visited:hover {
   a {
     color: #0079bf;
     text-decoration: underline;
+    cursor: pointer;
   }
 
   a:hover {
     color: #0c3953;
+  }
+
+  p {
+    margin-bottom: 1em;
   }
 
   label, input {
