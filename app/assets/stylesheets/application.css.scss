@@ -147,11 +147,16 @@ a:not(.button):visited:hover {
   top: 0;
   left: 0;
   right: 0;
-  padding: 1.75em .75em;
+  padding: 1.75em .75em 1.5em;
 
   color: #fff;
-  // background-color: #0079bf;
   font-size: 16px;
+
+  transition: background 1s ease 0s;
+
+  &.scrolled {
+    background-color: #0079bf;
+  }
 
   .logo {
     float: left;

@@ -1,16 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router';
 
+import WelcomeNavigation from './welcome_navigation';
+
 export default () => (
   <section className="welcome">
 
-    <nav className="welcome-nav clearfix">
-      <span className="logo"/>
-      <section className="buttons">
-        <Link to="/login" className="button">Log In</Link>
-        <Link to="/signup" className="button green bold">Sign Up</Link>
-      </section>
-    </nav>
+    <WelcomeNavigation />
 
     <section className="welcome-splash" />
 
