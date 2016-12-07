@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Welcome from './welcome';
+import Welcome from './welcome/welcome';
 import HomeContainer from './home/home_container';
 
 export default ({ currentUser, children }) => {
