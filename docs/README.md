@@ -8,9 +8,9 @@
 
 Collaboardate is a web application inspired by Trello and built using Ruby on Rails and React/Redux.  The minimum viable product will include the following:
 
-- [ ] New account creation, login, and guest/demo login
-- [ ] Hosting on Heroku
-- [ ] A complete set of READMEs documenting the development process
+- [x] New account creation, login, and guest/demo login
+- [x] Hosting on Heroku
+- [x] A complete set of READMEs documenting the development process
 - [ ] Boards
 - [ ] Lists & Cards
 - [ ] Sharing Boards
