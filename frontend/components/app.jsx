@@ -1,16 +1,16 @@
 import React from 'react';
 
 import Welcome from './welcome';
-import Home from './home';
+import HomeContainer from './home_container';
 
 export default ({ currentUser, children }) => {
 
   if(currentUser !== null) {
     return (
       <div id="app">
-        <Home>
+        <HomeContainer>
           { children }
-        </Home>
+        </HomeContainer>
       </div>
     );
   } else {
