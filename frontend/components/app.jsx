@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Welcome from './welcome';
-import HomeContainer from './home_container';
+import HomeContainer from './home/home_container';
 
 export default ({ currentUser, children }) => {
 
