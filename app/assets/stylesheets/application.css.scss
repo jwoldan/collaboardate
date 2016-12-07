@@ -43,6 +43,55 @@ ul {
   list-style: none;
 }
 
+.clearfix:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.welcome-nav {
+  padding: 1.75em .75em;
+
+  color: #fff;
+  background-color: #0079bf;
+  font-size: 16px;
+
+  .logo {
+    float: left;
+    font-size: 30px;
+  }
+
+  .buttons {
+    float:right;
+  }
+
+  .button {
+    margin: 0 .25em;
+    padding: .7em 1.3em;
+    border-radius: .4em;
+    background-color: rgba(0,0,0,0.15);
+    box-shadow: 0 2px 0 rgba(0,0,0,0.3);
+  }
+
+  .button:hover {
+    background-color: rgba(0,0,0,0.25);
+    box-shadow: 0 2px 0 rgba(0,0,0,0.4);
+  }
+
+  .button.green {
+    background: linear-gradient(to bottom, #61bd4f 0, #5aac44 100%);
+  }
+
+  .button.green:hover {
+    background: linear-gradient(to bottom, #5aac44 0, #519839 100%);
+  }
+
+  .button.bold {
+    font-weight: bold;
+  }
+
+}
+
 .user-form {
   width: 560px;
   padding-top: 100px;
