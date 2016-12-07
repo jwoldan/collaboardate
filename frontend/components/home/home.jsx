@@ -6,8 +6,12 @@ import HomeNavigation from './home_navigation';
 class Home extends React.Component {
 
   render () {
+    const { currentUser, logout } = this.props;
+    
     return (
-      <HomeNavigation logout={ this.props.logout }/>
+      <section className="home">
+        <HomeNavigation currentUser={ currentUser } logout={ logout }/>
+      </section>
     );
   }
 }
