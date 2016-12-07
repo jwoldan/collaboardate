@@ -1,28 +1,15 @@
 import React from 'react';
 import { withRouter, Link } from 'react-router';
 
+import HomeNavigation from './home_navigation';
+
 class Home extends React.Component {
-
-  constructor() {
-    super();
-
-    this.logout = this.logout.bind(this);
-  }
-
-  logout () {
-    // const router = this.props.router
-    this.props.logout().then(
-      (user) => this.props.router.push('/')
-    );
-  }
 
   render () {
     return (
-      <nav className='home-nav'>
-        <button onClick={ this.logout }>Log Out</button>
-      </nav>
+      <HomeNavigation logout={ this.props.logout }/>
     );
   }
 }
 
-export default withRouter(Home);
+export default Home;
