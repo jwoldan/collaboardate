@@ -16,6 +16,7 @@ export const login = (user) => {
       currentUser => {
         dispatch(receiveUser(currentUser));
         dispatch(receiveLoginErrors({}));
+        dispatch(receiveSignupErrors({}));
         return currentUser;
       },
       errors => {
@@ -42,6 +43,7 @@ export const signup = (user) => {
     return CurrentUserAPIUtil.signup(user).then(
       currentUser => {
         dispatch(receiveUser(currentUser));
+        dispatch(receiveLoginErrors({}));
         dispatch(receiveSignupErrors({}));
         return currentUser;
       },
