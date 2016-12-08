@@ -3,6 +3,7 @@ import * as BoardAPIUtil from '../util/board_api_util';
 export const RECEIVE_BOARDS = 'RECEIVE_BOARDS';
 export const RECEIVE_BOARD = 'RECEIVE_BOARD';
 export const REMOVE_BOARD = 'REMOVE_BOARD';
+export const RECEIVE_CURRENT_BOARD = 'RECEIVE_CURRENT_BOARD';
 
 export const receiveBoards = (boards) => {
   return {
@@ -21,6 +22,13 @@ export const receiveBoard = (board) => {
 export const removeBoard = (board) => {
   return {
     type: REMOVE_BOARD,
+    board,
+  };
+};
+
+export const receiveCurrentBoard = (board) => {
+  return {
+    type: RECEIVE_CURRENT_BOARD,
     board,
   };
 };
@@ -63,7 +71,7 @@ export const fetchBoard = (id) => {
   return dispatch => {
     return BoardAPIUtil.fetchBoard(id).then(
       board => {
-        dispatch(receiveBoard(board));
+        dispatch(receiveCurrentBoard(board));
         return board;
       }
     );
