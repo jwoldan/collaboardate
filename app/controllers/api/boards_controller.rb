@@ -23,14 +23,14 @@ class Api::BoardsController < ApplicationController
     end
   end
 
-  def show
-    @board = Board.find(params[:id])
-    render :show
-  end
-
   def index
     @boards = current_user.own_boards
     render :index
+  end
+
+  def show
+    @board = Board.find(params[:id])
+    render :show
   end
 
   def destroy
