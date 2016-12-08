@@ -2,12 +2,12 @@ import React from 'react';
 
 import HomeBoardsMenuItem from './home_boards_menu_item';
 
-export default ({ boards, toggle, show }) => {
+export default ({ boards, show, toggle, resetMenus }) => {
   let dropdownClass = "menu dropdown boards-dropdown";
   if(show) dropdownClass += " show";
 
   return (
-    <li className="nav-item">
+    <li className="nav-item" tabIndex="0" onBlur={ resetMenus }>
       <div className="nav-button" onClick={ toggle }>
         <span className="icon" />Boards
       </div>

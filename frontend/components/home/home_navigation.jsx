@@ -13,44 +13,34 @@ class HomeNavigation extends React.Component {
   constructor() {
     super();
 
-    this.state = {
-      show: {
-        boards: false,
-        create: false,
-        profile: false,
-        information: false,
-        notification: false,
-      }
-    };
-
     this.toggleMenu = this.toggleMenu.bind(this);
+    this.delayedResetMenus = this.delayedResetMenus.bind(this);
+  }
+
+  componentWillUnmount() {
+    this.props.resetMenus();
   }
 
   toggleMenu(menu) {
-
-    return () => {
-      const newShow = {};
-
-      Object.keys(this.state.show).forEach((currentMenu) => {
-        if(currentMenu === menu) {
-          newShow[menu] = !this.state.show[menu];
-        } else {
-          newShow[currentMenu] = false;
-        }
-      });
-
-      this.setState({ show: newShow });
+    return (e) => {
+      this.props.toggleMenu(menu);
     };
   }
 
+  delayedResetMenus(e) {
+    // TODO figure out why this gets called twice
+    window.setTimeout(this.props.resetMenus, 150);
+  }
+
   render () {
+    const { menuStatus, toggleMenu, resetMenus } = this.props;
     const {
       boards,
       create,
       profile,
       information,
       notification,
-    } = this.state.show;
+    } =  menuStatus;
 
     return (
       <nav className="home-nav clearfix">
@@ -60,6 +50,7 @@ class HomeNavigation extends React.Component {
         <ul className="nav-left clearfix">
           <HomeBoardsMenuContainer
             show={ boards }
+            resetMenus={ this.delayedResetMenus }
             toggle={ this.toggleMenu('boards') }
           />
           <HomeSearch />
@@ -68,18 +59,22 @@ class HomeNavigation extends React.Component {
         <ul className="nav-right clearfix">
           <HomeCreateMenu
             show={ create }
+            resetMenus={ this.delayedResetMenus }
             toggle={ this.toggleMenu('create') }
           />
           <HomeProfileMenuContainer
             show={ profile }
+            resetMenus={ this.delayedResetMenus }
             toggle={ this.toggleMenu('profile') }
           />
           <HomeInformationMenu
             show={ information }
+            resetMenus={ this.delayedResetMenus }
             toggle={ this.toggleMenu('information') }
           />
           <HomeNotificationMenu
             show={ notification }
+            resetMenus={ this.delayedResetMenus }
             toggle={ this.toggleMenu('notification') }
           />
         </ul>
