@@ -1,24 +1,27 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Collaboardate is a web application inspired by Trello and built using Ruby on Rails and React/Redux. For details on the development of this project, see the [development README](docs/README.md).
 
-Things you may want to cover:
+## Prerequisites
+- Up to date versions of ruby and npm.  
+- A local Postgresql installation- on a Mac, your easiest option is [Postgres.app](http://postgresapp.com/).
 
-* Ruby version
+## Project Setup
 
-* System dependencies
+1. `git clone https://github.com/jwoldan/collaboardate.git`
+2. `cd collaboardate`
+3. `bundle install`
+4. `npm install`
+5. `npm run webpack-once`
 
-* Configuration
+## Database Setup
 
-* Database creation
+Before executing these commands, make sure Postgres.app is running.
 
-* Database initialization
+1. `bundle exec rake db:create`
+2. `bundle exec rake db:schema:load`
+3. `bundle exec rake db:seed`
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Starting the Server
+1. `bundle exec rails server`
+2.  Visit http://localhost:3000/ to see Collaboardate in action!
