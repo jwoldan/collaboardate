@@ -30,6 +30,9 @@ class User < ApplicationRecord
 
   after_initialize :ensure_session_token, :generate_defaults
 
+  has_many :own_boards,
+    foreign_key: :creator_id
+
   def self.generate_session_token
     token = nil
     while !token || User.find_by(session_token: token)
