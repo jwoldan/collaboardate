@@ -6,6 +6,7 @@ import Root from './components/root';
 
 // TODO: Remove after testing!
 import * as CurrentUserActions from './actions/current_user_actions';
+import * as BoardAPIUtil from './util/board_api_util';
 
 document.addEventListener('DOMContentLoaded', () => {
   let preloadedState;
@@ -21,6 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // TODO: Remove after testing!
   window.store = store;
   window.CurrentUserActions = CurrentUserActions;
+  window.BoardAPIUtil = BoardAPIUtil;
 
   const root = document.getElementById('root');
   ReactDOM.render(<Root store={ store }/>, root);
