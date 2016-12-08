@@ -1,5 +1,7 @@
 import React from 'react';
 
+import HomeBoardsMenuItem from './home_boards_menu_item';
+
 export default ({ boards, toggle, show }) => {
   let dropdownClass = "menu dropdown boards-dropdown";
   if(show) dropdownClass += " show";
@@ -10,12 +12,13 @@ export default ({ boards, toggle, show }) => {
         <span className="icon" />Boards
       </div>
       <section className={ dropdownClass }>
-        <span className="menu-close" onClick={ toggle }></span>
         <section className="menu-header">
-          Test
+          Personal Boards
         </section>
         <ul>
-          <li><a>Log Out</a></li>
+          { boards.map((board) => (
+            <HomeBoardsMenuItem key={ board.id } board={ board } />
+          ))}
         </ul>
       </section>
     </li>

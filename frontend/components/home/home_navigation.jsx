@@ -1,7 +1,7 @@
 import React from 'react';
 import { withRouter, Link } from 'react-router';
 
-import HomeBoardsMenu from './home_boards_menu';
+import HomeBoardsMenuContainer from './home_boards_menu_container';
 import HomeSearch from './home_search';
 import HomeCreateMenu from './home_create_menu';
 import HomeProfileMenuContainer from './home_profile_menu_container';
@@ -58,7 +58,7 @@ class HomeNavigation extends React.Component {
         <Link to="/" className="logo" />
 
         <ul className="nav-left clearfix">
-          <HomeBoardsMenu
+          <HomeBoardsMenuContainer
             show={ boards }
             toggle={ this.toggleMenu('boards') }
           />
