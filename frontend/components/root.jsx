@@ -6,6 +6,7 @@ import AppContainer from './app_container';
 import SignupFormContainer from './user/signup_form_container';
 import LoginFormContainer from './user/login_form_container';
 import BoardsIndexContainer from './boards/boards_index_container';
+import BoardContainer from './boards/board_container';
 
 export default ({ store }) => {
 
@@ -26,6 +27,7 @@ export default ({ store }) => {
       <Router history={ hashHistory }>
         <Route path="/" component={ AppContainer }>
           <IndexRoute component= { BoardsIndexContainer } />
+          <Route path="/b/:boardId" component={ BoardContainer } />
         </Route>
         <Route
             path="/signup"
