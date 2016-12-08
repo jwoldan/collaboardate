@@ -29,7 +29,7 @@ starred     | boolean   | not null, default: false
 visibility  | string    | not null
 background  | string    | not null
 creator_id  | integer   | not null, foreign key, indexed
-team_id     | integer   | not null, foreign key, indexed **(BONUS ONLY)**
+team_id     | integer   | foreign key, indexed **(BONUS ONLY)**
 
 ### lists
 
