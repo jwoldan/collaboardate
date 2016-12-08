@@ -4,7 +4,7 @@ import { withRouter, Link } from 'react-router';
 import HomeBoardsMenu from './home_boards_menu';
 import HomeSearch from './home_search';
 import HomeCreateMenu from './home_create_menu';
-import HomeProfileMenu from './home_profile_menu';
+import HomeProfileMenuContainer from './home_profile_menu_container';
 import HomeInformationMenu from './home_information_menu';
 import HomeNotificationMenu from './home_notification_menu';
 
@@ -44,7 +44,6 @@ class HomeNavigation extends React.Component {
   }
 
   render () {
-    const { currentUser, logout } = this.props;
     const {
       boards,
       create,
@@ -71,11 +70,9 @@ class HomeNavigation extends React.Component {
             show={ create }
             toggle={ this.toggleMenu('create') }
           />
-          <HomeProfileMenu
+          <HomeProfileMenuContainer
             show={ profile }
             toggle={ this.toggleMenu('profile') }
-            currentUser={ currentUser }
-            logout= { logout }
           />
           <HomeInformationMenu
             show={ information }
