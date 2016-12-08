@@ -31,6 +31,7 @@ class User < ApplicationRecord
   after_initialize :ensure_session_token, :generate_defaults
 
   has_many :own_boards,
+    class_name: 'Board',
     foreign_key: :creator_id
 
   def self.generate_session_token
