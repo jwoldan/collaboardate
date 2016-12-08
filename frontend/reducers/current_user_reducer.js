@@ -6,9 +6,9 @@ export default (state = null, action) => {
   switch(action.type) {
 
     case CurrentUserActions.RECEIVE_USER:
-      // debugger
-      return action.user;
-
+      if (action.user === null) return null;
+      return Object.assign({}, action.user);
+      
     default:
       return state;
   }
