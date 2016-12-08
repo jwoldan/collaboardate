@@ -3,7 +3,7 @@ import React from 'react';
 const defaultState = {
   board: {
     title: '',
-    visibility: 'private',
+    visibility: 'Private',
     background: 'blue',
   },
   showVisibility: false,
@@ -69,8 +69,6 @@ class BoardCreateForm extends React.Component {
 
     if(this.props.show) this.refs.titleInput.focus();
 
-    const visibilityText = visibility[0].toUpperCase() + visibility.slice(1);
-
     let visibilityTextClass = "menu-form-text quiet";
     let visibilityMenuClass = "";
     if (showVisibility) {
@@ -96,12 +94,12 @@ class BoardCreateForm extends React.Component {
           className={ visibilityTextClass }
           onClick={ this.toggleVisibility }
         >
-          This board will be { visibilityText }.&nbsp;
+          This board will be { visibility }.&nbsp;
           <a>Change.</a>
         </span>
         <ul className={ visibilityMenuClass }>
           <li>
-            <a data-value="private" onClick={ this.updateBoard('visibility') }>
+            <a data-value="Private" onClick={ this.updateBoard('visibility') }>
               <h4>Private</h4>
               <span className="quiet small">
                 The board is private.
@@ -110,7 +108,7 @@ class BoardCreateForm extends React.Component {
             </a>
           </li>
           <li>
-            <a data-value="public" onClick={ this.updateBoard('visibility') }>
+            <a data-value="Public" onClick={ this.updateBoard('visibility') }>
               <h4>Public</h4>
               <span className="quiet small">
                 The board is public. It&#8217;s visible to anyone with the

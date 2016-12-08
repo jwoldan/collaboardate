@@ -14,8 +14,8 @@
 
 class Board < ApplicationRecord
 
-  VISIBILITY_PRIVATE = 'private'.freeze
-  VISIBILITY_PUBLIC = 'public'.freeze
+  VISIBILITY_PRIVATE = 'Private'.freeze
+  VISIBILITY_PUBLIC = 'Public'.freeze
   BACKGROUND_BLUE = 'blue'.freeze
 
   validates :title, :visibility, :background, :creator, presence: true
