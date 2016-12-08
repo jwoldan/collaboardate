@@ -13,10 +13,15 @@
 #
 
 class Board < ApplicationRecord
+
+  VISIBILITY_PRIVATE = 'private'.freeze
+  VISIBILITY_PUBLIC = 'public'.freeze
+  BACKGROUND_BLUE = 'blue'.freeze
+
   validates :title, :visibility, :background, :creator, presence: true
   validates :starred, inclusion: [true, false]
-  validates :visibility, inclusion: ['private', 'public']
-  validates :background, inclusion: ['blue']
+  validates :visibility, inclusion: [VISIBILITY_PRIVATE, VISIBILITY_PUBLIC]
+  validates :background, inclusion: [BACKGROUND_BLUE]
 
   belongs_to :creator,
     class_name: 'User',
