@@ -1,10 +1,11 @@
 class Api::BoardsController < ApplicationController
 
-  before_action :require_logged_in, except: :show
+  before_action :require_logged_in, only: [:create, :index]
   before_action :check_visibility, only: :show
+  before_action :require_creator, only: [:update, :destroy]
 
   def create
-    @board = Board.new(board_params)
+    @board = current_user.own_boards.new(board_params)
 
     if @board.save
       render :short_show
@@ -45,11 +46,17 @@ class Api::BoardsController < ApplicationController
     params.require(:board).permit(:title, :starred, :visibility, :background)
   end
 
+  def require_creator
+    board = Board.find(params[:id])
+    if !current_user || board.creator_id != current_user.id
+      render json: "Unauthorized access", status: 401
+    end
+  end
+
   def check_visibility
     board = Board.find(params[:id])
-    require_logged_in if board.visibility == Board::VISIBILITY_PRIVATE
-    if Board.creator_id != current_user.id
-      render json: "Unauthorized access", status: 401
+    if board.visibility == Board::VISIBILITY_PRIVATE
+      require_creator
     end
   end
 
