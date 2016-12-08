@@ -151,41 +151,6 @@
     margin-bottom: .5em;
   }
 
-  .quiet, .quiet a {
-    color: #999;
-  }
-
-  .quiet a:hover {
-    color: #333
-  }
-
-  .input {
-    box-sizing: border-box;
-    width: 100%;
-    padding: .5em;
-    margin-bottom: 1.2em;
-
-    background-color: #edeff0;
-    border-radius: 4px;
-    border: 1px solid #cdd2d4;
-
-    &:focus {
-      border-color: #a5acb0;
-      box-shadow: 0 0 6px #cdd2d4;
-    }
-
-    &.error {
-      background: #fbedeb;
-      border: 1px solid #ec9488;
-
-      &:focus {
-        background: #fbedeb;
-        border: 1px solid #ec9488;
-        box-shadow: 0 0 6px #ec9488;
-      }
-    }
-  }
-
   .submit {
     padding: .5em 1.4em;
     margin-bottom: 1em;

@@ -17,7 +17,7 @@ class HomeProfile extends React.Component {
     const safeInitials = currentUser ? currentUser.initials : '';
     const safeFullName = currentUser ? currentUser.full_name : '';
     const safeUsername = currentUser ? currentUser.username : '';
-    let dropdownClass = "profile-dropdown dropdown";
+    let dropdownClass = "menu dropdown profile-dropdown";
     if(show) dropdownClass += " show";
 
     return (
@@ -28,7 +28,7 @@ class HomeProfile extends React.Component {
         </div>
         <section className={ dropdownClass }>
           <span className="menu-close" onClick={ toggle }></span>
-          <section className="profile-user">
+          <section className="menu-header">
             { safeFullName } ({ safeUsername })
           </section>
           <ul>

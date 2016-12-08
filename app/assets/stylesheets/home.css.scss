@@ -12,6 +12,119 @@
   background-color: rgb(0, 121, 191);
 }
 
+/* Menu (used for dropdowns and other popup menus) */
+
+.menu {
+  display: none;
+  position: absolute;
+  width: 280px;
+  padding: 10px 0;
+  background-color: white;
+
+  line-height: 1.44em;
+
+  border-radius: 3px;
+  border: 1px solid #d6dadc;
+  border-bottom-color: #C4C9CC;
+
+  &.show {
+    display: block;
+  }
+
+  .small {
+    font-weight: normal;
+    font-size: 12px;
+    line-height: .6em;
+  }
+
+  a:hover .quiet {
+    color: white;
+  }
+
+  :not(.quiet) > a:not(.button) {
+    display: block;
+    padding: 5px 9px;
+    color: #444;
+    font-weight: bold;
+    text-decoration: none;
+
+    cursor: pointer;
+
+    &:hover {
+      background-color: #298FCA;
+      color: #fff;
+    }
+  }
+}
+
+.menu-header {
+  text-align: center;
+  color: #8c8c8c;
+  margin-bottom: 10px;
+}
+
+.menu-close {
+  display: block;
+  position: absolute;
+  top: 1.05em;
+  right: 1em;
+  width: 1em;
+  height: 1em;
+
+  background: image-url('ic_close_black_24px.svg');
+  background-size: contain;
+  filter: opacity(50%);
+
+  cursor: pointer;
+
+  &:hover {
+    filter: opacity(80%);
+  }
+}
+
+.menu-form {
+  margin: 7px 0;
+
+  color: #4d4d4d;
+  text-align: left;
+
+  &:before {
+    content: "";
+    display: block;
+    margin: 0 10px;
+    border-top: 1px solid #D6DADC;
+  }
+
+  &:hover {
+    color: #4d4d4d;
+  }
+
+  > :not(ul):not(li) {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  label {
+    display: block;
+    font-weight: bold;
+    padding: 5px 0;
+  }
+
+  .input {
+    display: block;
+    margin-bottom: 0.5em;
+    font-weight: normal;
+    background-color: #E2E4E6;
+  }
+
+  .button {
+    display: inline-block;
+    margin-top: 0.5em;
+    padding-left: 2em;
+    padding-right: 2em;
+  }
+}
+
 /* Home Nav Bar */
 
 .home-nav {
@@ -52,27 +165,10 @@
   }
 
   .dropdown {
-    display: none;
-    position: absolute;
     top: 42px;
-    width: 280px;
-    padding: 10px 1px;
-    background-color: white;
-
-    border-radius: 3px;
-    border: 1px solid #d6dadc;
-    border-bottom-color: #C4C9CC;
 
     &.profile-dropdown {
       right: 4px;
-    }
-
-    &.show {
-      display: block;
-    }
-
-    li {
-
     }
 
     li:before {
@@ -80,46 +176,6 @@
       display: block;
       margin: 7px 10px;
       border-top: 1px solid #D6DADC;
-    }
-
-    a {
-      display: block;
-      padding: 5px 9px;
-      color: #444;
-      font-weight: bold;
-      text-decoration: none;
-
-      cursor: pointer;
-
-      &:hover {
-        background-color: #298FCA;
-        color: #fff;
-      }
-    }
-
-    .profile-user {
-      text-align: center;
-      color: #8c8c8c;
-      margin-bottom: 10px;
-    }
-
-    .menu-close {
-      display: block;
-      position: absolute;
-      top: 1.05em;
-      right: 1em;
-      width: 1em;
-      height: 1em;
-
-      background: image-url('ic_close_black_24px.svg');
-      background-size: contain;
-      filter: opacity(50%);
-
-      cursor: pointer;
-
-      &:hover {
-        filter: opacity(80%);
-      }
     }
   }
 

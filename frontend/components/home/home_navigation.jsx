@@ -56,7 +56,7 @@ class HomeNavigation extends React.Component {
     return (
       <nav className="home-nav clearfix">
 
-        <span className="logo" />
+        <Link to="/" className="logo" />
 
         <ul className="nav-left clearfix">
           <HomeBoardsMenu

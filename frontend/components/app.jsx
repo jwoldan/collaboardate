@@ -8,9 +8,7 @@ export default ({ currentUser, children }) => {
   if(currentUser !== null) {
     return (
       <div id="app">
-        <HomeContainer>
-          { children }
-        </HomeContainer>
+        <HomeContainer children={ children } />
       </div>
     );
   } else {

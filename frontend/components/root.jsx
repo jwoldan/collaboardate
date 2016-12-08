@@ -5,6 +5,7 @@ import { Router, Route, IndexRoute, hashHistory } from 'react-router';
 import AppContainer from './app_container';
 import SignupFormContainer from './user/signup_form_container';
 import LoginFormContainer from './user/login_form_container';
+import BoardsIndexContainer from './boards/boards_index_container';
 
 export default ({ store }) => {
 
@@ -23,7 +24,9 @@ export default ({ store }) => {
   return (
     <Provider store={ store }>
       <Router history={ hashHistory }>
-        <Route path="/" component={ AppContainer } />
+        <Route path="/" component={ AppContainer }>
+          <IndexRoute component= { BoardsIndexContainer } />
+        </Route>
         <Route
             path="/signup"
             component={ SignupFormContainer }

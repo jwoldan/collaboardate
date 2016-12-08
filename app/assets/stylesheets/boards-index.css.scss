@@ -1,0 +1,105 @@
+
+/* Boards Index */
+
+// Mixin from http://stackoverflow.com/questions/23274338/how-to-keep-wrapped-flex-items-the-same-width-as-the-elements-on-the-previous-ro
+// Slightly modified to account for padding and margin
+
+@mixin flex-wrap-fix($flex-basis, $padding-and-margin, $max-viewport-width: 3000px) {
+  flex-grow: 1;
+  flex-basis: $flex-basis;
+  max-width: 100%;
+
+  $multiplier: 1;
+  $current-width: 0px;
+
+  @while $current-width < $max-viewport-width {
+    $current-width: $current-width + $flex-basis;
+    $multiplier: $multiplier + 1;
+
+    @media(min-width: $flex-basis * $multiplier) {
+      max-width: calc(#{percentage(1/$multiplier)} - #{$padding-and-margin});
+    }
+  }
+}
+
+.boards-index {
+  position: absolute;
+  top: 39px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  padding: 2.2em 0.8em;
+
+  font-size: 16px;
+  font-weight: bold;
+
+  background-color: #fff;
+
+  .boards-list {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .board {
+    // box-sizing: border-box;
+    position: relative;
+    display: block;
+    // min-width: 220px;
+    // max-width: 270px;
+    // flex-grow: 1;
+    @include flex-wrap-fix(270px, 40px);
+    height: 80px;
+    padding: 8px 10px;
+    margin-right: 20px;
+    margin-top: 20px;
+    border-radius: 3px;
+
+    color: white;
+    background-color: #026AA7;
+
+    cursor: pointer;
+    user-select: none;
+
+    &.board-create {
+      font-size: 14px;
+      font-weight: 400;
+      text-align: center;
+      line-height: 80px;
+
+      color: #8c8c8c;
+      background-color: #E2E4E6;
+
+      &:hover {
+        color: #4d4d4d;
+        background-color: #D6DADC;
+      }
+    }
+
+    &:not(.board-create):hover:after {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, .15);
+    }
+  }
+
+  .board-create-menu {
+    width: 310px;
+    top: 0;
+    left: 0;
+
+    .button {
+      box-shadow: 0 1px 0 rgba(0, 0, 0, 0.3);
+
+      &:hover {
+        box-shadow: 0 1px 0 rgba(0, 0, 0, 0.4)
+      }
+    }
+  }
+
+}
