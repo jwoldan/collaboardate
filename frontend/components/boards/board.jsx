@@ -2,6 +2,7 @@ import React from 'react';
 
 import BoardTitleMenu from './board_title_menu';
 import BoardVisibilityMenu from './board_visibility_menu';
+import BoardMenu from './board_menu';
 
 class Board extends React.Component {
 
@@ -46,6 +47,10 @@ class Board extends React.Component {
               visibility={ visibility }
               updateBoard= { this.updateBoard }
             />
+          </ul>
+
+          <ul className="nav-right clearfix">
+            <BoardMenu board={ board }/>
           </ul>
 
         </nav>

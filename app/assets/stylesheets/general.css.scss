@@ -42,6 +42,10 @@ ul {
   font-weight: bold;
 }
 
+.loud {
+  color: #4d4d4d;
+}
+
 .quiet, .quiet a, .quiet a:not(.button) {
   color: #999;
 }
@@ -62,21 +66,40 @@ ul {
   border-radius: .4em;
   background-color: rgba(0,0,0,0.15);
   box-shadow: 0 2px 0 rgba(0,0,0,0.3);
+
   user-select: none;
+  cursor: pointer;
+
   color: white;
+  text-align: center;
 
   &:hover {
     background-color: rgba(0,0,0,0.25);
     box-shadow: 0 2px 0 rgba(0,0,0,0.4);
   }
-}
 
-.button.green {
-  color: white;
-  background: linear-gradient(to bottom, #61bd4f 0, #5aac44 100%);
+  &.green {
+    color: white;
+    background: linear-gradient(to bottom, #61bd4f 0, #5aac44 100%);
 
-  &:hover {
-    background: linear-gradient(to bottom, #5aac44 0, #519839 100%);
+    &:hover {
+      background: linear-gradient(to bottom, #5aac44 0, #519839 100%);
+    }
+  }
+
+  &.red {
+    font-weight: bold;
+    color: #B04632;
+
+    &:hover {
+      background: linear-gradient(
+        to bottom,
+        #CF513D 0,
+        #B04632 100%
+      );
+      box-shadow: 0 1px 0 #4d4d4d;
+      color: #fff;
+    }
   }
 }
 
@@ -101,10 +124,18 @@ a:not(.button):visited:hover {
 
 .nav-left {
   float: left;
+
+  > li {
+    float: left;
+  }
 }
 
 .nav-right {
   float: right;
+
+  > li {
+    float: left;
+  }
 }
 
 /* Form Input Styles */

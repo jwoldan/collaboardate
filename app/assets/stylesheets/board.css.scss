@@ -6,14 +6,6 @@
     color: white;
   }
 
-  .nav-left li {
-    float: left;
-  }
-
-  .nav-right li {
-    float: left;
-  }
-
   .nav-button {
     padding: 5px 8px;
 
@@ -39,5 +31,41 @@
     font-size: 12px;
   }
 
+}
+
+.board-menu {
+  position: relative;
+
+  > .menu {
+    display: block;
+    top: 0;
+    right: 0;
+    transform: translateX(300px);
+    transition: 0.2s ease 0s;
+
+    border-radius: 0;
+
+    &.show {
+      transform: translateX(10px);
+    }
+
+    > .menu-close {
+      top: 0.7em;
+      width: 1.5em;
+      height: 1.5em;
+    }
+  }
+
+
+
+  .delete-board {
+    position: relative;
+
+    .menu {
+      width: 260px;
+      left: 10px;
+      top: 30px;
+    }
+  }
 
 }

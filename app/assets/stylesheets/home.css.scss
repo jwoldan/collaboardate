@@ -50,11 +50,19 @@
     text-decoration: none;
 
     cursor: pointer;
+    user-select: none;
 
     &:hover {
       background-color: #298FCA;
       color: #fff;
     }
+  }
+
+  .button {
+    display: block;
+    margin-top: 0.5em;
+    padding-left: 2em;
+    padding-right: 2em;
   }
 }
 
@@ -134,11 +142,14 @@
   }
 
   .button {
-    display: inline-block;
     margin-top: 0.5em;
     padding-left: 2em;
     padding-right: 2em;
   }
+}
+
+.menu-section {
+  padding: 0 10px;
 }
 
 /* Home Nav Bar */
