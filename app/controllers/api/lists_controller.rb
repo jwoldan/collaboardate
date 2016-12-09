@@ -1,8 +1,8 @@
 class Api::ListsController < ApplicationController
 
   before_action :require_logged_in, only: [:create]
-  before_action :check_board_visibility, only: [:index, :show]
-  before_action :require_board_creator, only: [:update, :destroy]
+  before_action :check_parent_board_visibility, only: [:index, :show]
+  before_action :require_parent_board_creator, only: [:update, :destroy]
 
   def create
     @list = List.new(list_params)
@@ -10,7 +10,7 @@ class Api::ListsController < ApplicationController
     if @list.save
       render :show
     else
-      render json @list.errors, status: 422
+      render json: @list.errors, status: 422
     end
   end
 
@@ -46,14 +46,18 @@ class Api::ListsController < ApplicationController
     params.require(:list).permit(:title, :order, :board_id)
   end
 
-  def require_board_creator
+  def require_parent_board_creator
     list = List.find(params[:id])
-    super(list.board_id)
+    require_board_creator(list.board_id)
   end
 
-  def check_board_visibility
-    list.List.find(params[:id])
-    super(list.board_id)
+  def check_parent_board_visibility
+    if params[:board_id]
+      board_id = params[:board_id]
+    else
+      board_id = List.find(params[:id]).board_id
+    end
+    check_board_visibility(board_id)
   end
 
 end
