@@ -11,6 +11,18 @@ class Board extends React.Component {
     this.updateBoard = this.updateBoard.bind(this);
   }
 
+  componentDidMount() {
+    this.props.receiveCurrentBoardId(this.props.params.boardId);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.props.receiveCurrentBoardId(nextProps.params.boardId);
+  }
+
+  componentWillUnmount() {
+    this.props.receiveCurrentBoardId(null);
+  }
+
   updateBoard(update) {
     const { board, updateBoard } = this.props;
     const updatedBoard = Object.assign({}, board, update);
