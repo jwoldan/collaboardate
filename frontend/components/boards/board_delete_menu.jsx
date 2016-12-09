@@ -19,7 +19,6 @@ class BoardDeleteMenu extends ToggleMenu {
 
   render() {
 
-
     const menuContent = (
       <section className="menu-section">
         <span className="small loud">

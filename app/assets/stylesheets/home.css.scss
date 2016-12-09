@@ -198,6 +198,15 @@
       right: 4px;
     }
 
+    &.dropdown-create {
+      right: 4px;
+
+      .board-create-menu {
+        left: -1px;
+        top: -1px;
+      }
+    }
+
   }
 
   .logo {

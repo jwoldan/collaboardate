@@ -3,6 +3,7 @@ import React from 'react';
 import BoardCreateMenu from './board_create_menu';
 
 class BoardsIndexCreate extends React.Component {
+
   constructor() {
     super();
 
