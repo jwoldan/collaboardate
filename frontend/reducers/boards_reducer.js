@@ -2,6 +2,7 @@ import * as BoardActions from '../actions/board_actions';
 
 export default (state = {}, action) => {
   Object.freeze(state);
+  let newBoard;
 
   switch (action.type) {
 
@@ -9,9 +10,26 @@ export default (state = {}, action) => {
       return Object.assign({}, action.boards);
 
     case BoardActions.RECEIVE_BOARD:
-      const newBoard = action.board;
+      newBoard = action.board;
       return Object.assign({}, state, {
-        [newBoard.id]: newBoard
+        [newBoard.id]: newBoard,
+      });
+
+    case BoardActions.RECEIVE_CURRENT_BOARD:
+      const {
+        id,
+        title,
+        starred,
+        visibility,
+        background,
+      } = action.board;
+
+      newBoard = Object.assign({}, {
+        id, title, starred, visibility, background,
+      });
+      
+      return Object.assign({}, state, {
+        [newBoard.id]: newBoard,
       });
 
     case BoardActions.REMOVE_BOARD:
