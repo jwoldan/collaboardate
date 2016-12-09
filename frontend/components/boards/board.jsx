@@ -25,7 +25,8 @@ class Board extends React.Component {
 
   fetchBoard(boardId) {
     return this.props.fetchBoard(boardId).then(
-      (board) => this.props.receiveCurrentBoardId(board.id)
+      (board) => this.props.receiveCurrentBoardId(board.id),
+      (error) => this.props.router.push('/')
     );
   }
 
