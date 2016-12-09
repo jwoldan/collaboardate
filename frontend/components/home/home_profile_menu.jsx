@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router';
 
 class HomeProfile extends React.Component {
 
@@ -9,7 +10,9 @@ class HomeProfile extends React.Component {
   }
 
   logout () {
-    this.props.logout();
+    this.props.logout().then(() => {
+      if (this.props.location.pathname !== '/') this.props.router.push("/");
+    });
   }
 
   render() {
@@ -41,4 +44,4 @@ class HomeProfile extends React.Component {
 
 }
 
-  export default HomeProfile;
+  export default withRouter(HomeProfile);
