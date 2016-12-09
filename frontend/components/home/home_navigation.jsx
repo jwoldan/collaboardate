@@ -21,6 +21,14 @@ class HomeNavigation extends React.Component {
     this.props.fetchBoards();
   }
 
+  componentWillReceiveProps(newProps) {
+    if(this.props.location.pathname !==
+        newProps.location.pathname) {
+      console.log(this.props.resetMenus());
+      this.props.resetMenus();
+    }
+  }
+
   componentWillUnmount() {
     this.props.resetMenus();
   }
