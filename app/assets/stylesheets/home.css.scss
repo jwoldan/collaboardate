@@ -329,18 +329,10 @@
 
 }
 
-.nav-left {
-  float: left;
-
-  > li {
-    margin-right: 8px;
-  }
+.nav-left > li {
+  margin-right: 8px;
 }
 
-.nav-right {
-  float: right;
-
-  > li {
-    margin-left: 8px;
-  }
+.nav-right > li {
+  margin-left: 8px;
 }

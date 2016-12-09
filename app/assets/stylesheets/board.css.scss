@@ -6,31 +6,23 @@
     color: white;
   }
 
-  .nav-left {
+  .nav-left li {
     float: left;
-
-    li {
-      float: left;
-    }
-
-    .nav-button {
-      padding: 5px 8px;
-
-      cursor: pointer;
-      user-select: none;
-
-      &:hover {
-        background: rgba(0,0,0,.12);
-        border-radius: 3px;
-      }
-    }
   }
 
-  .nav-right {
-    float: right;
+  .nav-right li {
+    float: left;
+  }
 
-    li {
-      float: left;
+  .nav-button {
+    padding: 5px 8px;
+
+    cursor: pointer;
+    user-select: none;
+
+    &:hover {
+      background: rgba(0,0,0,.12);
+      border-radius: 3px;
     }
   }
 
