@@ -21,24 +21,16 @@ class BoardVisibilityMenu extends ToggleMenu {
     const { visibility, updateVisibility } = this.props;
     const { show } = this.state;
 
-    let visibilityMenuClass = "menu";
-    if (show) visibilityMenuClass += " show";
+    const menuContent = (
+      <BoardVisibilityOptions updateVisibility={ this.updateVisibility }/>
+    );
 
     return (
       <li className="visibility">
         <section className="nav-button" onClick={ this.toggle }>
           { visibility }
         </section>
-        <section className={ visibilityMenuClass }>
-          <span
-            className="menu-close"
-            onClick={ this.toggle }
-          />
-          <section className="menu-header">
-            Change Visibility
-          </section>
-          <BoardVisibilityOptions updateVisibility={ this.updateVisibility }/>
-        </section>
+        { this.renderMenu("Change Visibility", menuContent) }
       </li>
     );
   }

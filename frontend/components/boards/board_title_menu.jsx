@@ -16,7 +16,9 @@ class BoardTitleMenu extends ToggleMenu {
   }
 
   componentWillReceiveProps(newProps) {
-    this.setState({ title: newProps.title.slice() });
+    if (typeof newProps.title !== 'undefined') {
+      this.setState({ title: newProps.title.slice() });
+    }
   }
 
   updateTitle(e) {
@@ -41,36 +43,28 @@ class BoardTitleMenu extends ToggleMenu {
       this.refs.titleInput.focus();
     }
 
-    let titleMenuClass = "menu";
-    if (show) titleMenuClass += " show";
+    const menuContent = (
+      <form className="menu-form" onSubmit={ this.submit }>
+        <label>
+          Title
+          <input
+            type="text"
+            className="input"
+            ref="titleInput"
+            value={ title }
+            onChange={ this.updateTitle }
+          />
+        </label>
+        <input type="submit" className="button green" value="Create"/>
+      </form>
+    );
 
     return (
       <li className="title">
         <section className="nav-button" onClick={ this.toggle }>
           { this.props.title }
         </section>
-        <section className={ titleMenuClass }>
-          <span
-            className="menu-close"
-            onClick={ this.toggle }
-          />
-          <section className="menu-header">
-            Rename Board
-          </section>
-          <form className="menu-form" onSubmit={ this.submit }>
-            <label>
-              Title
-              <input
-                type="text"
-                className="input"
-                ref="titleInput"
-                value={ title }
-                onChange={ this.updateTitle }
-              />
-            </label>
-            <input type="submit" className="button green" value="Create"/>
-          </form>
-        </section>
+        { this.renderMenu("Title", menuContent) }
       </li>
     );
   }
