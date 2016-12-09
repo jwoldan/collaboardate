@@ -2,15 +2,15 @@ import { connect } from 'react-redux';
 
 import Board from './board';
 
-import { fetchCurrentBoard, updateCurrentBoard } from '../../actions/board_actions';
+import { fetchBoard, updateBoard } from '../../actions/board_actions';
+import { selectBoard } from '../../reducers/selectors.js';
 
-const mapStateToProps = ({ currentBoard }, ownProps) => ({
-  currentBoard,
+const mapStateToProps = (state, ownProps) => ({
+  board: selectBoard(state, ownProps.params.boardId),
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchCurrentBoard: (id) => dispatch(fetchCurrentBoard(id)),
-  updateCurrentBoard: (board) => dispatch(updateCurrentBoard(board)),
+  updateBoard: (board) => dispatch(updateBoard(board)),
 });
 
 export default connect(

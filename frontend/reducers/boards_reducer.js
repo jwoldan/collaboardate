@@ -15,23 +15,6 @@ export default (state = {}, action) => {
         [newBoard.id]: newBoard,
       });
 
-    case BoardActions.RECEIVE_CURRENT_BOARD:
-      const {
-        id,
-        title,
-        starred,
-        visibility,
-        background,
-      } = action.board;
-
-      newBoard = Object.assign({}, {
-        id, title, starred, visibility, background,
-      });
-      
-      return Object.assign({}, state, {
-        [newBoard.id]: newBoard,
-      });
-
     case BoardActions.REMOVE_BOARD:
       const newState = Object.assign({}, state);
       delete newState[action.board.id];

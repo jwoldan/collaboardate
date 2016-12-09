@@ -8,28 +8,18 @@ class Board extends React.Component {
   constructor() {
     super();
 
-    this.updateCurrentBoard = this.updateCurrentBoard.bind(this);
+    this.updateBoard = this.updateBoard.bind(this);
   }
 
-  componentDidMount() {
-    this.props.fetchCurrentBoard(this.props.params.boardId);
-  }
-
-  componentWillReceiveProps(newProps) {
-    if(this.props.params.boardId !== newProps.params.boardId) {
-      this.props.fetchCurrentBoard(newProps.params.boardId);
-    }
-  }
-
-  updateCurrentBoard(update) {
-    const { currentBoard, updateCurrentBoard } = this.props;
-    const updatedBoard = Object.assign({}, currentBoard, update);
-    updateCurrentBoard(updatedBoard);
+  updateBoard(update) {
+    const { board, updateBoard } = this.props;
+    const updatedBoard = Object.assign({}, board, update);
+    updateBoard(updatedBoard);
   }
 
   render() {
-    const { currentBoard } = this.props;
-    const { title, visibility } = currentBoard;
+    const { board } = this.props;
+    const { title, visibility } = board;
 
     return (
       <section className="current-board">
@@ -38,11 +28,11 @@ class Board extends React.Component {
           <ul className="nav-left clearfix">
             <BoardTitleMenu
               title={ title }
-              updateBoard={ this.updateCurrentBoard }
+              updateBoard={ this.updateBoard }
             />
             <BoardVisibilityMenu
               visibility={ visibility }
-              updateBoard= { this.updateCurrentBoard }
+              updateBoard= { this.updateBoard }
             />
           </ul>
 
