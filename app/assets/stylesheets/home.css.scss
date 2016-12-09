@@ -215,7 +215,7 @@
     }
   }
 
-  .icon {
+  .icon-logo {
     display: inline-block;
     width: 15px;
     height: 15px;
@@ -224,6 +224,34 @@
     background-size: contain;
     background-image: image-url('icon.png');
   }
+
+  .icon {
+    display: block;
+    margin: 1px 0;
+    width: 21px;
+    height: 21px;
+    background-size: contain;
+
+    &.icon-search {
+      float: right;
+      background-image: image-url('ic_search_white_24px.svg');
+      transform: scaleX(-1);
+    }
+
+    &.icon-add {
+      background-image: image-url('ic_add_white_24px.svg');
+    }
+
+    &.icon-info {
+      background-image: image-url('ic_info_outline_white_24px.svg');
+    }
+
+    &.icon-notifications {
+      background-image: image-url('ic_notifications_none_white_24px.svg');
+    }
+  }
+
+
 
   .search {
     width: 165px;

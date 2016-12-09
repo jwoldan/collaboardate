@@ -1,5 +1,7 @@
 import React from 'react';
 
 export default () => (
-  <li className="nav-item nav-button">ℹ️</li>
+  <li className="nav-item nav-button">
+    <span className="icon icon-info" />
+  </li>
 );

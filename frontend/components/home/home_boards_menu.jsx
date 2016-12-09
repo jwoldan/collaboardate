@@ -9,7 +9,7 @@ export default ({ boards, show, toggle, resetMenus }) => {
   return (
     <li className="nav-item" tabIndex="0" onBlur={ resetMenus }>
       <div className="nav-button" onClick={ toggle }>
-        <span className="icon" />Boards
+        <span className="icon-logo" />Boards
       </div>
       <section className={ dropdownClass }>
         <section className="menu-header">
