@@ -3,7 +3,7 @@ import React from 'react';
 import HomeBoardsMenuItem from './home_boards_menu_item';
 
 export default ({ boards, show, toggle, resetMenus }) => {
-  let dropdownClass = "menu dropdown boards-dropdown";
+  let dropdownClass = "menu dropdown dropdown-boards";
   if(show) dropdownClass += " show";
 
   return (

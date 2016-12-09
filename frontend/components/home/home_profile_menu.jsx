@@ -17,7 +17,7 @@ class HomeProfile extends React.Component {
     const safeInitials = currentUser ? currentUser.initials : '';
     const safeFullName = currentUser ? currentUser.full_name : '';
     const safeUsername = currentUser ? currentUser.username : '';
-    let dropdownClass = "menu dropdown profile-dropdown";
+    let dropdownClass = "menu dropdown dropdown-profile";
     if(show) dropdownClass += " show";
 
     return (
