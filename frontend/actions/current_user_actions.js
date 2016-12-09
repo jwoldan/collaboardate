@@ -2,11 +2,18 @@ import * as CurrentUserAPIUtil from '../util/current_user_api_util';
 import { receiveSignupErrors, receiveLoginErrors } from './errors_actions';
 
 export const RECEIVE_USER = 'RECEIVE_USER';
+export const RECEIVE_LOGOUT = 'RECEIVE_LOGOUT';
 
 export const receiveUser = (user) => {
   return {
     type: RECEIVE_USER,
     user,
+  };
+};
+
+export const receiveLogout = () => {
+  return {
+    type: RECEIVE_LOGOUT,
   };
 };
 
@@ -31,7 +38,7 @@ export const logout = () => {
   return dispatch => {
     return CurrentUserAPIUtil.logout().then(
       user => {
-        dispatch(receiveUser(null));
+        dispatch(receiveLogout());
         return user;
       }
     );
