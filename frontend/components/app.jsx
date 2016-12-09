@@ -3,24 +3,20 @@ import React from 'react';
 import Welcome from './welcome/welcome';
 import Home from './home/home';
 
-export default ({ currentUser, children }) => {
+export default (props) => {
+  const { currentUser, children } = props;
+  let innerContent;
 
-  if(currentUser !== null) {
-
-    return (
-      <div id="app">
-        <Home children={ children } />
-      </div>
-    );
-
+  if (currentUser !== null || (typeof props.params.boardId !== 'undefined')) {
+    innerContent = <Home children={ children } />;
   } else {
-
-    return (
-      <div id="app">
-        <Welcome />
-      </div>
-    );
-    
+    innerContent = <Welcome/>;
   }
+
+  return (
+    <div id="app">
+      { innerContent }
+    </div>
+  );
 
 };

@@ -18,7 +18,7 @@ class HomeNavigation extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchBoards();
+    if(this.props.currentUser) this.props.fetchBoards();
   }
 
   componentWillReceiveProps(newProps) {
@@ -45,7 +45,7 @@ class HomeNavigation extends React.Component {
   }
 
   render () {
-    const { menuStatus, toggleMenu, resetMenus } = this.props;
+    const { currentUser, menuStatus, toggleMenu, resetMenus } = this.props;
     const {
       boards,
       create,
@@ -54,45 +54,57 @@ class HomeNavigation extends React.Component {
       notification,
     } =  menuStatus;
 
-    return (
-      <nav className="home-nav clearfix">
+    if (currentUser === null) {
 
-        <Link to="/" className="logo" />
+      return (
+        <nav className="home-nav clearfix">
+          <Link to="/" className="logo" />
+        </nav>
+      );
 
-        <ul className="nav-left clearfix">
-          <HomeBoardsMenuContainer
-            show={ boards }
-            resetMenus={ this.delayedResetMenus }
-            toggle={ this.toggleMenu('boards') }
-          />
-          <HomeSearch />
-        </ul>
+    } else {
 
-        <ul className="nav-right clearfix">
-          <HomeCreateMenu
-            show={ create }
-            resetMenus={ this.delayedResetMenus }
-            toggle={ this.toggleMenu('create') }
-          />
-          <HomeProfileMenuContainer
-            show={ profile }
-            resetMenus={ this.delayedResetMenus }
-            toggle={ this.toggleMenu('profile') }
-          />
-          <HomeInformationMenu
-            show={ information }
-            resetMenus={ this.delayedResetMenus }
-            toggle={ this.toggleMenu('information') }
-          />
-          <HomeNotificationMenu
-            show={ notification }
-            resetMenus={ this.delayedResetMenus }
-            toggle={ this.toggleMenu('notification') }
-          />
-        </ul>
+      return (
+        <nav className="home-nav clearfix">
 
-      </nav>
-    );
+          <Link to="/" className="logo" />
+
+          <ul className="nav-left clearfix">
+            <HomeBoardsMenuContainer
+              show={ boards }
+              resetMenus={ this.delayedResetMenus }
+              toggle={ this.toggleMenu('boards') }
+            />
+            <HomeSearch />
+          </ul>
+
+          <ul className="nav-right clearfix">
+            <HomeCreateMenu
+              show={ create }
+              resetMenus={ this.delayedResetMenus }
+              toggle={ this.toggleMenu('create') }
+            />
+            <HomeProfileMenuContainer
+              show={ profile }
+              resetMenus={ this.delayedResetMenus }
+              toggle={ this.toggleMenu('profile') }
+            />
+            <HomeInformationMenu
+              show={ information }
+              resetMenus={ this.delayedResetMenus }
+              toggle={ this.toggleMenu('information') }
+            />
+            <HomeNotificationMenu
+              show={ notification }
+              resetMenus={ this.delayedResetMenus }
+              toggle={ this.toggleMenu('notification') }
+            />
+          </ul>
+
+        </nav>
+      );
+
+    }
   }
 }
 

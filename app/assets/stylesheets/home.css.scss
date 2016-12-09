@@ -157,6 +157,7 @@
 .home-nav {
   z-index: 1;
   position: relative;
+  height: 29px;
   padding: 5px;
   background-color: #026AA7;
   box-shadow: 0 1px 1px rgba(0,0,0,.1);
@@ -189,6 +190,7 @@
         rgba(255,255,255,.3) 100%
       );
     }
+
   }
 
   .dropdown {

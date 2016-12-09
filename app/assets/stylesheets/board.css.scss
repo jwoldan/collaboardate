@@ -12,7 +12,11 @@
     cursor: pointer;
     user-select: none;
 
-    &:hover {
+    &.disabled{
+      cursor: auto;
+    }
+
+    &:not(.disabled):hover {
       background: rgba(0,0,0,.12);
       border-radius: 3px;
     }
@@ -35,6 +39,10 @@
 
 .board-menu {
   position: relative;
+
+  .nav-button.disabled {
+    display: none;
+  }
 
   > .menu {
     display: block;

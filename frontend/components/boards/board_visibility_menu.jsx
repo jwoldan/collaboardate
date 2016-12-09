@@ -18,8 +18,11 @@ class BoardVisibilityMenu extends ToggleMenu {
   }
 
   render() {
-    const { visibility, updateVisibility } = this.props;
+    const { visibility, updateVisibility, disabled } = this.props;
     const { show } = this.state;
+
+    let buttonClass = "nav-button";
+    if (disabled) buttonClass += " disabled";
 
     const menuContent = (
       <BoardVisibilityOptions updateVisibility={ this.updateVisibility }/>
@@ -27,7 +30,7 @@ class BoardVisibilityMenu extends ToggleMenu {
 
     return (
       <li className="visibility">
-        <section className="nav-button" onClick={ this.toggle }>
+        <section className={ buttonClass } onClick={ this.toggle }>
           { visibility }
         </section>
         { this.renderMenu("Change Visibility", menuContent) }

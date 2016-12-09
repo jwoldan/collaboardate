@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router';
 
 import BoardTitleMenu from './board_title_menu';
 import BoardVisibilityMenu from './board_visibility_menu';
@@ -13,11 +14,19 @@ class Board extends React.Component {
   }
 
   componentDidMount() {
-    this.props.receiveCurrentBoardId(this.props.params.boardId);
+    this.fetchBoard(this.props.params.boardId);
   }
 
-  componentWillReceiveProps(nextProps) {
-    this.props.receiveCurrentBoardId(nextProps.params.boardId);
+  componentWillReceiveProps(newProps) {
+    if(this.props.params.boardId !== newProps.params.boardId) {
+      this.fetchBoard(newProps.params.boardId);
+    }
+  }
+
+  fetchBoard(boardId) {
+    return this.props.fetchBoard(boardId).then(
+      (board) => this.props.receiveCurrentBoardId(board.id)
+    );
   }
 
   componentWillUnmount() {
@@ -31,8 +40,10 @@ class Board extends React.Component {
   }
 
   render() {
-    const { board } = this.props;
+    const { currentUser, board } = this.props;
     const { title, visibility } = board;
+
+    const disabled = (currentUser === null);
 
     return (
       <section className="current-board">
@@ -42,15 +53,17 @@ class Board extends React.Component {
             <BoardTitleMenu
               title={ title }
               updateBoard={ this.updateBoard }
+              disabled={ disabled }
             />
             <BoardVisibilityMenu
               visibility={ visibility }
               updateBoard= { this.updateBoard }
+              disabled={ disabled }
             />
           </ul>
 
           <ul className="nav-right clearfix">
-            <BoardMenu board={ board }/>
+            <BoardMenu board={ board } disabled={ disabled }/>
           </ul>
 
         </nav>
@@ -59,4 +72,4 @@ class Board extends React.Component {
   }
 }
 
-export default Board;
+export default withRouter(Board);

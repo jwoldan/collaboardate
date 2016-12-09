@@ -13,11 +13,13 @@ class ToggleMenu extends React.Component {
   }
 
   toggle(e) {
-    this.setState({ show: !this.state.show });
+    if (!this.props.disabled) {
+      this.setState({ show: !this.state.show });
+    }
   }
 
   renderMenu(menuTitle, menuContent) {
-    const { children } = this.props;
+    const { children, disabled } = this.props;
     const { show } = this.state;
 
     let menuClass = "menu";

@@ -35,13 +35,16 @@ class BoardTitleMenu extends ToggleMenu {
   }
 
   render() {
-    const { updateTitle } = this.props;
+    const { updateTitle, disabled } = this.props;
     const { title, show } = this.state;
 
     if (show) {
       // TODO figure out why this doesn't work
       this.refs.titleInput.focus();
     }
+
+    let buttonClass = "nav-button";
+    if (disabled) buttonClass += " disabled";
 
     const menuContent = (
       <form className="menu-form" onSubmit={ this.submit }>
@@ -61,7 +64,7 @@ class BoardTitleMenu extends ToggleMenu {
 
     return (
       <li className="title">
-        <section className="nav-button" onClick={ this.toggle }>
+        <section className={ buttonClass } onClick={ this.toggle }>
           { this.props.title }
         </section>
         { this.renderMenu("Title", menuContent) }

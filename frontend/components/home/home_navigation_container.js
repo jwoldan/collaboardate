@@ -5,7 +5,8 @@ import HomeNavigation from './home_navigation';
 import { fetchBoards } from '../../actions/board_actions';
 import { toggleMenu, resetMenus } from '../../actions/menu_status_actions';
 
-const mapStateToProps = ({ menuStatus }) => ({
+const mapStateToProps = ({ currentUser, menuStatus }) => ({
+  currentUser,
   menuStatus,
 });
 

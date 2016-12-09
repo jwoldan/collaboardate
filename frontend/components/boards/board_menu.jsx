@@ -5,9 +5,10 @@ import BoardDeleteMenuContainer from './board_delete_menu_container';
 
 class BoardMenu extends ToggleMenu {
 
-
-
   render() {
+
+    let buttonClass = "nav-button";
+    if (this.props.disabled) buttonClass += " disabled";
 
     const menuContent = (
       <section className="delete-board">
@@ -19,7 +20,7 @@ class BoardMenu extends ToggleMenu {
 
     return (
       <li className="board-menu">
-        <section className="nav-button" onClick={ this.toggle }>
+        <section className={ buttonClass } onClick={ this.toggle }>
           Show Menu
         </section>
         { this.renderMenu("Menu", menuContent) }
