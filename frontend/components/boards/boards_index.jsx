@@ -9,10 +9,6 @@ class BoardsIndex extends React.Component {
     super();
   }
 
-  componentDidMount() {
-    this.props.fetchBoards();
-  }
-
   render() {
     const { boards } = this.props;
     return (

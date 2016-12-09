@@ -1,0 +1,51 @@
+.current-board {
+
+  padding: 10px;
+
+  .board-nav {
+    color: white;
+  }
+
+  .nav-left {
+    float: left;
+
+    li {
+      float: left;
+    }
+
+    .nav-button {
+      padding: 5px 8px;
+
+      cursor: pointer;
+      user-select: none;
+
+      &:hover {
+        background: rgba(0,0,0,.12);
+        border-radius: 3px;
+      }
+    }
+  }
+
+  .nav-right {
+    float: right;
+
+    li {
+      float: left;
+    }
+  }
+
+  .title {
+    margin-left: 5px;
+
+    font-size: 18px;
+    font-weight: bold;
+
+    color: white;
+  }
+
+  .visibility {
+    font-size: 12px;
+  }
+
+
+}

@@ -17,6 +17,10 @@ class HomeNavigation extends React.Component {
     this.delayedResetMenus = this.delayedResetMenus.bind(this);
   }
 
+  componentDidMount() {
+    this.props.fetchBoards();
+  }
+
   componentWillUnmount() {
     this.props.resetMenus();
   }

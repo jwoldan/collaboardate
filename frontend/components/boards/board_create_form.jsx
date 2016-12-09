@@ -1,5 +1,7 @@
 import React from 'react';
 
+import BoardVisibilityOptions from './board_visibility_options';
+
 const defaultState = {
   board: {
     title: '',
@@ -15,12 +17,12 @@ class BoardCreateForm extends React.Component {
 
     this.state = Object.assign({}, defaultState);
 
-    this.updateBoard = this.updateBoard.bind(this);
+    this.updateNewBoard = this.updateNewBoard.bind(this);
     this.toggleVisibility = this.toggleVisibility.bind(this);
     this.createBoard = this.createBoard.bind(this);
   }
 
-  updateBoard(property) {
+  updateNewBoard(property) {
 
     return e => {
       Object.freeze(this.state);
@@ -87,9 +89,10 @@ class BoardCreateForm extends React.Component {
             ref="titleInput"
             placeholder="Like &quot;Wedding Planning&quot;"
             value={ title }
-            onChange={ this.updateBoard('title') }
+            onChange={ this.updateNewBoard('title') }
           />
         </label>
+
         <span
           className={ visibilityTextClass }
           onClick={ this.toggleVisibility }
@@ -97,27 +100,12 @@ class BoardCreateForm extends React.Component {
           This board will be { visibility }.&nbsp;
           <a>Change.</a>
         </span>
-        <ul className={ visibilityMenuClass }>
-          <li>
-            <a data-value="Private" onClick={ this.updateBoard('visibility') }>
-              <h4>Private</h4>
-              <span className="quiet small">
-                The board is private.
-                Only people added to the board can view and edit it.
-              </span>
-            </a>
-          </li>
-          <li>
-            <a data-value="Public" onClick={ this.updateBoard('visibility') }>
-              <h4>Public</h4>
-              <span className="quiet small">
-                The board is public. It&#8217;s visible to anyone with the
-                link and will show up in search engines like Google.
-                Only people added to the board can edit it.
-              </span>
-            </a>
-          </li>
-        </ul>
+
+        <BoardVisibilityOptions
+          visibilityClass={ visibilityMenuClass }
+          updateVisibility={ this.updateNewBoard('visibility') }
+        />
+
         <input type="submit" className="button green" value="Create"/>
       </form>
     );

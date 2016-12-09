@@ -45,11 +45,11 @@ export const createBoard = (board) => {
 };
 
 
-export const updateBoard = (board) => {
+export const updateCurrentBoard = (board) => {
   return dispatch => {
     return BoardAPIUtil.updateBoard(board).then(
       updatedBoard => {
-        dispatch(receiveBoard(updatedBoard));
+        dispatch(receiveCurrentBoard(updatedBoard));
         return updatedBoard;
       }
     );
@@ -67,7 +67,7 @@ export const fetchBoards = () => {
   };
 };
 
-export const fetchBoard = (id) => {
+export const fetchCurrentBoard = (id) => {
   return dispatch => {
     return BoardAPIUtil.fetchBoard(id).then(
       board => {

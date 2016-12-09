@@ -21,6 +21,7 @@
   padding: 10px 0;
   background-color: white;
 
+  font-size: 14px;
   line-height: 1.44em;
 
   border-radius: 3px;
@@ -60,7 +61,16 @@
 .menu-header {
   text-align: center;
   color: #8c8c8c;
+  font-weight: normal;
+
   margin-bottom: 10px;
+
+  &:after {
+    content: "";
+    display: block;
+    margin: 7px 10px;
+    border-top: 1px solid #D6DADC;
+  }
 }
 
 .menu-close {
@@ -88,12 +98,12 @@
   color: #4d4d4d;
   text-align: left;
 
-  &:before {
-    content: "";
-    display: block;
-    margin: 0 10px;
-    border-top: 1px solid #D6DADC;
-  }
+  // &:before {
+  //   content: "";
+  //   display: block;
+  //   margin: 0 10px;
+  //   border-top: 1px solid #D6DADC;
+  // }
 
   &:hover {
     color: #4d4d4d;
@@ -115,6 +125,12 @@
     margin-bottom: 0.5em;
     font-weight: normal;
     background-color: #E2E4E6;
+
+    &:focus {
+      background: #fff;
+      border-color: #298FCA;
+      box-shadow: #298FCA;
+    }
   }
 
   .button {
@@ -171,12 +187,6 @@
       right: 4px;
     }
 
-    ul:before {
-      content: "";
-      display: block;
-      margin: 7px 10px;
-      border-top: 1px solid #D6DADC;
-    }
   }
 
   .logo {
@@ -236,6 +246,10 @@
     .menu-header {
       margin-left: 10px;
       text-align: left;
+
+      &:after {
+        content: none;
+      }
     }
 
     ul:before {
