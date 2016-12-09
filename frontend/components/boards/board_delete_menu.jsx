@@ -12,7 +12,7 @@ class BoardDeleteMenu extends ToggleMenu {
   }
 
   deleteBoard() {
-    this.props.deleteBoard(this.props.currentBoardId).then(() => {
+    this.props.deleteBoard(this.props.params.boardId).then(() => {
       this.props.router.push('/');
     });
   }
