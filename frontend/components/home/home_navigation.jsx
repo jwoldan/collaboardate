@@ -33,7 +33,7 @@ class HomeNavigation extends React.Component {
 
   delayedResetMenus(e) {
     // TODO figure out why this gets called twice
-    window.setTimeout(this.props.resetMenus, 150);
+    // window.setTimeout(this.props.resetMenus, 200);
   }
 
   render () {
