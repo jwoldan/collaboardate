@@ -53,7 +53,7 @@ class BoardCreateForm extends React.Component {
   createBoard() {
     const newBoard = Object.assign({}, this.state.board);
     newBoard.title = newBoard.title.trim();
-    if(newBoard.title !== '') {
+    if (newBoard.title !== '') {
       this.props.createBoard(newBoard).then(() => {
         this.props.toggle();
         this.setState(Object.assign({}, defaultState));
@@ -69,7 +69,7 @@ class BoardCreateForm extends React.Component {
     const { board, showVisibility } = this.state;
     const { title, visibility } = board;
 
-    if(this.props.show) this.refs.titleInput.focus();
+    if (this.props.show) this.refs.titleInput.focus();
 
     let visibilityTextClass = "menu-form-text quiet";
     let visibilityMenuClass = "";

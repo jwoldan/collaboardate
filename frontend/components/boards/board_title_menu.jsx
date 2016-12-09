@@ -26,7 +26,7 @@ class BoardTitleMenu extends ToggleMenu {
   submit(e) {
     e.preventDefault();
     const title = this.state.title.trim();
-    if(title !== '') {
+    if (title !== '') {
       this.props.updateBoard({ title });
       this.toggle();
     }
