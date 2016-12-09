@@ -12,3 +12,25 @@ guest = User.create!(
   email: "guest@collaboardate.com",
   password: "collaboardate"
 )
+
+Board.destroy_all
+full_stack_project = Board.create!(
+  title: "Full Stack Project",
+  visibility: "Private",
+  background: "blue",
+  creator_id: guest.id
+)
+
+vacation_planning = Board.create!(
+  title: "Vacation Planning",
+  visibility: "Public",
+  background: "blue",
+  creator_id: guest.id
+)
+
+surprise_party_planning = Board.create!(
+  title: "Surprise Party Planning",
+  visibility: "Private",
+  background: "blue",
+  creator_id: guest.id
+)
