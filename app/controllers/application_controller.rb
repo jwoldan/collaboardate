@@ -28,4 +28,18 @@ class ApplicationController < ActionController::Base
     render json: "Unauthorized access", status: 401 unless logged_in?
   end
 
+  def require_board_creator(board_id)
+    board = Board.find(board_id)
+    if !current_user || board.creator_id != current_user.id
+      render json: "Unauthorized access", status: 401
+    end
+  end
+
+  def check_board_visibility(board_id)
+    board = Board.find(board_id)
+    if board.visibility == Board::VISIBILITY_PRIVATE
+      require_board_creator(board_id)
+    end
+  end
+
 end

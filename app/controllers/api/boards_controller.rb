@@ -47,17 +47,11 @@ class Api::BoardsController < ApplicationController
   end
 
   def require_creator
-    board = Board.find(params[:id])
-    if !current_user || board.creator_id != current_user.id
-      render json: "Unauthorized access", status: 401
-    end
+    require_board_creator(params[:id])
   end
 
   def check_visibility
-    board = Board.find(params[:id])
-    if board.visibility == Board::VISIBILITY_PRIVATE
-      require_creator
-    end
+    check_board_visibility(params[:id])
   end
 
 end
