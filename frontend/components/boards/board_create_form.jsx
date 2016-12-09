@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router';
 
 import BoardVisibilityOptions from './board_visibility_options';
 
@@ -54,9 +55,10 @@ class BoardCreateForm extends React.Component {
     const newBoard = Object.assign({}, this.state.board);
     newBoard.title = newBoard.title.trim();
     if (newBoard.title !== '') {
-      this.props.createBoard(newBoard).then(() => {
+      this.props.createBoard(newBoard).then((board) => {
         this.props.toggle();
         this.setState(Object.assign({}, defaultState));
+        this.props.router.push(`/b/${board.id}`);
       });
     }
   }
@@ -112,4 +114,4 @@ class BoardCreateForm extends React.Component {
   }
 }
 
-export default BoardCreateForm;
+export default withRouter(BoardCreateForm);

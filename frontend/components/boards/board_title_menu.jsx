@@ -36,6 +36,11 @@ class BoardTitleMenu extends ToggleMenu {
     const { updateTitle } = this.props;
     const { title, show } = this.state;
 
+    if (show) {
+      // TODO figure out why this doesn't work
+      this.refs.titleInput.focus();
+    }
+
     let titleMenuClass = "menu";
     if (show) titleMenuClass += " show";
 
