@@ -65,7 +65,7 @@ class BoardTitleMenu extends ToggleMenu {
     return (
       <li className="title">
         <section className={ buttonClass } onClick={ this.toggle }>
-          { this.props.title }
+          <h2>{ this.props.title }</h2>
         </section>
         { this.renderMenu("Title", menuContent) }
       </li>
