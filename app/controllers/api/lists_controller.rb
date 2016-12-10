@@ -1,7 +1,8 @@
 class Api::ListsController < ApplicationController
 
   before_action :check_parent_board_visibility, only: [:index, :show]
-  before_action :require_parent_board_creator, only: [:create, :update, :destroy]
+  before_action :require_parent_board_creator,
+                only: [:create, :update, :destroy]
 
   def create
     @list = List.new(list_params)
@@ -42,7 +43,7 @@ class Api::ListsController < ApplicationController
   private
 
   def list_params
-    params.require(:list).permit(:title, :order, :board_id)
+    params.require(:list).permit(:title, :ord, :board_id)
   end
 
   def require_parent_board_creator
