@@ -1,17 +1,15 @@
 import React from 'react';
 
+import ToggleMenu from '../general/toggle_menu';
 import HomeBoardsMenuItem from './home_boards_menu_item';
 
-export default ({ boards, show, toggle, resetMenus }) => {
-  let dropdownClass = "menu dropdown dropdown-boards";
-  if(show) dropdownClass += " show";
+class HomeBoardsMenu extends ToggleMenu {
 
-  return (
-    <li className="nav-item" tabIndex="0" onBlur={ resetMenus }>
-      <div className="nav-button" onClick={ toggle }>
-        <span className="icon-logo" />Boards
-      </div>
-      <section className={ dropdownClass }>
+  render() {
+    const { boards, resetMenus } = this.props;
+
+    const menuContent = (
+      <section>
         <section className="menu-header">
           Personal Boards
         </section>
@@ -21,6 +19,17 @@ export default ({ boards, show, toggle, resetMenus }) => {
           ))}
         </ul>
       </section>
-    </li>
-  );
-};
+    );
+
+    return (
+      <li className="nav-item" tabIndex="0" onBlur={ resetMenus }>
+        <div className="nav-button" onClick={ this.toggle }>
+          <span className="icon-logo" />Boards
+        </div>
+        { this.renderMenu(null, menuContent, 'dropdown dropdown-boards') }
+      </li>
+    );
+  }
+}
+
+export default HomeBoardsMenu;

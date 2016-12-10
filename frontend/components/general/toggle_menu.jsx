@@ -20,14 +20,23 @@ class ToggleMenu extends React.Component {
     let menuClass = `menu ${customClass}`;
     if (show) menuClass += " show";
 
+    let titleContent = '';
+    if(menuTitle) {
+      titleContent = (
+        <section>
+          <span
+            className="menu-close"
+            onClick={ this.toggle } />
+          <section className="menu-header">
+            { menuTitle }
+          </section>
+        </section>
+      );
+    }
+
     return (
       <section className={ menuClass }>
-        <span
-          className="menu-close"
-          onClick={ this.toggle } />
-        <section className="menu-header">
-          { menuTitle }
-        </section>
+        { titleContent }
         { menuContent }
       </section>
     );
