@@ -8,7 +8,9 @@ class BoardsIndexCreate extends ToggleMenu {
   render() {
 
     const menuContent = (
-      <BoardCreateFormContainer show= { this.props.show }/>
+      <BoardCreateFormContainer
+        show={ this.props.show }
+        toggle={ this.props.toggle }/>
     );
 
     return (
