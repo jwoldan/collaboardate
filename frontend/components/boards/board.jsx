@@ -25,13 +25,9 @@ class Board extends React.Component {
 
   fetchBoard(boardId) {
     return this.props.fetchBoard(boardId).then(
-      (board) => this.props.receiveCurrentBoardId(board.id),
+      null,
       (error) => this.props.router.push('/')
     );
-  }
-
-  componentWillUnmount() {
-    this.props.receiveCurrentBoardId(null);
   }
 
   updateBoard(update) {
