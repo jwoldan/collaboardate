@@ -59,8 +59,21 @@
 
       &.icon-list-menu {
         position: absolute;
-        top: 1em;
+        padding: 4px;
+        background-size: 65%;
+        background-repeat: no-repeat;
+        background-position: center;
+        top: 0.7em;
         right: 0.7em;
+        opacity: 0.4;
+
+        cursor: pointer;
+
+        &:hover {
+          opacity: 0.8;
+          border-radius: 3px;
+          background-color: #CDD2D4;
+        }
       }
     }
   }

@@ -17,11 +17,22 @@ const initialState = {
 
 export default (state = initialState, action) => {
   Object.freeze(state);
+  let newState;
 
   switch (action.type) {
 
+    case MenuStatusActions.ADD_MENU:
+      newState = Object.assign({}, state);
+      newState[action.menu] = false;
+      return newState;
+
+    case MenuStatusActions.REMOVE_MENU:
+      newState = Object.assign({}, state);
+      delete newState[action.menu];
+      return state;
+
     case MenuStatusActions.TOGGLE_MENU:
-      const newState = {};
+      newState = {};
       Object.keys(state).forEach((currentMenu) => {
         if(currentMenu === action.menu) {
           newState[currentMenu] = !state[currentMenu];

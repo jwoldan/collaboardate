@@ -1,8 +1,10 @@
 import React from 'react';
 
-export default ({ list }) => (
+import ListMenuContainer from './list_menu_container';
+
+export default ({ list, disabled }) => (
   <li className="list">
     <h3 className="list-title">{ list.title }</h3>
-    <span className="icon icon-more-black icon-list-menu" />
+    <ListMenuContainer list={ list } disabled={ disabled } />
   </li>
 );

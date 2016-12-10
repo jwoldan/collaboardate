@@ -36,9 +36,9 @@ class Board extends React.Component {
           disabled={ disabled } />
         <ul className="lists clearfix">
           { lists.map((list) => (
-            <List key={ list.id } list={ list }/>
+            <List key={ list.id } list={ list } disabled={ disabled }/>
           ))}
-          <ListCreateContainer />
+          <ListCreateContainer disabled={ disabled }/>
         </ul>
       </section>
     );
