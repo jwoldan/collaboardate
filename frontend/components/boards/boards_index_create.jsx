@@ -1,34 +1,24 @@
 import React from 'react';
 
-import BoardCreateMenu from './board_create_menu';
+import ToggleMenu from '../general/toggle_menu';
+import BoardCreateFormContainer from './board_create_form_container';
 
-class BoardsIndexCreate extends React.Component {
-
-  constructor() {
-    super();
-
-    this.state = {
-      showMenu: false,
-    };
-
-    this.toggle = this.toggle.bind(this);
-  }
-
-  toggle() {
-    this.setState({ showMenu: !this.state.showMenu });
-  }
+class BoardsIndexCreate extends ToggleMenu {
 
   render() {
+
+    const menuContent = (
+      <BoardCreateFormContainer show= { this.props.show }/>
+    );
+
     return (
-      <li className="board board-create" onClick={ this.toggle }>
+      <li className="board board-create" >
+        <section onClick={ this.toggle }>
         Create new board...
-        <BoardCreateMenu
-          show={ this.state.showMenu }
-          toggle = { this.toggle }
-        />
+        </section>
+        { this.renderMenu('Create', menuContent, 'board-create-menu') }
       </li>
     );
   }
 }
-
 export default BoardsIndexCreate;

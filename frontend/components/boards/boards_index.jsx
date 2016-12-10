@@ -1,7 +1,7 @@
 import React from 'react';
 
 import BoardsIndexItem from './boards_index_item';
-import BoardsIndexCreate from './boards_index_create';
+import BoardsIndexCreateContainer from './boards_index_create_container';
 
 class BoardsIndex extends React.Component {
 
@@ -18,7 +18,7 @@ class BoardsIndex extends React.Component {
           { boards.map((board) => (
             <BoardsIndexItem key={ board.id } board={ board } />
           ))}
-          <BoardsIndexCreate />
+          <BoardsIndexCreateContainer />
         </ul>
       </section>
     );

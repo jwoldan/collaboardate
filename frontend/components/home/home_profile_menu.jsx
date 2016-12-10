@@ -1,7 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router';
 
-class HomeProfile extends React.Component {
+class HomeProfileMenu extends React.Component {
 
   constructor() {
     super();
@@ -44,4 +44,4 @@ class HomeProfile extends React.Component {
 
 }
 
-  export default withRouter(HomeProfile);
+  export default withRouter(HomeProfileMenu);

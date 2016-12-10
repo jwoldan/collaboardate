@@ -1,7 +1,7 @@
 import React from 'react';
 
 import ToggleMenu from '../general/toggle_menu';
-import BoardCreateMenuContainer from '../boards/board_create_menu_container';
+import HomeCreateMenuBoardContainer from './home_create_menu_board_container';
 
 class HomeCreateMenu extends ToggleMenu {
 
@@ -17,7 +17,7 @@ class HomeCreateMenu extends ToggleMenu {
     const menuContent = (
       <ul>
         <li>
-          <BoardCreateMenuContainer />
+          <HomeCreateMenuBoardContainer />
         </li>
       </ul>
     );

@@ -1,13 +1,11 @@
 import React from 'react';
 
 import ToggleMenu from '../general/toggle_menu';
-import BoardCreateFormContainer from './board_create_form_container';
+import BoardCreateFormContainer from '../boards/board_create_form_container';
 
-class BoardCreateMenu extends ToggleMenu {
+class HomeCreateMenuBoard extends ToggleMenu {
 
   render () {
-
-    debugger
 
     const menuContent = (
       <BoardCreateFormContainer
@@ -31,4 +29,4 @@ class BoardCreateMenu extends ToggleMenu {
   }
 }
 
-export default BoardCreateMenu;
+export default HomeCreateMenuBoard;
