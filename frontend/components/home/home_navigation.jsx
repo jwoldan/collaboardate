@@ -47,11 +47,11 @@ class HomeNavigation extends React.Component {
   render () {
     const { currentUser, menuStatus, toggleMenu, resetMenus } = this.props;
     const {
-      boards,
-      create,
-      profile,
-      information,
-      notification,
+      showHomeBoardsMenu,
+      showHomeCreateMenu,
+      showHomeProfileMenu,
+      ShowHomeInformationMenu,
+      ShowHomeNotificationMenu,
     } =  menuStatus;
 
     if (currentUser === null) {
@@ -71,34 +71,29 @@ class HomeNavigation extends React.Component {
 
           <ul className="nav-left clearfix">
             <HomeBoardsMenuContainer
-              show={ boards }
+              show={ showHomeBoardsMenu }
               resetMenus={ this.delayedResetMenus }
-              toggle={ this.toggleMenu('boards') }
-            />
+              toggle={ this.toggleMenu('showHomeBoardsMenu') } />
             <HomeSearch />
           </ul>
 
           <ul className="nav-right clearfix">
             <HomeCreateMenu
-              show={ create }
+              show={ showHomeCreateMenu }
               resetMenus={ this.delayedResetMenus }
-              toggle={ this.toggleMenu('create') }
-            />
+              toggle={ this.toggleMenu('showHomeCreateMenu') } />
             <HomeProfileMenuContainer
-              show={ profile }
+              show={ showHomeProfileMenu }
               resetMenus={ this.delayedResetMenus }
-              toggle={ this.toggleMenu('profile') }
-            />
+              toggle={ this.toggleMenu('showHomeProfileMenu') } />
             <HomeInformationMenu
-              show={ information }
+              show={ ShowHomeInformationMenu }
               resetMenus={ this.delayedResetMenus }
-              toggle={ this.toggleMenu('information') }
-            />
+              toggle={ this.toggleMenu('ShowHomeInformationMenu') } />
             <HomeNotificationMenu
-              show={ notification }
+              show={ ShowHomeNotificationMenu }
               resetMenus={ this.delayedResetMenus }
-              toggle={ this.toggleMenu('notification') }
-            />
+              toggle={ this.toggleMenu('ShowHomeNotificationMenu') } />
           </ul>
 
         </nav>

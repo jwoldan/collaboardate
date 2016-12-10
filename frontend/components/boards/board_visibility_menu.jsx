@@ -19,7 +19,6 @@ class BoardVisibilityMenu extends ToggleMenu {
 
   render() {
     const { visibility, updateVisibility, disabled } = this.props;
-    const { show } = this.state;
 
     let buttonClass = "nav-button";
     if (disabled) buttonClass += " disabled";

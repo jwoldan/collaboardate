@@ -1,30 +1,31 @@
 import React from 'react';
 
+import ToggleMenu from '../general/toggle_menu';
 import BoardCreateFormContainer from './board_create_form_container';
 
-class BoardCreateMenu extends React.Component {
-  constructor() {
-    super();
-
-    this.stopPropagation = this.stopPropagation.bind(this);
-  }
-
-  stopPropagation(e) {
-    e.stopPropagation();
-  }
+class BoardCreateMenu extends ToggleMenu {
 
   render () {
-    const { show, toggle, createBoard } = this.props;
-    let menuClass = "menu board-create-menu";
-    if(show) {
-      menuClass += " show";
-    }
+
+    debugger
+
+    const menuContent = (
+      <BoardCreateFormContainer
+        toggle= { this.toggle }
+        show={ this.props.show } />
+    );
 
     return (
-      <section className={ menuClass } onClick={ this.stopPropagation } >
-        <span className="menu-close" onClick={ toggle }></span>
-          <section className="menu-header">Create Board</section>
-          <BoardCreateFormContainer toggle= { toggle } show={ show }/>
+      <section>
+        <a onClick={ this.toggle }>
+          <h4>Create Board...</h4>
+          <span className="quiet small">
+            A board is a collection of cards ordered in a list of lists.
+            Use it to manage a project, track a collection,
+            or organize anything.
+          </span>
+        </a>
+        { this.renderMenu("Create Board", menuContent, 'board-create-menu') }
       </section>
     );
   }

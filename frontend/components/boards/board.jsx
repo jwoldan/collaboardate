@@ -1,9 +1,9 @@
 import React from 'react';
 import { withRouter } from 'react-router';
 
-import BoardTitleMenu from './board_title_menu';
-import BoardVisibilityMenu from './board_visibility_menu';
-import BoardMenu from './board_menu';
+import BoardTitleMenuContainer from './board_title_menu_container';
+import BoardVisibilityMenuContainer from './board_visibility_menu_container';
+import BoardMenuContainer from './board_menu_container';
 
 class Board extends React.Component {
 
@@ -47,12 +47,12 @@ class Board extends React.Component {
         <nav className="board-nav clearfix">
 
           <ul className="nav-left clearfix">
-            <BoardTitleMenu
+            <BoardTitleMenuContainer
               title={ title }
               updateBoard={ this.updateBoard }
               disabled={ disabled }
             />
-            <BoardVisibilityMenu
+          <BoardVisibilityMenuContainer
               visibility={ visibility }
               updateBoard= { this.updateBoard }
               disabled={ disabled }
@@ -60,7 +60,7 @@ class Board extends React.Component {
           </ul>
 
           <ul className="nav-right clearfix">
-            <BoardMenu board={ board } disabled={ disabled }/>
+            <BoardMenuContainer board={ board } disabled={ disabled }/>
           </ul>
 
         </nav>

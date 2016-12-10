@@ -1,11 +1,16 @@
 import * as MenuStatusActions from '../actions/menu_status_actions';
 
 const initialState = {
-  boards: false,
-  create: false,
-  profile: false,
-  information: false,
-  notification: false,
+  showHomeBoardsMenu: false,
+  showHomeCreateMenu: false,
+  showHomeProfileMenu: false,
+  showHomeInformationMenu: false,
+  showHomeNotificationMenu: false,
+  showBoardMenu: false,
+  showBoardCreateMenu: false,
+  showBoardTitleMenu: false,
+  showBoardVisibilityMenu: false,
+  showBoardDeleteMenu: false,
 };
 
 export default (state = initialState, action) => {
@@ -15,12 +20,13 @@ export default (state = initialState, action) => {
 
     case MenuStatusActions.TOGGLE_MENU:
       const newState = {};
-
       Object.keys(state).forEach((currentMenu) => {
         if(currentMenu === action.menu) {
           newState[currentMenu] = !state[currentMenu];
-        } else {
+        } else if (!action.leaveOthers) {
           newState[currentMenu] = false;
+        } else {
+          newState[currentMenu] = state[currentMenu];
         }
       });
       return newState;

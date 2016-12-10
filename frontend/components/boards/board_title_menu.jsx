@@ -35,8 +35,8 @@ class BoardTitleMenu extends ToggleMenu {
   }
 
   render() {
-    const { updateTitle, disabled } = this.props;
-    const { title, show } = this.state;
+    const { show, updateTitle, disabled } = this.props;
+    const { title } = this.state;
 
     if (show) {
       // TODO figure out why this doesn't work
