@@ -12,6 +12,7 @@ const initialState = {
   showBoardTitleMenu: false,
   showBoardVisibilityMenu: false,
   showBoardDeleteMenu: false,
+  showListCreate: false,
 };
 
 export default (state = initialState, action) => {

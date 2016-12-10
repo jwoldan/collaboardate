@@ -13,6 +13,7 @@ const defaultState = {
 };
 
 class BoardCreateForm extends React.Component {
+  
   constructor() {
     super();
 

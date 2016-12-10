@@ -1,0 +1,64 @@
+.lists {
+  display: flex;
+  align-items: flex-start;
+  height: calc(100% - 33px);
+}
+
+.list {
+  display: block;
+  width: 257px;
+  margin-right: 10px;
+  padding: 10px;
+  border-radius: 3px;
+
+  background-color: #E2E4E6;
+
+  &.list-create {
+    position: relative;
+    padding: 0;
+    color: rgba(255,255,255,.7);
+    background-color: rgba(0,0,0,.12);
+
+    cursor: pointer;
+    user-select: none;
+
+    &:hover {
+      background-color: rgba(0,0,0,.3);
+    }
+
+    .list-create-button {
+        padding: 10px;
+    }
+
+    .list-create-menu {
+      position: absolute;
+      top: 0;
+      padding: 4px;
+      border: none;
+      background-color: #E2E4E6;
+      width: calc(100% - 8px);
+    }
+
+    .list-create-form {
+      .input {
+        margin: 0;
+        color: #4d4d4d;
+        background-color: rgba(0,0,0,.05);
+        box-shadow: inset 0 1px 8px rgba(0,0,0,.15);
+      }
+
+      .menu-close {
+        top: auto;
+        right: auto;
+        left: 6em;
+        bottom: 0.65em;
+        width: 2em;
+        height: 2em;
+      }
+    }
+  }
+
+  .list-title {
+    font-weight: bold;
+  }
+}

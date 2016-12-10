@@ -16,7 +16,7 @@ class BoardsIndexCreate extends ToggleMenu {
     return (
       <li className="board board-create" >
         <section onClick={ this.toggle }>
-        Create new board...
+          Create new board...
         </section>
         { this.renderMenu('Create', menuContent, 'board-create-menu') }
       </li>

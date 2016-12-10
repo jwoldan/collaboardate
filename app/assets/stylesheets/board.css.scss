@@ -1,6 +1,8 @@
 .current-board {
 
+  position: relative;
   padding: 10px;
+  height: calc(100% - 59px);
 
   .board-nav {
     color: white;

@@ -17,6 +17,7 @@
 .menu {
   display: none;
   position: absolute;
+  z-index: 1;
   width: 280px;
   padding: 10px 0;
   background-color: white;
@@ -32,7 +33,7 @@
     display: block;
   }
 
-  .small {
+  span.small {
     font-weight: normal;
     font-size: 12px;
     line-height: .6em;
@@ -63,6 +64,12 @@
     margin-top: 0.5em;
     padding-left: 2em;
     padding-right: 2em;
+
+    &.small {
+      padding: 0.4em 1.5em;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
   }
 }
 
