@@ -75,7 +75,7 @@ export const deleteList = (id) => {
     return ListAPIUtil.deleteList(id).then(
       deletedList => {
         dispatch(removeList(deletedList));
-        return deletedList;
+        dispatch(fetchLists(deletedList.board_id));
       }
     );
   };
