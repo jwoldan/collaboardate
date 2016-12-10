@@ -1,8 +1,7 @@
 class Api::ListsController < ApplicationController
 
-  before_action :require_logged_in, only: [:create]
   before_action :check_parent_board_visibility, only: [:index, :show]
-  before_action :require_parent_board_creator, only: [:update, :destroy]
+  before_action :require_parent_board_creator, only: [:create, :update, :destroy]
 
   def create
     @list = List.new(list_params)
@@ -47,8 +46,12 @@ class Api::ListsController < ApplicationController
   end
 
   def require_parent_board_creator
-    list = List.find(params[:id])
-    require_board_creator(list.board_id)
+    if params[:id]
+      board_id = List.find(params[:id]).board_id
+    else
+      params[:list][:board_id]
+    end
+    require_board_creator(board_id)
   end
 
   def check_parent_board_visibility
