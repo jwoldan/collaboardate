@@ -7,7 +7,7 @@ import Root from './components/root';
 // TODO: Remove after testing!
 import * as CurrentUserActions from './actions/current_user_actions';
 import * as BoardActions from './actions/board_actions';
-import * as ListAPIUtil from './util/list_api_util';
+import * as ListActions from './actions/list_actions';
 
 document.addEventListener('DOMContentLoaded', () => {
   let preloadedState;
@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
   window.store = store;
   window.CurrentUserActions = CurrentUserActions;
   window.BoardActions = BoardActions;
-  window.ListAPIUtil = ListAPIUtil;
+  window.ListActions = ListActions;
 
   const root = document.getElementById('root');
   ReactDOM.render(<Root store={ store }/>, root);
