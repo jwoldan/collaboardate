@@ -49,7 +49,7 @@ class Api::ListsController < ApplicationController
     if params[:id]
       board_id = List.find(params[:id]).board_id
     else
-      params[:list][:board_id]
+      board_id = params[:list][:board_id]
     end
     require_board_creator(board_id)
   end
