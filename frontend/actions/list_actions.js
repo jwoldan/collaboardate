@@ -48,6 +48,17 @@ export const updateList = (list) => {
   };
 };
 
+export const updateListOrd = (list) => {
+  return dispatch => {
+    return ListAPIUtil.updateList(list).then(
+      updatedList => {
+        dispatch(fetchLists(updatedList.board_id));
+        return updatedList;
+      }
+    );
+  };
+};
+
 export const fetchLists = (boardId) => {
   return dispatch => {
     return ListAPIUtil.fetchLists(boardId).then(
@@ -76,6 +87,7 @@ export const deleteList = (id) => {
       deletedList => {
         dispatch(removeList(deletedList));
         dispatch(fetchLists(deletedList.board_id));
+        return deletedList;
       }
     );
   };

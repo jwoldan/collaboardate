@@ -12,7 +12,6 @@ export const selectBoard = ({ boards }, id) => {
 };
 
 export const selectLists = ({ lists }, boardId)  => {
-  console.log(lists);
   const listsArray = [];
   Object.keys(lists).forEach((key) => {
     const list = lists[key];
@@ -20,6 +19,5 @@ export const selectLists = ({ lists }, boardId)  => {
       listsArray[list.ord] = lists[key];
     }
   });
-  console.log(listsArray);
   return listsArray;
 };
