@@ -37,6 +37,34 @@
     font-size: 12px;
   }
 
+  .icon {
+    display: block;
+    margin: 1px 0;
+    width: 15px;
+    height: 15px;
+    background-size: contain;
+
+    &.icon-more-white {
+      background-image: image-url('ic_more_horiz_white_24px.svg');
+
+      &.icon-show-menu {
+        display: inline-block;
+        transform: translateY(3px);
+        margin-right: 5px;
+      }
+    }
+
+    &.icon-more-black {
+      background-image: image-url('ic_more_horiz_black_24px.svg');
+
+      &.icon-list-menu {
+        position: absolute;
+        top: 1em;
+        right: 0.7em;
+      }
+    }
+  }
+
 }
 
 .board-menu {

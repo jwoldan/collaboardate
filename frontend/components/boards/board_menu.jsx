@@ -21,7 +21,7 @@ class BoardMenu extends ToggleMenu {
     return (
       <li className="board-menu">
         <section className={ buttonClass } onClick={ this.toggle }>
-          Show Menu
+          <span className="icon icon-more-white icon-show-menu" />Show Menu
         </section>
         { this.renderMenu("Menu", menuContent) }
       </li>

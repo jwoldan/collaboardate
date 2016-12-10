@@ -5,6 +5,7 @@
 }
 
 .list {
+  position: relative;
   display: block;
   width: 257px;
   margin-right: 10px;
@@ -61,4 +62,5 @@
   .list-title {
     font-weight: bold;
   }
+
 }
