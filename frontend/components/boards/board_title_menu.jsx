@@ -38,11 +38,6 @@ class BoardTitleMenu extends ToggleMenu {
     const { show, updateTitle, disabled } = this.props;
     const { title } = this.state;
 
-    if (show) {
-      // TODO figure out why this doesn't work
-      this.refs.titleInput.focus();
-    }
-
     let buttonClass = "nav-button";
     if (disabled) buttonClass += " disabled";
 
@@ -56,11 +51,18 @@ class BoardTitleMenu extends ToggleMenu {
             ref="titleInput"
             value={ title }
             onChange={ this.updateTitle }
+            onFocus={ (e) => e.target.select() }
           />
         </label>
         <input type="submit" className="button green" value="Create"/>
       </form>
     );
+
+    // This setTimeout seems to be required because the menuContent
+    // is produced using the renderMenu method.
+    if(show) {
+      setTimeout(() => this.refs.titleInput.focus(), 1);
+    }
 
     return (
       <li className="title">

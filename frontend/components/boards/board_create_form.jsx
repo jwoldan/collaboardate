@@ -73,7 +73,10 @@ class BoardCreateForm extends React.Component {
     const { board, showVisibility } = this.state;
     const { title, visibility } = board;
 
-    if (this.props.show) this.refs.titleInput.focus();
+    // I'm unsure why setTimeout is required here
+    if (this.props.show) {
+      setTimeout(() => this.refs.titleInput.focus(), 1);
+    }
 
     let visibilityTextClass = "menu-form-text quiet";
     let visibilityMenuClass = "";

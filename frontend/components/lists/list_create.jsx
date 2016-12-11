@@ -9,7 +9,9 @@ class ListCreate extends ToggleMenu {
 
     const menuContent = (
       <section>
-        <ListCreateFormContainer toggle={ this.toggle }/>
+        <ListCreateFormContainer
+          show={ this.props.show }
+          toggle={ this.toggle } />
       </section>
     );
 
