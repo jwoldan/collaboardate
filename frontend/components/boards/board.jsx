@@ -4,7 +4,7 @@ import { DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 
 import BoardNavigation from './board_navigation';
-import ListHolder from '../lists/list_holder';
+import ListHolderContainer from '../lists/list_holder_container';
 import ListCreateContainer from '../lists/list_create_container';
 
 class Board extends React.Component {
@@ -42,7 +42,7 @@ class Board extends React.Component {
           disabled={ disabled } />
         <ul className="lists clearfix">
           { lists.map((list) => (
-            <ListHolder key={ list.id } list={ list } disabled={ disabled }/>
+            <ListHolderContainer key={ list.id } list={ list } disabled={ disabled }/>
           ))}
           <ListCreateContainer disabled={ disabled }/>
         </ul>

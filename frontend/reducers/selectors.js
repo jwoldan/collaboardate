@@ -12,12 +12,17 @@ export const selectBoard = ({ boards }, id) => {
 };
 
 export const selectLists = ({ lists }, boardId)  => {
-  const listsArray = [];
-  Object.keys(lists).forEach((key) => {
-    const list = lists[key];
-    if (list.board_id === parseInt(boardId)) {
-      listsArray[list.ord] = lists[key];
+  return Object.keys(lists).map((key) => (
+    lists[key]
+  )).sort((a, b) => {
+    const aOrd = a.tempOrd ? a.tempOrd : a.ord;
+    const bOrd = b.tempOrd ? b.tempOrd : b.ord;
+    if(aOrd < bOrd) {
+      return -1;
+    } else if (aOrd > bOrd){
+      return 1;
+    } else {
+      return 0;
     }
   });
-  return listsArray;
 };

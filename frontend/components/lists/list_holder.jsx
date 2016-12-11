@@ -5,26 +5,31 @@ import ItemTypes from '../dnd/item_types';
 import ListContainer from './list_container';
 
 const listHolderTarget = {
-  drop: (props, monitor) => {
-    return { ord: props.list.ord };
+  hover: (props, monitor) => {
+    const sourceList = monitor.getItem().list;
+    const targetList = props.list;
+    if (sourceList.id !== targetList.id) {
+      const updatedSourceList = Object.assign({}, sourceList, {
+        ord: targetList.ord,
+      });
+      props.receiveList(updatedSourceList);
+      props.updateList(updatedSourceList);
+    }
   }
 };
 
-const collect = (connect, monitor) => ({
+const collect = (connect) => ({
     connectDropTarget: connect.dropTarget(),
-    isOver: monitor.isOver(),
 });
 
-const ListHolder = ({ list, disabled, connectDropTarget, isOver }) => {
 
-  const overClass = isOver ? "over" : "";
-
-  return connectDropTarget(
-    <li className={ overClass }>
+const ListHolder = ({ list, disabled, connectDropTarget }) => (
+  connectDropTarget(
+    <li>
       <ListContainer list={ list } disabled= { disabled } />
     </li>
-  );
-};
+  )
+);
 
 export default DropTarget(
   ItemTypes.LIST,

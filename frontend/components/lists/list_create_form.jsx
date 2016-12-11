@@ -19,7 +19,8 @@ class ListCreateForm extends React.Component {
     this.setState({ title: e.currentTarget.value });
   }
 
-  createList() {
+  createList(e) {
+    e.preventDefault();
     const newList = Object.assign({}, this.state);
     newList.title = newList.title.trim();
     if(newList.title !== '') {

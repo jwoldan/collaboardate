@@ -13,6 +13,14 @@
   border-radius: 3px;
 
   background-color: #E2E4E6;
+  
+  &.dragging {
+    background-color: rgba(0,0,0,.2);
+
+    * {
+      visibility: hidden;
+    }
+  }
 
   &.list-create {
     position: relative;
