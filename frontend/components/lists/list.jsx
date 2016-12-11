@@ -2,6 +2,7 @@ import React from 'react';
 import { DragSource } from 'react-dnd';
 import ItemTypes from '../dnd/item_types';
 
+import ListTitleEditableContainer from './list_title_editable_container';
 import ListMenuContainer from './list_menu_container';
 
 const listSource = {
@@ -23,7 +24,7 @@ const List = ({ list, disabled, connectDragSource, isDragging }) => {
 
   return connectDragSource(
     <section className={ listClass }>
-      <h3 className="list-title">{ list.title }</h3>
+      <ListTitleEditableContainer list={ list } />
       <ListMenuContainer list={ list } disabled={ disabled } />
     </section>
   );

@@ -13,7 +13,7 @@
   border-radius: 3px;
 
   background-color: #E2E4E6;
-  
+
   &.dragging {
     background-color: rgba(0,0,0,.2);
 
@@ -69,6 +69,13 @@
 
   .list-title {
     font-weight: bold;
+  }
+
+  .list-title-input {
+    width: 230px;
+    padding: 0 5px;
+    margin: 0;
+    border: none;
   }
 
   .list-menu {

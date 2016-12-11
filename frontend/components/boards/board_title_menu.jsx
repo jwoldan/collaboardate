@@ -35,7 +35,7 @@ class BoardTitleMenu extends ToggleMenu {
   }
 
   render() {
-    const { show, updateTitle, disabled } = this.props;
+    const { show, disabled } = this.props;
     const { title } = this.state;
 
     let buttonClass = "nav-button";
