@@ -13,7 +13,7 @@ const defaultState = {
 };
 
 class BoardCreateForm extends React.Component {
-  
+
   constructor() {
     super();
 
@@ -52,7 +52,8 @@ class BoardCreateForm extends React.Component {
 
   }
 
-  createBoard() {
+  createBoard(e) {
+    e.preventDefault();
     const newBoard = Object.assign({}, this.state.board);
     newBoard.title = newBoard.title.trim();
     if (newBoard.title !== '') {
