@@ -19,6 +19,10 @@ class Board extends React.Component {
     }
   }
 
+  componentWillUnmount() {
+    this.props.receiveLists({});
+  }
+
   fetchBoard(boardId) {
     return this.props.fetchBoard(boardId).then(
       (board) => this.props.fetchLists(board.id),
