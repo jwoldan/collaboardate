@@ -15,6 +15,8 @@ class List < ApplicationRecord
 
   belongs_to :board
 
+  has_many :cards, dependent: :destroy
+
   before_validation :ensure_ord
 
   def ord=(new_ord)
