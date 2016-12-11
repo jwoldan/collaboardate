@@ -28,6 +28,6 @@ class Board < ApplicationRecord
     primary_key: :id,
     foreign_key: :creator_id
 
-  has_many :lists
+  has_many :lists, dependent: :destroy
 
 end
