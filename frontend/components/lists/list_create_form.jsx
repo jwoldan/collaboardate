@@ -26,7 +26,6 @@ class ListCreateForm extends React.Component {
     if(newList.title !== '') {
       newList.board_id = this.props.board.id;
       this.props.createList(newList).then((list) => {
-        this.props.toggle();
         this.setState(Object.assign({}, defaultState));
       });
     }
