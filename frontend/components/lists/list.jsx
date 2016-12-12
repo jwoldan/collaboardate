@@ -5,6 +5,7 @@ import ItemTypes from '../dnd/item_types';
 import ListTitleEditableContainer from './list_title_editable_container';
 import ListMenuContainer from './list_menu_container';
 import Card from '../cards/card';
+import CardCreateContainer from '../cards/card_create_container';
 
 const listSource = {
   beginDrag: (props) => ({
@@ -31,6 +32,7 @@ const List = ({ list, cards, disabled, connectDragSource, isDragging }) => {
         { cards.map((card) => (
           <Card key={ card.id } card={ card } disabled={ disabled } />
         ))}
+        <CardCreateContainer list={ list } disabled={ disabled } />
       </ul>
     </section>
   );

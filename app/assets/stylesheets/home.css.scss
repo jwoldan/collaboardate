@@ -58,18 +58,18 @@
       color: #fff;
     }
   }
+}
 
-  .button {
-    display: block;
-    margin-top: 0.5em;
-    padding-left: 2em;
-    padding-right: 2em;
+.menu .button, .editable .button {
+  display: block;
+  margin-top: 0.5em;
+  padding-left: 2em;
+  padding-right: 2em;
 
-    &.small {
-      padding: 0.4em 1.5em;
-      font-weight: bold;
-      margin-bottom: 5px;
-    }
+  &.small {
+    padding: 0.4em 1.5em;
+    font-weight: bold;
+    margin-bottom: 5px;
   }
 }
 

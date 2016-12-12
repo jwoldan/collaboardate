@@ -2,9 +2,9 @@ import React from 'react';
 
 import DynamicEditable from '../general/dynamic_editable';
 
-const menuKeyBase = 'showListTitleEditable';
+const menuKeyBase = 'showCardCreate';
 
-class ListTitleEditable extends DynamicEditable {
+class CardCreate extends DynamicEditable {
 
   constructor(props) {
     super(props);
@@ -14,6 +14,7 @@ class ListTitleEditable extends DynamicEditable {
     };
 
     this.updateTitle = this.updateTitle.bind(this);
+    this.handleEnter = this.handleEnter.bind(this);
     this.submit = this.submit.bind(this);
   }
 
@@ -29,9 +30,6 @@ class ListTitleEditable extends DynamicEditable {
       this.setState({ menuKey: `${menuKeyBase}-${newProps.list.id}` });
       this.props.addMenu(this.state.menuKey);
     }
-    if (typeof newProps.list !== 'undefined') {
-      this.setState({ title: newProps.list.title.slice() });
-    }
   }
 
   componentWillUnmount() {
@@ -42,50 +40,61 @@ class ListTitleEditable extends DynamicEditable {
     this.setState({ title: e.currentTarget.value });
   }
 
+  handleEnter(e) {
+    if(e.which === 13) {
+      e.preventDefault();
+      this.submit();
+    }
+  }
+
   submit(e) {
-    e.preventDefault();
+    if (e) e.preventDefault();
     const title = this.state.title.trim();
     if (title !== '') {
-      const { list, updateList } = this.props;
-      const updatedList = Object.assign({}, list, { title });
-      updateList(updatedList).then(
-        () => this.props.toggle()
+      const { createCard, list } = this.props;
+      createCard({ title, list_id: list.id }).then(
+        () => {
+          this.setState({ title: '' });
+        }
       );
     }
   }
 
-  render() {
+  render () {
     const { list, showStatus } = this.props;
     const { title, menuKey } = this.state;
     const show = this.props.showStatus(menuKey);
 
-    if(show) {
-      setTimeout(() => this.refs.titleInput.focus(), 1);
+    if (show) {
+      // Need to check that the input hasn't already disappeared
+      // due to another render where show is false
+      setTimeout(() => {
+        if (this.refs.titleInput) this.refs.titleInput.focus();
+      }, 1);
 
       return (
-        <form onSubmit={ this.submit }>
-          <input
-            type="text"
-            className="input list-title-input"
+        <form className="card-create-form editable" onSubmit={ this.submit }>
+          <textarea
+            className="input card-title-input"
             ref="titleInput"
             value={ title }
             onChange={ this.updateTitle }
-            onFocus={ (e) => e.target.select() }
+            onKeyDown= { this.handleEnter }
           />
+        <input className="button green small" type="submit" value="Add" />
+          <span className="menu-close" onClick={ this.toggle } />
         </form>
       );
-
     } else {
-
       return (
-        <h3 className="list-title" onClick={ this.toggle }>
-          { list.title }
-        </h3>
+        <li className="card-create" onClick={ this.toggle }>
+          Add a card...
+        </li>
       );
-      
     }
 
   }
+
 }
 
-export default ListTitleEditable;
+export default CardCreate;

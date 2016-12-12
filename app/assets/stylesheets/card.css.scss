@@ -1,16 +1,32 @@
 .cards {
   margin-top: 4px;
+
+  .card-create {
+    padding: 5px 10px;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+
+    cursor: pointer;
+    user-select: none;
+
+    &:hover {
+      background-color: #CDD2D4;
+      color: #4d4d4d;
+      text-decoration: underline;
+    }
+  }
 }
 
 .card {
   display: block;
-  margin-bottom: 6px;
+  margin: 0 10px 6px;
   border-bottom: 1px solid #ccc;
   border-radius: 3px;
 
   background-color: #fff;
 
   cursor: pointer;
+  user-select: none;
 
   &:hover {
     background-color: #EDEFF0;
@@ -19,6 +35,35 @@
 
   .card-summary {
     padding: 4px 6px;
+  }
+
+}
+
+.card-create-form {
+  position: relative;
+  margin: 0 10px;
+  padding-bottom: 5px;
+
+  textarea {
+    display: block;
+    width: 100%;
+    margin-bottom: 6px;
+
+    border: none;
+    border-bottom: 1px solid #ccc;
+  }
+
+  .button {
+    margin: 0;
+  }
+
+  .menu-close {
+    top: auto;
+    right: auto;
+    left: 5.2em;
+    bottom: 0.8em;
+    width: 2em;
+    height: 2em;
   }
 
 }

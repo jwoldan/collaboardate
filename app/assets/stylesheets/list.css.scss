@@ -9,7 +9,7 @@
   display: block;
   width: 257px;
   margin-right: 10px;
-  padding: 10px;
+  padding: 10px 0 0;
   border-radius: 3px;
 
   background-color: #E2E4E6;
@@ -68,6 +68,7 @@
   }
 
   .list-title {
+    margin: 0 10px;
     font-weight: bold;
   }
 
