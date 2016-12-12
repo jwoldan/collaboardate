@@ -8,6 +8,7 @@ import Root from './components/root';
 import * as CurrentUserActions from './actions/current_user_actions';
 import * as BoardActions from './actions/board_actions';
 import * as ListActions from './actions/list_actions';
+import * as CardAPIUtil from './util/card_api_util';
 
 document.addEventListener('DOMContentLoaded', () => {
   let preloadedState;
@@ -25,6 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
   window.CurrentUserActions = CurrentUserActions;
   window.BoardActions = BoardActions;
   window.ListActions = ListActions;
+  window.CardAPIUtil = CardAPIUtil;
 
   const root = document.getElementById('root');
   ReactDOM.render(<Root store={ store }/>, root);
