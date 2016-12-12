@@ -59,8 +59,7 @@ class Card < ApplicationRecord
   end
 
   def destroy
-    self.ord = max_ord
-    self.save
+    Card.update_other_ords(self.list_id, self.ord, self.max_ord)
     super
   end
 
