@@ -19,6 +19,7 @@
 
 .card {
   display: block;
+  position: relative;
   margin: 0 10px 6px;
   border-bottom: 1px solid #ccc;
   border-radius: 3px;
@@ -37,12 +38,31 @@
     padding: 4px 6px;
   }
 
-}
+  .icon-edit {
+    display: none;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 12px;
+    height: 12px;
+    padding: 4px;
 
-.card-create-form {
-  position: relative;
-  margin: 0 10px;
-  padding-bottom: 5px;
+    background-size: 65%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: image-url('ic_mode_edit_black_24px.svg');
+    opacity: 0.4;
+
+    &:hover {
+      opacity: 0.8;
+      border-radius: 3px;
+      background-color: #CDD2D4;
+    }
+  }
+
+  &:hover .icon-edit {
+    display: block;
+  }
 
   textarea {
     display: block;
@@ -52,6 +72,13 @@
     border: none;
     border-bottom: 1px solid #ccc;
   }
+
+}
+
+.card-create-form {
+  position: relative;
+  margin: 0 10px;
+  padding-bottom: 5px;
 
   .button {
     margin: 0;
@@ -66,4 +93,60 @@
     height: 2em;
   }
 
+}
+
+.card-quick-edit-modal {
+  align-items: flex-start;
+  position: absolute;
+  width: 150%;
+  top: 0;
+  z-index: 2;
+
+  .button {
+    padding: 7px 20px;
+    border-radius: 3px;
+    font-weight: bold;
+  }
+
+  .input {
+    height: 90px;
+    padding: 4px 6px;
+    margin-bottom: 10px;
+    resize: none;
+  }
+
+  form {
+    float: left;
+    width: 66.6%;
+  }
+
+  .card-quick-edit-actions {
+    float: left;
+    padding-left: 10px;
+
+    li {
+      padding: 5px 10px;
+      border-radius: 3px;
+
+      color: white;
+      background-color: rgba(0, 0, 0, 0.5);
+      transition: 0.1s ease 0s;
+
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.7);
+        transform: translateX(5px);
+      }
+    }
+  }
+}
+
+.modal-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+
+  background-color: rgba(0, 0, 0, .6);
 }

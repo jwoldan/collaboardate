@@ -69,14 +69,14 @@ class CardCreate extends DynamicEditable {
       // Need to check that the input hasn't already disappeared
       // due to another render where show is false
       setTimeout(() => {
-        if (this.refs.titleInput) this.refs.titleInput.focus();
+        if (this.refs.titleTextarea) this.refs.titleTextarea.focus();
       }, 1);
 
       return (
         <form className="card-create-form editable" onSubmit={ this.submit }>
           <textarea
             className="input card-title-input"
-            ref="titleInput"
+            ref="titleTextarea"
             value={ title }
             onChange={ this.updateTitle }
             onKeyDown= { this.handleEnter }
