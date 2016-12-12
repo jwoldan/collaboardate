@@ -14,15 +14,22 @@ export const selectBoard = ({ boards }, id) => {
 export const selectLists = ({ lists }, boardId)  => {
   return Object.keys(lists).map((key) => (
     lists[key]
-  )).sort((a, b) => {
-    const aOrd = a.tempOrd ? a.tempOrd : a.ord;
-    const bOrd = b.tempOrd ? b.tempOrd : b.ord;
-    if(aOrd < bOrd) {
-      return -1;
-    } else if (aOrd > bOrd){
-      return 1;
-    } else {
-      return 0;
-    }
-  });
+  )).sort(ordSort);
+};
+
+export const selectCards = ({ cards }, listId) => {
+  return Object.keys(cards).map((key) => (
+    cards[key]
+  )).filter((card) => card.list_id === listId)
+  .sort(ordSort);
+};
+
+const ordSort = (a, b) => {
+  if(a.ord < b.ord) {
+    return -1;
+  } else if (a.ord > b.ord){
+    return 1;
+  } else {
+    return 0;
+  }
 };

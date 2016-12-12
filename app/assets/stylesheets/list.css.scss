@@ -9,7 +9,7 @@
   display: block;
   width: 257px;
   margin-right: 10px;
-  padding: 10px;
+  padding: 10px 0 0;
   border-radius: 3px;
 
   background-color: #E2E4E6;
@@ -68,14 +68,21 @@
   }
 
   .list-title {
+    margin: 0 10px;
     font-weight: bold;
   }
 
+  .list-title-editable {
+    padding: 0 10px;
+  }
+
   .list-title-input {
-    width: 230px;
+    width: 92%;
     padding: 0 5px;
-    margin: 0;
+    margin: 0 0 0 -5px;
     border: none;
+
+    font-weight: bold;
   }
 
   .list-menu {
