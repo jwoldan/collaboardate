@@ -6,6 +6,7 @@ class Api::CardsController < ApplicationController
 
   def create
     @card = Card.new(card_params)
+    @card.author = current_user
 
     if @card.save
       render :show
