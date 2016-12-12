@@ -3,6 +3,7 @@ import { withRouter } from 'react-router';
 import { DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 
+import CardDetailContainer from '../cards/card_detail_container';
 import BoardNavigation from './board_navigation';
 import ListHolderContainer from '../lists/list_holder_container';
 import ListCreateContainer from '../lists/list_create_container';
@@ -40,6 +41,7 @@ class Board extends React.Component {
 
     return (
       <section className="current-board">
+        <CardDetailContainer />
         <BoardNavigation
           board={ board }
           updateBoard={ updateBoard }

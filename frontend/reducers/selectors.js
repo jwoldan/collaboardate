@@ -17,6 +17,14 @@ export const selectLists = ({ lists }, boardId)  => {
   )).sort(ordSort);
 };
 
+export const selectListByCardId = ({ lists, cards }, cardId) => {
+  if(cards[cardId]) {
+    return lists[cards[cardId].list_id];
+  } else {
+    return {};
+  }
+};
+
 export const selectCards = ({ cards }, listId) => {
   return Object.keys(cards).map((key) => (
     cards[key]

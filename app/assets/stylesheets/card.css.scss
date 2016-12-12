@@ -19,7 +19,6 @@
 
 .card {
   display: block;
-  position: relative;
   margin: 0 10px 6px;
   border-bottom: 1px solid #ccc;
   border-radius: 3px;
@@ -111,6 +110,10 @@
 
 }
 
+.card-quick-edit {
+  position: relative;
+}
+
 .card-quick-edit-modal {
   align-items: flex-start;
   position: absolute;
@@ -158,6 +161,53 @@
       }
     }
   }
+}
+
+.card-detail-modal {
+  width: 730px;
+  min-height: 600px;
+  margin: 50px auto 0;
+
+  color: #4d4d4d;
+  background-color: #EDEFF0;
+  border-radius: 3px;
+
+  z-index: 2;
+
+  .menu-close {
+    top: .4em;
+    right: .4em;
+    width: 1.5em;
+    height: 1.5em;
+    filter: opacity(40%);
+
+    &:hover {
+      filter: opacity(70%);
+    }
+  }
+}
+
+.card-detail {
+  position: relative;
+}
+
+.card-detail-body {
+  float: left;
+  padding: 10px;
+  width: 500px;
+
+  font-size: 14px;
+
+  h4 {
+    font-size: 18px;
+    font-weight: bold;
+  }
+}
+
+.card-detail-sidebar {
+  float:left;
+  width: 210px;
+  background-color: blue;
 }
 
 .modal-overlay {

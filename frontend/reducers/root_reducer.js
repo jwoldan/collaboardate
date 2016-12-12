@@ -7,6 +7,7 @@ import errors from './errors_reducer';
 import boards from './boards_reducer';
 import lists from './lists_reducer';
 import cards from './cards_reducer';
+import cardDetail from './card_detail_reducer';
 import menuStatus from './menu_status_reducer';
 
 const appReducer = combineReducers({
@@ -15,6 +16,7 @@ const appReducer = combineReducers({
   boards,
   lists,
   cards,
+  cardDetail,
   menuStatus,
 });
 

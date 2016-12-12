@@ -6,7 +6,7 @@ import { findDOMNode } from 'react-dom';
 import ItemTypes from '../dnd/item_types';
 import { receiveCard, updateCard } from '../../actions/card_actions';
 
-import Card from './card';
+import CardContainer from './card_container';
 
 const mapDispatchToProps = (dispatch) => ({
   receiveCard: (card) => dispatch(receiveCard(card)),
@@ -35,7 +35,7 @@ const collect = (dndConnect) => ({
 const CardHolder = ({ card, disabled, connectDropTarget }) => (
   connectDropTarget(
     <li>
-      <Card card={ card } disabled= { disabled } />
+      <CardContainer card={ card } disabled= { disabled } />
     </li>
   )
 );

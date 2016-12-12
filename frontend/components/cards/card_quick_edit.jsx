@@ -72,7 +72,7 @@ class CardQuickEdit extends DynamicEditable {
   render() {
     const { card, showStatus } = this.props;
     const { title, menuKey } = this.state;
-    const show = this.props.showStatus(menuKey);
+    const show = showStatus(menuKey);
     let menuContent = "";
 
     if (show) {
@@ -102,7 +102,9 @@ class CardQuickEdit extends DynamicEditable {
 
 
     return (
-      <section>
+      <section
+        className="card-quick-edit"
+        onClick={ (e) => e.stopPropagation() }>
         <span className="icon icon-edit" onClick={ this.toggle }/>
         <Modal
           isOpen={ show }
