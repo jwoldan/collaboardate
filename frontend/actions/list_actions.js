@@ -36,23 +36,11 @@ export const createList = (list) => {
   };
 };
 
-
 export const updateList = (list) => {
   return dispatch => {
     return ListAPIUtil.updateList(list).then(
       updatedList => {
         dispatch(receiveList(updatedList));
-        return updatedList;
-      }
-    );
-  };
-};
-
-export const updateListOrd = (list) => {
-  return dispatch => {
-    return ListAPIUtil.updateList(list).then(
-      updatedList => {
-        dispatch(fetchLists(updatedList.board_id));
         return updatedList;
       }
     );
