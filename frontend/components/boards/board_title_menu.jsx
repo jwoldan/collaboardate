@@ -54,7 +54,7 @@ class BoardTitleMenu extends ToggleMenu {
             onFocus={ (e) => e.target.select() }
           />
         </label>
-        <input type="submit" className="button green" value="Create"/>
+        <input type="submit" className="button green" value="Rename"/>
       </form>
     );
 
@@ -69,7 +69,7 @@ class BoardTitleMenu extends ToggleMenu {
         <section className={ buttonClass } onClick={ this.toggle }>
           <h2>{ this.props.title }</h2>
         </section>
-        { this.renderMenu("Title", menuContent) }
+        { this.renderMenu("Rename Board", menuContent) }
       </li>
     );
   }
