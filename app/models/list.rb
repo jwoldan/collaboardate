@@ -66,14 +66,19 @@ class List < ApplicationRecord
   end
 
   def handle_ord_change
-    if self.changed_attributes["ord"]
-      old_ord = self.changed_attributes["ord"]
-    else
-      old_ord = List.next_ord(self.board_id)
-    end
-    if old_ord
-      new_ord = self.ord
-      List.update_other_ords(self.board_id, old_ord, new_ord)
+    # if ord has been set
+    if self.changed.include?("ord")
+      # if there was an old value, set is as old_ord
+      if self.changed_attributes["ord"]
+        old_ord = self.changed_attributes["ord"]
+        # else consider the next available ord the old_ord
+      else
+        old_ord = List.next_ord(self.board_id)
+      end
+      if old_ord
+        new_ord = self.ord
+        List.update_other_ords(self.board_id, old_ord, new_ord)
+      end
     end
   end
 
