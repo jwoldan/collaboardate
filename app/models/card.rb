@@ -60,6 +60,7 @@ class Card < ApplicationRecord
 
   def destroy
     self.ord = max_ord
+    self.save
     super
   end
 
