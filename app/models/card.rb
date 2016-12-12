@@ -95,9 +95,12 @@ class Card < ApplicationRecord
 
   # Update related ords when a card's ord changes but it's list does not.
   def handle_ord_change
-    unless self.changed.include?("list_id")
-      old_ord = self.changed_attributes["ord"]
-
+    unless self.changed_attributes["list_id"]
+      if self.changed_attributes["ord"]
+        old_ord = self.changed_attributes["ord"]
+      else
+        old_ord = Card.next_ord(self.list_id)
+      end
       if old_ord
         new_ord = self.ord
         Card.update_other_ords(self.list_id, old_ord, new_ord)
