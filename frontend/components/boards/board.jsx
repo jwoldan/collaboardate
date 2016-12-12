@@ -10,22 +10,26 @@ import ListCreateContainer from '../lists/list_create_container';
 class Board extends React.Component {
 
   componentDidMount() {
-    this.fetchBoard(this.props.params.boardId);
+    this.fetchBoardAndContents(this.props.params.boardId);
   }
 
   componentWillReceiveProps(newProps) {
     if(this.props.params.boardId !== newProps.params.boardId) {
-      this.fetchBoard(newProps.params.boardId);
+      this.fetchBoardAndContents(newProps.params.boardId);
     }
   }
 
   componentWillUnmount() {
     this.props.receiveLists({});
+    this.props.receiveCards({});
   }
 
-  fetchBoard(boardId) {
+  fetchBoardAndContents(boardId) {
     return this.props.fetchBoard(boardId).then(
-      (board) => this.props.fetchLists(board.id),
+      (board) => {
+        this.props.fetchLists(board.id);
+        this.props.fetchCards(board.id);
+      },
       (error) => this.props.router.push('/')
     );
   }
@@ -42,7 +46,10 @@ class Board extends React.Component {
           disabled={ disabled } />
         <ul className="lists clearfix">
           { lists.map((list) => (
-            <ListHolderContainer key={ list.id } list={ list } disabled={ disabled }/>
+            <ListHolderContainer
+              key={ list.id }
+              list={ list }
+              disabled={ disabled }/>
           ))}
           <ListCreateContainer disabled={ disabled }/>
         </ul>
