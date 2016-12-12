@@ -25,7 +25,9 @@ export default (state = {}, action) => {
       return newState;
 
     case ListActions.REMOVE_LIST:
-      newState = Object.assign({}, state);
+      newState = Object.assign({}, state,
+        updateOtherListOrds(state, action.list.ord, null)
+      );
       delete newState[action.list.id];
       return newState;
 
@@ -37,9 +39,19 @@ export default (state = {}, action) => {
 const updateOtherListOrds = (state, currentOrd, newOrd) => {
     const newState = {};
 
+    const lists = Object.keys(state).map((key) => state[key]);
+
+    // Initial value of -1 would only be returned if no cards exist
+    const nextOrd = lists.reduce(
+      (x, y) => ((x.ord > y.ord) ? x.ord : y.ord),
+      -1
+    ) + 1;
+
+    if (newOrd === null) newOrd = nextOrd;
+    if (currentOrd === null) currentOrd = nextOrd;
+
     if (currentOrd > newOrd) {
-      Object.keys(state).forEach((key) => {
-        const list = state[key];
+      lists.forEach((list) => {
         if (list.ord < currentOrd && list.ord >= newOrd) {
           newState[list.id] = Object.assign({}, list, { ord: list.ord + 1 });
         } else {
@@ -47,8 +59,7 @@ const updateOtherListOrds = (state, currentOrd, newOrd) => {
         }
       });
     } else if (currentOrd < newOrd) {
-      Object.keys(state).forEach((key) => {
-        const list = state[key];
+      lists.forEach((list) => {
         if(list.ord > currentOrd && list.ord <= newOrd) {
           newState[list.id] = Object.assign({}, list, { ord: list.ord - 1 });
         } else {
