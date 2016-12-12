@@ -25,7 +25,7 @@ class Api::CardsController < ApplicationController
   end
 
   def index
-    @cards = Card.join(:list).where(board_id: params[:board_id])
+    @cards = Card.joins(:list).where("lists.board_id = ?", params[:board_id])
     render :index
   end
 
