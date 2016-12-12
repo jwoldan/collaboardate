@@ -18,14 +18,9 @@ class List < ApplicationRecord
   has_many :cards, dependent: :destroy
 
   before_validation :ensure_ord
+  after_validation :handle_ord_change
 
-  def ord=(new_ord)
-    new_ord = new_ord.to_i
-    # Get current ord, or if not set, get the next available ord
-    old_ord = self.ord ? self.ord : next_ord
-
-    # if the ord is changing or a new list is not using
-    # the default next available ord, reorder other lists
+  def self.update_other_ords(board_id, old_ord, new_ord)
     unless old_ord == new_ord
       if old_ord > new_ord
         where_clause = "board_id = ? AND ord < ? AND ord >= ?"
@@ -35,24 +30,30 @@ class List < ApplicationRecord
         update_clause = "ord = ord - 1"
       end
 
-      List.where(where_clause, self.board_id, old_ord, new_ord)
+      List.where(where_clause, board_id, old_ord, new_ord)
         .update_all(update_clause)
     end
-
-    self[:ord] = new_ord
   end
 
-  def max_ord
-    List.where(board_id: self.board_id).maximum(:ord)
+  def self.max_ord(board_id)
+    List.where(board_id: board_id).maximum(:ord)
   end
 
-  def next_ord
-    max_ord = self.max_ord
+  def self.next_ord(board_id)
+    max_ord = List.max_ord(board_id)
     max_ord ? max_ord + 1 : 0
   end
 
+  def max_ord
+    List.max_ord(self.board_id)
+  end
+
+  def next_ord
+    List.next_ord(self.board_id)
+  end
+
   def destroy
-    self.ord = max_ord
+    List.update_other_ords(self.board_id, self.ord, self.max_ord)
     super
   end
 
@@ -61,6 +62,18 @@ class List < ApplicationRecord
   def ensure_ord
     unless self.ord
       self.ord = next_ord
+    end
+  end
+
+  def handle_ord_change
+    if self.changed_attributes["ord"]
+      old_ord = self.changed_attributes["ord"]
+    else
+      old_ord = List.next_ord(self.board_id)
+    end
+    if old_ord
+      new_ord = self.ord
+      List.update_other_ords(self.board_id, old_ord, new_ord)
     end
   end
 
