@@ -22,7 +22,6 @@ const collect = (connect) => ({
     connectDropTarget: connect.dropTarget(),
 });
 
-
 const ListHolder = ({ list, disabled, connectDropTarget }) => (
   connectDropTarget(
     <li>

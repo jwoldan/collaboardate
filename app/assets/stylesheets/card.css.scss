@@ -29,9 +29,21 @@
   cursor: pointer;
   user-select: none;
 
-  &:hover {
+  &.active {
     background-color: #EDEFF0;
     border-bottom: 1px solid #D6DADC;
+
+    .icon-edit {
+      display: block;
+    }
+  }
+
+  &.dragging {
+    background-color: rgba(0,0,0,.2);
+
+    * {
+      visibility: hidden;
+    }
   }
 
   .card-summary {
@@ -58,10 +70,6 @@
       border-radius: 3px;
       background-color: #CDD2D4;
     }
-  }
-
-  &:hover .icon-edit {
-    display: block;
   }
 
   textarea {

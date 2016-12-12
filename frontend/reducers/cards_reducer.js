@@ -56,11 +56,10 @@ const updateOtherCardOrds = (state, listId, currentOrd, newOrd) => {
       .map((key) => state[key])
       .filter((card) => card.list_id === listId);
 
-    // Initial value of -1 would only be returned if no cards exist
-    const nextOrd = listCards.reduce(
-      (x, y) => ((x.ord > y.ord) ? x.ord : y.ord),
-      -1
-    ) + 1;
+    // Initial value of -1 would only be returned if no cards exist,
+    // Otherwise we get the max ord.  Either way, add 1.
+    const nextOrd = listCards.map((card) => card.ord)
+      .reduce((x, y) => ((x > y) ? x : y), -1) + 1;
 
     if (newOrd === null) newOrd = nextOrd;
     if (currentOrd === null) currentOrd = nextOrd;

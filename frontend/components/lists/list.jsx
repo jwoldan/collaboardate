@@ -4,7 +4,8 @@ import ItemTypes from '../dnd/item_types';
 
 import ListTitleEditableContainer from './list_title_editable_container';
 import ListMenuContainer from './list_menu_container';
-import Card from '../cards/card';
+import CardHolder from '../cards/card_holder';
+import CardTarget from '../cards/card_target';
 import CardCreateContainer from '../cards/card_create_container';
 
 const listSource = {
@@ -28,14 +29,21 @@ const List = ({ list, cards, disabled, connectDragSource, isDragging }) => {
     <section className={ listClass }>
       <ListTitleEditableContainer list={ list } />
       <ListMenuContainer list={ list } disabled={ disabled } />
+
       <ul className="cards">
         { cards.map((card) => (
-          <Card key={ card.id } card={ card } disabled={ disabled } />
+          <CardHolder key={ card.id } card={ card } disabled={ disabled } />
         ))}
-        <CardCreateContainer list={ list } disabled={ disabled } />
+        <CardTarget list={ list } active={ cards.length === 0 }>
+          <CardCreateContainer list={ list } disabled={ disabled } />
+        </CardTarget>
       </ul>
     </section>
   );
 };
 
-export default DragSource(ItemTypes.LIST, listSource, collect)(List);
+export default DragSource(
+  ItemTypes.LIST,
+  listSource,
+  collect
+)(List);

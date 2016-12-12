@@ -87,9 +87,9 @@ class CardCreate extends DynamicEditable {
       );
     } else {
       return (
-        <li className="card-create" onClick={ this.toggle }>
+        <section className="card-create" onClick={ this.toggle }>
           Add a card...
-        </li>
+        </section>
       );
     }
 
