@@ -63,7 +63,7 @@ class ListTitleEditable extends DynamicEditable {
       setTimeout(() => this.refs.titleInput.focus(), 1);
 
       return (
-        <form onSubmit={ this.submit }>
+        <form className="list-title-editable" onSubmit={ this.submit }>
           <input
             type="text"
             className="input list-title-input"
@@ -82,7 +82,7 @@ class ListTitleEditable extends DynamicEditable {
           { list.title }
         </h3>
       );
-      
+
     }
 
   }

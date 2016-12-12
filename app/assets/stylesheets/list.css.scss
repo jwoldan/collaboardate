@@ -72,11 +72,17 @@
     font-weight: bold;
   }
 
+  .list-title-editable {
+    padding: 0 10px;
+  }
+
   .list-title-input {
-    width: 230px;
+    width: 92%;
     padding: 0 5px;
-    margin: 0;
+    margin: 0 0 0 -5px;
     border: none;
+
+    font-weight: bold;
   }
 
   .list-menu {
