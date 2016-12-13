@@ -12,8 +12,6 @@ Rails.application.routes.draw do
       resources :cards, only: :index
     end
 
-    get 'shared_boards', to: 'boards#shared_boards'
-
     resources :lists, except: [:new, :edit, :index]
     resources :cards, except: [:new, :edit, :index]
     resources :board_shares, only: [:create, :show, :destroy]

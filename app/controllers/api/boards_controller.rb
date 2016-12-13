@@ -40,11 +40,6 @@ class Api::BoardsController < ApplicationController
     render :short_show
   end
 
-  def shared_boards
-    @boards = current_user.shared_boards.includes(:creator, :sharees)
-    render :index
-  end
-
   private
 
   def board_params
