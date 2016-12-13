@@ -21,9 +21,9 @@ full_stack_project = Board.create!(
   creator_id: guest.id
 )
 
-vacation_planning = Board.create!(
-  title: "Vacation Planning",
-  visibility: "Public",
+restaurant_operations = Board.create!(
+  title: "Restaurant Operations",
+  visibility: "Private",
   background: "blue",
   creator_id: guest.id
 )
@@ -31,6 +31,20 @@ vacation_planning = Board.create!(
 surprise_party_planning = Board.create!(
   title: "Surprise Party Planning",
   visibility: "Private",
+  background: "blue",
+  creator_id: guest.id
+)
+
+christmas_shopping = Board.create!(
+  title: "Christmas Shopping",
+  visibility: "Private",
+  background: "blue",
+  creator_id: guest.id
+)
+
+vacation_planning = Board.create!(
+  title: "Vacation Planning",
+  visibility: "Public",
   background: "blue",
   creator_id: guest.id
 )
