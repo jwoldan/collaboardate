@@ -73,15 +73,17 @@ class CardCreate extends DynamicEditable {
       }, 1);
 
       return (
-        <form className="card-create-form editable" onSubmit={ this.submit }>
+        <form
+          className="card-create-form editable"
+          onSubmit={ this.submit }
+          onClick={ this.stopPropagation }>
           <textarea
             className="input card-title-input"
             ref="titleTextarea"
             value={ title }
             onChange={ this.updateTitle }
-            onKeyDown= { this.handleEnter }
-          />
-        <input className="button green small" type="submit" value="Add" />
+            onKeyDown= { this.handleEnter } />
+          <input className="button green small" type="submit" value="Add" />
           <span className="menu-close" onClick={ this.toggle } />
         </form>
       );
