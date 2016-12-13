@@ -44,7 +44,6 @@ class CardDescriptionEditable extends DynamicEditable {
 
   submit(e) {
     e.preventDefault();
-    console.log("submit");
     const description = this.state.description.trim();
     const { card, updateCard } = this.props;
     const updatedCard = Object.assign({}, card, { description });
