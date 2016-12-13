@@ -24,11 +24,17 @@ class Board < ApplicationRecord
   validates :background, inclusion: [BACKGROUND_BLUE]
 
   belongs_to :creator,
-    class_name: 'User',
-    foreign_key: :creator_id
+    class_name: 'User'
 
   has_many :lists, dependent: :destroy
+
   has_many :cards,
     through: :lists
+
+  has_many :shares,
+    class_name: 'BoardShare'
+
+  has_many :sharees,
+    through: :shares
 
 end

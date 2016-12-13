@@ -33,7 +33,7 @@ class User < ApplicationRecord
   has_many :own_boards,
     class_name: 'Board',
     foreign_key: :creator_id
-    
+
   has_many :own_lists,
     through: :own_boards,
     source: :lists
@@ -45,6 +45,19 @@ class User < ApplicationRecord
   has_many :authored_cards,
     class_name: 'Card',
     foreign_key: :author_id
+
+  has_many :given_shares,
+    class_name: 'BoardShare',
+    foreign_key: :sharer_id
+
+  has_many :received_shares,
+    class_name: 'BoardShare',
+    foreign_key: :sharee_id
+
+  has_many :shared_boards,
+    through: :received_shares,
+    source: :board
+
 
   def self.generate_session_token
     token = nil
