@@ -35,8 +35,8 @@ surprise_party_planning = Board.create!(
   creator_id: guest.id
 )
 
-christmas_shopping = Board.create!(
-  title: "Christmas Shopping",
+holiday_shopping = Board.create!(
+  title: "Holiday Shopping",
   visibility: "Private",
   background: "blue",
   creator_id: guest.id
