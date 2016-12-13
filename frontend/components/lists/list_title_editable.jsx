@@ -49,7 +49,7 @@ class ListTitleEditable extends DynamicEditable {
       const { list, updateList } = this.props;
       const updatedList = Object.assign({}, list, { title });
       updateList(updatedList).then(
-        () => this.props.toggle()
+        () => this.toggle()
       );
     }
   }
@@ -60,10 +60,15 @@ class ListTitleEditable extends DynamicEditable {
     const show = this.props.showStatus(menuKey);
 
     if(show) {
-      setTimeout(() => this.refs.titleInput.focus(), 1);
+      setTimeout(() => {
+        if (this.refs.titleInput) this.refs.titleInput.focus();
+      }, 1);
 
       return (
-        <form className="list-title-editable" onSubmit={ this.submit }>
+        <form
+          className="list-title-editable"
+          onSubmit={ this.submit }
+          onClick={ this.stopPropagation }>
           <input
             type="text"
             className="input list-title-input"

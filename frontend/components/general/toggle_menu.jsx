@@ -6,14 +6,20 @@ class ToggleMenu extends React.Component {
     super();
 
     this.toggle = this.toggle.bind(this);
+    this.stopPropagation = this.stopPropagation.bind(this);
   }
 
   toggle(e) {
-    e.stopPropagation();
+    this.stopPropagation(e);
     if (!this.props.disabled) {
       this.props.toggle();
     }
   }
+
+  stopPropagation(e) {
+    if(e) e.stopPropagation();
+  }
+
 
   renderMenu(menuTitle, menuContent, customClass = '') {
     const { children, show, disabled } = this.props;
@@ -36,7 +42,7 @@ class ToggleMenu extends React.Component {
     }
 
     return (
-      <section className={ menuClass }>
+      <section className={ menuClass } onClick={ this.stopPropagation }>
         { titleContent }
         { menuContent }
       </section>

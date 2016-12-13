@@ -61,6 +61,7 @@ class BoardCreateForm extends React.Component {
         this.props.toggle();
         this.setState(Object.assign({}, defaultState));
         this.props.router.push(`/b/${board.id}`);
+        this.props.resetMenus();
       });
     }
   }

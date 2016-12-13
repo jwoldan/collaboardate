@@ -15,7 +15,10 @@ class HomeBoardsMenu extends ToggleMenu {
         </section>
         <ul>
           { boards.map((board) => (
-            <HomeBoardsMenuItem key={ board.id } board={ board } />
+            <HomeBoardsMenuItem
+              key={ board.id }
+              board={ board }
+              toggle={ this.toggle } />
           ))}
         </ul>
       </section>

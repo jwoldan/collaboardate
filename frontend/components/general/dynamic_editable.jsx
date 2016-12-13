@@ -10,13 +10,18 @@ class DynamicEditable extends React.Component {
     };
 
     this.toggle = this.toggle.bind(this);
+    this.stopPropagation = this.stopPropagation.bind(this);
   }
 
   toggle(e) {
-    e.stopPropagation();
+    this.stopPropagation(e);
     if (!this.props.disabled) {
       this.props.toggle(this.state.menuKey);
     }
+  }
+
+  stopPropagation(e) {
+    if(e) e.stopPropagation();
   }
 
 }
