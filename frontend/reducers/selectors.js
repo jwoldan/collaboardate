@@ -23,6 +23,14 @@ export const selectBoard = ({ boards, cardDetail }, id, cardId) => {
   }
 };
 
+export const checkDisabled = (board, currentUser) => {
+  if(board.users) {
+    const userIds = Object.keys(board.users).map((key)=> parseInt(key));
+    if (userIds.includes(currentUser.id)) return false;
+  }
+  return true;
+};
+
 /* Lists */
 
 export const selectLists = ({ lists }, boardId)  => {

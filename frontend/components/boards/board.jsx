@@ -55,8 +55,8 @@ class Board extends React.Component {
   }
 
   render() {
-    const { currentUser, board, lists, updateBoard } = this.props;
-    const disabled = (currentUser === null);
+    const { currentUser, board, lists, updateBoard, disabled } = this.props;
+    const navDisabled = disabled || (currentUser.id !== board.creator_id);
 
     return (
       <section className="current-board">
@@ -65,7 +65,7 @@ class Board extends React.Component {
         <BoardNavigation
           board={ board }
           updateBoard={ updateBoard }
-          disabled={ disabled } />
+          disabled={ navDisabled } />
         <ul className="lists clearfix">
           { lists.map((list) => (
             <ListHolderContainer
