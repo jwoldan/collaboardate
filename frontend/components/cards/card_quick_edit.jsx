@@ -65,14 +65,17 @@ class CardQuickEdit extends DynamicEditable {
       const { card, updateCard } = this.props;
       const updatedCard = Object.assign({}, card, { title });
       updateCard(updatedCard).then(
-        () => this.toggleWithModal()
+        () => this.toggle()
       );
     }
   }
 
   deleteCard() {
     const { card, deleteCard } = this.props;
-    deleteCard(card.id);
+    deleteCard(card.id).then(
+      () => this.props.toggleModal()
+    );
+
   }
 
   render() {

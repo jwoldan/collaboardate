@@ -2,7 +2,7 @@
 /* Reset Styles */
 
 body, main, section, div,
-h1, h2, h3, h4, p, label,
+h1, h2, h3, h4, h5, p, label,
 input, textarea, a, ul, li {
   padding: 0;
   border: 0;
@@ -36,6 +36,10 @@ body {
 
 ul {
   list-style: none;
+}
+
+a {
+  cursor: pointer;
 }
 
 .clearfix:after {
