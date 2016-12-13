@@ -13,6 +13,7 @@ const initialState = {
   showBoardVisibilityMenu: false,
   showBoardDeleteMenu: false,
   showListCreate: false,
+  showCardEditModal: false,
 };
 
 export default (state = initialState, action) => {

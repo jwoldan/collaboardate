@@ -14,6 +14,7 @@ const mapDispatchToProps = (dispatch) => ({
   addMenu: (menu) => dispatch(addMenu(menu)),
   removeMenu: (menu) => dispatch(removeMenu(menu)),
   toggle: (menu) => dispatch(toggleMenu(menu)),
+  toggleModal: () => dispatch(toggleMenu('showCardEditModal', true)),
   updateCard: (card) => dispatch(updateCard(card)),
   deleteCard: (id) => dispatch(deleteCard(id)),
 });

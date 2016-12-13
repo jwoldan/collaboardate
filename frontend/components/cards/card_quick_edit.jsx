@@ -14,6 +14,7 @@ class CardQuickEdit extends DynamicEditable {
       title: '',
     };
 
+    this.toggleWithModal = this.toggleWithModal.bind(this);
     this.updateTitle = this.updateTitle.bind(this);
     this.handleEnter = this.handleEnter.bind(this);
     this.submit = this.submit.bind(this);
@@ -41,6 +42,11 @@ class CardQuickEdit extends DynamicEditable {
     this.props.removeMenu(this.state.menuKey);
   }
 
+  toggleWithModal(e) {
+    this.toggle(e);
+    this.props.toggleModal();
+  }
+
   updateTitle(e) {
     this.setState({ title: e.currentTarget.value });
   }
@@ -59,7 +65,7 @@ class CardQuickEdit extends DynamicEditable {
       const { card, updateCard } = this.props;
       const updatedCard = Object.assign({}, card, { title });
       updateCard(updatedCard).then(
-        () => this.props.toggle()
+        () => this.toggleWithModal()
       );
     }
   }
@@ -105,13 +111,7 @@ class CardQuickEdit extends DynamicEditable {
       <section
         className="card-quick-edit"
         onClick={ (e) => e.stopPropagation() }>
-        <span className="icon icon-edit" onClick={ this.toggle }/>
-        <Modal
-          isOpen={ show }
-          contentLabel="Modal"
-          className="card-quick-edit-modal"
-          overlayClassName="modal-overlay"
-          onRequestClose={ this.toggle } />
+        <span className="icon icon-edit" onClick={ this.toggleWithModal }/>
         { menuContent }
       </section>
     );
