@@ -61,7 +61,7 @@ class CardCreate extends DynamicEditable {
   }
 
   render () {
-    const { list, showStatus } = this.props;
+    const { list, showStatus, disabled } = this.props;
     const { title, menuKey } = this.state;
     const show = this.props.showStatus(menuKey);
 
@@ -88,11 +88,15 @@ class CardCreate extends DynamicEditable {
         </form>
       );
     } else {
-      return (
-        <section className="card-create" onClick={ this.toggle }>
-          Add a card...
-        </section>
-      );
+      if (disabled) {
+        return <section className="card-create disabled" />;
+      } else {
+        return (
+          <section className="card-create" onClick={ this.toggle }>
+            Add a card...
+          </section>
+        );
+      }
     }
 
   }

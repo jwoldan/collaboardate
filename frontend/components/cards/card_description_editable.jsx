@@ -54,9 +54,10 @@ class CardDescriptionEditable extends DynamicEditable {
   }
 
   render() {
-    const { card, showStatus } = this.props;
+    const { card, showStatus, disabled } = this.props;
     const { description, menuKey } = this.state;
     const show = this.props.showStatus(menuKey);
+    const hideClass = disabled ? "hide" : "";
 
     if(show) {
       setTimeout(() => {
@@ -90,14 +91,19 @@ class CardDescriptionEditable extends DynamicEditable {
       if (card.description === null || card.description.trim() === '') {
         return (
           <section className="card-description">
-            <span><a onClick={ this.toggle }>Edit the description...</a></span>
+            <span>
+              <a className={ hideClass } onClick={ this.toggle }>
+                Edit the description...
+              </a>
+            </span>
           </section>
         );
       } else {
         return (
           <section className="card-description">
             <span className="quiet">
-              Description <a onClick={ this.toggle }>Edit</a>
+              Description
+              <a className={ hideClass } onClick={ this.toggle }>Edit</a>
             </span>
             <p>
               { card.description }
@@ -105,8 +111,6 @@ class CardDescriptionEditable extends DynamicEditable {
           </section>
         );
       }
-
-
 
     }
 

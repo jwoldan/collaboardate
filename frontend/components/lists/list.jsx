@@ -12,6 +12,9 @@ const listSource = {
   beginDrag: (props) => ({
     list: props.list
   }),
+  canDrag: ({ disabled }) => (
+    !disabled
+  ),
   isDragging: (props, monitor) => (
     props.list.id === monitor.getItem().list.id
   ),
@@ -27,7 +30,7 @@ const List = ({ list, cards, disabled, connectDragSource, isDragging }) => {
 
   return connectDragSource(
     <section className={ listClass }>
-      <ListTitleEditableContainer list={ list } />
+      <ListTitleEditableContainer list={ list } disabled= { disabled }/>
       <ListMenuContainer list={ list } disabled={ disabled } />
 
       <ul className="cards">

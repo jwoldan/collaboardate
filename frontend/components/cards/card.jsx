@@ -10,8 +10,10 @@ import CardDetailContainer from './card_detail_container';
 const cardSource = {
   beginDrag: (props) => ({
     card: props.card
-
   }),
+  canDrag: ({ disabled }) => (
+    !disabled
+  ),
   isDragging: (props, monitor) => (
     props.card.id === monitor.getItem().card.id
   ),

@@ -31,10 +31,13 @@ class ListMenu extends DynamicToggleMenu {
       <ListDeleteMenuContainer list={ this.props.list }/>
     );
 
+    let iconClass = "icon icon-more-black icon-list-menu";
+    if (this.props.disabled) iconClass += " hide";
+
     return (
       <section>
         <span
-          className="icon icon-more-black icon-list-menu"
+          className={ iconClass }
           onClick={ this.toggle } />
         { this.renderMenu("List Actions", menuContent, "list-menu") }
       </section>

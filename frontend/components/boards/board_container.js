@@ -11,7 +11,7 @@ import { fetchCardDetail } from '../../actions/card_detail_actions';
 
 const mapStateToProps = (state, ownProps) => ({
   currentUser: state.currentUser,
-  board: selectBoard(state, ownProps.params.boardId),
+  board: selectBoard(state, ownProps.params.boardId, ownProps.params.cardId),
   lists: selectLists(state, ownProps.params.boardId),
   cardDetail: state.cardDetail,
 });

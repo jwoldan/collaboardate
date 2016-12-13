@@ -43,8 +43,10 @@ class CardQuickEdit extends DynamicEditable {
   }
 
   toggleWithModal(e) {
-    this.toggle(e);
-    this.props.toggleModal();
+    if (!this.props.disabled) {
+      this.toggle(e);
+      this.props.toggleModal();
+    }
   }
 
   updateTitle(e) {
@@ -79,10 +81,12 @@ class CardQuickEdit extends DynamicEditable {
   }
 
   render() {
-    const { card, showStatus } = this.props;
+    const { card, showStatus, disabled } = this.props;
     const { title, menuKey } = this.state;
     const show = showStatus(menuKey);
     let menuContent = "";
+    let iconClass = "icon icon-edit";
+    if (disabled) iconClass += " hide";
 
     if (show) {
       setTimeout(() => {
@@ -114,7 +118,7 @@ class CardQuickEdit extends DynamicEditable {
       <section
         className="card-quick-edit"
         onClick={ (e) => e.stopPropagation() }>
-        <span className="icon icon-edit" onClick={ this.toggleWithModal }/>
+        <span className={ iconClass } onClick={ this.toggleWithModal }/>
         { menuContent }
       </section>
     );

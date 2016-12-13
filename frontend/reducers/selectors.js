@@ -12,9 +12,12 @@ export const selectPersonalBoards = ({ boards }) => (
   Object.keys(boards).map(key => boards[key])
 );
 
-export const selectBoard = ({ boards }, id) => {
+export const selectBoard = ({ boards, cardDetail }, id, cardId) => {
   if(boards[id]) {
     return boards[id];
+  // optional cardId value can be used when on card detail page
+  } else if(cardId && cardDetail.id === parseInt(cardId)) {
+    return boards[cardDetail.board_id];
   } else {
     return {};
   }

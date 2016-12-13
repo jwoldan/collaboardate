@@ -45,6 +45,10 @@
     height: 15px;
     background-size: contain;
 
+    &.hide {
+      display: none;
+    }
+
     &.icon-more-white {
       background-image: image-url('ic_more_horiz_white_24px.svg');
 

@@ -32,10 +32,12 @@ class CardDetail extends React.Component {
   }
 
   render() {
-    const { card, list, updateCard, resetMenus } = this.props;
+    const { card, list, updateCard, resetMenus, disabled } = this.props;
 
     const show = typeof card.id !== 'undefined';
     const safeList = list ? list : {};
+    let sidebarClass = "card-detail-sidebar";
+    if (disabled) sidebarClass += " hide";
 
     return (
       <Modal
@@ -51,17 +53,19 @@ class CardDetail extends React.Component {
             <span className="menu-close" onClick={ this.resetCard }/>
             <CardTitleEditableContainer
               card={ card }
-              updateCard={ updateCard } />
+              updateCard={ updateCard }
+              disabled={ disabled }/>
             <p>in list { safeList.title }</p>
           </section>
 
           <section className="card-detail-body">
             <CardDescriptionEditableContainer
               card={ card }
-              updateCard={ updateCard } />
+              updateCard={ updateCard }
+              disabled={ disabled }/>
           </section>
 
-          <section className="card-detail-sidebar">
+          <section className={ sidebarClass }>
             <h5>Actions</h5>
             <ul className="card-detail-actions">
               <li onClick={ this.deleteCard }>Delete</li>

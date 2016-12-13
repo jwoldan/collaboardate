@@ -60,7 +60,7 @@ class Board extends React.Component {
 
     return (
       <section className="current-board">
-        <CardDetailContainer />
+        <CardDetailContainer disabled={ disabled }/>
         <CardEditModal />
         <BoardNavigation
           board={ board }

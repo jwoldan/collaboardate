@@ -9,7 +9,11 @@
     cursor: pointer;
     user-select: none;
 
-    &:hover {
+    &.disabled {
+      cursor: auto;
+    }
+
+    &:hover:not(.disabled) {
       background-color: #CDD2D4;
       color: #4d4d4d;
       text-decoration: underline;
@@ -38,6 +42,10 @@
 
     .icon-edit {
       display: block;
+
+      &.hide {
+        display: none;
+      }
     }
   }
 
