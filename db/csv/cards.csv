@@ -1,0 +1,61 @@
+title,description,Username,list_title
+Comments,User can comment on posted images,guest,Incomplete Features
+Following and Feeds,"Users can follow other users, and their images appear in in user’s feed",guest,Incomplete Features
+Stories,Users can upload short video posts,guest,Incomplete Features
+Filters,Users can apply filters to images,guest,Incomplete Features
+Images,Users can post and delete images,guest,Features to Review
+Likes,Users can “like” posted images,guest,Features to Review
+Users,Implement Users and Authentication,guest,Complete Features
+Hosting,Host site on Heroku,guest,Complete Features
+Delete button,Image seems to delete but is still there after refresh,guest,Open Issues
+Image styles,More than 3 images on profile page breaks layout,guest,Open Issues
+Seeds,Add additional save data,guest,Completed Issues
+Chop vegetables,"Carrots, tomatoes, kale, onions",guest,Outstanding Daily Prep
+Churn butter,3 lbs,guest,Outstanding Daily Prep
+Bake pastries,"Croissants, Baguettes, Kouign Amann",guest,Outstanding Daily Prep
+Portion steak,Divide into 12oz and 8oz portions,guest,Completed Daily Prep
+Whip cream,12 cartons heavy cream,guest,Completed Daily Prep
+Greens,"Kale, butter lettuce, arugula",guest,Orders to Place
+Root vegetables,"potatoes, sweet potatoes, beets, parsnips",guest,Orders to Place
+Beef,"20 lbs sirloin, 50 lbs bottom round",guest,Orders to Place
+Lamb,10 lbs,guest,Orders to Place
+Chicken,30 whole chickens,guest,Orders Placed
+Dairy,"24 cartons heavy cream, 30 gallons whole milk",guest,Orders Placed
+Monday cooks,,guest,Pending Schedules
+Monday servers,,guest,Pending Schedules
+Monday hosts,,guest,Pending Schedules
+Tuesday cooks,,guest,Pending Schedules
+Tuesday servers,,guest,Pending Schedules
+Tuesday hosts,,guest,Pending Schedules
+Weekend cooks,,guest,Completed Schedules
+Weekend servers,,guest,Completed Schedules
+Weekend hosts,,guest,Completed Schedules
+Hire clowns,,guest,To Do
+Rent banjo,,guest,To Do
+Cake,"Green, blue and white, with “Happy Birthday Rosalyn” written on top",guest,To Do
+Purchase party hats,"Green, blue and white (to match cake)",guest,Need Help
+Party Banners,“Happy Birthday” and “We Love You Rosalyn”,guest,Handed Off
+Pigs in a blanket,,guest,Handed Off
+Main course,,guest,Handed Off
+Send Invites,,guest,Completed
+Schedule fake parent teacher conference,,guest,Completed
+Dad,Chess set,guest,Family To Do
+Mom,Graphing calculator,guest,Family To Do
+Wilson,Baseball bat,guest,Family To Do
+Susan,,guest,Family Need Ideas
+Carlos,,guest,Family Need Ideas
+Regina,Dinner set,guest,Family Completed
+Boris,Nonfiction book on history or biography,guest,Friends To Do
+Lisa,Knitting supplies,guest,Friends To Do
+Tina,Wireless mouse,guest,Friends Completed
+Penelope,Chef’s knife,guest,Friends Completed
+Stan,Notebooks and pens,guest,Friends Completed
+Paris accomodations,11th arrondissement?,guest,Planning Required
+Marseille accomodations,"Near the water, if possible",guest,Planning Required
+Rental car - Bordeaux,,guest,Planning Required
+Winery tour -Bordeaux,,guest,Planning Required
+Bordeaux accomodations,Chateux/B&B?,guest,Awaiting Response
+Dinner at Le Meurice,3/6 at 7pm,guest,Awaiting Response
+Les Calaques boat tour,,guest,Awaiting Response
+Flight to and from Paris,3/3 to 3/17,guest,Booked
+Train to Marseille,3/8 at 7pm from Gare du Nord,guest,Booked

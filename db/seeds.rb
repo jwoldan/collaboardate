@@ -61,3 +61,17 @@ CSV.foreach(
     board: Board.find_by(title: row[:board_title])
   )
 end
+
+Card.destroy_all
+CSV.foreach(
+  "#{Rails.root}/db/csv/cards.csv",
+  headers: true,
+  header_converters: :symbol
+) do |row|
+  Card.create!(
+    title: row[:title],
+    description: row[:description],
+    author: User.find_by(username: row[:username]),
+    list: List.find_by(title: row[:list_title])
+  )
+end

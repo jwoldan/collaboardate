@@ -1,7 +1,7 @@
 title,board_title
-Incomplete MVP Features,Full Stack Project
-MVP Features to Review,Full Stack Project
-Complete MVP Features,Full Stack Project
+Incomplete Features,Full Stack Project
+Features to Review,Full Stack Project
+Complete Features,Full Stack Project
 Open Issues,Full Stack Project
 Completed Issues,Full Stack Project
 Outstanding Daily Prep,Restaurant Operations
@@ -21,6 +21,5 @@ Family Completed,Holiday Shopping
 Friends To Do,Holiday Shopping
 Friends Completed,Holiday Shopping
 Planning Required,Vacation Planning
-To Do,Vacation Planning
 Awaiting Response,Vacation Planning
-Completed,Vacation Planning
+Booked,Vacation Planning
