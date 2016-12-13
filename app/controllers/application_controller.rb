@@ -35,6 +35,18 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def require_board_access(board_id)
+    board = Board.find(board_id)
+    if current_user
+      return if board.creator_id == current_user.id
+      authorized = false
+      board.shares.each do |share|
+        authorized = true if share.sharee_id == current_user.id
+      end
+    end
+    render json: "Unauthorized access", status: 401 unless authorized
+  end
+
   def check_board_visibility(board_id)
     board = Board.find(board_id)
     if board.visibility == Board::VISIBILITY_PRIVATE

@@ -1,7 +1,7 @@
 class Api::ListsController < ApplicationController
 
   before_action :check_parent_board_visibility, only: [:index, :show]
-  before_action :require_parent_board_creator,
+  before_action :require_parent_board_access,
                 only: [:create, :update, :destroy]
 
   def create
@@ -46,13 +46,13 @@ class Api::ListsController < ApplicationController
     params.require(:list).permit(:title, :ord, :board_id)
   end
 
-  def require_parent_board_creator
+  def require_parent_board_access
     if params[:id]
       board_id = List.find(params[:id]).board_id
     else
       board_id = params[:list][:board_id]
     end
-    require_board_creator(board_id)
+    require_board_access(board_id)
   end
 
   def check_parent_board_visibility

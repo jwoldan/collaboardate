@@ -91,6 +91,16 @@ class User < ApplicationRecord
     self.session_token
   end
 
+  def all_boards
+    Board
+      .joins(:shares)
+      .where(
+        "boards.creator_id = ? OR board_shares.sharee_id = ?",
+        self.id,
+        self.id
+      )
+  end
+
   private
 
   def ensure_session_token

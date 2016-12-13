@@ -1,7 +1,7 @@
 class Api::CardsController < ApplicationController
 
   before_action :check_parent_board_visibility, only: [:index, :show]
-  before_action :require_parent_board_creator,
+  before_action :require_parent_board_access,
                 only: [:create, :update, :destroy]
 
   def create
@@ -50,13 +50,13 @@ class Api::CardsController < ApplicationController
     params.require(:card).permit(:title, :description, :ord, :list_id)
   end
 
-  def require_parent_board_creator
+  def require_parent_board_access
     if params[:id]
       board_id = Card.find(params[:id]).board.id
     else
       board_id = List.find(params[:card][:list_id]).board_id
     end
-    require_board_creator(board_id)
+    require_board_access(board_id)
   end
 
   def check_parent_board_visibility
