@@ -8,13 +8,22 @@
 require 'csv'
 
 User.destroy_all
+
 guest = User.create!(
   full_name: "Guest",
   email: "guest@collaboardate.com",
   password: "collaboardate"
 )
 
+friend = User.create!(
+  full_name: "Friend",
+  email: "friend@collaboardate.com",
+  password: "collaboardate"
+)
+
+
 Board.destroy_all
+
 Board.create!(
   title: "Full Stack Project",
   visibility: "Private",
@@ -50,7 +59,9 @@ Board.create!(
   creator_id: guest.id
 )
 
+
 List.destroy_all
+
 CSV.foreach(
   "#{Rails.root}/db/csv/lists.csv",
   headers: true,
@@ -62,7 +73,9 @@ CSV.foreach(
   )
 end
 
+
 Card.destroy_all
+
 CSV.foreach(
   "#{Rails.root}/db/csv/cards.csv",
   headers: true,
