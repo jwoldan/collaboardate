@@ -34,7 +34,7 @@ const List = ({ list, cards, disabled, connectDragSource, isDragging }) => {
         { cards.map((card) => (
           <CardHolder key={ card.id } card={ card } disabled={ disabled } />
         ))}
-        <CardTarget list={ list } active={ cards.length === 0 }>
+        <CardTarget listId= {list.id} cards={ cards }>
           <CardCreateContainer list={ list } disabled={ disabled } />
         </CardTarget>
       </ul>

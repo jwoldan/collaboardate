@@ -13,12 +13,15 @@ const mapDispatchToProps = (dispatch) => ({
 const cardHolderTarget = {
   hover: (props, monitor) => {
     const sourceCard = monitor.getItem().card;
-    const updatedSourceCard = Object.assign({}, sourceCard, {
-      ord: 0,
-      list_id: props.list.id,
-    });
-    props.receiveCard(updatedSourceCard);
-    props.updateCard(updatedSourceCard);
+    const cardIds = props.cards.map((card) => card.id);
+    if (!cardIds.includes(sourceCard.id)) {
+      const updatedSourceCard = Object.assign({}, sourceCard, {
+        ord: props.cards.length,
+        list_id: props.listId,
+      });
+      props.receiveCard(updatedSourceCard);
+      props.updateCard(updatedSourceCard);
+    }
   },
 };
 
@@ -26,20 +29,13 @@ const collect = (dndConnect) => ({
     connectDropTarget: dndConnect.dropTarget(),
 });
 
-const CardTarget = ({ active, connectDropTarget, children }) => {
-  if(active) {
-    return connectDropTarget(
-      <li className="card-target">
-        { children }
-      </li>
-    );
-  } else {
-    return (
-      <li className="card-target">
-        { children }
-      </li>
-    );
-  }
+const CardTarget = ({ connectDropTarget, children }) => {
+
+  return connectDropTarget(
+    <li className="card-target">
+      { children }
+    </li>
+  );
 
 };
 
