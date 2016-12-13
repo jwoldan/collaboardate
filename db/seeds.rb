@@ -5,6 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+require 'csv'
 
 User.destroy_all
 guest = User.create!(
@@ -14,37 +15,49 @@ guest = User.create!(
 )
 
 Board.destroy_all
-full_stack_project = Board.create!(
+Board.create!(
   title: "Full Stack Project",
   visibility: "Private",
   background: "blue",
   creator_id: guest.id
 )
 
-restaurant_operations = Board.create!(
+Board.create!(
   title: "Restaurant Operations",
   visibility: "Private",
   background: "blue",
   creator_id: guest.id
 )
 
-surprise_party_planning = Board.create!(
+Board.create!(
   title: "Surprise Party Planning",
   visibility: "Private",
   background: "blue",
   creator_id: guest.id
 )
 
-holiday_shopping = Board.create!(
+Board.create!(
   title: "Holiday Shopping",
   visibility: "Private",
   background: "blue",
   creator_id: guest.id
 )
 
-vacation_planning = Board.create!(
+Board.create!(
   title: "Vacation Planning",
   visibility: "Public",
   background: "blue",
   creator_id: guest.id
 )
+
+List.destroy_all
+CSV.foreach(
+  "#{Rails.root}/db/csv/lists.csv",
+  headers: true,
+  header_converters: :symbol
+) do |row|
+  List.create!(
+    title: row[:title],
+    board: Board.find_by(title: row[:board_title])
+  )
+end
