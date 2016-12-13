@@ -50,6 +50,13 @@ class Card extends DynamicEditable {
     let cardClass = isDragging ? "card dragging" : "card";
     if (active) cardClass += " active";
 
+    let descIcon;
+    if(card.description) {
+      descIcon = <span className="icon icon-desc" />;
+    } else {
+      descIcon = null;
+    }
+
     return connectDragSource(
       <section
         className={ cardClass }
@@ -60,6 +67,9 @@ class Card extends DynamicEditable {
         <h4 className="card-title">
           <section className="card-summary">{ card.title }</section>
         </h4>
+        <section className="card-icons">
+          { descIcon }
+        </section>
       </section>
     );
 

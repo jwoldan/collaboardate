@@ -50,7 +50,7 @@
   }
 
   .card-summary {
-    padding: 4px 6px;
+    padding: 6px 4px 0;
   }
 
   .icon-edit {
@@ -73,6 +73,20 @@
       border-radius: 3px;
       background-color: #CDD2D4;
     }
+  }
+
+  .card-icons {
+    padding: 0 6px 4px;
+
+    .icon {
+      width: 14px;
+      height: 14px;
+    }
+  }
+
+  .icon-desc {
+    opacity: 0.6;
+    background-image: image-url('ic_short_text_black_24px.svg');
   }
 
   textarea {
@@ -220,7 +234,7 @@
 }
 
 .card-detail-header {
-  padding: 10px 7px;
+  padding: 20px 17px 10px;
 
   p {
     padding: 0 5px;
@@ -243,8 +257,8 @@
 
 .card-detail-body {
   float: left;
-  padding: 0 10px 10px;
-  width: 550px;
+  padding: 0 10px 10px 20px;
+  width: 540px;
 
   font-size: 14px;
 }
@@ -279,8 +293,8 @@
 
 .card-detail-sidebar {
   float:left;
-  width: 140px;
-  padding: 0 10px 10px;
+  width: 130px;
+  padding: 0 20px 10px 10px;
 
   h5 {
     font-weight: bold;
