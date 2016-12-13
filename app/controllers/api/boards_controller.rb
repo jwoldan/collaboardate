@@ -1,6 +1,6 @@
 class Api::BoardsController < ApplicationController
 
-  before_action :require_logged_in, only: [:create, :index]
+  before_action :require_logged_in, only: [:create, :index, :shared_boards]
   before_action :check_visibility, only: :show
   before_action :require_creator, only: [:update, :destroy]
 
@@ -25,7 +25,7 @@ class Api::BoardsController < ApplicationController
   end
 
   def index
-    @boards = current_user.own_boards
+    @boards = current_user.own_boards.includes(:creator, :sharees)
     render :index
   end
 
@@ -38,6 +38,11 @@ class Api::BoardsController < ApplicationController
     @board = Board.find(params[:id])
     @board.destroy
     render :short_show
+  end
+
+  def shared_boards
+    @boards = current_user.shared_boards.includes(:creator, :sharees)
+    render :index
   end
 
   private

@@ -37,4 +37,9 @@ class Board < ApplicationRecord
   has_many :sharees,
     through: :shares
 
+  def all_users
+    sharees = self.sharees
+    sharees.to_a << self.creator
+  end
+
 end
