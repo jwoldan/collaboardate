@@ -19,11 +19,13 @@ class ListCreate extends ToggleMenu {
       return null;
     } else {
       return (
-        <li className="list list-create">
-          <section className="list-create-button" onClick={ this.toggle }>
-            Add a list...
+        <li>
+          <section className="list list-create">
+            <section className="list-create-button" onClick={ this.toggle }>
+              Add a list...
+            </section>
+            { this.renderMenu(null, menuContent, 'list-create-menu') }
           </section>
-          { this.renderMenu(null, menuContent, 'list-create-menu') }
         </li>
       );
     }

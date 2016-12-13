@@ -2,12 +2,20 @@
   display: flex;
   align-items: flex-start;
   height: calc(100% - 33px);
+
+  overflow-x: scroll;
+
+  > li {
+    min-width: 250px;
+    max-width: 300px;
+    flex: 1;
+  }
 }
 
 .list {
   position: relative;
   display: block;
-  width: 257px;
+
   margin-right: 10px;
   padding: 10px 0 0;
   border-radius: 3px;
