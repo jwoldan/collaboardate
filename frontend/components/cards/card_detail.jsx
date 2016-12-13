@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router';
 import Modal from 'react-modal';
 
 import CardTitleEditableContainer from './card_title_editable_container';
@@ -21,6 +22,7 @@ class CardDetail extends React.Component {
   }
 
   resetCard() {
+    this.props.router.push(`/b/${this.props.card.board_id}`);
     this.props.receiveCardDetail({});
   }
 
@@ -33,6 +35,7 @@ class CardDetail extends React.Component {
     const { card, list, updateCard, resetMenus } = this.props;
 
     const show = typeof card.id !== 'undefined';
+    const safeList = list ? list : {};
 
     return (
       <Modal
@@ -49,7 +52,7 @@ class CardDetail extends React.Component {
             <CardTitleEditableContainer
               card={ card }
               updateCard={ updateCard } />
-            <p>in list { list.title }</p>
+            <p>in list { safeList.title }</p>
           </section>
 
           <section className="card-detail-body">
@@ -74,4 +77,4 @@ class CardDetail extends React.Component {
 
 
 
-export default CardDetail;
+export default withRouter(CardDetail);

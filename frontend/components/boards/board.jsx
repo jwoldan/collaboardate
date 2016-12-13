@@ -12,12 +12,23 @@ import ListCreateContainer from '../lists/list_create_container';
 class Board extends React.Component {
 
   componentDidMount() {
-    this.fetchBoardAndContents(this.props.params.boardId);
+    const { boardId, cardId } = this.props.params;
+    if (typeof boardId !== 'undefined') {
+      this.fetchBoardAndContents(boardId);
+    } else {
+      this.fetchCardDetailAndBoard(cardId);
+    }
   }
 
   componentWillReceiveProps(newProps) {
-    if(this.props.params.boardId !== newProps.params.boardId) {
-      this.fetchBoardAndContents(newProps.params.boardId);
+    const { boardId, cardId } = newProps.params;
+    if (this.props.params.boardId !== boardId &&
+        typeof boardId !== 'undefined') {
+      this.fetchBoardAndContents(boardId);
+    } else if(this.props.params.cardId !== cardId &&
+        this.props.cardDetail.id !== parseInt(cardId) &&
+        newProps.cardDetail.id !== parseInt(cardId)) {
+      this.fetchCardDetailAndBoard(cardId);
     }
   }
 
@@ -32,6 +43,13 @@ class Board extends React.Component {
         this.props.fetchLists(board.id);
         this.props.fetchCards(board.id);
       },
+      (error) => this.props.router.push('/')
+    );
+  }
+
+  fetchCardDetailAndBoard(cardId) {
+    return this.props.fetchCardDetail(cardId).then(
+      (card) => this.fetchBoardAndContents(card.board_id),
       (error) => this.props.router.push('/')
     );
   }

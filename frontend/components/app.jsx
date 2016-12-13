@@ -20,7 +20,9 @@ class App extends React.Component {
     const { currentUser, children, params } = this.props;
     let innerContent;
 
-    if (currentUser !== null || (typeof params.boardId !== 'undefined')) {
+    if (currentUser !== null ||
+        (typeof params.boardId !== 'undefined') ||
+        (typeof params.cardId !== 'undefined')) {
       innerContent = <Home children={ children } />;
     } else {
       innerContent = <Welcome/>;

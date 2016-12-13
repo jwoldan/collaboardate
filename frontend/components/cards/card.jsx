@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router';
 import { DragSource } from 'react-dnd';
 import ItemTypes from '../dnd/item_types';
 
@@ -31,15 +32,16 @@ class Card extends DynamicEditable {
     };
 
     this.activate = this.activate.bind(this);
-    this.setCardDetail = this.setCardDetail.bind(this);
+    this.viewCardDetail = this.viewCardDetail.bind(this);
   }
 
   activate(active) {
     return e => this.setState({ active });
   }
 
-  setCardDetail() {
+  viewCardDetail() {
     this.props.receiveCardDetail(this.props.card);
+    this.props.router.push(`/c/${this.props.card.id}`);
   }
 
   render() {
@@ -53,7 +55,7 @@ class Card extends DynamicEditable {
         className={ cardClass }
         onMouseEnter={ this.activate(true) }
         onMouseLeave={ this.activate(false) }
-        onClick={ this.setCardDetail }>
+        onClick={ this.viewCardDetail }>
         <CardQuickEditContainer card={ card } disabled={ disabled } />
         <h4 className="card-title">
           <section className="card-summary">{ card.title }</section>
@@ -68,4 +70,4 @@ export default DragSource(
   ItemTypes.CARD,
   cardSource,
   collect
-)(Card);
+)(withRouter(Card));

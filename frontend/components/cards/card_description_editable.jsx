@@ -24,13 +24,14 @@ class CardDescriptionEditable extends DynamicEditable {
   }
 
   componentWillReceiveProps(newProps) {
-    if(this.props.card.id !== newProps.card.id) {
+    const { card } = newProps;
+    if(this.props.card.id !== card.id) {
       this.props.removeMenu(this.state.menuKey);
       this.setState({ menuKey: menuKeyBase });
       this.props.addMenu(this.state.menuKey);
     }
-    if (typeof newProps.card !== 'undefined') {
-      this.setState({ description: newProps.card.description.slice() });
+    if (typeof card !== 'undefined' && card.description) {
+      this.setState({ description: card.description });
     }
   }
 
@@ -95,7 +96,9 @@ class CardDescriptionEditable extends DynamicEditable {
       } else {
         return (
           <section className="card-description">
-            <span className="quiet">Description <a onClick={ this.toggle }>Edit</a></span>
+            <span className="quiet">
+              Description <a onClick={ this.toggle }>Edit</a>
+            </span>
             <p>
               { card.description }
             </p>

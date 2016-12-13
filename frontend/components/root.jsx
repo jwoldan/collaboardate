@@ -28,6 +28,7 @@ export default ({ store }) => {
         <Route path="/" component={ AppContainer }>
           <IndexRoute component= { BoardsIndexContainer } />
           <Route path="/b/:boardId" component={ BoardContainer } />
+          <Route path="/c/:cardId" component={ BoardContainer } />
         </Route>
         <Route
             path="/signup"
