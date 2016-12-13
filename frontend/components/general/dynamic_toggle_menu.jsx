@@ -13,6 +13,7 @@ class DynamicToggleMenu extends React.Component {
   }
 
   toggle(e) {
+    e.stopPropagation();
     if (!this.props.disabled) {
       this.props.toggle(this.state.menuKey);
     }

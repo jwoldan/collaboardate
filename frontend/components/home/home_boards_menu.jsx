@@ -6,7 +6,7 @@ import HomeBoardsMenuItem from './home_boards_menu_item';
 class HomeBoardsMenu extends ToggleMenu {
 
   render() {
-    const { boards, resetMenus } = this.props;
+    const { boards } = this.props;
 
     const menuContent = (
       <section>
@@ -22,7 +22,7 @@ class HomeBoardsMenu extends ToggleMenu {
     );
 
     return (
-      <li className="nav-item" tabIndex="0" onBlur={ resetMenus }>
+      <li className="nav-item">
         <div className="nav-button" onClick={ this.toggle }>
           <span className="icon-logo" />Boards
         </div>

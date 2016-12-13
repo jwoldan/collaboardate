@@ -45,7 +45,11 @@ export default (state = initialState, action) => {
       return newState;
 
     case MenuStatusActions.RESET_MENUS:
-      return initialState;
+      newState = Object.assign({}, state);
+      Object.keys(newState).forEach((key) => {
+        newState[key] = false;
+      });
+      return newState;
 
     default:
       return state;

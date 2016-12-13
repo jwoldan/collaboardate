@@ -14,22 +14,10 @@ class HomeNavigation extends React.Component {
     super();
 
     this.toggleMenu = this.toggleMenu.bind(this);
-    this.delayedResetMenus = this.delayedResetMenus.bind(this);
   }
 
   componentDidMount() {
     if(this.props.currentUser) this.props.fetchBoards();
-  }
-
-  componentWillReceiveProps(newProps) {
-    if(this.props.location.pathname !==
-        newProps.location.pathname) {
-      this.props.resetMenus();
-    }
-  }
-
-  componentWillUnmount() {
-    this.props.resetMenus();
   }
 
   toggleMenu(menu) {
@@ -38,13 +26,8 @@ class HomeNavigation extends React.Component {
     };
   }
 
-  delayedResetMenus(e) {
-    // TODO figure out why this gets called twice
-    // window.setTimeout(this.props.resetMenus, 200);
-  }
-
   render () {
-    const { currentUser, menuStatus, toggleMenu, resetMenus } = this.props;
+    const { currentUser, menuStatus, toggleMenu } = this.props;
     const {
       showHomeBoardsMenu,
       showHomeCreateMenu,
@@ -71,7 +54,6 @@ class HomeNavigation extends React.Component {
           <ul className="nav-left clearfix">
             <HomeBoardsMenuContainer
               show={ showHomeBoardsMenu }
-              resetMenus={ this.delayedResetMenus }
               toggle={ this.toggleMenu('showHomeBoardsMenu') } />
             <HomeSearch />
           </ul>
@@ -79,19 +61,15 @@ class HomeNavigation extends React.Component {
           <ul className="nav-right clearfix">
             <HomeCreateMenu
               show={ showHomeCreateMenu }
-              resetMenus={ this.delayedResetMenus }
               toggle={ this.toggleMenu('showHomeCreateMenu') } />
             <HomeProfileMenuContainer
               show={ showHomeProfileMenu }
-              resetMenus={ this.delayedResetMenus }
               toggle={ this.toggleMenu('showHomeProfileMenu') } />
             <HomeInformationMenu
               show={ ShowHomeInformationMenu }
-              resetMenus={ this.delayedResetMenus }
               toggle={ this.toggleMenu('ShowHomeInformationMenu') } />
             <HomeNotificationMenu
               show={ ShowHomeNotificationMenu }
-              resetMenus={ this.delayedResetMenus }
               toggle={ this.toggleMenu('ShowHomeNotificationMenu') } />
           </ul>
 

@@ -12,7 +12,6 @@ class HomeCreateMenu extends ToggleMenu {
   }
 
   render() {
-    const { resetMenus } = this.props;
 
     const menuContent = (
       <ul>
@@ -23,7 +22,7 @@ class HomeCreateMenu extends ToggleMenu {
     );
 
     return (
-      <li className="nav-item" tabIndex="0" onBlur={ resetMenus }>
+      <li className="nav-item">
         <div className="nav-button" onClick={ this.toggle }>
           <span className="icon icon-add" />
         </div>

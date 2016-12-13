@@ -3,20 +3,35 @@ import React from 'react';
 import Welcome from './welcome/welcome';
 import Home from './home/home';
 
-export default (props) => {
-  const { currentUser, children } = props;
-  let innerContent;
+class App extends React.Component {
 
-  if (currentUser !== null || (typeof props.params.boardId !== 'undefined')) {
-    innerContent = <Home children={ children } />;
-  } else {
-    innerContent = <Welcome/>;
+  constructor() {
+    super();
+
+    this.resetMenus = this.resetMenus.bind(this);
   }
 
-  return (
-    <div id="app">
-      { innerContent }
-    </div>
-  );
+  resetMenus() {
+    const { menuIsOpen, resetMenus } = this.props;
+    if (menuIsOpen) resetMenus();
+  }
 
-};
+  render() {
+    const { currentUser, children, params } = this.props;
+    let innerContent;
+
+    if (currentUser !== null || (typeof params.boardId !== 'undefined')) {
+      innerContent = <Home children={ children } />;
+    } else {
+      innerContent = <Welcome/>;
+    }
+
+    return (
+      <div id="app" onClick= { this.resetMenus }>
+        { innerContent }
+      </div>
+    );
+  }
+}
+
+export default App;

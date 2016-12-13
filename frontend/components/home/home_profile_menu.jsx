@@ -16,7 +16,7 @@ class HomeProfileMenu extends React.Component {
   }
 
   render() {
-    const { currentUser, show, toggle, resetMenus } = this.props;
+    const { currentUser, show, toggle } = this.props;
     const safeInitials = currentUser ? currentUser.initials : '';
     const safeFullName = currentUser ? currentUser.full_name : '';
     const safeUsername = currentUser ? currentUser.username : '';
@@ -24,7 +24,7 @@ class HomeProfileMenu extends React.Component {
     if(show) dropdownClass += " show";
 
     return (
-      <li className="nav-item" tabIndex="0" onBlur={ resetMenus }>
+      <li className="nav-item">
         <div className=" nav-button profile-button" onClick={ toggle }>
           <span className="initials">{ safeInitials }</span>
           <span>{ safeFullName }</span>

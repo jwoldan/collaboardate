@@ -1,4 +1,13 @@
 
+/* Menus */
+
+export const menuIsOpen = ({ menuStatus }) => (
+  Object.keys(menuStatus).map((key) => menuStatus[key])
+    .reduce((a, b) => a || b)
+);
+
+/* Boards */
+
 export const selectPersonalBoards = ({ boards }) => (
   Object.keys(boards).map(key => boards[key])
 );
@@ -10,6 +19,8 @@ export const selectBoard = ({ boards }, id) => {
     return {};
   }
 };
+
+/* Lists */
 
 export const selectLists = ({ lists }, boardId)  => {
   return Object.keys(lists).map((key) => (
@@ -24,6 +35,8 @@ export const selectListByCardId = ({ lists, cards }, cardId) => {
     return {};
   }
 };
+
+/* Cards */
 
 export const selectCards = ({ cards }, listId) => {
   return Object.keys(cards).map((key) => (

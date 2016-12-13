@@ -9,6 +9,7 @@ class ToggleMenu extends React.Component {
   }
 
   toggle(e) {
+    e.stopPropagation();
     if (!this.props.disabled) {
       this.props.toggle();
     }
