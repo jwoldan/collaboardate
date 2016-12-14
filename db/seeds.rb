@@ -71,6 +71,16 @@ Board.create!(
   creator_id: guest.id
 )
 
+bowling_league = Board.create!(
+  title: "Bowling League",
+  visibility: "Private",
+  background: "blue",
+  creator_id: friend.id
+)
+
+
+BoardShare.destroy_all
+
 BoardShare.create!(
   board_id: full_stack_project.id,
   sharer_id: guest.id,
@@ -81,6 +91,12 @@ BoardShare.create!(
   board_id: surprise_party_planning.id,
   sharer_id: guest.id,
   sharee_id: friend.id
+)
+
+BoardShare.create!(
+  board_id: bowling_league.id,
+  sharer_id: friend.id,
+  sharee_id: guest.id
 )
 
 
