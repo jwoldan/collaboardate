@@ -1,7 +1,6 @@
 import React from 'react';
-import { withRouter } from 'react-router';
 
-class UserSearchResult extends React.Component {
+class BoardShareSearchResult extends React.Component {
 
   constructor() {
     super();
@@ -10,18 +9,29 @@ class UserSearchResult extends React.Component {
   }
 
   handleClick() {
-    this.props.createShare({
-      board_id: this.props.params.boardId,
-      sharee_id: this.props.user.id,
-    });
+    const { board, user, alreadyShared } = this.props;
+    if (alreadyShared) {
+      const shareId = board.users[user.id].share_id;
+      this.props.deleteShare(shareId);
+    } else {
+      this.props.createShare({
+        board_id: board.id,
+        sharee_id: user.id,
+      });
+    }
+
   }
 
   render() {
-    const { user } = this.props;
+    const { user, alreadyShared } = this.props;
+
     return (
-      <li onClick={ this.handleClick }>{ user.username }</li>
+      <li onClick={ this.handleClick }>
+        { user.username }
+        { alreadyShared ? "yes" : "no" }
+      </li>
     );
   }
 }
 
-export default withRouter(UserSearchResult);
+export default BoardShareSearchResult;

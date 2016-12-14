@@ -6,6 +6,7 @@ export default (state = {}, action) => {
   let newBoard;
   let newState;
   let users;
+  let share;
 
   switch (action.type) {
 
@@ -24,20 +25,22 @@ export default (state = {}, action) => {
       return newState;
 
     case BoardShareActions.RECEIVE_SHARE:
-     debugger
       newState = Object.assign({}, state);
-      const share = action.share;
+      share = action.share;
       users = newState[share.board_id].users;
-      newState[share.board_id].users = Object.assign({}, users,
+      users = Object.assign({}, users,
         { [share.sharee.id]: share.sharee }
       );
+      newState[share.board_id].users = users;
       return newState;
 
     case BoardShareActions.REMOVE_SHARE:
       newState = Object.assign({}, state);
+      share = action.share;
       users = newState[share.board_id].users;
-      newState.users = Object.assign({}, users);
-      delete newState.users[action.share.sharee_id];
+      users = Object.assign({}, users);
+      delete users[action.share.sharee_id];
+      newState[share.board_id].users = users;
       return newState;
 
     default:

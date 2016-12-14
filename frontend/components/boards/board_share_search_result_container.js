@@ -1,18 +1,26 @@
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
 
-import UserSearchResult from './user_search_result';
+import BoardShareSearchResult from './board_share_search_result';
 
-import { createShare } from '../../actions/board_share_actions';
+import { selectBoard, checkSharedUser } from '../../reducers/selectors';
+import { createShare, deleteShare } from '../../actions/board_share_actions';
 
-const mapStateToProps = ({ currentUser }) => ({
-  currentUser,
-});
+const mapStateToProps = (state, ownProps) => {
+  const board = selectBoard(state, ownProps.params.boardId);
+  return {
+    currentUser: state.currentUser,
+    board,
+    alreadyShared: checkSharedUser(board, ownProps.user),
+  };
+};
 
 const mapDispatchToProps = (dispatch) => ({
   createShare: (share) => dispatch(createShare(share)),
+  deleteShare: (id) => dispatch(deleteShare(id)),
 });
 
-export default connect(
+export default withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
-)(UserSearchResult);
+)(BoardShareSearchResult));
