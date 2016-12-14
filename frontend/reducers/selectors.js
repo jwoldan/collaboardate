@@ -31,7 +31,7 @@ export const selectBoard = ({ boards, cardDetail }, id, cardId) => {
     return boards[id];
   // optional cardId value can be used when on card detail page
   } else if(cardId && cardDetail.id === cardId) {
-    return boards[cardDetail.board_id];
+    return boards[cardDetail.board_id] ? boards[cardDetail.board_id] : {};
   } else {
     return {};
   }
