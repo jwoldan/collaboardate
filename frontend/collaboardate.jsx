@@ -6,11 +6,7 @@ import configureStore from './store/store';
 import Root from './components/root';
 
 // TODO: Remove after testing!
-import * as CurrentUserActions from './actions/current_user_actions';
-import * as BoardActions from './actions/board_actions';
-import * as ListActions from './actions/list_actions';
-import * as CardActions from './actions/card_actions';
-import * as BoardShareAPIUtil from './util/board_share_api_util';
+import * as CommentAPIUtil from './util/comment_api_util';
 
 document.addEventListener('DOMContentLoaded', () => {
   let preloadedState;
@@ -25,11 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // TODO: Remove after testing!
   window.store = store;
-  window.CurrentUserActions = CurrentUserActions;
-  window.BoardActions = BoardActions;
-  window.ListActions = ListActions;
-  window.CardActions = CardActions;
-  window.BoardShareAPIUtil = BoardShareAPIUtil;
+  window.CommentAPIUtil = CommentAPIUtil;
 
   Modal.setAppElement(document.body);
   const root = document.getElementById('root');
