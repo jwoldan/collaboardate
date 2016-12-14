@@ -240,6 +240,10 @@
 
   h6 {
     font-weight: bold;
+
+    .inset {
+      padding-left: 45px;
+    }
   }
 
   a {
@@ -256,7 +260,6 @@
 
   .button {
     padding: .5em 1.5em;
-    font-weight: bold;
   }
 }
 
@@ -323,16 +326,13 @@
   }
 }
 
-.card-comment-container {
+.card-detail-container {
   position: relative;
   margin: 10px 0 15px;
+}
 
-  .menu-close {
-    top: auto;
-    right: auto;
-    bottom: 0.45em;
-    left: 6em;
-  }
+.card-comment-editable {
+  flex: 1;
 }
 
 .card-comment, .card-comment-textarea {
@@ -343,6 +343,17 @@
   box-shadow: 0 1px 2px rgba(0,0,0,.23);
 
   background-color: white;
+}
+
+.card-comment-display {
+  display: flex;
+
+  .menu-close {
+    top: auto;
+    right: auto;
+    bottom: 0.45em;
+    left: 9.2em;
+  }
 }
 
 .card-comment {

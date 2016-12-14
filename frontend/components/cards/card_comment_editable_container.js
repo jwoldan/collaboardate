@@ -6,7 +6,8 @@ import { addMenu, removeMenu, toggleMenu }
   from '../../actions/menu_status_actions';
 import { updateComment, deleteComment } from '../../actions/comment_actions';
 
-const mapStateToProps = ({ menuStatus }) => ({
+const mapStateToProps = ({ currentUser, menuStatus}) => ({
+  currentUser,
   showStatus: (menu) => menuStatus[menu],
 });
 

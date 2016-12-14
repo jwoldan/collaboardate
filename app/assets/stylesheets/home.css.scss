@@ -115,13 +115,6 @@
   color: #4d4d4d;
   text-align: left;
 
-  // &:before {
-  //   content: "";
-  //   display: block;
-  //   margin: 0 10px;
-  //   border-top: 1px solid #D6DADC;
-  // }
-
   &:hover {
     color: #4d4d4d;
   }
@@ -311,6 +304,10 @@
       }
     }
 
+    ul {
+      margin-bottom: 10px;
+    }
+
     ul:before {
       content: none;
     }
@@ -394,4 +391,22 @@
 
 .nav-right > li {
   margin-left: 8px;
+}
+
+.user-icon {
+  display: block;
+  width: 40px;
+  height: 40px;
+  margin-right: 5px;
+
+  text-align: center;
+  line-height: 40px;
+
+  font-size: 12px;
+  font-weight: bold;
+  color: #4d4d4d;
+  background-color: #D6DADC;
+  border-radius: 3px;
+
+  user-select: none;
 }

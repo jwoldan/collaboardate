@@ -5,6 +5,7 @@ import Modal from 'react-modal';
 import CardTitleEditableContainer from './card_title_editable_container';
 import CardDescriptionEditableContainer
   from './card_description_editable_container';
+import CardCommentFormContainer from './card_comment_form_container';
 import CardCommentEditableContainer from './card_comment_editable_container';
 
 class CardDetail extends React.Component {
@@ -73,6 +74,8 @@ class CardDetail extends React.Component {
               card={ card }
               updateCard={ updateCard }
               disabled={ disabled }/>
+            <h5>Add Comment</h5>
+            <CardCommentFormContainer disabled={ disabled } />
             { card.has_comments ? <h5>Comments</h5> : null }
             <ul>
               {

@@ -60,10 +60,24 @@ class CardCommentEditable extends DynamicEditable {
   }
 
   render() {
-    const { comment, showStatus, disabled, deleteComment } = this.props;
+    const {
+      comment,
+      showStatus,
+      disabled,
+      deleteComment,
+      currentUser,
+    } = this.props;
     const { body, menuKey } = this.state;
-    const show = this.props.showStatus(menuKey);
-    const hideClass = disabled ? "hide" : "";
+    const show = showStatus(menuKey);
+    const hideClass = disabled ||
+      (comment.author.id !== currentUser.id ) ? "hide" : "";
+
+    let commentControlsClass;
+    if (disabled || (comment.author.id !== currentUser.id )) {
+      commentControlsClass = "card-comment-controls hide";
+    } else {
+      commentControlsClass = "card-comment-controls";
+    }
 
     let commentContent;
 
@@ -73,6 +87,9 @@ class CardCommentEditable extends DynamicEditable {
           this.refs.bodyTextarea.focus();
         }
       }, 1);
+
+      let inputClass = "button green";
+      if (body.trim() === '') inputClass += " disabled";
 
       commentContent = (
         <form
@@ -87,7 +104,7 @@ class CardCommentEditable extends DynamicEditable {
             onFocus={ e => e.target.select() } />
             <input
               type="submit"
-              className="button green"
+              className={ inputClass }
               value="Save" />
             <span className="menu-close" onClick={ this.toggle } />
         </form>
@@ -100,7 +117,7 @@ class CardCommentEditable extends DynamicEditable {
           <section className="card-comment">
             { comment.body }
           </section>
-          <section className="card-comment-controls">
+          <section className={ commentControlsClass }>
             <a onClick={ this.toggle }>Edit</a>
             &nbsp;-&nbsp;
             <a onClick={ this.deleteComment }>Delete</a>
@@ -111,9 +128,13 @@ class CardCommentEditable extends DynamicEditable {
     }
 
     return (
-      <section className="card-comment-container">
-        <h6>{ comment.author.full_name }</h6>
-        { commentContent }
+      <section className="card-detail-container">
+        <h6 className="inset">{ comment.author.full_name }</h6>
+        <section className="card-comment-display">
+          <span className="user-icon">{ comment.author.initials }</span>
+          { commentContent }
+        </section>
+
       </section>
     );
   }

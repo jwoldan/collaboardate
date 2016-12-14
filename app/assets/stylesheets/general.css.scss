@@ -89,6 +89,7 @@ a {
   }
 
   &.green {
+    font-weight: bold;
     color: white;
     background: linear-gradient(to bottom, #61bd4f 0, #5aac44 100%);
 
@@ -109,6 +110,20 @@ a {
       );
       box-shadow: 0 1px 0 #4d4d4d;
       color: #fff;
+    }
+  }
+
+  &.disabled {
+    background: #E2E4E6;
+    box-shadow: none;
+    color: #8c8c8c;
+    cursor: default;
+    font-weight: normal;
+
+    &:hover {
+      background: #E2E4E6;
+      box-shadow: none;
+      color: #8c8c8c;
     }
   }
 }
