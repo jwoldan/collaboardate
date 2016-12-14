@@ -192,6 +192,8 @@
 .card-detail-modal {
   width: 730px;
   margin: 50px auto 0;
+  height: calc(90% - 50px);
+  overflow-y: scroll;
 
   color: #4d4d4d;
   background-color: #EDEFF0;
@@ -214,7 +216,6 @@
 
 .card-detail {
   position: relative;
-  min-height: 600px;
 
   h4 {
     padding: 3px 5px;

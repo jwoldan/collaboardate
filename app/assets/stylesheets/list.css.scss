@@ -3,7 +3,7 @@
   align-items: flex-start;
   height: calc(100% - 33px);
 
-  overflow-x: scroll;
+  overflow: scroll;
 
   > li {
     min-width: 250px;
