@@ -59,7 +59,7 @@ class CardDescriptionEditable extends DynamicEditable {
     const show = this.props.showStatus(menuKey);
     const hideClass = disabled ? "hide" : "";
 
-    if(show) {
+    if (show) {
       setTimeout(() => {
         if (this.refs.descriptionTextarea) {
           this.refs.descriptionTextarea.focus();
@@ -72,7 +72,6 @@ class CardDescriptionEditable extends DynamicEditable {
           onClick={ (e) => e.stopPropagation() }
           onSubmit={ this.submit }>
           <textarea
-            type="text"
             className="card-description-textarea"
             ref="descriptionTextarea"
             value={ description }

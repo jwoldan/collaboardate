@@ -5,6 +5,7 @@ import Modal from 'react-modal';
 import CardTitleEditableContainer from './card_title_editable_container';
 import CardDescriptionEditableContainer
   from './card_description_editable_container';
+import CardCommentEditableContainer from './card_comment_editable_container';
 
 class CardDetail extends React.Component {
 
@@ -34,7 +35,14 @@ class CardDetail extends React.Component {
   }
 
   render() {
-    const { card, list, updateCard, resetMenus, disabled } = this.props;
+    const {
+      card,
+      comments,
+      list,
+      updateCard,
+      resetMenus,
+      disabled,
+    } = this.props;
 
     const show = typeof card.id !== 'undefined';
     const safeList = list ? list : {};
@@ -65,6 +73,17 @@ class CardDetail extends React.Component {
               card={ card }
               updateCard={ updateCard }
               disabled={ disabled }/>
+            { card.has_comments ? <h5>Comments</h5> : null }
+            <ul>
+              {
+                comments.map((comment) => (
+                  <CardCommentEditableContainer
+                    key={ comment.id }
+                    comment={ comment }
+                    disabled={ disabled } />
+                ))
+              }
+            </ul>
           </section>
 
           <section className={ sidebarClass }>

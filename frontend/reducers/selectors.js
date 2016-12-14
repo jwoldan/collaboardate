@@ -94,8 +94,26 @@ export const selectCards = ({ cards }, listId) => {
   .sort(ordSort);
 };
 
+export const selectComments = ({ cardDetail }) => {
+  if (cardDetail && cardDetail.comments) {
+    return Object.keys(cardDetail.comments).map((key) => (
+      cardDetail.comments[key]
+    )).sort((a, b) => {
+      if (a.created_at_i > b.created_at_i) {
+        return -1;
+      } else if (a.created_at_i < b.created_at_i) {
+        return 1;
+      } else {
+        return 0;
+      }
+    });
+  } else {
+    return [];
+  }
+};
+
 const ordSort = (a, b) => {
-  if(a.ord < b.ord) {
+  if (a.ord < b.ord) {
     return -1;
   } else if (a.ord > b.ord){
     return 1;

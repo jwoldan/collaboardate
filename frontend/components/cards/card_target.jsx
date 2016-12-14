@@ -42,8 +42,8 @@ const CardTarget = ({ connectDropTarget, children }) => {
 export default connect(
   null,
   mapDispatchToProps
-)(DropTarget(
-  ItemTypes.CARD,
-  cardHolderTarget,
-  collect
+  )(DropTarget(
+    ItemTypes.CARD,
+    cardHolderTarget,
+    collect
 )(CardTarget));
