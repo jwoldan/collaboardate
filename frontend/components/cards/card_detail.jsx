@@ -28,7 +28,9 @@ class CardDetail extends React.Component {
 
   deleteCard() {
     const { card, deleteCard } = this.props;
-    deleteCard(card.id);
+    deleteCard(card.id).then(
+      deletedCard => this.props.router.push(`/b/${deletedCard.board_id}`)
+    );
   }
 
   render() {
