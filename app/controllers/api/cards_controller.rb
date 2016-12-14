@@ -26,7 +26,7 @@ class Api::CardsController < ApplicationController
 
   def index
     @cards = Card
-      .includes(:list)
+      .includes(:list, :comments)
       .joins(:list)
       .where("lists.board_id = ?", params[:board_id])
     render :index
