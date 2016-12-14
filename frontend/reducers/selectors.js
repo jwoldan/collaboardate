@@ -8,9 +8,23 @@ export const menuIsOpen = ({ menuStatus }) => (
 
 /* Boards */
 
-export const selectPersonalBoards = ({ boards }) => (
-  Object.keys(boards).map(key => boards[key])
+export const selectPersonalBoards = ({ boards, currentUser }) => (
+  Object.keys(boards)
+    .map(key => boards[key])
+    .filter(
+      (board) => board.creator_id === currentUser.id
+    )
 );
+
+export const selectSharedBoards = ({ boards, currentUser }) => {
+  const boardArray = Object.keys(boards).map(key => boards[key]);
+  return boardArray.filter((board) => {
+    return (
+      board.creator_id !== currentUser.id &&
+      checkSharedUser(board, currentUser)
+    );
+  });
+};
 
 export const selectBoard = ({ boards, cardDetail }, id, cardId) => {
   if(boards[id]) {
@@ -24,11 +38,16 @@ export const selectBoard = ({ boards, cardDetail }, id, cardId) => {
 };
 
 export const checkDisabled = (board, currentUser) => {
-  if(board.users) {
-    const userIds = Object.keys(board.users).map((key)=> parseInt(key));
-    if (userIds.includes(currentUser.id)) return false;
+  if(board.users && currentUser) {
+    return !checkSharedUser(board, currentUser);
   }
   return true;
+};
+
+export const checkSharedUser = (board, currentUser) => {
+  const userIds = Object.keys(board.users).map((key)=> parseInt(key));
+  if (userIds.includes(currentUser.id)) return true;
+  else return false;
 };
 
 /* Lists */

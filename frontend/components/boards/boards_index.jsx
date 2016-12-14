@@ -1,7 +1,6 @@
 import React from 'react';
 
-import BoardsIndexItem from './boards_index_item';
-import BoardsIndexCreateContainer from './boards_index_create_container';
+import BoardsIndexList from './boards_index_list';
 
 class BoardsIndex extends React.Component {
 
@@ -10,16 +9,16 @@ class BoardsIndex extends React.Component {
   }
 
   render() {
-    const { boards } = this.props;
+    const { personalBoards, sharedBoards } = this.props;
     return (
       <section className="boards-index">
-        <h2>Personal Boards</h2>
-        <ul className="boards-list personal-boards">
-          { boards.map((board) => (
-            <BoardsIndexItem key={ board.id } board={ board } />
-          ))}
-          <BoardsIndexCreateContainer />
-        </ul>
+        <BoardsIndexList
+          title="Personal Boards"
+          boards={ personalBoards }
+          create={ true } />
+          <BoardsIndexList
+            title="Shared Boards"
+            boards={ sharedBoards } />
       </section>
     );
   }

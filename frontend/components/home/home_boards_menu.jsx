@@ -1,26 +1,26 @@
 import React from 'react';
 
 import ToggleMenu from '../general/toggle_menu';
-import HomeBoardsMenuItem from './home_boards_menu_item';
+
+import HomeBoardsMenuList from './home_boards_menu_list';
 
 class HomeBoardsMenu extends ToggleMenu {
 
   render() {
-    const { boards } = this.props;
+    const { personalBoards, sharedBoards  } = this.props;
+    let personalBoardsMenu = null;
+    let sharedBoardsMenu = null;
 
     const menuContent = (
       <section>
-        <section className="menu-header">
-          Personal Boards
-        </section>
-        <ul>
-          { boards.map((board) => (
-            <HomeBoardsMenuItem
-              key={ board.id }
-              board={ board }
-              toggle={ this.toggle } />
-          ))}
-        </ul>
+        <HomeBoardsMenuList
+          title="Personal Boards"
+          boards={ personalBoards }
+          toggle={ this.toggle } />
+        <HomeBoardsMenuList
+          title="Shared Boards"
+          boards={ sharedBoards }
+          toggle={ this.toggle } />
       </section>
     );
 
