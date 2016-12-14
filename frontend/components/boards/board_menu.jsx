@@ -7,18 +7,40 @@ import BoardDeleteMenuContainer from './board_delete_menu_container';
 
 class BoardMenu extends ToggleMenu {
 
+  constructor() {
+    super();
+
+    this.toggle = this.toggle.bind(this);
+  }
+
+  toggle(e) {
+    this.stopPropagation(e);
+    const { disabled, shared } = this.props;
+    if (!disabled || shared) {
+      this.props.toggle();
+    }
+  }
+
   render() {
 
     let buttonClass = "nav-button";
-    if (this.props.disabled) buttonClass += " disabled";
+    const { disabled, shared } = this.props;
+    if (disabled && !shared) buttonClass += " disabled";
 
-    const menuContent = (
-      <section>
-        <BoardMembersContainer />
+    let menuItems = null;
+    if (!disabled) {
+      menuItems = (
         <ul>
           <li><BoardShareMenuContainer /></li>
           <li><BoardDeleteMenuContainer /></li>
         </ul>
+      );
+    }
+
+    const menuContent = (
+      <section>
+        <BoardMembersContainer />
+        { menuItems }
       </section>
     );
 

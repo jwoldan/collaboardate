@@ -41,7 +41,7 @@ export const selectBoardUsers = ({ boards, currentUser }, boardId) => {
   let users = [];
   const board = boards[boardId];
 
-  if(board && board.users) {
+  if(board && board.users && currentUser) {
     if (board.users[currentUser.id]) users.push(currentUser);
     const otherUsers = Object.keys(board.users)
       .map((key) => board.users[key])
@@ -62,9 +62,11 @@ export const checkDisabled = (board, currentUser) => {
 };
 
 export const checkSharedUser = (board, currentUser) => {
-  const userIds = Object.keys(board.users).map((key)=> parseInt(key));
-  if (userIds.includes(currentUser.id)) return true;
-  else return false;
+  if (board && currentUser) {
+    const userIds = Object.keys(board.users).map((key)=> parseInt(key));
+    if (userIds.includes(currentUser.id)) return true;
+  }
+  return false;
 };
 
 /* Lists */

@@ -64,7 +64,6 @@ class BoardShareMenu extends ToggleMenu {
       setTimeout(() => this.refs.searchInput.focus(), 1);
     }
 
-
     return (
       <section className="board-menu-item">
         <a onClick={ this.toggle }>
