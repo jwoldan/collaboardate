@@ -42,7 +42,6 @@ class Card extends DynamicEditable {
   }
 
   viewCardDetail() {
-    this.props.receiveCardDetail(this.props.card);
     this.props.router.push(`/c/${this.props.card.id}`);
   }
 

@@ -6,7 +6,7 @@ import configureStore from './store/store';
 import Root from './components/root';
 
 // TODO: Remove after testing!
-import * as CommentAPIUtil from './util/comment_api_util';
+import * as CommentActions from './actions/comment_actions';
 
 document.addEventListener('DOMContentLoaded', () => {
   let preloadedState;
@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // TODO: Remove after testing!
   window.store = store;
-  window.CommentAPIUtil = CommentAPIUtil;
+  window.CommentActions = CommentActions;
 
   Modal.setAppElement(document.body);
   const root = document.getElementById('root');
