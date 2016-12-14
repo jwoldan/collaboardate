@@ -76,7 +76,7 @@ class CardDetail extends React.Component {
               disabled={ disabled }/>
             <h5>Add Comment</h5>
             <CardCommentFormContainer disabled={ disabled } />
-            { card.has_comments ? <h5>Comments</h5> : null }
+            { card.comment_count > 0 ? <h5>Comments</h5> : null }
             <ul>
               {
                 comments.map((comment) => (
