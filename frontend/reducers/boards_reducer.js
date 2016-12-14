@@ -1,8 +1,11 @@
 import * as BoardActions from '../actions/board_actions';
+import * as BoardShareActions from '../actions/board_share_actions';
 
 export default (state = {}, action) => {
   Object.freeze(state);
   let newBoard;
+  let newState;
+  let users;
 
   switch (action.type) {
 
@@ -16,8 +19,25 @@ export default (state = {}, action) => {
       });
 
     case BoardActions.REMOVE_BOARD:
-      const newState = Object.assign({}, state);
+      newState = Object.assign({}, state);
       delete newState[action.board.id];
+      return newState;
+
+    case BoardShareActions.RECEIVE_SHARE:
+     debugger
+      newState = Object.assign({}, state);
+      const share = action.share;
+      users = newState[share.board_id].users;
+      newState[share.board_id].users = Object.assign({}, users,
+        { [share.sharee.id]: share.sharee }
+      );
+      return newState;
+
+    case BoardShareActions.REMOVE_SHARE:
+      newState = Object.assign({}, state);
+      users = newState[share.board_id].users;
+      newState.users = Object.assign({}, users);
+      delete newState.users[action.share.sharee_id];
       return newState;
 
     default:

@@ -27,3 +27,13 @@ export const logout = (success, error) => (
     error,
   })
 );
+
+export const search = (query, success, error) => (
+  $.ajax({
+    method: 'GET',
+    url: 'api/users/search',
+    data: { query },
+    success,
+    error,
+  })
+);

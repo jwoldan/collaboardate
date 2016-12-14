@@ -1,10 +1,10 @@
 class Api::UsersController < ApplicationController
 
-  before_action :require_logged_in, only: :show
+  before_action :require_logged_in, only: [:show, :search]
 
   def create
     @user = User.new(user_params)
-    
+
     if @user.save
       login(@user)
       render :show
@@ -17,6 +17,19 @@ class Api::UsersController < ApplicationController
     @user = User.find(params[:id])
     # TODO add special handling for current_user
     render :show
+  end
+
+  def search
+    if params[:query].present?
+      @users = User.where(
+        "username ~ ? AND id != ?",
+        params[:query],
+        current_user.id
+      )
+    else
+      @users = User.none
+    end
+    render :search
   end
 
   private

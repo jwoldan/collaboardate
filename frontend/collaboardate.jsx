@@ -10,7 +10,7 @@ import * as CurrentUserActions from './actions/current_user_actions';
 import * as BoardActions from './actions/board_actions';
 import * as ListActions from './actions/list_actions';
 import * as CardActions from './actions/card_actions';
-import * as SharedBoardAPIUtil from './util/shared_board_api_util';
+import * as BoardShareAPIUtil from './util/board_share_api_util';
 
 document.addEventListener('DOMContentLoaded', () => {
   let preloadedState;
@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
   window.BoardActions = BoardActions;
   window.ListActions = ListActions;
   window.CardActions = CardActions;
-  window.SharedBoardAPIUtil = SharedBoardAPIUtil;
+  window.BoardShareAPIUtil = BoardShareAPIUtil;
 
   Modal.setAppElement(document.body);
   const root = document.getElementById('root');

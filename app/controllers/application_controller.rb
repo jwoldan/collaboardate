@@ -50,7 +50,7 @@ class ApplicationController < ActionController::Base
   def check_board_visibility(board_id)
     board = Board.find(board_id)
     if board.visibility == Board::VISIBILITY_PRIVATE
-      require_board_creator(board_id)
+      require_board_access(board_id)
     end
   end
 

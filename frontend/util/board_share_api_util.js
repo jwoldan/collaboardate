@@ -8,15 +8,6 @@ export const createShare = (board_share, success, error) => (
   })
 );
 
-export const fetchSharedBoards = (success, error) => (
-  $.ajax({
-    method: 'GET',
-    url: '/api/shared_boards',
-    success,
-    error,
-  })
-);
-
 export const fetchShare = (id, success, error) => (
   $.ajax({
     method: 'GET',
