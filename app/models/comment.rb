@@ -18,5 +18,11 @@ class Comment < ApplicationRecord
   belongs_to :author,
     class_name: 'User'
 
-  
+  has_one :list,
+    through: :card
+
+  has_one :board,
+    through: :list
+
+
 end
