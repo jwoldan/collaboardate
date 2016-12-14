@@ -1,6 +1,7 @@
 import React from 'react';
 
 import ToggleMenu from '../general/toggle_menu';
+import BoardShareMenuContainer from './board_share_menu_container';
 import BoardDeleteMenuContainer from './board_delete_menu_container';
 
 class BoardMenu extends ToggleMenu {
@@ -13,6 +14,7 @@ class BoardMenu extends ToggleMenu {
     const menuContent = (
       <section className="delete-board">
         <ul>
+          <li><BoardShareMenuContainer /></li>
           <li><BoardDeleteMenuContainer /></li>
         </ul>
       </section>
