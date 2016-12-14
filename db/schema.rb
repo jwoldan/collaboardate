@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161214015734) do
+ActiveRecord::Schema.define(version: 20161214165457) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,6 +47,16 @@ ActiveRecord::Schema.define(version: 20161214015734) do
     t.datetime "updated_at",  null: false
     t.index ["author_id"], name: "index_cards_on_author_id", using: :btree
     t.index ["list_id", "ord"], name: "index_cards_on_list_id_and_ord", using: :btree
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.text     "body",       null: false
+    t.integer  "card_id",    null: false
+    t.integer  "author_id",  null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["author_id"], name: "index_comments_on_author_id", using: :btree
+    t.index ["card_id"], name: "index_comments_on_card_id", using: :btree
   end
 
   create_table "lists", force: :cascade do |t|
