@@ -104,6 +104,7 @@
   .icon-comment {
     background-image: image-url('ic_mode_comment_black_24px');
     background-size: 75%;
+    transform: scaleX(-1);
   }
 
   textarea {
