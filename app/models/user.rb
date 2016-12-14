@@ -93,7 +93,7 @@ class User < ApplicationRecord
 
   def all_boards
     Board
-      .joins(:shares)
+      .left_outer_joins(:shares)
       .where(
         "boards.creator_id = ? OR board_shares.sharee_id = ?",
         self.id,
