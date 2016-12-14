@@ -26,15 +26,18 @@ export const selectSharedBoards = ({ boards, currentUser }) => {
   });
 };
 
-export const selectBoard = ({ boards, cardDetail }, id, cardId) => {
+export const selectBoard = ({ boards, cards, cardDetail }, id, cardId) => {
   if(boards[id]) {
     return boards[id];
   // optional cardId value can be used when on card detail page
-  } else if(cardId && cardDetail.id === cardId) {
-    return boards[cardDetail.board_id] ? boards[cardDetail.board_id] : {};
-  } else {
-    return {};
+  } else if(cardId) {
+      if(cards[cardId] && boards[cards[cardId].board_id]) {
+        return boards[cards[cardId].board_id];
+      } else if (cardDetail.id === cardId && boards[cardDetail.board_id]) {
+        return boards[cardDetail.board_id];
+      }
   }
+  return {};
 };
 
 export const selectBoardUsers = ({ boards, currentUser }, boardId) => {
