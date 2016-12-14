@@ -55,7 +55,7 @@ export const selectBoardUsers = ({ boards, currentUser }, boardId) => {
 };
 
 export const checkDisabled = (board, currentUser) => {
-  if(board.users && currentUser) {
+  if(board && board.users && currentUser) {
     return !checkSharedUser(board, currentUser);
   }
   return true;
