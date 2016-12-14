@@ -1,8 +1,7 @@
 class Api::CardsController < ApplicationController
 
   before_action :check_parent_board_visibility, only: [:index, :show]
-  before_action :require_parent_board_access,
-                only: [:create, :update, :destroy]
+  before_action :require_parent_board_access, only: [:create, :update, :destroy]
 
   def create
     @card = Card.new(card_params)
@@ -21,7 +20,7 @@ class Api::CardsController < ApplicationController
     if @card.update(card_params)
       render :show
     else
-      render json: @cards.errors, status: 422
+      render json: @card.errors, status: 422
     end
   end
 
