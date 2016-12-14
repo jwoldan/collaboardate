@@ -2,7 +2,8 @@ import React from 'react';
 
 import ToggleMenu from '../general/toggle_menu';
 
-import UserSearchResultContainer from '../user/user_search_result_container';
+import BoardShareSearchResultContainer
+  from './board_share_search_result_container';
 
 class BoardShareMenu extends ToggleMenu {
 
@@ -50,7 +51,7 @@ class BoardShareMenu extends ToggleMenu {
             value={ query } />
           <ul>
             { results.map((user) =>
-              <UserSearchResultContainer key={ user.id } user={ user }/>
+              <BoardShareSearchResultContainer key={ user.id } user={ user }/>
             ) }
           </ul>
         </span>
