@@ -9,7 +9,7 @@ import { createList } from '../../actions/list_actions';
 const mapStateToProps = (state, ownProps) => {
   if(ownProps.params) {
     return ({
-      board: selectBoard(state, ownProps.params.boardId),
+      board: selectBoard(state, parseInt(ownProps.params.boardId)),
     });
   } else {
     return { board: {} };

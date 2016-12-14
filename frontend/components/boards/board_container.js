@@ -13,8 +13,8 @@ import { fetchCardDetail } from '../../actions/card_detail_actions';
 const mapStateToProps = (state, ownProps) => {
   const board = selectBoard(
     state,
-    ownProps.params.boardId,
-    ownProps.params.cardId
+    parseInt(ownProps.params.boardId),
+    parseInt(ownProps.params.cardId)
   );
 
   return {

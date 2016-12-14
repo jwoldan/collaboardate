@@ -30,7 +30,7 @@ export const selectBoard = ({ boards, cardDetail }, id, cardId) => {
   if(boards[id]) {
     return boards[id];
   // optional cardId value can be used when on card detail page
-  } else if(cardId && cardDetail.id === parseInt(cardId)) {
+  } else if(cardId && cardDetail.id === cardId) {
     return boards[cardDetail.board_id];
   } else {
     return {};

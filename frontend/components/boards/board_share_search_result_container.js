@@ -7,7 +7,7 @@ import { selectBoard, checkSharedUser } from '../../reducers/selectors';
 import { createShare, deleteShare } from '../../actions/board_share_actions';
 
 const mapStateToProps = (state, ownProps) => {
-  const board = selectBoard(state, ownProps.params.boardId);
+  const board = selectBoard(state, parseInt(ownProps.params.boardId));
   return {
     currentUser: state.currentUser,
     board,
@@ -20,7 +20,9 @@ const mapDispatchToProps = (dispatch) => ({
   deleteShare: (id) => dispatch(deleteShare(id)),
 });
 
-export default withRouter(connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(BoardShareSearchResult));
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(BoardShareSearchResult)
+);
