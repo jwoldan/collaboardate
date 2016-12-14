@@ -32,7 +32,7 @@ class BoardDeleteMenu extends ToggleMenu {
     );
 
     return (
-      <section>
+      <section className="board-menu-item">
         <a onClick={ this.toggle }>
           Delete Board
         </a>

@@ -39,6 +39,7 @@ class BoardShareMenu extends ToggleMenu {
 
 
   render() {
+    const { show } = this.props;
     const { query, results } = this.state;
 
     const menuContent = (
@@ -48,6 +49,7 @@ class BoardShareMenu extends ToggleMenu {
           <input
             className="input"
             onChange={ this.handleInput }
+            ref="searchInput"
             value={ query } />
           <ul>
             { results.map((user) =>
@@ -58,8 +60,13 @@ class BoardShareMenu extends ToggleMenu {
       </section>
     );
 
+    if(show) {
+      setTimeout(() => this.refs.searchInput.focus(), 1);
+    }
+
+
     return (
-      <section>
+      <section className="board-menu-item">
         <a onClick={ this.toggle }>
           Edit Sharing
         </a>

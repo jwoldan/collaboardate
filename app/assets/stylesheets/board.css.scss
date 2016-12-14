@@ -111,15 +111,55 @@
     }
   }
 
+  .board-members {
+    padding: 5px 8px;
+    display: flex;
+    justify-content: flex-start;
+  }
 
+  .user-icon {
+    width: 40px;
+    height: 40px;
+    margin-right: 5px;
 
-  .delete-board {
+    text-align: center;
+    line-height: 40px;
+
+    font-size: 12px;
+    font-weight: bold;
+    color: #4d4d4d;
+    background-color: #D6DADC;
+    border-radius: 3px;
+
+    user-select: none;
+  }
+
+  .board-menu-item {
     position: relative;
 
     .menu {
       width: 260px;
       left: 10px;
       top: 30px;
+    }
+  }
+
+  .share-search-result {
+
+    margin: 2px;
+
+    .search-user {
+      display: block;
+      float: left;
+      padding: 0.5em;
+    }
+
+    .button.small {
+      float: right;
+      padding: 0.5em;
+      margin: 0;
+      
+      box-shadow: 0 1px 0 rgba(0, 0, 0, 0.3)
     }
   }
 

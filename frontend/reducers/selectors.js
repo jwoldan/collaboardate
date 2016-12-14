@@ -37,6 +37,23 @@ export const selectBoard = ({ boards, cardDetail }, id, cardId) => {
   }
 };
 
+export const selectBoardUsers = ({ boards, currentUser }, boardId) => {
+  let users = [];
+  const board = boards[boardId];
+
+  if(board && board.users) {
+    if (board.users[currentUser.id]) users.push(currentUser);
+    const otherUsers = Object.keys(board.users)
+      .map((key) => board.users[key])
+      .filter((user) => {
+        return user.id !== currentUser.id;
+      });
+    users = users.concat(otherUsers);
+  }
+
+  return users;
+};
+
 export const checkDisabled = (board, currentUser) => {
   if(board.users && currentUser) {
     return !checkSharedUser(board, currentUser);
