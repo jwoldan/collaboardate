@@ -21,6 +21,12 @@ guest = User.create!(
   password: "collaboardate"
 )
 
+reviewer = User.create!(
+  full_name: "Reviewer",
+  email: "reviewer@collaboardate.com",
+  password: "collaboardate"
+)
+
 friend = User.create!(
   full_name: "Friend",
   email: "friend@collaboardate.com",
@@ -30,6 +36,12 @@ friend = User.create!(
 collaborator = User.create!(
   full_name: "Collaborator",
   email: "collaborator@collaboardate.com",
+  password: "collaboardate"
+)
+
+head_chef = User.create!(
+  full_name: "Head Chef",
+  email: "headchef@collaboardate.com",
   password: "collaboardate"
 )
 
@@ -43,7 +55,7 @@ full_stack_project = Board.create!(
   creator_id: guest.id
 )
 
-Board.create!(
+restaurant_operations = Board.create!(
   title: "Restaurant Operations",
   visibility: "Private",
   background: "blue",
@@ -88,6 +100,18 @@ BoardShare.create!(
 )
 
 BoardShare.create!(
+  board_id: full_stack_project.id,
+  sharer_id: guest.id,
+  sharee_id: reviewer.id
+)
+
+BoardShare.create!(
+  board_id: restaurant_operations.id,
+  sharer_id: guest.id,
+  sharee_id: head_chef.id
+)
+
+BoardShare.create!(
   board_id: surprise_party_planning.id,
   sharer_id: guest.id,
   sharee_id: friend.id
@@ -127,4 +151,21 @@ CSV.foreach(
     author: User.find_by(username: row[:username]),
     list: List.find_by(title: row[:list_title])
   )
+end
+
+
+Comment.destroy_all
+
+CSV.foreach(
+"#{Rails.root}/db/csv/comments.csv",
+headers: true,
+header_converters: :symbol
+) do |row|
+  # puts "'#{row[:body]}' '#{row[:username]}' '#{row[:card_title]}'"
+  Comment.create!(
+    body: row[:body],
+    author: User.find_by(username: row[:username]),
+    card: Card.find_by(title: row[:card_title])
+  )
+  sleep(2)
 end

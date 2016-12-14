@@ -1,0 +1,52 @@
+body,username,card_title
+What order do you think comments should appear in?,guest,Comments
+"Chronological, I think",collaborator,Comments
+"Yes, chronological is best",reviewer,Comments
+Can we use S3 for video?,guest,Stories
+"Amazon has some documentation on using CloudFront for video, maybe we should check that out",collaborator,Stories
+Can we add a sepia filter?,collaborator,Filters
+"I really enjoyed your sign in page, nice!",reviewer,Users
+"Looks like a controller issue, I’m working on it",guest,Delete button
+I could have sworn we fixed this!  On it,collaborator,Image styles
+"I added several more, let me know what you think",collaborator,Seeds
+"Remember the catering order, we need to double our usual daily bake",guest,Bake pastries
+No problem,headchef,Bake pastries
+"I wasn’t impressed with the last order, can we find another supplier?",headchef,Greens
+"We have extra from yesterday, can we take this down to 6lbs?",headchef,Lamb
+Should arrive by 10am,guest,Dairy
+"Lois is out, can we find a replacement?",headchef,Monday cooks
+"Yes, she asked Henry to cover",guest,Monday cooks
+"Expecting a busier Tuesday than usual, can we bring on two more servers?",headchef,Tuesday servers
+Thanks for getting Susan in at the last minute,headchef,Weekend hosts
+Np!,guest,Weekend hosts
+How many clowns?? More than one?,friend,Hire clowns
+We’ll need enough for 30 ppl,guest,Cake
+"30 hats, like the cake?",friend,Purchase party hats
+I’m on it,friend,Party Banners
+Sourcing these from the restaurant,guest,Pigs in a blanket
+"Laura makes a great lasagna, she’d love to help",friend,Main course
+Awesome!,guest,Main course
+He doesn’t suspect a thing.,guest,Schedule fake parent teacher conference
+There was a nice glass set a the games shop last month,guest,Dad
+Louisville slugger?,guest,Wilson
+Last year he asked for mittens.  Maybe a knit cap?,guest,Carlos
+Naturally White set from Oneida,guest,Regina
+Maybe Hamilton?,guest,Boris
+Found a great one,guest,Penelope
+Can’t go wrong with a Moleskine,guest,Stan
+Six seater needed,guest,Rental car - Bordeaux
+I’ve heard good things about Chateau Mangot,guest,Winery tour - Bordeaux
+Waiting to hear back ground Clos Marcamps,guest,Bordeaux accomodations
+Got six tickets!,guest,Train to Marseille
+So we agree it should have some bowling pins.  Probably a ball?,friend,Finalize t-shirt design
+My friend will give us a good rate on these,guest,Print t-shirts
+Great!,friend,Print t-shirts
+Finally got our fourth!  Ready to go.,friend,Finalize team roster
+Waiting for the last team to confirm availability,guest,Finalize and send schedule
+Laura’s already cooking for the party- who do you suggest?,friend,Schedule opening ceremony catering
+"I know a place that can do tacos, let me get back to you",guest,Schedule opening ceremony catering
+Done!,guest,Pre-announce season
+Thank you!,friend,Pre-announce season
+Thinking requiring each team to play two candlepin games this year.,friend,Send draft league rules
+Sounds controversial…,guest,Send draft league rules
+Candlepin was a no go :(,friend,Update and finalize league rules

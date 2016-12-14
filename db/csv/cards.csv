@@ -1,4 +1,4 @@
-title,description,Username,list_title
+title,description,username,list_title
 Comments,User can comment on posted images,guest,Incomplete Features
 Following and Feeds,"Users can follow other users, and their images appear in in user’s feed",guest,Incomplete Features
 Stories,Users can upload short video posts,guest,Incomplete Features
@@ -9,7 +9,7 @@ Users,Implement Users and Authentication,guest,Complete Features
 Hosting,Host site on Heroku,guest,Complete Features
 Delete button,Image seems to delete but is still there after refresh,guest,Open Issues
 Image styles,More than 3 images on profile page breaks layout,guest,Open Issues
-Seeds,Add additional save data,guest,Completed Issues
+Seeds,Add additional users,guest,Completed Issues
 Chop vegetables,"Carrots, tomatoes, kale, onions",guest,Outstanding Daily Prep
 Churn butter,3 lbs,guest,Outstanding Daily Prep
 Bake pastries,"Croissants, Baguettes, Kouign Amann",guest,Outstanding Daily Prep
@@ -53,7 +53,7 @@ Stan,Notebooks and pens,guest,Friends Completed
 Paris accomodations,11th arrondissement?,guest,Planning Required
 Marseille accomodations,"Near the water, if possible",guest,Planning Required
 Rental car - Bordeaux,,guest,Planning Required
-Winery tour -Bordeaux,,guest,Planning Required
+Winery tour - Bordeaux,,guest,Planning Required
 Bordeaux accomodations,Chateux/B&B?,guest,Awaiting Response
 Dinner at Le Meurice,3/6 at 7pm,guest,Awaiting Response
 Les Calaques boat tour,,guest,Awaiting Response
