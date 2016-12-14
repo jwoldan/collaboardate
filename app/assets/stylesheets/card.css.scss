@@ -85,16 +85,25 @@
 
   .card-icons {
     padding: 0 6px 4px;
+    display: flex;
+    justify-content: flex-start;
 
     .icon {
       width: 14px;
       height: 14px;
+      opacity: 0.6;
+      background-repeat: no-repeat;
+      background-position: center;
     }
   }
 
   .icon-desc {
-    opacity: 0.6;
     background-image: image-url('ic_short_text_black_24px.svg');
+  }
+
+  .icon-comment {
+    background-image: image-url('ic_mode_comment_black_24px');
+    background-size: 75%;
   }
 
   textarea {

@@ -58,6 +58,13 @@ class Card extends DynamicEditable {
       descIcon = null;
     }
 
+    let commentIcon;
+    if(card.has_comments) {
+      commentIcon = <span className="icon icon-comment" />;
+    } else {
+      commentIcon = null;
+    }
+
     return connectDragSource(
       <section
         className={ cardClass }
@@ -69,7 +76,7 @@ class Card extends DynamicEditable {
           <section className="card-summary">{ card.title }</section>
         </h4>
         <section className="card-icons">
-          { descIcon }
+          { descIcon } { commentIcon }
         </section>
       </section>
     );
