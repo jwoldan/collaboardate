@@ -1,4 +1,4 @@
-import * as CurrentUserAPIUtil from '../util/current_user_api_util';
+import * as UserAPIUtil from '../util/user_api_util';
 import { receiveSignupErrors, receiveLoginErrors } from './errors_actions';
 
 export const RECEIVE_USER = 'RECEIVE_USER';
@@ -19,7 +19,7 @@ export const receiveLogout = () => {
 
 export const login = (user) => {
   return dispatch => {
-    return CurrentUserAPIUtil.login(user).then(
+    return UserAPIUtil.login(user).then(
       currentUser => {
         dispatch(receiveUser(currentUser));
         dispatch(receiveLoginErrors({}));
@@ -36,7 +36,7 @@ export const login = (user) => {
 
 export const logout = () => {
   return dispatch => {
-    return CurrentUserAPIUtil.logout().then(
+    return UserAPIUtil.logout().then(
       user => {
         dispatch(receiveLogout());
         return user;
@@ -47,7 +47,7 @@ export const logout = () => {
 
 export const signup = (user) => {
   return dispatch => {
-    return CurrentUserAPIUtil.signup(user).then(
+    return UserAPIUtil.signup(user).then(
       currentUser => {
         dispatch(receiveUser(currentUser));
         dispatch(receiveLoginErrors({}));
