@@ -23,8 +23,11 @@ class User < ApplicationRecord
   validates :username, :initials, presence: true, on: :update
   validates :username, :email, :session_token, uniqueness: true
   validates :password, length: { minimum: 8, allow_nil: true }
+  validates :full_name, length: { minimum: 3 }
   validates :initials, length: { maximum: 3 }
   validates :email, format: /@/
+
+  before_validation :strip_whitespace
 
   attr_reader :password
 
@@ -111,6 +114,13 @@ class User < ApplicationRecord
 
   def ensure_session_token
     self.session_token ||= User.generate_session_token
+  end
+
+  def strip_whitespace
+    self.username = self.username.strip unless self.username.nil?
+    self.email = self.email.strip unless self.email.nil?
+    self.full_name = self.full_name.strip unless self.full_name.nil?
+    self.initials = self.initials.strip unless self.initials.nil?
   end
 
   def generate_defaults
