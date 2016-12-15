@@ -14,9 +14,13 @@ class Api::UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = User.find_by(username: params[:username])
     # TODO add special handling for current_user
-    render :show
+    if @user
+      render :show
+    else
+      render json: ['User not found'], status: 404
+    end
   end
 
   def search
