@@ -15,6 +15,7 @@ const initialState = {
   showBoardDeleteMenu: false,
   showListCreate: false,
   showCardEditModal: false,
+  showCardDueDateMenu: false,
 };
 
 export default (state = initialState, action) => {

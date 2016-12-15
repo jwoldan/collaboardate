@@ -382,30 +382,47 @@
   width: 130px;
   padding: 0 20px 10px 10px;
 
-  .card-detail-actions li {
-    display: block;
-    height: 34px;
-    margin-top: 6px;
-    padding: 0 7px;
+  .card-detail-actions {
 
-    box-sizing: border-box;
-    border: 1px solid #E2E4E6;
-    border-bottom-color: #CDD2D4;
-    border-radius: 3px;
+    li {
+      display: block;
+      height: 34px;
+      margin-top: 6px;
+      padding: 0 7px;
 
-    line-height: 34px;
-    background-color: #fff;
+      box-sizing: border-box;
+      border: 1px solid #E2E4E6;
+      border-bottom-color: #CDD2D4;
+      border-radius: 3px;
 
-    cursor: pointer;
+      line-height: 34px;
+      background-color: #fff;
 
-    font-weight: bold;
+      cursor: pointer;
 
-    &:hover {
-      color: #fff;
-      background: #298FCA;
-      border-color: #298FCA #298FCA #026AA7;
+      font-weight: bold;
+
+      &:hover {
+        color: #fff;
+        background: #298FCA;
+        border-color: #298FCA #298FCA #026AA7;
+      }
     }
+  }
 
+  .menu-due-date {
+
+    position: relative;
+
+    .menu {
+      right: 0px;
+      top: 36px;
+    }
+  }
+
+  .menu-due-date-buttons {
+    display: flex;
+    justify-content: space-between;
   }
 }
 

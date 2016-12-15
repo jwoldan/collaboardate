@@ -1,12 +1,14 @@
 import React from 'react';
 import { withRouter } from 'react-router';
 import Modal from 'react-modal';
+import moment from 'moment';
 
 import CardTitleEditableContainer from './card_title_editable_container';
 import CardDescriptionEditableContainer
   from './card_description_editable_container';
 import CardCommentFormContainer from './card_comment_form_container';
 import CardCommentEditableContainer from './card_comment_editable_container';
+import CardDueDateMenuContainer from './card_due_date_menu_container';
 
 class CardDetail extends React.Component {
 
@@ -50,6 +52,22 @@ class CardDetail extends React.Component {
     let sidebarClass = "card-detail-sidebar";
     if (disabled) sidebarClass += " hide";
 
+    let dueDateDisplay = null;
+    if (card.due_date) {
+      let dueDateText;
+      if(moment(card.due_date).isAfter()) {
+        dueDateText = moment().to(card.due_date);
+      } else {
+        dueDateText = moment(card.due_date).fromNow();
+      }
+      dueDateDisplay = (
+        <section>
+          <span className="quiet">Due Date</span><br/>
+        <input type="checkbox" />{ dueDateText }
+        </section>
+      );
+    }
+
     return (
       <Modal
         isOpen={ show }
@@ -70,6 +88,9 @@ class CardDetail extends React.Component {
           </section>
 
           <section className="card-detail-body">
+
+            <section>{ dueDateDisplay }</section>
+
             <CardDescriptionEditableContainer
               card={ card }
               updateCard={ updateCard }
@@ -93,6 +114,10 @@ class CardDetail extends React.Component {
             <h5>Actions</h5>
             <ul className="card-detail-actions">
               <li onClick={ this.deleteCard }>Delete</li>
+              <CardDueDateMenuContainer
+                card={ card }
+                updateCard={ updateCard }
+                disabled={ disabled }/>
             </ul>
           </section>
 
