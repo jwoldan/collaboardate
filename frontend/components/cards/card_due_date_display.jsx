@@ -23,31 +23,37 @@ class CardDueDateDisplay extends React.Component {
   render() {
     const { card } = this.props;
 
-    let dueDateText;
-    let after = false;
-    let diff = moment().diff(moment(card.due_date));
+    if(card.due_date) {
 
-    if (diff > 0) after = true;
+      let dueDateText;
+      let after = false;
+      let diff = moment().diff(moment(card.due_date));
 
-    if (after) {
-      dueDateText = moment().to(card.due_date);
+      if (diff > 0) after = true;
+
+      if (after) {
+        dueDateText = moment().to(card.due_date);
+      } else {
+        dueDateText = moment(card.due_date).fromNow();
+      }
+
+      dueDateText +=
+        ` (${moment(card.due_date).format("MMM DD, YYYY [at] h:mm A")})`;
+
+      const  displayClass = "due-date-display" + dueDateClassName(card);
+
+      return (
+        <section>
+          <span className="quiet">Due Date</span><br/>
+          <span className={ displayClass } onClick={ this.toggle }>
+            <span className="icon icon-checkbox" />{ dueDateText }
+          </span>
+        </section>
+      );
+
     } else {
-      dueDateText = moment(card.due_date).fromNow();
+      return null;
     }
-
-    dueDateText +=
-      ` (${moment(card.due_date).format("MMM DD, YYYY [at] h:mm A")})`;
-
-    const  displayClass = "due-date-display" + dueDateClassName(card);
-
-    return (
-      <section>
-        <span className="quiet">Due Date</span><br/>
-        <span className={ displayClass } onClick={ this.toggle }>
-          <span className="icon icon-checkbox" />{ dueDateText }
-        </span>
-      </section>
-    );
   }
 }
 

@@ -88,6 +88,9 @@
     display: flex;
     justify-content: flex-start;
 
+    font-size: 12px;
+    line-height: 1em;
+
     .icon {
       margin-right: 3px;
       width: 14px;
@@ -96,12 +99,58 @@
       background-repeat: no-repeat;
       background-position: center;
     }
+
+  }
+
+  .due-date-badge {
+    display: flex;
+    justify-content: flex-start;
+    margin-right: 3px;
+    border-radius: 2px;
+
+    .icon-clock {
+      margin-top: 1px;
+      margin-right: 0;
+    }
+
+    * {
+      display: block;
+    }
+
+    .due-date-badge-text {
+      margin-top: 2px;
+      margin-right: 3px;
+    }
+
+    &.upcoming, &.immediate, &.recent, &.completed {
+
+      color: white;
+
+      .icon-clock {
+        background-image: image-url('ic_access_time_white_24px.svg');
+      }
+    }
+
+    &.upcoming {
+      background-color: #E6C60D;
+    }
+
+    &.immediate {
+      background-color: red;
+    }
+
+    &.recent {
+      background-color: #ec705f;
+    }
+
+    &.completed {
+      background-color: green;
+    }
   }
 
   .comment-count {
-    margin-top: -4px;
+    margin-top: 2px;
     margin-left: -2px;
-    font-size: 12px;
   }
 
   .icon-desc {
@@ -109,9 +158,14 @@
   }
 
   .icon-comment {
-    background-image: image-url('ic_mode_comment_black_24px');
+    background-image: image-url('ic_mode_comment_black_24px.svg');
     background-size: 75%;
     transform: scaleX(-1);
+  }
+
+  .icon-clock {
+    background-image: image-url('ic_access_time_black_24px.svg');
+    background-size: 75%;
   }
 
   textarea {
@@ -296,7 +350,7 @@
     border-radius: 2px;
 
     opacity: 0.8;
-    background-color: #babcbd;
+    background-color: #d6d7d8;
 
     user-select: none;
     cursor: pointer;
@@ -305,39 +359,29 @@
       opacity: 1;
     }
 
-    &.upcoming {
+    &.upcoming, &.immediate, &.recent {
       color: white;
-      background-color: #E6C60D;
 
       .icon-checkbox {
         opacity: 1;
         background-image: image-url('ic_check_box_outline_blank_white_24px.svg');
       }
+    }
+
+    &.upcoming {
+      background-color: #E6C60D;
     }
 
     &.immediate {
-      color: white;
       background-color: red;
-
-      .icon-checkbox {
-        opacity: 1;
-        background-image: image-url('ic_check_box_outline_blank_white_24px.svg');
-      }
     }
 
     &.recent {
-      color: white;
       background-color: #ec705f;
-
-      .icon-checkbox {
-        opacity: 1;
-        background-image: image-url('ic_check_box_outline_blank_white_24px.svg');
-      }
     }
 
     &.completed {
 
-      text-decoration: line-through;
       color: white;
       background-color: green;
 

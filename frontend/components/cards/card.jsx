@@ -5,6 +5,7 @@ import ItemTypes from '../dnd/item_types';
 
 import DynamicEditable from '../general/dynamic_editable';
 import CardQuickEditContainer from './card_quick_edit_container';
+import CardDueDateBadge from './card_due_date_badge';
 import CardDetailContainer from './card_detail_container';
 
 const cardSource = {
@@ -83,6 +84,7 @@ class Card extends DynamicEditable {
           <section className="card-summary">{ card.title }</section>
         </h4>
         <section className="card-icons">
+          <CardDueDateBadge card={ card }/>
           { descIcon } { commentIcon } { commentCount }
         </section>
       </section>

@@ -52,14 +52,6 @@ class CardDetail extends React.Component {
     let sidebarClass = "card-detail-sidebar";
     if (disabled) sidebarClass += " hide";
 
-    let dueDateDisplay = null;
-    if (card.due_date) {
-
-      dueDateDisplay = (
-        <CardDueDateDisplay card={ card } updateCard={ updateCard }/>
-      );
-    }
-
     return (
       <Modal
         isOpen={ show }
@@ -81,7 +73,7 @@ class CardDetail extends React.Component {
 
           <section className="card-detail-body">
 
-            <section>{ dueDateDisplay }</section>
+            <CardDueDateDisplay card={ card } updateCard={ updateCard }/>
 
             <CardDescriptionEditableContainer
               card={ card }
