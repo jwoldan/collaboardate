@@ -26,7 +26,7 @@ class Card < ApplicationRecord
   has_one :board,
     through: :list
 
-  has_many :comments
+  has_many :comments, dependent: :destroy
 
   before_validation :ensure_ord
   after_validation :handle_list_change, :handle_ord_change
