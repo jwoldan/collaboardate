@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     resources :users, only: [:create, :update] do
       get 'search', on: :collection
       get ':username', to: 'users#show', on: :collection
+      delete 'avatar', to: 'users#remove_avatar'
     end
     resource :session, only: [:create, :destroy]
 

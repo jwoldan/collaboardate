@@ -1,7 +1,7 @@
 class Api::UsersController < ApplicationController
 
   before_action :require_logged_in, only: [:show, :search]
-  before_action :require_self, only: :update
+  before_action :require_self, only: [:update, :remove_avatar]
 
   def create
     @user = User.new(user_params)
@@ -34,6 +34,19 @@ class Api::UsersController < ApplicationController
     end
   end
 
+  def remove_avatar
+    @user = User.find(params[:user_id])
+
+    if @user
+      @user.avatar.destroy
+      @user.avatar.clear
+      @user.save
+      render :show
+    else
+      render json: ['An error occurred'], status: 422
+    end
+  end
+
   def search
     if params[:query].present?
       @users = User.where(
@@ -63,7 +76,8 @@ class Api::UsersController < ApplicationController
 
   def require_self
     require_logged_in
-    if current_user.id != params[:id].to_i
+    if current_user.id != params[:id].to_i &&
+        current_user.id != params[:user_id].to_i
       render json: "Unauthorized access", status: 401
     end
   end
