@@ -34,11 +34,22 @@ class HomeProfileMenu extends ToggleMenu {
       </ul>
     );
 
+    let userIcon;
+    let nameClass = null;
+    if (currentUser.avatar_url ) {
+      nameClass = "name-with-image";
+      userIcon = (
+        <span className="image"><img src={ currentUser.avatar_url }/></span>
+      );
+    } else {
+      userIcon = <span className="initials">{ safeInitials }</span>;
+    }
+
     return (
       <li className="nav-item">
-        <div className=" nav-button profile-button" onClick={ this.toggle }>
-          <span className="initials">{ safeInitials }</span>
-          <span>{ safeFullName }</span>
+        <div className="nav-button profile-button" onClick={ this.toggle }>
+          { userIcon }
+          <span className={ nameClass }>{ safeFullName }</span>
         </div>
         {
           this.renderMenu(

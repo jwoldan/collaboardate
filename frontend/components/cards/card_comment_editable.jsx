@@ -127,11 +127,22 @@ class CardCommentEditable extends DynamicEditable {
 
     }
 
+    let userIcon;
+    if (comment.author.avatar_url) {
+      userIcon = (
+        <span className="user-icon">
+          <img src={ comment.author.avatar_url } />
+        </span>
+      );
+    } else {
+      userIcon = <span className="user-icon">{ comment.author.initials }</span>;
+    }
+
     return (
       <section className="card-detail-container">
         <h6 className="inset">{ comment.author.full_name }</h6>
         <section className="card-comment-display">
-          <span className="user-icon">{ comment.author.initials }</span>
+          { userIcon }
           { commentContent }
         </section>
 

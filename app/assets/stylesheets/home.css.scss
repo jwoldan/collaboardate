@@ -264,8 +264,6 @@
     }
   }
 
-
-
   .search {
     width: 165px;
     background-color: rgba(255,255,255,.1);
@@ -274,6 +272,11 @@
     &:hover {
       background-color: rgba(255,255,255,.2);
     }
+  }
+
+  .profile-button {
+    position: relative;
+    overflow: hidden;
   }
 
   .initials {
@@ -291,6 +294,20 @@
     &:hover {
       background-color: #caced0;
     }
+  }
+
+  .name-with-image {
+    padding-left: 28px;
+  }
+
+  .image {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 29px;
+    height: 29px;
+    overflow: hidden;
   }
 
   .dropdown-boards {
@@ -398,7 +415,7 @@
   width: 40px;
   height: 40px;
   overflow: hidden;
-  
+
   margin-right: 5px;
 
   text-align: center;

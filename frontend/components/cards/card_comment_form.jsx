@@ -42,11 +42,23 @@ class CardCommentForm extends React.Component {
     if (disabled) {
       return null;
     } else {
+
+      let userIcon;
+      if (currentUser.avatar_url) {
+        userIcon = (
+          <span className="user-icon">
+            <img src={ currentUser.avatar_url } />
+          </span>
+        );
+      } else {
+        userIcon = <span className="user-icon">{ currentUser.initials }</span>;
+      }
+
       return (
         <section className="card-detail-container">
           <h6 className="inset">{ currentUser.full_name }</h6>
           <section className="card-comment-display">
-            <span className="user-icon">{ currentUser.initials }</span>
+            { userIcon }
             <form
               className="card-comment-editable"
               onSubmit={ this.submit }>
