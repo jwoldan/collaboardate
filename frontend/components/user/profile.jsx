@@ -13,6 +13,7 @@ class Profile extends React.Component {
 
     this.toggleEdit = this.toggleEdit.bind(this);
     this.update = this.update.bind(this);
+    this.updateAvatar = this.updateAvatar.bind(this);
     this.updateProfile = this.updateProfile.bind(this);
   }
 
@@ -60,6 +61,20 @@ class Profile extends React.Component {
       profile[property] = e.currentTarget.value;
       this.setState({ profile });
     };
+  }
+
+  updateAvatar(e) {
+    const file = e.currentTarget.files[0];
+    var fileReader = new FileReader();
+    fileReader.onloadend = () => {
+      const formData = new FormData();
+      formData.append("user[avatar]", file);
+      this.props.updateUserAvatar(this.state.profile.id, formData);
+    };
+
+    if (file) {
+      fileReader.readAsDataURL(file);
+    }
   }
 
   updateProfile(e) {
@@ -119,6 +134,39 @@ class Profile extends React.Component {
         <span className="button edit" onClick={ this.toggleEdit }>
           Edit profile
         </span>
+      );
+    }
+
+    let userIcon;
+    if(profile.avatar_url) {
+
+      let imageForm = null;
+      if (editable) {
+
+        userIcon = (
+          <span className="user-icon large">
+            <form>
+              <label>
+                <img src={ profile.avatar_url } />
+                <input type="file" onChange={ this.updateAvatar }/>
+              </label>
+            </form>
+          </span>
+        );
+
+      } else {
+
+        userIcon = (
+          <span className="user-icon large">
+            <img src={ profile.avatar_url } />
+          </span>
+        );
+
+      }
+
+    } else {
+      userIcon = (
+        <span className="user-icon large">{ profile.initials }</span>
       );
     }
 
@@ -206,7 +254,7 @@ class Profile extends React.Component {
       <section className="user-profile">
         <section className="profile">
           <section>
-            <span className="user-icon large">{ profile.initials }</span>
+            { userIcon }
           </section>
           { profileContent }
         </section>

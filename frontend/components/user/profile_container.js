@@ -4,7 +4,7 @@ import { withRouter } from 'react-router';
 import Profile from './profile';
 
 import { selectProfile } from '../../reducers/selectors';
-import { fetchProfile, receiveProfile, updateUser }
+import { fetchProfile, receiveProfile, updateUser, updateUserAvatar }
   from '../../actions/user_actions';
 import { receiveProfileErrors } from '../../actions/errors_actions';
 
@@ -23,6 +23,7 @@ const mapDispatchToProps = (dispatch) => ({
   clearProfile: () => dispatch(receiveProfile({})),
   fetchProfile: (username) => dispatch(fetchProfile(username)),
   updateUser: (user) => dispatch(updateUser(user)),
+  updateUserAvatar: (id, formData) => dispatch(updateUserAvatar(id, formData)),
   clearProfileErrors: () => dispatch(receiveProfileErrors({})),
 });
 

@@ -24,3 +24,6 @@ npm-debug.log
 
 # Mac OS X ignores
 .DS_Store
+
+# Ignore application configuration
+/config/application.yml

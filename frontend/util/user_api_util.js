@@ -28,6 +28,18 @@ export const updateUser = (user, success, error) => (
   })
 );
 
+export const updateUserAvatar = (id, formData, success, error) => (
+  $.ajax({
+    method: 'PATCH',
+    url: `/api/users/${id}`,
+    data: formData,
+    contentType: false,
+    processData: false,
+    success,
+    error,
+  })
+);
+
 export const login = (user, success, error) => (
   $.ajax({
     method: 'POST',

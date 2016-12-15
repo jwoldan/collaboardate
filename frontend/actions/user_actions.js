@@ -87,6 +87,22 @@ export const updateUser = (user) => {
   };
 };
 
+export const updateUserAvatar = (id, formData) => {
+  return dispatch => {
+    return UserAPIUtil.updateUserAvatar(id, formData).then(
+      currentUser => {
+        dispatch(receiveUser(currentUser));
+        dispatch(receiveProfileErrors({}));
+        return currentUser;
+      },
+      errors => {
+        dispatch(receiveProfileErrors(errors.responseJSON));
+        return errors;
+      }
+    );
+  };
+};
+
 export const fetchProfile = (username) => {
   return dispatch => {
     return UserAPIUtil.fetchUser(username).then(

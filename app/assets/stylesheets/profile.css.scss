@@ -12,9 +12,33 @@
   }
 
   .user-icon.large {
+    position: relative;
     margin-right: 20px;
 
-    cursor: pointer;
+    * {
+      cursor: pointer;
+    }
+
+    input[type='file'] {
+      visibility: hidden;
+    }
+
+    &:hover:after {
+      content: 'Change';
+      position: absolute;
+      display: block;
+      width: 85px;
+      height: 30px;
+      bottom: 0;
+
+      color: white;
+      font-size: 14px;
+      line-height: 30px;
+      text-align: center;
+      text-decoration: underline;
+
+      background-color: rgba(0, 0, 0, .5);
+    }
   }
 
   .profile {
