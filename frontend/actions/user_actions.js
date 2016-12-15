@@ -70,6 +70,17 @@ export const signup = (user) => {
   };
 };
 
+export const updateUser = (user) => {
+  return dispatch => {
+    return UserAPIUtil.updateUser(user).then(
+      currentUser => {
+        dispatch(receiveUser(currentUser));
+        return currentUser;
+      }
+    );
+  };
+};
+
 export const fetchProfile = (username) => {
   return dispatch => {
     return UserAPIUtil.fetchUser(username).then(
