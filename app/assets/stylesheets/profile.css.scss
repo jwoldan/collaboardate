@@ -1,6 +1,6 @@
 
 .user-profile {
-  height: calc(100% - 39px);
+  min-height: calc(100% - 39px);
 
   background-color: #EDEFF0;
 
@@ -27,5 +27,60 @@
 
   .bio {
     font-size: 16px;
+    margin-bottom: 20px;
+  }
+
+  .button {
+
+    display: inline-block;
+
+    border-radius: 3px;
+    box-shadow: 0 1px 0 #959DA1;
+
+    color: #000;
+    font-size: 14px;
+    font-weight: bold;
+
+    &.green {
+      color: #fff;
+      background-color: linear-gradient(to bottom,#61BD4F 0,#5AAC44 100%);
+      box-shadow: 0 1px 0 #3F6F21;
+    }
+
+    &.green, &:not(.edit) {
+      padding: 0.5em 1.5em;
+    }
+
+    &.edit {
+
+      height: 36px;
+      margin: 0;
+      padding: 0 15px;
+
+      border: 1px solid #E2E4E6;
+      border-bottom-color: #CDD2D4;
+      box-shadow: none;
+
+      line-height: 36px;
+      background-color: #fff;
+
+      cursor: pointer;
+
+      &:hover {
+        color: #fff;
+        background: #298FCA;
+        border-color: #298FCA #298FCA #026AA7;
+      }
+    }
+  }
+
+  .input {
+    background-color: #E2E4E6;
+
+    &:focus {
+      background-color: #fff;
+      border-color: #298FCA;
+      box-shadow: 0 0 2px #298FCA;
+    }
   }
 }

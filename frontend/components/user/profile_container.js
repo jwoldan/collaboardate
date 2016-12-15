@@ -7,10 +7,14 @@ import { fetchProfile, receiveProfile, updateUser }
   from '../../actions/user_actions';
 import { selectProfile } from '../../reducers/selectors';
 
-const mapStateToProps = (state, ownProps) => ({
-  currentUser: state.currentUser,
-  profile: selectProfile(state, ownProps.params.username),
-});
+const mapStateToProps = (state, ownProps) => {
+  const profile = selectProfile(state, ownProps.params.username);
+  return {
+    currentUser: state.currentUser,
+    profile,
+    editable: profile.id === state.currentUser.id
+  };
+};
 
 const mapDispatchToProps = (dispatch) => ({
   clearProfile: () => dispatch(receiveProfile({})),
