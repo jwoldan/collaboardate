@@ -1,5 +1,6 @@
 import * as UserAPIUtil from '../util/user_api_util';
-import { receiveSignupErrors, receiveLoginErrors } from './errors_actions';
+import { receiveSignupErrors, receiveLoginErrors, receiveProfileErrors }
+  from './errors_actions';
 
 export const RECEIVE_USER = 'RECEIVE_USER';
 export const RECEIVE_LOGOUT = 'RECEIVE_LOGOUT';
@@ -75,7 +76,12 @@ export const updateUser = (user) => {
     return UserAPIUtil.updateUser(user).then(
       currentUser => {
         dispatch(receiveUser(currentUser));
+        dispatch(receiveProfileErrors({}));
         return currentUser;
+      },
+      errors => {
+        dispatch(receiveProfileErrors(errors.responseJSON));
+        return errors;
       }
     );
   };

@@ -30,6 +30,14 @@
     margin-bottom: 20px;
   }
 
+  .profile-errors {
+    margin-bottom: 1.2em;
+    padding: .5em 1em;
+    border: 1px solid #eb5a46;
+    border-radius: 4px;
+    background: #f5d3ce;
+  }
+
   .button {
 
     display: inline-block;
@@ -81,6 +89,17 @@
       background-color: #fff;
       border-color: #298FCA;
       box-shadow: 0 0 2px #298FCA;
+    }
+
+    &.error {
+
+      background: #f5d3ce;
+
+      &:focus {
+        background: #fbedeb;
+        border: 1px solid #ec9488;
+        box-shadow: 0 0 6px #ec9488;
+      }
     }
   }
 }

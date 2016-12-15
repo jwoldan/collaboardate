@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router';
 
 class Profile extends React.Component {
 
@@ -31,12 +32,11 @@ class Profile extends React.Component {
     const { params, fetchProfile } = this.props;
     if (params.username !== newProps.params.username &&
         newProps.params.username !== newProps.currentUser.username) {
+      this.setState({ editing: false });
       fetchProfile(newProps.params.username);
-
     }
 
-    this.setState({ editing: false });
-    if (newProps.editable) {
+    if (newProps.editable && !this.props.editable) {
       const profile = Object.assign({}, newProps.profile);
       this.setState({ profile });
     }
@@ -46,8 +46,12 @@ class Profile extends React.Component {
     this.props.clearProfile();
   }
 
-  toggleEdit(e) {
+  toggleEdit() {
     this.setState({ editing: !this.state.editing });
+    if(this.state.editing) {
+      this.props.clearProfileErrors();
+      this.setState({ profile: this.props. profile });
+    }
   }
 
   update(property) {
@@ -60,14 +64,54 @@ class Profile extends React.Component {
 
   updateProfile(e) {
     e.preventDefault();
-    this.props.updateUser(this.state.profile);
+    this.props.updateUser(this.state.profile).then(
+      (profile) => {
+        this.toggleEdit();
+        this.props.router.push(`/${profile.username}`);
+      }
+    );
   }
 
+  errorsToStrings(errors) {
+    const errorStrings = [];
+    Object.keys(errors).forEach((key) => {
+      let errorString;
+      if(key === 'full_name') {
+        errorString = 'Name';
+      } else {
+        errorString = key.charAt(0).toUpperCase() + key.slice(1);
+      }
+
+      errorString += " " + errors[key].join(', ');
+      errorStrings.push(errorString);
+    });
+    return errorStrings;
+  }
+
+  errorList(errors) {
+    const errorStrings = this.errorsToStrings(errors);
+
+    if(errorStrings.length > 0) {
+      return (
+        <section className="profile-errors">
+          <ul>
+            { errorStrings.map((error, idx) => (
+              <li key={ idx }>{ error }</li>
+            ))}
+          </ul>
+        </section>
+      );
+    } else {
+      return '';
+    }
+
+  }
 
   render() {
-    const { currentUser, profile, editable } = this.props;
+    const { currentUser, profile, editable, errors } = this.props;
     const { editing } = this.state;
     const editableProfile = this.state.profile;
+    const errorList = this.errorList(errors);
 
     let editButton = null;
     if (editable) {
@@ -81,13 +125,31 @@ class Profile extends React.Component {
     let profileContent;
     if (editing) {
 
+      let fullNameClass = 'input';
+      if (typeof errors.full_name !== 'undefined') {
+        fullNameClass += ' error';
+      }
+
+      let usernameClass = 'input';
+      if (typeof errors.username !== 'undefined') {
+        usernameClass += ' error';
+      }
+
+      let initialsClass = 'input';
+      if (typeof errors.initials !== 'undefined') {
+        initialsClass += ' error';
+      }
+
       profileContent = (
         <form onSubmit= { this.updateProfile }>
+
+          { errorList }
+
           <label>
             <span className="bold">Full Name</span>
             <input
               type="text"
-              className="input"
+              className={ fullNameClass }
               value={ editableProfile.full_name }
               onChange={ this.update('full_name') } />
           </label>
@@ -95,7 +157,7 @@ class Profile extends React.Component {
             <span className="bold">Username</span>
             <input
               type="text"
-              className="input"
+              className={ usernameClass }
               value={ editableProfile.username }
               onChange={ this.update('username') } />
           </label>
@@ -103,7 +165,7 @@ class Profile extends React.Component {
             <span className="bold">Initials</span>
             <input
               type="text"
-              className="input"
+              className={ initialsClass }
               value={ editableProfile.initials }
               onChange={ this.update('initials') } />
           </label>

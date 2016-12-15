@@ -2,6 +2,7 @@ import React from 'react';
 import { withRouter, Link } from 'react-router';
 
 class LoginForm extends React.Component {
+
   constructor() {
     super();
 
@@ -33,7 +34,6 @@ class LoginForm extends React.Component {
   }
 
   errorList(errors) {
-
     if(errors.length > 0) {
       return (
         <section className="user-errors">
@@ -48,7 +48,6 @@ class LoginForm extends React.Component {
     } else {
       return '';
     }
-
   }
 
   render() {
