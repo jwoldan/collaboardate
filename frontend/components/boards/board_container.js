@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Board from './board';
 
 import { selectBoard, selectLists, checkDisabled }
-  from '../../reducers/selectors.js';
+  from '../../reducers/selectors';
 import { fetchBoard, updateBoard } from '../../actions/board_actions';
 import { fetchLists, receiveLists } from '../../actions/list_actions';
 import { fetchCards, receiveCards } from '../../actions/card_actions';

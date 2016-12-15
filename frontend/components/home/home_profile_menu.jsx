@@ -1,5 +1,5 @@
 import React from 'react';
-import { withRouter } from 'react-router';
+import { withRouter, Link } from 'react-router';
 
 import ToggleMenu from '../general/toggle_menu';
 
@@ -25,6 +25,11 @@ class HomeProfileMenu extends ToggleMenu {
 
     const menuContent = (
       <ul>
+        <li>
+          <Link to={`/${safeUsername}`} onClick={ this.toggle }>
+            Profile
+          </Link>
+        </li>
         <li><a onClick={ this.logout }>Log Out</a></li>
       </ul>
     );

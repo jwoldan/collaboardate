@@ -7,6 +7,7 @@ import SignupFormContainer from './user/signup_form_container';
 import LoginFormContainer from './user/login_form_container';
 import BoardsIndexContainer from './boards/boards_index_container';
 import BoardContainer from './boards/board_container';
+import ProfileContainer from './user/profile_container';
 
 export default ({ store }) => {
 
@@ -25,21 +26,23 @@ export default ({ store }) => {
   return (
     <Provider store={ store }>
       <Router history={ hashHistory }>
+        <Route
+          path="/signup"
+          component={ SignupFormContainer }
+          onEnter={ _redirectIfLoggedIn } />
+        <Route
+          path="/login"
+          component={ LoginFormContainer }
+          onEnter={ _redirectIfLoggedIn } />
         <Route path="/" component={ AppContainer }>
           <IndexRoute component= { BoardsIndexContainer } />
           <Route path="/b/:boardId" component={ BoardContainer } />
           <Route path="/c/:cardId" component={ BoardContainer } />
+          <Route
+            path="/:username"
+            component={ ProfileContainer }
+            onEnter={ _ensureLoggedIn } />
         </Route>
-        <Route
-            path="/signup"
-            component={ SignupFormContainer }
-            onEnter={ _redirectIfLoggedIn }
-        />
-        <Route
-          path="/login"
-          component={ LoginFormContainer }
-          onEnter={ _redirectIfLoggedIn }
-        />
       </Router>
     </Provider>
   );

@@ -6,6 +6,17 @@ export const menuIsOpen = ({ menuStatus }) => (
     .reduce((a, b) => a || b)
 );
 
+/* Profile */
+
+export const selectProfile = (state, username) => {
+  const { currentUser, profile } = state;
+  if (currentUser.username === username) {
+    return currentUser;
+  } else if (profile.username === username) {
+    return profile;
+  } else return {};
+};
+
 /* Boards */
 
 export const selectPersonalBoards = ({ boards, currentUser }) => (
@@ -96,6 +107,8 @@ export const selectCards = ({ cards }, listId) => {
   )).filter((card) => card.list_id === listId)
   .sort(ordSort);
 };
+
+/* Comments */
 
 export const selectComments = ({ cardDetail }) => {
   if (cardDetail && cardDetail.comments) {
