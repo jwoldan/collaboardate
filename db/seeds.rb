@@ -50,43 +50,43 @@ Board.destroy_all
 
 full_stack_project = Board.create!(
   title: "Full Stack Project",
-  visibility: "Private",
-  background: "blue",
+  visibility: Board::VISIBILITY_PRIVATE,
+  background: Board::BACKGROUND_BLUE,
   creator_id: guest.id
 )
 
 restaurant_operations = Board.create!(
   title: "Restaurant Operations",
-  visibility: "Private",
-  background: "blue",
+  visibility: Board::VISIBILITY_PRIVATE,
+  background: Board::BACKGROUND_BLUE,
   creator_id: guest.id
 )
 
 surprise_party_planning = Board.create!(
   title: "Surprise Party Planning",
-  visibility: "Private",
-  background: "blue",
+  visibility: Board::VISIBILITY_PRIVATE,
+  background: Board::BACKGROUND_BLUE,
   creator_id: guest.id
 )
 
 Board.create!(
   title: "Holiday Shopping",
-  visibility: "Private",
-  background: "blue",
+  visibility: Board::VISIBILITY_PRIVATE,
+  background: Board::BACKGROUND_BLUE,
   creator_id: guest.id
 )
 
 Board.create!(
   title: "Vacation Planning",
-  visibility: "Public",
-  background: "blue",
+  visibility: Board::VISIBILITY_PUBLIC,
+  background: Board::BACKGROUND_BLUE,
   creator_id: guest.id
 )
 
 bowling_league = Board.create!(
   title: "Bowling League",
-  visibility: "Private",
-  background: "blue",
+  visibility: Board::VISIBILITY_PRIVATE,
+  background: Board::BACKGROUND_BLUE,
   creator_id: friend.id
 )
 
