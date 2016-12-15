@@ -46,7 +46,10 @@ class Api::CardsController < ApplicationController
   private
 
   def card_params
-    params.require(:card).permit(:title, :description, :ord, :list_id)
+    params
+      .require(:card)
+      .permit(:title, :description, :ord,
+              :list_id, :due_date, :due_date_complete)
   end
 
   def require_parent_board_access
