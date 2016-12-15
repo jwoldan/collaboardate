@@ -2,18 +2,21 @@
 #
 # Table name: cards
 #
-#  id          :integer          not null, primary key
-#  title       :string           not null
-#  description :text
-#  ord         :integer          not null
-#  list_id     :integer          not null
-#  author_id   :integer          not null
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
+#  id                :integer          not null, primary key
+#  title             :string           not null
+#  description       :text
+#  ord               :integer          not null
+#  list_id           :integer          not null
+#  author_id         :integer          not null
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  due_date          :datetime
+#  due_date_complete :boolean          default(FALSE), not null
 #
 
 class Card < ApplicationRecord
   validates :title, :ord, :list, :author, presence: true
+  validates :due_date_complete, inclusion: [true, false]
 
   belongs_to :list
 
