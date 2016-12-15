@@ -243,8 +243,10 @@ class Profile extends React.Component {
 
       profileContent = (
         <section>
-          <h1>{ profile.full_name }</h1>&nbsp;
-          <span>@{ profile.username }</span>
+          <section>
+            <h1>{ profile.full_name }</h1>&nbsp;
+            <span>@{ profile.username }</span>
+          </section>
           { profile.bio ? <p className="bio">{ profile.bio }</p> : null }
           { editButton }
         </section>
