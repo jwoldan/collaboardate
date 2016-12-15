@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 
-import { RECEIVE_LOGOUT } from '../actions/current_user_actions';
+import { RECEIVE_LOGOUT } from '../actions/user_actions';
 
 import currentUser from './current_user_reducer';
 import errors from './errors_reducer';
