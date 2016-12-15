@@ -103,6 +103,17 @@ export const updateUserAvatar = (id, formData) => {
   };
 };
 
+export const removeUserAvatar = (id) => {
+  return dispatch => {
+    return UserAPIUtil.removeUserAvatar(id).then(
+      currentUser => {
+        dispatch(receiveUser(currentUser));
+        return currentUser;
+      }
+    );
+  };
+};
+
 export const fetchProfile = (username) => {
   return dispatch => {
     return UserAPIUtil.fetchUser(username).then(

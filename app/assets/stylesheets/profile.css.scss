@@ -15,15 +15,11 @@
     position: relative;
     margin-right: 20px;
 
-    * {
+    &.editable * {
       cursor: pointer;
     }
 
-    input[type='file'] {
-      visibility: hidden;
-    }
-
-    &:hover:after {
+    &.editable:hover:before {
       content: 'Change';
       position: absolute;
       display: block;
@@ -38,6 +34,29 @@
       text-decoration: underline;
 
       background-color: rgba(0, 0, 0, .5);
+
+      cursor: pointer;
+    }
+  }
+
+  .avatar-action {
+    display: block;
+    margin-top: 2px;
+    margin-left: 12px;
+    margin-right: 32px;
+
+    text-align: center;
+    text-decoration: underline;
+
+    cursor: pointer;
+
+    &:hover {
+      border-radius: 2px;
+      background-color: #d6d7d8;
+    }
+
+    input[type='file'] {
+      display: none;
     }
   }
 

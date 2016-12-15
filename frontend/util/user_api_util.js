@@ -40,6 +40,15 @@ export const updateUserAvatar = (id, formData, success, error) => (
   })
 );
 
+export const removeUserAvatar = (id, success, error) => (
+  $.ajax({
+    method: 'DELETE',
+    url: `/api/users/${id}/avatar`,
+    success,
+    error,
+  })
+);
+
 export const login = (user, success, error) => (
   $.ajax({
     method: 'POST',

@@ -14,6 +14,7 @@ class Profile extends React.Component {
     this.toggleEdit = this.toggleEdit.bind(this);
     this.update = this.update.bind(this);
     this.updateAvatar = this.updateAvatar.bind(this);
+    this.removeAvatar = this.removeAvatar.bind(this);
     this.updateProfile = this.updateProfile.bind(this);
   }
 
@@ -75,6 +76,10 @@ class Profile extends React.Component {
     if (file) {
       fileReader.readAsDataURL(file);
     }
+  }
+
+  removeAvatar() {
+    this.props.removeUserAvatar(this.state.profile.id);
   }
 
   updateProfile(e) {
@@ -139,36 +144,33 @@ class Profile extends React.Component {
 
     let userIcon;
     if(profile.avatar_url) {
-
-      let imageForm = null;
-      if (editable) {
-
-        userIcon = (
-          <span className="user-icon large">
-            <form>
-              <label>
-                <img src={ profile.avatar_url } />
-                <input type="file" onChange={ this.updateAvatar }/>
-              </label>
-            </form>
-          </span>
-        );
-
-      } else {
-
-        userIcon = (
-          <span className="user-icon large">
-            <img src={ profile.avatar_url } />
-          </span>
-        );
-
-      }
-
+      userIcon = (
+        <span className="user-icon large">
+          <img src={ profile.avatar_url } />
+        </span>
+      );
     } else {
       userIcon = (
         <span className="user-icon large">{ profile.initials }</span>
       );
     }
+
+    const changeAvatarLink = (
+      <form>
+        <label>
+          <span className="avatar-action change">
+            Change
+            <input type="file" onChange={ this.updateAvatar }/>
+          </span>
+        </label>
+      </form>
+    );
+
+    const removeAvatarLink = (
+      <span className="avatar-action remove" onClick={ this.removeAvatar }>
+        Remove
+      </span>
+    );
 
     let profileContent;
     if (editing) {
@@ -255,6 +257,8 @@ class Profile extends React.Component {
         <section className="profile">
           <section>
             { userIcon }
+            { editable ? changeAvatarLink : null }
+            { (editable && profile.avatar_url) ? removeAvatarLink : null }
           </section>
           { profileContent }
         </section>
