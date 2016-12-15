@@ -145,12 +145,20 @@ CSV.foreach(
   headers: true,
   header_converters: :symbol
 ) do |row|
-  Card.create!(
+  card = Card.create!(
     title: row[:title],
     description: row[:description],
     author: User.find_by(username: row[:username]),
     list: List.find_by(title: row[:list_title])
   )
+  if row[:due_date]
+    due_date = Time.now + row[:due_date].to_i.days
+    card.due_date = Time.at(rand(due_date.to_i...(due_date + 1.days).to_i))
+  end
+  if row[:due_date_complete] == 'TRUE'
+    card.due_date_complete = true
+  end
+  card.save
 end
 
 
