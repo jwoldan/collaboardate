@@ -3,11 +3,19 @@ import { receiveSignupErrors, receiveLoginErrors } from './errors_actions';
 
 export const RECEIVE_USER = 'RECEIVE_USER';
 export const RECEIVE_LOGOUT = 'RECEIVE_LOGOUT';
+export const RECEIVE_PROFILE = 'RECEIVE_PROFILE';
 
 export const receiveUser = (user) => {
   return {
     type: RECEIVE_USER,
     user,
+  };
+};
+
+export const receiveProfile = (profile) => {
+  return {
+    type: RECEIVE_PROFILE,
+    profile,
   };
 };
 
@@ -57,6 +65,17 @@ export const signup = (user) => {
       errors => {
         dispatch(receiveSignupErrors(errors.responseJSON));
         return errors;
+      }
+    );
+  };
+};
+
+export const fetchProfile = (username) => {
+  return dispatch => {
+    return UserAPIUtil.fetchUser(username).then(
+      profile => {
+        dispatch(receiveProfile(profile));
+        return profile;
       }
     );
   };

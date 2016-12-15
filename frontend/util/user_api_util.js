@@ -9,6 +9,15 @@ export const signup = (user, success, error) => (
   })
 );
 
+export const fetchUser = (username, success, error) => (
+  $.ajax({
+    method: 'GET',
+    url: `api/users/${username}`,
+    success,
+    error,
+  })
+);
+
 export const login = (user, success, error) => (
   $.ajax({
     method: 'POST',
