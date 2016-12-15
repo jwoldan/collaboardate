@@ -22,6 +22,10 @@ input, textarea, a, ul, li {
 
 /* General Styles */
 
+::-webkit-scrollbar {
+    display: none;
+}
+
 html {
   color: #4d4d4d;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;

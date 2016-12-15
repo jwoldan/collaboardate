@@ -269,6 +269,85 @@
   .button {
     padding: .5em 1.5em;
   }
+
+  .icon {
+    display: inline-block;
+    margin-right: 3px;
+    width: 1em;
+    height: 1em;
+    opacity: 0.6;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+  }
+
+  .icon-checkbox {
+    background-image: image-url('ic_check_box_outline_blank_black_24px.svg');
+    transform: translateY(2px);
+  }
+
+
+  .due-date-display {
+
+    display: inline-block;
+    line-height: 1em;
+    margin-bottom: 5px;
+    padding: 1px 4px 3px 2px;
+    border-radius: 2px;
+
+    opacity: 0.8;
+    background-color: #babcbd;
+
+    user-select: none;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 1;
+    }
+
+    &.upcoming {
+      color: white;
+      background-color: #E6C60D;
+
+      .icon-checkbox {
+        opacity: 1;
+        background-image: image-url('ic_check_box_outline_blank_white_24px.svg');
+      }
+    }
+
+    &.immediate {
+      color: white;
+      background-color: red;
+
+      .icon-checkbox {
+        opacity: 1;
+        background-image: image-url('ic_check_box_outline_blank_white_24px.svg');
+      }
+    }
+
+    &.recent {
+      color: white;
+      background-color: #ec705f;
+
+      .icon-checkbox {
+        opacity: 1;
+        background-image: image-url('ic_check_box_outline_blank_white_24px.svg');
+      }
+    }
+
+    &.completed {
+
+      text-decoration: line-through;
+      color: white;
+      background-color: green;
+
+      .icon-checkbox {
+        opacity: 1;
+        background-image: image-url('ic_check_box_white_24px.svg');
+      }
+    }
+  }
+
 }
 
 .card-detail-header {
