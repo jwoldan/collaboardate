@@ -10,6 +10,42 @@
 
   font-size: 14px;
   background-color: rgb(0, 121, 191);
+
+  &.blue {
+    background-color: #0079BF;
+  }
+
+  &.orange {
+    background-color: #D29034;
+  }
+
+  &.green {
+    background-color: #519839;
+  }
+
+  &.red {
+    background-color: #B04632;
+  }
+
+  &.purple {
+    background-color: #89609E;
+  }
+
+  &.pink {
+    background-color: #CD5A91;
+  }
+
+  &.light-green {
+    background-color: #4BBF6B;
+  }
+
+  &.light-blue {
+    background-color: #00AECC;
+  }
+
+  &.grey {
+    background-color: #838C91;
+  }
 }
 
 /* Menu (used for dropdowns and other popup menus) */
@@ -161,7 +197,7 @@
   position: relative;
   height: 29px;
   padding: 5px;
-  background-color: #026AA7;
+  background: rgba(0,0,0,.15);
   box-shadow: 0 1px 1px rgba(0,0,0,.1);
 
   .nav-item {
