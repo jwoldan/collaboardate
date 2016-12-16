@@ -6,7 +6,7 @@
 
 ## Minimum Viable Product
 
-Collaboardate is a web application inspired by Trello and built using Ruby on Rails and React/Redux.  The minimum viable product will include the following:
+Collaboardate is a full stack web application inspired by Trello and built using Ruby on Rails and React/Redux.  The minimum viable product will include the following:
 
 - [x] New account creation, login, and guest/demo login
 - [x] Hosting on Heroku
