@@ -17,6 +17,14 @@ class Board < ApplicationRecord
   VISIBILITY_PRIVATE = 'Private'.freeze
   VISIBILITY_PUBLIC = 'Public'.freeze
   BACKGROUND_BLUE = 'blue'.freeze
+  BACKGROUND_ORANGE = 'orange'.freeze
+  BACKGROUND_GREEN = 'green'.freeze
+  BACKGROUND_RED = 'red'.freeze
+  BACKGROUND_PURPLE = 'purple'.freeze
+  BACKGROUND_PINK = 'pink'.freeze
+  BACKGROUND_LIGHT_GREEN = 'light-green'.freeze
+  BACKGROUND_LIGHT_BLUE = 'light-blue'.freeze
+  BACKGROUND_GREY = 'grey'.freeze
 
   validates :title, :visibility, :background, :creator, presence: true
   validates :starred, inclusion: [true, false]
