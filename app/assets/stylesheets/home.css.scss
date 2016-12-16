@@ -79,7 +79,7 @@
     color: white;
   }
 
-  :not(.quiet) > a:not(.button):not(.icon-link) {
+  :not(.quiet) > a:not(.button):not(.icon-link):not(.board-link) {
     display: block;
     padding: 5px 9px;
     color: #444;
@@ -370,14 +370,50 @@
 
       a.board-link {
         position: relative;
+        display: block;
         z-index: 0;
         padding: 0;
         color: #444;
+        border-radius: 3px;
+        overflow: hidden;
+
+        font-weight: bold;
+        text-decoration: none;
 
         &.blue {
           background-color: #0079BF;
-          border-radius: 3px;
-          overflow: hidden;
+        }
+
+        &.orange {
+          background-color: #D29034;
+        }
+
+        &.green {
+          background-color: #519839;
+        }
+
+        &.red {
+          background-color: #B04632;
+        }
+
+        &.purple {
+          background-color: #89609E;
+        }
+
+        &.pink {
+          background-color: #CD5A91;
+        }
+
+        &.light-green {
+          background-color: #4BBF6B;
+        }
+
+        &.light-blue {
+          background-color: #00AECC;
+        }
+
+        &.grey {
+          background-color: #838C91;
         }
 
         &:hover {
@@ -405,7 +441,13 @@
 
     .board-color {
       opacity: .7;
-
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      vertical-align: middle;
+      width: 36px;
+      height: 36px;
     }
 
     a:hover .board-color {
@@ -414,17 +456,47 @@
 
 
     .blue .board-color {
-      display: block;
-      position: absolute;
-      top: 0;
-      left: 0;
-      vertical-align: middle;
-      width: 36px;
-      height: 36px;
+
 
       background-color: #0079BF;
       // border-top-left-radius: 3px;
       // border-bottom-left-radius: 3px;
+    }
+
+    .blue .board-color {
+      background-color: #0079BF;
+    }
+
+    .orange .board-color {
+      background-color: #D29034;
+    }
+
+    .green .board-color {
+      background-color: #519839;
+    }
+
+    .red .board-color {
+      background-color: #B04632;
+    }
+
+    .purple .board-color {
+      background-color: #89609E;
+    }
+
+    .pink .board-color {
+      background-color: #CD5A91;
+    }
+
+    .light-green .board-color {
+      background-color: #4BBF6B;
+    }
+
+    .light-blue .board-color {
+      background-color: #00AECC;
+    }
+
+    .grey .board-color {
+      background-color: #838C91;
     }
 
     .board-title {
