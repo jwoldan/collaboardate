@@ -66,35 +66,35 @@ full_stack_project = Board.create!(
 restaurant_operations = Board.create!(
   title: "Restaurant Operations",
   visibility: Board::VISIBILITY_PRIVATE,
-  background: Board::BACKGROUND_BLUE,
+  background: Board::BACKGROUND_RED,
   creator_id: guest.id
 )
 
 surprise_party_planning = Board.create!(
   title: "Surprise Party Planning",
   visibility: Board::VISIBILITY_PRIVATE,
-  background: Board::BACKGROUND_BLUE,
+  background: Board::BACKGROUND_PURPLE,
   creator_id: guest.id
 )
 
 Board.create!(
   title: "Holiday Shopping",
   visibility: Board::VISIBILITY_PRIVATE,
-  background: Board::BACKGROUND_BLUE,
+  background: Board::BACKGROUND_GREEN,
   creator_id: guest.id
 )
 
 Board.create!(
   title: "Vacation Planning",
   visibility: Board::VISIBILITY_PUBLIC,
-  background: Board::BACKGROUND_BLUE,
+  background: Board::BACKGROUND_LIGHT_BLUE,
   creator_id: guest.id
 )
 
 bowling_league = Board.create!(
   title: "Bowling League",
   visibility: Board::VISIBILITY_PRIVATE,
-  background: Board::BACKGROUND_BLUE,
+  background: Board::BACKGROUND_ORANGE,
   creator_id: friend.id
 )
 
