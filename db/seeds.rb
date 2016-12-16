@@ -11,7 +11,7 @@
 #   )
 #   Character.create(name: 'Luke', movie: movies.first)
 
-require 'csv'
+require "csv"
 
 User.destroy_all
 
@@ -24,25 +24,29 @@ guest = User.create!(
 reviewer = User.create!(
   full_name: "Reviewer",
   email: "reviewer@collaboardate.com",
-  password: "collaboardate"
+  password: "collaboardate",
+  avatar: File.open("app/assets/images/seeds/33.jpg")
 )
 
 friend = User.create!(
   full_name: "Friend",
   email: "friend@collaboardate.com",
-  password: "collaboardate"
+  password: "collaboardate",
+  avatar: File.open("app/assets/images/seeds/40.jpg")
 )
 
 collaborator = User.create!(
   full_name: "Collaborator",
   email: "collaborator@collaboardate.com",
-  password: "collaboardate"
+  password: "collaboardate",
+  avatar: File.open("app/assets/images/seeds/53.jpg")
 )
 
 head_chef = User.create!(
   full_name: "Head Chef",
   email: "headchef@collaboardate.com",
-  password: "collaboardate"
+  password: "collaboardate",
+  avatar: File.open("app/assets/images/seeds/61.jpg")
 )
 
 
@@ -155,7 +159,7 @@ CSV.foreach(
     due_date = Time.now + row[:due_date].to_i.days
     card.due_date = Time.at(rand(due_date.to_i...(due_date + 1.days).to_i))
   end
-  if row[:due_date_complete] == 'TRUE'
+  if row[:due_date_complete] == "TRUE"
     card.due_date_complete = true
   end
   card.save
@@ -169,7 +173,6 @@ CSV.foreach(
 headers: true,
 header_converters: :symbol
 ) do |row|
-  # puts "'#{row[:body]}' '#{row[:username]}' '#{row[:card_title]}'"
   Comment.create!(
     body: row[:body],
     author: User.find_by(username: row[:username]),
