@@ -11,10 +11,10 @@ Collaboardate is a web application inspired by Trello and built using Ruby on Ra
 - [x] New account creation, login, and guest/demo login
 - [x] Hosting on Heroku
 - [x] A complete set of READMEs documenting the development process
-- [ ] Boards
-- [ ] Lists & Cards
-- [ ] Sharing Boards
-- [ ] Comments and Due Dates
+- [x] Boards
+- [x] Lists & Cards
+- [x] Sharing Boards
+- [x] Comments and Due Dates
 
 ## Design Docs
 * [View Wireframes](wireframes)
