@@ -1,11 +1,17 @@
 import React from 'react';
-import { withRouter, Link } from 'react-router';
+import { withRouter } from 'react-router';
 
 import HomeNavigationContainer from './home_navigation_container';
 
-export default ({ children }) => (
-  <section className="home">
-    <HomeNavigationContainer />
-    { children }
-  </section>
-);
+export default ({ children, board }) => {
+
+  let homeClass = 'home';
+  if (board.background) homeClass += ` ${board.background}`;
+
+  return (
+    <section className={ homeClass }>
+      <HomeNavigationContainer />
+      { children }
+    </section>
+  );
+};

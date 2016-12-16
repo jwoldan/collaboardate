@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Welcome from './welcome/welcome';
-import Home from './home/home';
+import HomeContainer from './home/home_container';
 
 class App extends React.Component {
 
@@ -23,7 +23,7 @@ class App extends React.Component {
     if (currentUser !== null ||
         (typeof params.boardId !== 'undefined') ||
         (typeof params.cardId !== 'undefined')) {
-      innerContent = <Home children={ children } />;
+      innerContent = <HomeContainer children={ children } />;
     } else {
       innerContent = <Welcome/>;
     }
