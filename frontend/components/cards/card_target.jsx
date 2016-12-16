@@ -20,7 +20,6 @@ const cardHolderTarget = {
         list_id: props.listId,
       });
       props.receiveCard(updatedSourceCard);
-      // props.updateCard(updatedSourceCard);
     }
   },
   drop: (props, monitor) => {
