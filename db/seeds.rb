@@ -34,7 +34,7 @@ friend = User.create!(
   email: "friend@collaboardate.com",
   password: "collaboardate",
   avatar: File.open("app/assets/images/seeds/40.jpg"),
-  bio: "Bowler extraordanaire"
+  bio: "Bowler extraordinaire"
 )
 
 collaborator = User.create!(
