@@ -25,28 +25,32 @@ reviewer = User.create!(
   full_name: "Reviewer",
   email: "reviewer@collaboardate.com",
   password: "collaboardate",
-  avatar: File.open("app/assets/images/seeds/33.jpg")
+  avatar: File.open("app/assets/images/seeds/33.jpg"),
+  bio: "Husband, father, full stack project reviewer"
 )
 
 friend = User.create!(
   full_name: "Friend",
   email: "friend@collaboardate.com",
   password: "collaboardate",
-  avatar: File.open("app/assets/images/seeds/40.jpg")
+  avatar: File.open("app/assets/images/seeds/40.jpg"),
+  bio: "Bowler extraordanaire"
 )
 
 collaborator = User.create!(
   full_name: "Collaborator",
   email: "collaborator@collaboardate.com",
   password: "collaboardate",
-  avatar: File.open("app/assets/images/seeds/53.jpg")
+  avatar: File.open("app/assets/images/seeds/53.jpg"),
+  bio: "Aspiring full stack developer"
 )
 
 head_chef = User.create!(
   full_name: "Head Chef",
   email: "headchef@collaboardate.com",
   password: "collaboardate",
-  avatar: File.open("app/assets/images/seeds/61.jpg")
+  avatar: File.open("app/assets/images/seeds/61.jpg"),
+  bio: "Nine year restaurant industry veteran, head chef for three"
 )
 
 
