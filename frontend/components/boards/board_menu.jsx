@@ -3,6 +3,7 @@ import React from 'react';
 import ToggleMenu from '../general/toggle_menu';
 import BoardMembersContainer from './board_members_container';
 import BoardShareMenuContainer from './board_share_menu_container';
+import BoardBackgroundMenuContainer from './board_background_menu_container';
 import BoardDeleteMenuContainer from './board_delete_menu_container';
 
 class BoardMenu extends ToggleMenu {
@@ -32,6 +33,7 @@ class BoardMenu extends ToggleMenu {
       menuItems = (
         <ul>
           <li><BoardShareMenuContainer /></li>
+          <li><BoardBackgroundMenuContainer /></li>
           <li><BoardDeleteMenuContainer /></li>
         </ul>
       );

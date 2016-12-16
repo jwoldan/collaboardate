@@ -12,6 +12,7 @@ const initialState = {
   showBoardTitleMenu: false,
   showBoardVisibilityMenu: false,
   showBoardShareMenu: false,
+  showBoardBackgroundMenu: false,
   showBoardDeleteMenu: false,
   showListCreate: false,
   showCardEditModal: false,
