@@ -13,9 +13,16 @@ const listHolderTarget = {
         ord: targetList.ord,
       });
       props.receiveList(updatedSourceList);
-      props.updateList(updatedSourceList);
     }
-  }
+  },
+  drop: (props, monitor) => {
+    const sourceList = monitor.getItem().list;
+    const targetList = props.list;
+    const updatedSourceList = Object.assign({}, sourceList, {
+      ord: targetList.ord,
+    });
+    props.updateList(updatedSourceList);
+  },
 };
 
 const collect = (connect) => ({
