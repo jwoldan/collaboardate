@@ -75,6 +75,11 @@
     line-height: .6em;
   }
 
+  p.small {
+    font-weight: normal;
+    font-size: 12px;
+  }
+
   a:hover .quiet {
     color: white;
   }
@@ -234,10 +239,6 @@
   .dropdown {
     top: 42px;
 
-    &.dropdown-profile {
-      right: 4px;
-    }
-
     &.dropdown-create {
       right: 4px;
 
@@ -247,6 +248,13 @@
       }
     }
 
+    &.dropdown-profile, &.dropdown-information {
+      right: 4px;
+    }
+
+    &.dropdown-information p {
+      padding: 0 9px;
+    }
   }
 
   .logo {

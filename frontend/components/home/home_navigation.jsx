@@ -5,7 +5,7 @@ import HomeBoardsMenuContainer from './home_boards_menu_container';
 import HomeSearch from './home_search';
 import HomeCreateMenu from './home_create_menu';
 import HomeProfileMenuContainer from './home_profile_menu_container';
-import HomeInformationMenu from './home_information_menu';
+import HomeInformationMenuContainer from './home_information_menu_container';
 import HomeNotificationMenu from './home_notification_menu';
 
 class HomeNavigation extends React.Component {
@@ -32,8 +32,8 @@ class HomeNavigation extends React.Component {
       showHomeBoardsMenu,
       showHomeCreateMenu,
       showHomeProfileMenu,
-      ShowHomeInformationMenu,
-      ShowHomeNotificationMenu,
+      showHomeInformationMenu,
+      showHomeNotificationMenu,
     } =  menuStatus;
 
     if (currentUser === null) {
@@ -65,12 +65,12 @@ class HomeNavigation extends React.Component {
             <HomeProfileMenuContainer
               show={ showHomeProfileMenu }
               toggle={ this.toggleMenu('showHomeProfileMenu') } />
-            <HomeInformationMenu
-              show={ ShowHomeInformationMenu }
-              toggle={ this.toggleMenu('ShowHomeInformationMenu') } />
+            <HomeInformationMenuContainer
+              show={ showHomeInformationMenu }
+              toggle={ this.toggleMenu('showHomeInformationMenu') } />
             <HomeNotificationMenu
-              show={ ShowHomeNotificationMenu }
-              toggle={ this.toggleMenu('ShowHomeNotificationMenu') } />
+              show={ showHomeNotificationMenu }
+              toggle={ this.toggleMenu('showHomeNotificationMenu') } />
           </ul>
 
         </nav>
