@@ -1,5 +1,7 @@
 import React from 'react';
 
+import UserIcon from '../user/user_icon';
+
 class CardCommentForm extends React.Component {
 
   constructor(props) {
@@ -43,22 +45,11 @@ class CardCommentForm extends React.Component {
       return null;
     } else {
 
-      let userIcon;
-      if (currentUser.avatar_url) {
-        userIcon = (
-          <span className="user-icon">
-            <img src={ currentUser.avatar_url } />
-          </span>
-        );
-      } else {
-        userIcon = <span className="user-icon">{ currentUser.initials }</span>;
-      }
-
       return (
         <section className="card-detail-container">
           <h6 className="inset">{ currentUser.full_name }</h6>
           <section className="card-comment-display">
-            { userIcon }
+            <UserIcon user={ currentUser } />
             <form
               className="card-comment-editable"
               onSubmit={ this.submit }>

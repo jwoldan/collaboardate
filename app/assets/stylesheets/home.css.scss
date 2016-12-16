@@ -43,7 +43,7 @@
     color: white;
   }
 
-  :not(.quiet) > a:not(.button) {
+  :not(.quiet) > a:not(.button):not(.icon-link) {
     display: block;
     padding: 5px 9px;
     color: #444;
@@ -441,5 +441,20 @@
     color: #444;
     background-color: #D6DADC;
 
+  }
+}
+
+.icon-link {
+  color: #444;
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+
+  &:hover {
+    color: #444;
+  }
+
+  .user-icon {
+    cursor: pointer;
   }
 }

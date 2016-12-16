@@ -308,7 +308,7 @@
     }
   }
 
-  a {
+  a:not(.icon-link) {
     color: #8c8c8c;
     padding: 2px 5px;
 
