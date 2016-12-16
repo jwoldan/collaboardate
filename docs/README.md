@@ -94,3 +94,11 @@ Allow assignment of one or more labels to each card.  Labels are unique to each 
 ### Card Assignment
 
 Allow users to be assigned to a particular card (for example, if they are expected to complete the associated task).  This would be a join table between `cards` and `users`, and represented in the state as an `assigned_users` property nested under the `cardDetail` portion of the Redux state.
+
+### Notifications
+
+Implement notifications and live updating, so that users can see updates performed by other users immediately (without refreshing) and receive notifications if cards they are assigned to are updated.
+
+### Card Search
+
+Implement search feature which searches cards and possibly boards.
