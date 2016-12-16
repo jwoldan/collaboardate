@@ -84,7 +84,7 @@ class ListTitleEditable extends DynamicEditable {
 
       return (
         <h3 className="list-title" onClick={ this.toggle }>
-          { list.title }
+          { list.title } - { list.ord }
         </h3>
       );
 

@@ -14,7 +14,7 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const cardHolderTarget = {
-  hover: (props, monitor, component) => {
+  hover: (props, monitor) => {
     const sourceCard = monitor.getItem().card;
     const targetCard = props.card;
     if (sourceCard.id !== targetCard.id) {
@@ -23,9 +23,18 @@ const cardHolderTarget = {
         list_id: targetCard.list_id,
       });
       props.receiveCard(updatedSourceCard);
-      props.updateCard(updatedSourceCard);
+      // props.updateCard(updatedSourceCard);
     }
-  }
+  },
+  drop: (props, monitor) => {
+    const sourceCard = monitor.getItem().card;
+    const targetCard = props.card;
+    const updatedSourceCard = Object.assign({}, sourceCard, {
+      ord: targetCard.ord,
+      list_id: targetCard.list_id,
+    });
+    props.updateCard(updatedSourceCard);
+  },
 };
 
 const collect = (dndConnect) => ({
