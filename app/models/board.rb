@@ -29,7 +29,17 @@ class Board < ApplicationRecord
   validates :title, :visibility, :background, :creator, presence: true
   validates :starred, inclusion: [true, false]
   validates :visibility, inclusion: [VISIBILITY_PRIVATE, VISIBILITY_PUBLIC]
-  validates :background, inclusion: [BACKGROUND_BLUE]
+  validates :background, inclusion: [
+    BACKGROUND_BLUE,
+    BACKGROUND_ORANGE,
+    BACKGROUND_GREEN,
+    BACKGROUND_RED,
+    BACKGROUND_PURPLE,
+    BACKGROUND_PINK,
+    BACKGROUND_LIGHT_GREEN,
+    BACKGROUND_LIGHT_BLUE,
+    BACKGROUND_GREY
+  ]
 
   belongs_to :creator,
     class_name: 'User'
