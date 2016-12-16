@@ -137,21 +137,8 @@ a {
   }
 }
 
-a:not(.button):not(.icon-link) {
-  color: #5e98ba;
+a:not(.button) {
   text-decoration: underline;
-}
-
-a:not(.button):not(.icon-link):hover {
-  color: #265773;
-}
-
-a:not(.button):not(.icon-link):visited {
-  color: #0079bf;
-}
-
-a:not(.button):not(.icon-link):visited:hover {
-  color: #0c3953;
 }
 
 /* Navigation Bar Styles */

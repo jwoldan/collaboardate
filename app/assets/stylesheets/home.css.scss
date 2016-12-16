@@ -46,6 +46,38 @@
   &.grey {
     background-color: #838C91;
   }
+
+  a:not(.button) {
+    color: #5e98ba;
+    text-decoration: underline;
+  }
+
+  a:not(.button) {
+    color: #265773;
+  }
+
+  a:not(.button) {
+    color: #0079bf;
+  }
+
+  a:not(.button) {
+    color: #0c3953;
+  }
+
+  a.icon-link {
+    color: #444;
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+
+    &:hover {
+      color: #444;
+    }
+
+    .user-icon {
+      cursor: pointer;
+    }
+  }
 }
 
 /* Menu (used for dropdowns and other popup menus) */
@@ -557,20 +589,5 @@
     color: #444;
     background-color: #D6DADC;
 
-  }
-}
-
-.icon-link {
-  color: #444;
-  padding: 0;
-  margin: 0;
-  text-decoration: none;
-
-  &:hover {
-    color: #444;
-  }
-
-  .user-icon {
-    cursor: pointer;
   }
 }
