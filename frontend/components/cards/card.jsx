@@ -81,7 +81,7 @@ class Card extends DynamicEditable {
         onClick={ this.viewCardDetail }>
         <CardQuickEditContainer card={ card } disabled={ disabled } />
         <h4 className="card-title">
-          <section className="card-summary">{ card.title } - { card.ord }</section>
+          <section className="card-summary">{ card.title }</section>
         </h4>
         <section className="card-icons">
           <CardDueDateBadge card={ card }/>
