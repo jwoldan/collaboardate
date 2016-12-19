@@ -1,6 +1,6 @@
 # Collaboardate
 
-[Heroku Link](http://collaboardate-app.herokuapp.com/)
+[Heroku Link](https://collaboardate.com)
 
 [Trello Link](https://trello.com/b/m0YDD5ZF/collaboardate)
 

@@ -1,6 +1,6 @@
 # Collaboardate
 
-[Collaboardate Live](http://collaboardate-app.herokuapp.com/)
+[Collaboardate Live](https://collaboardate.com)
 
 Collaboardate is a full stack web application inspired by Trello.  It utilizes a [Ruby on Rails](http://rubyonrails.org/) backend and [PostgreSQL](https://www.postgresql.org/) database to provide a RESTful JSON API for a the front end [React](https://facebook.github.io/react/) application.  Front end state is stored and managed using a [Redux](https://github.com/reactjs/redux) state container. Drag and drop reordering is implemented using [React DnD](https://gaearon.github.io/react-dnd/), and [Moment.js](http://momentjs.com/) provides date handling features.
 
