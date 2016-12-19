@@ -1,6 +1,6 @@
 # README
 
-Collaboardate is a web application inspired by Trello and built using Ruby on Rails and React/Redux. For additional details on teh development of this project, see the [production README](docs/README.md) and [development README](docs/development-readme.md).
+Collaboardate is a web application inspired by Trello and built using Ruby on Rails and React/Redux. For additional details on the development of this project, see the [production README](docs/README.md) and [development README](docs/development-readme.md).
 
 ## Prerequisites
 - Up to date versions of ruby and npm.  
