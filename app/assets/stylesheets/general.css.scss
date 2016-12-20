@@ -61,11 +61,11 @@ a {
   color: #4d4d4d;
 }
 
-.quiet, .quiet a, .quiet a:not(.button) {
+.quiet, .quiet a:not(.button) {
   color: #999;
 }
 
-.quiet a:hover, .quiet a:not(.button):hover {
+.quiet a:not(.button):hover {
   color: #333
 }
 

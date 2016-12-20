@@ -127,12 +127,14 @@ class SignupForm extends React.Component {
 
         </form>
 
-        <p className="quiet">
+        <p>
           Already have an account?&nbsp;
           <Link to="/login">Log in.</Link>
         </p>
-        <p className="quiet">Just want to try it out?&nbsp;
-          <a onClick={ this.loginGuest }>Log in as Guest.</a>
+        <p>Just want to try it out?&nbsp;
+          <a className="loud bold" onClick={ this.loginGuest }>
+            Log in as Guest.
+          </a>
         </p>
       </section>
     );

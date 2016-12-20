@@ -128,7 +128,7 @@
 
   }
 
-  a {
+  a:not(.button) {
     color: #0079bf;
     text-decoration: underline;
     cursor: pointer;
@@ -167,5 +167,9 @@
     &:hover {
       background: linear-gradient(to bottom, #5aac44 0, #519839 100%)
     }
+  }
+
+  .button {
+    box-shadow: 0 2px 0 #3f6f21;
   }
 }

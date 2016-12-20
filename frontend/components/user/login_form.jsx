@@ -91,8 +91,10 @@ class LoginForm extends React.Component {
           Don&#8217;t have an account?&nbsp;
           <Link to="/signup">Create a Collaboardate account.</Link>
         </p>
-        <p className="quiet">Just want to try it out?&nbsp;
-          <a onClick={ this.loginGuest }>Log in as Guest.</a>
+        <p>Just want to try it out?&nbsp;
+          <a className="bold" onClick={ this.loginGuest }>
+            Log in as Guest.
+          </a>
         </p>
       </section>
     );
