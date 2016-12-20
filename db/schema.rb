@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(version: 20161220022815) do
     t.datetime "updated_at",                        null: false
     t.datetime "due_date"
     t.boolean  "due_date_complete", default: false, null: false
-    t.integer  "comments_count"
+    t.integer  "comments_count",    default: 0
     t.index ["author_id"], name: "index_cards_on_author_id", using: :btree
     t.index ["list_id", "ord"], name: "index_cards_on_list_id_and_ord", using: :btree
   end
