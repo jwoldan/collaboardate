@@ -23,7 +23,7 @@
   "bugs": {
     "url": "https://github.com/jwoldan/Collaboardate/issues"
   },
-  "homepage": "https://github.com/jwoldan/Collaboardate#readme",
+  "homepage": "https://collaboardate.com",
   "dependencies": {
     "babel-core": "^6.18.2",
     "babel-loader": "^6.2.8",
