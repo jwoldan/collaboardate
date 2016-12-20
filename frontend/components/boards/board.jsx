@@ -27,7 +27,8 @@ class Board extends React.Component {
       this.fetchBoardAndContents(boardId);
     } else if(this.props.params.cardId !== cardId &&
         this.props.cardDetail.id !== parseInt(cardId) &&
-        newProps.cardDetail.id !== parseInt(cardId)) {
+        newProps.cardDetail.id !== parseInt(cardId)
+        && typeof cardId !== 'undefined') {
       this.fetchCardDetailAndBoard(cardId);
     }
   }
