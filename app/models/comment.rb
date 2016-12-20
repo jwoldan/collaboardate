@@ -13,7 +13,7 @@
 class Comment < ApplicationRecord
   validates :body, :card, :author, presence: true
 
-  belongs_to :card
+  belongs_to :card, counter_cache: true
 
   belongs_to :author,
     class_name: 'User'
