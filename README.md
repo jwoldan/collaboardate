@@ -24,4 +24,4 @@ Before executing these commands, make sure Postgres.app is running.
 
 ## Starting the Server
 1. `bundle exec rails server`
-2.  Visit http://localhost:3000/ to see Collaboardate in action!
+2.  Visit `http://localhost:3000/` to see Collaboardate in action!
