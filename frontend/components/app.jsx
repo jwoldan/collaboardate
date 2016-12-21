@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Welcome from './welcome/welcome';
+import WelcomeContainer from './welcome/welcome_container';
 import HomeContainer from './home/home_container';
 
 class App extends React.Component {
@@ -25,7 +25,7 @@ class App extends React.Component {
         (typeof params.cardId !== 'undefined')) {
       innerContent = <HomeContainer children={ children } />;
     } else {
-      innerContent = <Welcome/>;
+      innerContent = <WelcomeContainer />;
     }
 
     return (
