@@ -101,4 +101,4 @@ Implement notifications and live updating, so that users can see updates perform
 
 ### Card Search
 
-Implement search feature which searches cards and possibly boards.
+Implement search feature which searches the current user's cards and boards.
