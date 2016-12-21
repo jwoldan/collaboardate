@@ -42,6 +42,13 @@ class Welcome extends React.Component {
           </p>
         </section>
 
+        <section className="welcome-example">
+          <section className="welcome-text-content">
+            <p>Keep track of anything, from programing projects to produce.</p>
+          </section>
+          <img className="welcome-screenshot" />
+        </section>
+
         <section className="welcome-tail welcome-text-content">
           <p>
             Ready to Collaboardate?<br />
@@ -49,8 +56,11 @@ class Welcome extends React.Component {
           , so why not give it a shot?
           </p>
           <Link to="/signup" className="signup button green bold">
-            Sign Up - It&#8217;s Free.
+            Sign Up for Free
           </Link>
+          <a className="signup button green bold" onClick={ this.loginGuest }>
+            Log In as Guest
+          </a>
           <p className="small">
             Already have an account?&nbsp;
             <Link to="/login" className="login">Log in.</Link>

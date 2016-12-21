@@ -97,6 +97,17 @@
   }
 }
 
+.welcome-example {
+  padding: 2px 70px 50px;
+  background: #315989;
+}
+
+.welcome-screenshot {
+  content: image-url('restaurant-operations.png');
+  border-radius: 3px;
+  overflow: hidden;
+}
+
 .welcome-tail {
   margin-top: 80px;
   margin-bottom: 100px;
