@@ -110,6 +110,16 @@ class User < ApplicationRecord
       )
   end
 
+  def all_boards_with_users
+    own_boards_with_users = self
+      .own_boards
+      .includes(:creator, sharees: :received_shares)
+    shared_boards_with_users = self
+      .shared_boards
+      .includes(:creator, sharees: :received_shares)
+    own_boards_with_users + shared_boards_with_users
+  end
+
   private
 
   def ensure_session_token

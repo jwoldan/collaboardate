@@ -4,7 +4,11 @@ json.users do
     json.set! user.id do
       json.partial! 'api/users/user', user: user
       if user.id != board.creator_id
-        json.share_id user.received_shares.where(board_id: board.id).first.id
+        user.received_shares.each do |share|
+          if share.board_id == board
+            json.share_id share.id
+          end
+        end
       end
     end
   end

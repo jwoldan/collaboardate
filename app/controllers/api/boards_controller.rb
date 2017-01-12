@@ -25,7 +25,7 @@ class Api::BoardsController < ApplicationController
   end
 
   def index
-    @boards = current_user.all_boards.includes(:creator, :sharees)
+    @boards = current_user.all_boards_with_users
     render :index
   end
 
