@@ -12,8 +12,11 @@ import ListCreateContainer from '../lists/list_create_container';
 class Board extends React.Component {
 
   componentDidMount() {
-    const { boardId, cardId } = this.props.params;
-    if (typeof boardId !== 'undefined') {
+    let { boardId, cardId } = this.props.params;
+    boardId = parseInt(boardId);
+    cardId = parseInt(cardId);
+    // check if boardId is NaN
+    if (boardId === boardId) {
       this.fetchBoardAndContents(boardId);
     } else {
       this.fetchCardDetailAndBoard(cardId);
@@ -21,14 +24,19 @@ class Board extends React.Component {
   }
 
   componentWillReceiveProps(newProps) {
-    const { boardId, cardId } = newProps.params;
-    if (this.props.params.boardId !== boardId &&
-        typeof boardId !== 'undefined') {
+    let { boardId, cardId } = newProps.params;
+    boardId = parseInt(boardId);
+    cardId = parseInt(cardId);
+    if (parseInt(this.props.params.boardId) !== boardId &&
+        this.props.currentBoardId !== boardId &&
+        // check if boardId is NaN
+        boardId === boardId) {
       this.fetchBoardAndContents(boardId);
-    } else if(this.props.params.cardId !== cardId &&
-        this.props.cardDetail.id !== parseInt(cardId) &&
-        newProps.cardDetail.id !== parseInt(cardId)
-        && typeof cardId !== 'undefined') {
+    } else if(parseInt(this.props.params.cardId) !== cardId &&
+        this.props.cardDetail.id !== cardId &&
+        newProps.cardDetail.id !== cardId &&
+        // check if cardId is NaN
+        cardId === cardId) {
       this.fetchCardDetailAndBoard(cardId);
     }
   }
@@ -36,13 +44,21 @@ class Board extends React.Component {
   componentWillUnmount() {
     this.props.receiveLists({});
     this.props.receiveCards({});
+    this.props.receiveCurrentBoardId(null);
   }
 
   fetchBoardAndContents(boardId) {
+    this.props.receiveLists({});
+    this.props.receiveCards({});
+    this.props.receiveCurrentBoardId(boardId);
     return this.props.fetchBoard(boardId).then(
       (board) => {
-        this.props.fetchLists(board.id);
-        this.props.fetchCards(board.id);
+        this.props.fetchLists(board.id).then(
+          (lists) => {
+            this.props.fetchCards(board.id);
+          }
+        );
+
       },
       (error) => this.props.router.push('/')
     );
@@ -50,7 +66,11 @@ class Board extends React.Component {
 
   fetchCardDetailAndBoard(cardId) {
     return this.props.fetchCardDetail(cardId).then(
-      (card) => this.fetchBoardAndContents(card.board_id),
+      (card) => {
+        if (this.props.currentBoardId !== card.board_id) {
+          this.fetchBoardAndContents(card.board_id);
+        }
+      },
       (error) => this.props.router.push('/')
     );
   }

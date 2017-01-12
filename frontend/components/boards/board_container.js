@@ -7,6 +7,7 @@ import { selectBoard, selectLists, checkDisabled }
 import { fetchBoard, updateBoard } from '../../actions/board_actions';
 import { fetchLists, receiveLists } from '../../actions/list_actions';
 import { fetchCards, receiveCards } from '../../actions/card_actions';
+import { receiveCurrentBoardId } from '../../actions/current_board_id_actions';
 import { fetchCardDetail } from '../../actions/card_detail_actions';
 
 
@@ -22,6 +23,7 @@ const mapStateToProps = (state, ownProps) => {
     disabled: checkDisabled(board, state.currentUser),
     board,
     lists: selectLists(state, ownProps.params.boardId),
+    currentBoardId: state.currentBoardId,
     cardDetail: state.cardDetail,
   };
 };
@@ -33,6 +35,7 @@ const mapDispatchToProps = (dispatch) => ({
   receiveLists: (lists) => dispatch(receiveLists(lists)),
   fetchCardDetail: (cardId) => dispatch(fetchCardDetail(cardId)),
   fetchCards: (boardId) => dispatch(fetchCards(boardId)),
+  receiveCurrentBoardId: (boardId) => dispatch(receiveCurrentBoardId(boardId)),
   receiveCards: (cards) => dispatch(receiveCards(cards)),
 });
 
