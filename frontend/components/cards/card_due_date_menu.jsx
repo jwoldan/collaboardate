@@ -81,12 +81,14 @@ class CardDueDateMenu extends ToggleMenu {
             type="date"
             className="input"
             ref="dueDateInput"
+            placeholder="e.g., 01/24/2018"
             value={ dueDate }
             onChange={ this.update('dueDate') } />
           <input
             type="time"
             className="input"
             ref="dueTimeInput"
+            placeholder="e.g., 12:45 PM"
             value={ dueTime }
             onChange={ this.update('dueTime') } />
         </label>
