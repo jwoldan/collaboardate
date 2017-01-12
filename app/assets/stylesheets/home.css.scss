@@ -112,11 +112,15 @@
     font-size: 12px;
   }
 
+  p:not(:last-child) {
+    margin-bottom: 10px;
+  }
+
   a:hover .quiet {
     color: white;
   }
 
-  :not(.quiet) > a:not(.button):not(.icon-link):not(.board-link) {
+  :not(.quiet):not(.loud) > a:not(.button):not(.icon-link):not(.board-link) {
     display: block;
     padding: 5px 9px;
     color: #444;
