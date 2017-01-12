@@ -16,8 +16,10 @@ class HomeInformationMenu extends ToggleMenu {
         </p>
         <p className="loud small">Collaboardate was created by&nbsp;
           <a href="http://jwoldan.net" target="_blank">Jeffrey Woldan</a>.
-          The source code is available on&nbsp;
-          <a href="https://github.com/jwoldan/collaboardate">Github</a>.
+          You can see the source code on&nbsp;
+          <a href="https://github.com/jwoldan/collaboardate" target="_blank">
+            Github
+          </a>.
         </p>
       </section>
     );
