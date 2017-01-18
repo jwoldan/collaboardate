@@ -8,7 +8,7 @@ class Api::BoardsController < ApplicationController
     @board = current_user.own_boards.new(board_params)
 
     if @board.save
-      render :short_show
+      render :show
     else
       render json: @board.errors, status: 422
     end
@@ -18,14 +18,14 @@ class Api::BoardsController < ApplicationController
     @board = Board.find(params[:id])
 
     if @board.update(board_params)
-      render :short_show
+      render :show
     else
       render json: @board.errors, status: 422
     end
   end
 
   def index
-    @boards = current_user.all_boards_with_users
+    @boards = current_user.all_boards
     render :index
   end
 
@@ -37,7 +37,7 @@ class Api::BoardsController < ApplicationController
   def destroy
     @board = Board.find(params[:id])
     @board.destroy
-    render :short_show
+    render :show
   end
 
   private

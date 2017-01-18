@@ -23,7 +23,7 @@ export const selectPersonalBoards = ({ boards, currentUser }) => (
   Object.keys(boards)
     .map(key => boards[key])
     .filter(
-      (board) => board.creator_id === currentUser.id
+      (board) => board.creator.id === currentUser.id
     )
 );
 
@@ -31,8 +31,7 @@ export const selectSharedBoards = ({ boards, currentUser }) => {
   const boardArray = Object.keys(boards).map(key => boards[key]);
   return boardArray.filter((board) => {
     return (
-      board.creator_id !== currentUser.id &&
-      checkSharedUser(board, currentUser)
+      board.creator.id !== currentUser.id
     );
   });
 };
@@ -51,36 +50,46 @@ export const selectBoard = ({ boards, cards, cardDetail }, id, cardId) => {
   return {};
 };
 
-export const selectBoardUsers = ({ boards, currentUser }, boardId) => {
+export const selectBoardUsers = ({ boards, shares, currentUser }, boardId) => {
   let users = [];
   const board = boards[boardId];
 
-  if(board && board.users && currentUser) {
-    if (board.users[currentUser.id]) users.push(currentUser);
-    const otherUsers = Object.keys(board.users)
-      .map((key) => board.users[key])
-      .filter((user) => {
-        return user.id !== currentUser.id;
-      });
-    users = users.concat(otherUsers);
-  }
+  if(board) users.push(board.creator);
+
+  const otherUsers = Object.keys(shares).map((key) => shares[key].sharee);
+  users = users.concat(otherUsers);
 
   return users;
 };
 
 export const checkDisabled = (board, currentUser) => {
-  if(board && board.users && currentUser) {
-    return !checkSharedUser(board, currentUser);
+  if(board && board.creator && currentUser) {
+    if (board.creator.id === currentUser.id) return false;
+    if (board.users) {
+      return !checkSharedUser(board, currentUser);
+    }
   }
   return true;
 };
 
-export const checkSharedUser = (board, currentUser) => {
-  if (board && currentUser) {
-    const userIds = Object.keys(board.users).map((key)=> parseInt(key));
+export const checkSharedUser = (shares, currentUser) => {
+  if (shares && currentUser) {
+    const userIds = Object.keys(shares).map((key)=> shares[key].sharee.id);
     if (userIds.includes(currentUser.id)) return true;
   }
   return false;
+};
+
+export const selectShareId = (shares, currentUser) => {
+  if (shares && currentUser) {
+    const shareArray = Object.keys(shares).map((key) => shares[key]);
+    for(let i = 0; i < shareArray.length; i++) {
+      if (shareArray[i].sharee.id === currentUser.id) {
+        return shareArray[i].id;
+      }
+    }
+  }
+  return null;
 };
 
 /* Lists */

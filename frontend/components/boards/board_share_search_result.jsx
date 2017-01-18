@@ -9,9 +9,8 @@ class BoardShareSearchResult extends React.Component {
   }
 
   handleClick() {
-    const { board, user, alreadyShared } = this.props;
+    const { board, user, alreadyShared, shareId } = this.props;
     if (alreadyShared) {
-      const shareId = board.users[user.id].share_id;
       this.props.deleteShare(shareId);
     } else {
       this.props.createShare({

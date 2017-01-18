@@ -14,6 +14,13 @@ class Api::BoardSharesController < ApplicationController
     end
   end
 
+  def index
+    @board_shares = BoardShare
+      .includes(:sharee)
+      .where(board_id: params[:board_id])
+    render :index
+  end
+
   def show
     @board_share = BoardShare.find(params[:id])
     render :show

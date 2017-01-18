@@ -44,18 +44,24 @@ class Board extends React.Component {
   componentWillUnmount() {
     this.props.receiveLists({});
     this.props.receiveCards({});
+    this.props.receiveShares({});
     this.props.receiveCurrentBoardId(null);
   }
 
   fetchBoardAndContents(boardId) {
     this.props.receiveLists({});
     this.props.receiveCards({});
+    this.props.receiveShares({});
     this.props.receiveCurrentBoardId(boardId);
     return this.props.fetchBoard(boardId).then(
       (board) => {
         this.props.fetchLists(board.id).then(
           (lists) => {
-            this.props.fetchCards(board.id);
+            this.props.fetchCards(board.id).then(
+              (cards) => {
+                this.props.fetchShares(board.id);
+              }
+            );
           }
         );
 
@@ -77,7 +83,7 @@ class Board extends React.Component {
 
   render() {
     const { currentUser, board, lists, updateBoard, disabled } = this.props;
-    const navDisabled = disabled || (currentUser.id !== board.creator_id);
+    const navDisabled = disabled || (currentUser.id !== board.creator.id);
 
     return (
       <section className="current-board">

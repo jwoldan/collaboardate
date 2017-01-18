@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     resources :boards, except: [:new, :edit] do
       resources :lists, only: :index
       resources :cards, only: :index
+      resources :board_shares, only: :index
     end
 
     resources :lists, except: [:new, :edit, :index]

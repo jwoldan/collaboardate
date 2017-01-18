@@ -7,6 +7,7 @@ import { selectBoard, selectLists, checkDisabled }
 import { fetchBoard, updateBoard } from '../../actions/board_actions';
 import { fetchLists, receiveLists } from '../../actions/list_actions';
 import { fetchCards, receiveCards } from '../../actions/card_actions';
+import { fetchShares, receiveShares } from '../../actions/board_share_actions';
 import { receiveCurrentBoardId } from '../../actions/current_board_id_actions';
 import { fetchCardDetail } from '../../actions/card_detail_actions';
 
@@ -37,6 +38,8 @@ const mapDispatchToProps = (dispatch) => ({
   fetchCards: (boardId) => dispatch(fetchCards(boardId)),
   receiveCurrentBoardId: (boardId) => dispatch(receiveCurrentBoardId(boardId)),
   receiveCards: (cards) => dispatch(receiveCards(cards)),
+  fetchShares: (boardId) => dispatch(fetchShares(boardId)),
+  receiveShares: (shares) => dispatch(receiveShares(shares)),
 });
 
 export default connect(

@@ -102,22 +102,13 @@ class User < ApplicationRecord
 
   def all_boards
     Board
+      .includes(:creator)
       .left_outer_joins(:shares)
       .where(
         "boards.creator_id = ? OR board_shares.sharee_id = ?",
         self.id,
         self.id
       )
-  end
-
-  def all_boards_with_users
-    own_boards_with_users = self
-      .own_boards
-      .includes(:creator, sharees: :received_shares)
-    shared_boards_with_users = self
-      .shared_boards
-      .includes(:creator, sharees: :received_shares)
-    own_boards_with_users + shared_boards_with_users
   end
 
   private

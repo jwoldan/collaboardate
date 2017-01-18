@@ -5,9 +5,9 @@ import BoardMenu from './board_menu';
 import { checkSharedUser } from '../../reducers/selectors';
 import { toggleMenu } from '../../actions/menu_status_actions';
 
-const mapStateToProps = ({ menuStatus, boards, currentUser }, ownProps) => {
+const mapStateToProps = ({ menuStatus, shares, currentUser }, ownProps) => {
   return ({
-    shared: checkSharedUser(boards[ownProps.params.boardId], currentUser),
+    shared: checkSharedUser(shares, currentUser),
     show: menuStatus.showBoardMenu,
   });
 };

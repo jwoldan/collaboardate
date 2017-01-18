@@ -1,7 +1,15 @@
 import * as BoardShareAPIUtil from '../util/board_share_api_util';
 
+export const RECEIVE_SHARES = 'RECEIVE_SHARES';
 export const RECEIVE_SHARE = 'RECEIVE_SHARE';
 export const REMOVE_SHARE = 'REMOVE_SHARE';
+
+export const receiveShares = (shares) => {
+  return {
+    type: RECEIVE_SHARES,
+    shares,
+  };
+};
 
 export const receiveShare = (share) => {
   return {
@@ -23,6 +31,17 @@ export const createShare = (share) => {
       newShare => {
         dispatch(receiveShare(newShare));
         return newShare;
+      }
+    );
+  };
+};
+
+export const fetchShares = (boardId) => {
+  return dispatch => {
+    return BoardShareAPIUtil.fetchShares(boardId).then(
+      shares => {
+        dispatch(receiveShares(shares));
+        return shares;
       }
     );
   };
