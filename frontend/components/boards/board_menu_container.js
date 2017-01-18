@@ -7,9 +7,9 @@ import { toggleMenu } from '../../actions/menu_status_actions';
 
 const mapStateToProps = ({ menuStatus, boards, currentUser }, ownProps) => {
   return ({
-  shared: checkSharedUser(boards[ownProps.params.boardId], currentUser),
-  show: menuStatus.showBoardMenu,
-});
+    shared: checkSharedUser(boards[ownProps.params.boardId], currentUser),
+    show: menuStatus.showBoardMenu,
+  });
 };
 
 const mapDispatchToProps = (dispatch) => ({
