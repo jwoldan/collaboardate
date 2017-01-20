@@ -3,6 +3,8 @@ import * as CardAPIUtil from '../util/card_api_util';
 export const RECEIVE_CARDS = 'RECEIVE_CARDS';
 export const RECEIVE_CARD = 'RECEIVE_CARD';
 export const REMOVE_CARD = 'REMOVE_CARD';
+export const INCREMENT_COMMENT_COUNT = 'INCREMENT_COMMENT_COUNT';
+export const DECREMENT_COMMENT_COUNT = 'DECREMENT_COMMENT_COUNT';
 
 export const receiveCards = (cards) => {
   return {
@@ -22,6 +24,20 @@ export const removeCard = (card) => {
   return {
     type: REMOVE_CARD,
     card,
+  };
+};
+
+export const incrementCommentCount = (cardId) => {
+  return {
+    type: INCREMENT_COMMENT_COUNT,
+    cardId,
+  };
+};
+
+export const decrementCommentCount = (cardId) => {
+  return {
+    type: DECREMENT_COMMENT_COUNT,
+    cardId,
   };
 };
 

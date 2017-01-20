@@ -1,4 +1,5 @@
 import * as CommentAPIUtil from '../util/comment_api_util';
+import { incrementCommentCount, decrementCommentCount } from './card_actions';
 
 export const RECEIVE_COMMENT = 'RECEIVE_COMMENT';
 export const REMOVE_COMMENT = 'REMOVE_COMMENT';
@@ -22,6 +23,7 @@ export const createComment = (comment) => {
     return CommentAPIUtil.createComment(comment).then(
       newComment => {
         dispatch(receiveComment(newComment));
+        dispatch(incrementCommentCount(newComment.card_id));
         return newComment;
       }
     );
@@ -44,6 +46,7 @@ export const deleteComment = (id) => {
     return CommentAPIUtil.deleteComment(id).then(
       deletedComment => {
         dispatch(removeComment(deletedComment));
+        dispatch(decrementCommentCount(deletedComment.card_id));
         return deletedComment;
       }
     );

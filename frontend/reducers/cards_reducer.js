@@ -43,6 +43,20 @@ export default (state = {}, action) => {
       delete newState[action.card.id];
       return newState;
 
+    case CardActions.INCREMENT_COMMENT_COUNT:
+      newState = Object.assign({}, state);
+      if (state[action.cardId]) {
+        state[action.cardId].comment_count += 1;
+      }
+      return newState;
+
+      case CardActions.DECREMENT_COMMENT_COUNT:
+        newState = Object.assign({}, state);
+        if (state[action.cardId]) {
+          state[action.cardId].comment_count -= 1;
+        }
+        return newState;
+
     default:
       return state;
   }
