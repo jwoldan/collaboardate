@@ -12,7 +12,7 @@
 #  updated_at        :datetime         not null
 #  due_date          :datetime
 #  due_date_complete :boolean          default(FALSE), not null
-#  comments_count    :integer
+#  comments_count    :integer          default(0)
 #
 
 class Card < ApplicationRecord

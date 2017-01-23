@@ -1,22 +1,19 @@
 # == Schema Information
 #
-# Table name: comments
+# Table name: checklists
 #
 #  id         :integer          not null, primary key
-#  body       :text             not null
+#  title      :string           not null
+#  ord        :integer          not null
 #  card_id    :integer          not null
-#  author_id  :integer          not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
 
-class Comment < ApplicationRecord
-  validates :body, :card, :author, presence: true
+class Checklist < ApplicationRecord
+  validates :title, :ord, presence: true
 
-  belongs_to :card, counter_cache: true
-
-  belongs_to :author,
-    class_name: 'User'
+  belongs_to :card
 
   has_one :list,
     through: :card
