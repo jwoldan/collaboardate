@@ -22,9 +22,4 @@ class Checklist < ApplicationRecord
 
   has_one :board, through: :list
 
-  def destroy
-    Checklist.update_other_ords(self.card_id, self.ord, self.max_ord)
-    super
-  end
-
 end

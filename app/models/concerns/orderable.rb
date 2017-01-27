@@ -40,6 +40,13 @@ module Orderable
     self.class.next_ord(self.send(self.class::ORD_ASSOC_ID))
   end
 
+  def destroy
+    self.class.update_other_ords(
+      self.send(self.class::ORD_ASSOC_ID), self.ord, self.max_ord
+    )
+    super
+  end
+
   protected
 
   def ensure_ord
