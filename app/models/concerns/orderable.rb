@@ -16,7 +16,6 @@ module Orderable
           where_clause = "#{self::ORD_ASSOC_ID} = ? AND ord > ? AND ord <= ?"
           update_clause = "ord = ord - 1"
         end
-
         self.where(where_clause, assoc_id, old_ord, new_ord)
           .update_all(update_clause)
       end
@@ -67,7 +66,11 @@ module Orderable
       end
       if old_ord
         new_ord = self.ord
-        self.class.update_other_ords(self.send(self.class::ORD_ASSOC_ID), old_ord, new_ord)
+        self.class.update_other_ords(
+          self.send(self.class::ORD_ASSOC_ID),
+          old_ord,
+          new_ord
+        )
       end
     end
   end
