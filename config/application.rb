@@ -14,7 +14,7 @@ module Collaboardate
 
     # disable test unit generation
     config.generators do |g|
-      g.test_framework nil
+      g.test_framework :rspec
     end
 
     config.paperclip_defaults = {
