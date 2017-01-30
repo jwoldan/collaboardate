@@ -14,7 +14,7 @@ class Checklist < ApplicationRecord
   include Orderable
   ORD_ASSOC_ID = :card_id
 
-  validates :title, :ord, presence: true
+  validates :title, :ord, :card, presence: true
 
   belongs_to :card
 
