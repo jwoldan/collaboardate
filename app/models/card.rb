@@ -17,7 +17,7 @@
 
 class Card < ApplicationRecord
   include Orderable
-  ORD_ASSOC_ID = :list_id
+  ORD_ASSOC_FIELD = :list_id
 
   validates :title, :ord, :list, :author, presence: true
   validates :due_date_complete, inclusion: [true, false]

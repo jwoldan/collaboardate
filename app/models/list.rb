@@ -12,7 +12,7 @@
 
 class List < ApplicationRecord
   include Orderable
-  ORD_ASSOC_ID = :board_id
+  ORD_ASSOC_FIELD = :board_id
 
   validates :title, :ord, :board, presence: true
 

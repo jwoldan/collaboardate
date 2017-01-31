@@ -10,10 +10,10 @@ module Orderable
     def update_other_ords(assoc_id, old_ord, new_ord)
       unless old_ord == new_ord
         if old_ord > new_ord
-          where_clause = "#{self::ORD_ASSOC_ID} = ? AND ord < ? AND ord >= ?"
+          where_clause = "#{self::ORD_ASSOC_FIELD} = ? AND ord < ? AND ord >= ?"
           update_clause = "ord = ord + 1"
         elsif old_ord < new_ord
-          where_clause = "#{self::ORD_ASSOC_ID} = ? AND ord > ? AND ord <= ?"
+          where_clause = "#{self::ORD_ASSOC_FIELD} = ? AND ord > ? AND ord <= ?"
           update_clause = "ord = ord - 1"
         end
         self.where(where_clause, assoc_id, old_ord, new_ord)
@@ -22,7 +22,7 @@ module Orderable
     end
 
     def max_ord(assoc_id)
-      self.where(self::ORD_ASSOC_ID => assoc_id).maximum(:ord)
+      self.where(self::ORD_ASSOC_FIELD => assoc_id).maximum(:ord)
     end
 
     def next_ord(assoc_id)
@@ -32,16 +32,16 @@ module Orderable
   end
 
   def max_ord
-    self.class.max_ord(self.send(self.class::ORD_ASSOC_ID))
+    self.class.max_ord(self.send(self.class::ORD_ASSOC_FIELD))
   end
 
   def next_ord
-    self.class.next_ord(self.send(self.class::ORD_ASSOC_ID))
+    self.class.next_ord(self.send(self.class::ORD_ASSOC_FIELD))
   end
 
   def destroy
     self.class.update_other_ords(
-      self.send(self.class::ORD_ASSOC_ID), self.ord, self.max_ord
+      self.send(self.class::ORD_ASSOC_FIELD), self.ord, self.max_ord
     )
     super
   end
@@ -62,12 +62,12 @@ module Orderable
         old_ord = self.changed_attributes["ord"]
         # else consider the next available ord the old_ord
       else
-        old_ord = self.class.next_ord(self.send(self.class::ORD_ASSOC_ID))
+        old_ord = self.class.next_ord(self.send(self.class::ORD_ASSOC_FIELD))
       end
       if old_ord
         new_ord = self.ord
         self.class.update_other_ords(
-          self.send(self.class::ORD_ASSOC_ID),
+          self.send(self.class::ORD_ASSOC_FIELD),
           old_ord,
           new_ord
         )

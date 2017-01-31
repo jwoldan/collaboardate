@@ -12,7 +12,7 @@
 
 class Checklist < ApplicationRecord
   include Orderable
-  ORD_ASSOC_ID = :card_id
+  ORD_ASSOC_FIELD = :card_id
 
   validates :title, :ord, :card, presence: true
 
