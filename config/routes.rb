@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   root to: 'static_pages#root'
   # get '/.well-known/acme-challenge/EbnlbXqN9gulrkzp_zrHNLIQylXvlrf-mDruBekgJ_I' => 'static_pages#letsencrypt'
-  get '/.well-known/acme-challenge/YmSsYIkgv8uQl9wBpiI7J6Uqhv_-AwIWCtROPHZVkck' => 'static_pages#letsencrypt'
+  get '/.well-known/acme-challenge/qWPxvmsFSnmOFX8SDqGcdRjfdFifA98VCw40gCO-X6M' => 'static_pages#letsencrypt'
 
   namespace :api, defaults: { format: :json } do
     resources :users, only: [:create, :update] do
