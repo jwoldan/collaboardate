@@ -44,7 +44,7 @@ class Welcome extends React.Component {
 
         <section className="welcome-example">
           <section className="welcome-text-content">
-            <p>Keep track of anything, from programing projects to produce.</p>
+            <p>Keep track of anything, from programming projects to produce.</p>
           </section>
           <img className="welcome-screenshot" />
         </section>
