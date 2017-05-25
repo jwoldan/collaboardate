@@ -13,8 +13,8 @@ export const receiveShares = (shares) => {
 
 export const receiveShare = (share) => {
   return {
-     type: RECEIVE_SHARE,
-     share,
+    type: RECEIVE_SHARE,
+    share,
   };
 };
 
