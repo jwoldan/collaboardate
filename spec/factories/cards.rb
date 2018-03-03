@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :card do
     sequence(:title) { Faker::Music.instrument }
     sequence(:description) { Faker::Hipster.sentence }

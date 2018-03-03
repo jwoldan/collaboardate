@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :board do
     sequence(:title) { Faker::Commerce.department }
     visibility Board::VISIBILITY_PRIVATE

@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  subject(:user) { FactoryGirl.create(:user) }
-  let(:board) { FactoryGirl.create(:board, creator: user) }
-  let(:board_share) { FactoryGirl.create(:board_share, sharee: user) }
+  subject(:user) { FactoryBot.create(:user) }
+  let(:board) { FactoryBot.create(:board, creator: user) }
+  let(:board_share) { FactoryBot.create(:board_share, sharee: user) }
 
   describe "::find_by_credentials" do
 
