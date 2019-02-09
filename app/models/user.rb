@@ -38,36 +38,14 @@ class User < ApplicationRecord
   has_attached_file :avatar, default_url: ''
   validates_attachment_content_type :avatar, content_type: %r{\Aimage/.*\Z}
 
-  has_many :own_boards,
-           class_name: 'Board',
-           foreign_key: :creator_id
-
-  has_many :own_lists,
-           through: :own_boards,
-           source: :lists
-
-  has_many :own_cards,
-           through: :own_lists,
-           source: :cards
-
-  has_many :authored_cards,
-           class_name: 'Card',
-           foreign_key: :author_id
-
-  has_many :given_shares,
-           class_name: 'BoardShare',
-           foreign_key: :sharer_id
-
-  has_many :received_shares,
-           class_name: 'BoardShare',
-           foreign_key: :sharee_id
-
-  has_many :shared_boards,
-           through: :received_shares,
-           source: :board
-
-  has_many :comments,
-           foreign_key: :author_id
+  has_many :own_boards, class_name: 'Board', foreign_key: :creator_id
+  has_many :own_lists, through: :own_boards, source: :lists
+  has_many :own_cards, through: :own_lists, source: :cards
+  has_many :authored_cards, class_name: 'Card', foreign_key: :author_id
+  has_many :given_shares, class_name: 'BoardShare', foreign_key: :sharer_id
+  has_many :received_shares, class_name: 'BoardShare', foreign_key: :sharee_id
+  has_many :shared_boards, through: :received_shares, source: :board
+  has_many :comments, foreign_key: :author_id
 
   def self.generate_session_token
     token = nil
@@ -120,32 +98,38 @@ class User < ApplicationRecord
   end
 
   def strip_whitespace
-    self.username = username.strip unless username.nil?
-    self.email = email.strip unless email.nil?
-    self.full_name = full_name.strip unless full_name.nil?
-    self.initials = initials.strip unless initials.nil?
+    self.username = username&.strip
+    self.email = email&.strip
+    self.full_name = full_name&.strip
+    self.initials = initials&.strip
   end
 
   def generate_defaults
-    if full_name
-      unless username
-        base_username = full_name.downcase.delete(' ')
-        username = base_username
-        number = 0
-        while User.find_by(username: username)
-          number += 1
-          username = "#{base_username}#{number}"
-        end
-        self.username = username
-      end
+    generate_username
+    generate_initials
+  end
 
-      unless initials
-        initials = ''
-        full_name.split(' ').each do |word|
-          initials += word[0].upcase
-        end
-        self.initials = initials.slice(0, 3)
-      end
+  def generate_username
+    return if username
+    return unless full_name
+
+    base_username = full_name.downcase.delete(' ')
+    username = base_username
+    number = 0
+    while User.where(username: username).exists?
+      number += 1
+      username = "#{base_username}#{number}"
     end
+    self.username = username
+  end
+
+  def generate_initials
+    return if initials
+    return unless full_name
+
+    self. initials = full_name.split
+                              .slice(0, 3)
+                              .map { word.first.upcase }
+                              .join || ''
   end
 end
