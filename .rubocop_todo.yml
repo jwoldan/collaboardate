@@ -15,9 +15,3 @@ Lint/AssignmentInCondition:
 # Offense count: 41
 Style/Documentation:
   Enabled: false
-
-# Offense count: 40
-# Configuration parameters: AllowHeredoc, AllowURI, URISchemes, IgnoreCopDirectives, IgnoredPatterns.
-# URISchemes: http, https
-Metrics/LineLength:
-  Max: 130

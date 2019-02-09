@@ -9,6 +9,9 @@ Metrics/BlockLength:
   Exclude:
     - spec/**/*
 
+Metrics/LineLength:
+  Max: 100
+
 Metrics/MethodLength:
   Exclude:
     - db/migrate/*

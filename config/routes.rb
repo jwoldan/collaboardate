@@ -4,8 +4,9 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   root to: 'static_pages#root'
-  # get '/.well-known/acme-challenge/EbnlbXqN9gulrkzp_zrHNLIQylXvlrf-mDruBekgJ_I' => 'static_pages#letsencrypt'
+  # rubocop:disable Metrics/LineLength
   # get '/.well-known/acme-challenge/qWPxvmsFSnmOFX8SDqGcdRjfdFifA98VCw40gCO-X6M' => 'static_pages#letsencrypt'
+  # rubocop:enable Metrics/LineLength
 
   namespace :api, defaults: { format: :json } do
     resources :users, only: %i[create update] do
