@@ -25,4 +25,11 @@ class Comment < ApplicationRecord
 
   has_one :board,
           through: :list
+
+  delegate :board_id,
+           to: :list
+
+  def author?(user)
+    author_id == user.id
+  end
 end

@@ -25,15 +25,16 @@ class BoardShare < ApplicationRecord
   belongs_to :sharee,
              class_name: 'User'
 
+  def sharer?(user)
+    sharer_id == user.id
+  end
+
   private
 
   def sharer_owns_board
-    board = Board.find(board_id)
-    if board
-      if board.creator_id != sharer_id
-        @errors.add(:sharer, 'is not the board creator')
-      end
-    end
+    return if Board.where(id: board_id, creator: sharer_id).exists?
+
+    @errors.add(:sharer, 'is not the board creator')
   end
 
   def no_self_shares

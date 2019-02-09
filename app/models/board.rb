@@ -55,4 +55,21 @@ class Board < ApplicationRecord
 
   has_many :sharees,
            through: :shares
+
+  def creator?(user)
+    creator_id == user.id
+  end
+
+  def private?
+    visibility == VISIBILITY_PRIVATE
+  end
+
+  def public?
+    visibility == VISIBILITY_PUBLIC
+  end
+
+  def shared_with?(user)
+    shares.where(sharee: user)
+          .exists?
+  end
 end

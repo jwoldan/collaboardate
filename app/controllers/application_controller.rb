@@ -31,29 +31,28 @@ class ApplicationController < ActionController::Base
   end
 
   def require_board_creator(board_id)
-    board = Board.find(board_id)
-    if !current_user || board.creator_id != current_user.id
-      render json: 'Unauthorized access', status: 401
+    if logged_in?
+      board = Board.find(board_id)
+      return if board.creator?(current_user)
     end
+
+    render json: 'Unauthorized access', status: 401
   end
 
   def require_board_access(board_id)
-    @board ||= Board.find(board_id)
-    if current_user
-      return if @board.creator_id == current_user.id
-
-      authorized = false
-      @board.shares.each do |share|
-        authorized = true if share.sharee_id == current_user.id
-      end
+    if logged_in?
+      board = Board.find(board_id)
+      return if board.creator?(current_user)
+      return if board.shared_with?(current_user)
     end
+
     render json: 'Unauthorized access', status: 401 unless authorized
   end
 
   def check_board_visibility(board_id)
-    @board ||= Board.find(board_id)
-    if @board.visibility == Board::VISIBILITY_PRIVATE
-      require_board_access(board_id)
-    end
+    board = Board.find(board_id)
+    return if board.public?
+
+    require_board_access(board_id)
   end
 end

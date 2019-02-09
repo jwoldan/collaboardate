@@ -36,23 +36,25 @@ class Card < ApplicationRecord
 
   after_validation :handle_list_change
 
+  delegate :board_id,
+           to: :list
+
   private
 
   # When a card's list changes, update ords in both the old and new list
   def handle_list_change
     old_list_id = changed_attributes['list_id']
+    return unless old_list_id
 
-    if old_list_id
-      # Update ords in old list
-      old_ord = ord_changed? ? changed_attributes['ord'] : ord
-      new_ord = Card.max_ord(old_list_id)
-      Card.update_other_ords(old_list_id, old_ord, new_ord)
+    # Update ords in old list
+    old_ord = ord_changed? ? changed_attributes['ord'] : ord
+    new_ord = Card.max_ord(old_list_id)
+    Card.update_other_ords(old_list_id, old_ord, new_ord)
 
-      # Update ords in new list
-      new_list_id = list_id
-      new_ord = ord
-      old_ord = Card.next_ord(new_list_id)
-      Card.update_other_ords(new_list_id, old_ord, new_ord)
-    end
+    # Update ords in new list
+    new_list_id = list_id
+    new_ord = ord
+    old_ord = Card.next_ord(new_list_id)
+    Card.update_other_ords(new_list_id, old_ord, new_ord)
   end
 end

@@ -40,10 +40,12 @@ class Api::BoardSharesController < ApplicationController
   end
 
   def require_creator
-    board_share = BoardShare.find(params[:id])
-    if !current_user || board_share.sharer_id != current_user.id
-      render json: 'Unauthorized access', status: 401
+    if logged_in?
+      board_share = BoardShare.find(params[:id])
+      return if board_share.sharer?(current_user)
     end
+
+    render json: 'Unauthorized access', status: 401
   end
 
   def require_shared_board_creator

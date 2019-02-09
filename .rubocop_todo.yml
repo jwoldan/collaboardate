@@ -16,18 +16,6 @@ Lint/AssignmentInCondition:
 Style/Documentation:
   Enabled: false
 
-# Offense count: 10
-# Configuration parameters: MinBodyLength.
-Style/GuardClause:
-  Exclude:
-    - 'app/controllers/api/board_shares_controller.rb'
-    - 'app/controllers/api/comments_controller.rb'
-    - 'app/controllers/application_controller.rb'
-    - 'app/models/board_share.rb'
-    - 'app/models/card.rb'
-    - 'app/models/concerns/orderable.rb'
-    - 'app/models/user.rb'
-
 # Offense count: 5
 # Cop supports --auto-correct.
 Style/IfUnlessModifier:

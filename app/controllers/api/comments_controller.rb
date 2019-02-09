@@ -44,17 +44,19 @@ class Api::CommentsController < ApplicationController
   end
 
   def require_creator
-    comment = Comment.find(params[:id])
-    if !current_user || comment.author_id != current_user.id
-      render json: 'Unauthorized access', status: 401
+    if logged_in?
+      comment = Comment.find(params[:id])
+      return if comment.author?(current_user)
     end
+
+    render json: 'Unauthorized access', status: 401
   end
 
   def require_parent_board_access
     board_id = if params[:id]
-                 Comment.find(params[:id]).board.id
+                 Comment.find(params[:id]).board_id
                else
-                 Card.find(params[:comment][:card_id]).board.id
+                 Card.find(params[:comment][:card_id]).board_id
                end
     require_board_access(board_id)
   end
