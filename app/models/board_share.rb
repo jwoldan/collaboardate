@@ -37,7 +37,7 @@ class BoardShare < ApplicationRecord
   end
 
   def no_self_shares
-    return unless sharer_id && share_id
+    return unless sharer_id && sharee_id
     return unless sharer_id == sharee_id
 
     @errors.add(:sharee, 'can not be the sharer')
