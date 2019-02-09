@@ -12,11 +12,6 @@ Lint/AssignmentInCondition:
   Exclude:
     - 'bin/spring'
 
-# Offense count: 1
-# Configuration parameters: CountComments.
-Metrics/ClassLength:
-  Max: 103
-
 # Offense count: 5
 # Configuration parameters: CountComments, ExcludedMethods.
 Metrics/MethodLength:
