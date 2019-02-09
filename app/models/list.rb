@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: lists
@@ -10,6 +12,7 @@
 #  ord        :integer          not null
 #
 
+# Lists have cards and generally represent a set of related tasks
 class List < ApplicationRecord
   include Orderable
   ORD_ASSOC_FIELD = :board_id
@@ -17,7 +20,5 @@ class List < ApplicationRecord
   validates :title, :ord, :board, presence: true
 
   belongs_to :board
-
   has_many :cards, dependent: :destroy
-
 end

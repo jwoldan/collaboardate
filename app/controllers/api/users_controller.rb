@@ -1,7 +1,8 @@
-class Api::UsersController < ApplicationController
+# frozen_string_literal: true
 
-  before_action :require_logged_in, only: [:show, :search]
-  before_action :require_self, only: [:update, :remove_avatar]
+class Api::UsersController < ApplicationController
+  before_action :require_logged_in, only: %i[show search]
+  before_action :require_self, only: %i[update remove_avatar]
 
   def create
     @user = User.new(user_params)
@@ -26,7 +27,7 @@ class Api::UsersController < ApplicationController
 
   def show
     @user = User.find_by(username: params[:username])
-    # TODO add special handling for current_user
+    # TODO: add special handling for current_user
     if @user
       render :show
     else
@@ -48,15 +49,15 @@ class Api::UsersController < ApplicationController
   end
 
   def search
-    if params[:query].present?
-      @users = User.where(
-        "username ~ ? AND id != ?",
-        params[:query],
-        current_user.id
-      )
-    else
-      @users = User.none
-    end
+    @users = if params[:query].present?
+               User.where(
+                 'username ~ ? AND id != ?',
+                 params[:query],
+                 current_user.id
+               )
+             else
+               User.none
+             end
     render :search
   end
 
@@ -77,9 +78,8 @@ class Api::UsersController < ApplicationController
   def require_self
     require_logged_in
     if current_user.id != params[:id].to_i &&
-        current_user.id != params[:user_id].to_i
-      render json: "Unauthorized access", status: 401
+       current_user.id != params[:user_id].to_i
+      render json: 'Unauthorized access', status: 401
     end
   end
-
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 @cards.each do |card|
   json.set! card.id do
     json.partial! 'api/cards/card', card: card

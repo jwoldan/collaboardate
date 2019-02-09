@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateLists < ActiveRecord::Migration[5.0]
   def change
     create_table :lists do |t|
@@ -7,6 +9,6 @@ class CreateLists < ActiveRecord::Migration[5.0]
 
       t.timestamps
     end
-    add_index :lists, [:board_id, :order], unique: true
+    add_index :lists, %i[board_id order], unique: true
   end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateChecklists < ActiveRecord::Migration[5.0]
   def change
     create_table :checklists do |t|
@@ -7,6 +9,6 @@ class CreateChecklists < ActiveRecord::Migration[5.0]
 
       t.timestamps
     end
-    add_index :checklists, [:card_id, :ord]
+    add_index :checklists, %i[card_id ord]
   end
 end

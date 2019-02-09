@@ -1,7 +1,8 @@
-class Api::CardsController < ApplicationController
+# frozen_string_literal: true
 
-  before_action :check_parent_board_visibility, only: [:index, :show]
-  before_action :require_parent_board_access, only: [:create, :update, :destroy]
+class Api::CardsController < ApplicationController
+  before_action :check_parent_board_visibility, only: %i[index show]
+  before_action :require_parent_board_access, only: %i[create update destroy]
 
   def create
     @card = Card.new(card_params)
@@ -26,9 +27,9 @@ class Api::CardsController < ApplicationController
 
   def index
     @cards = Card
-      .includes(:list, :comments)
-      .joins(:list)
-      .where("lists.board_id = ?", params[:board_id])
+             .includes(:list, :comments)
+             .joins(:list)
+             .where('lists.board_id = ?', params[:board_id])
     render :index
   end
 
@@ -53,20 +54,16 @@ class Api::CardsController < ApplicationController
   end
 
   def require_parent_board_access
-    if params[:id]
-      board_id = Card.find(params[:id]).board.id
-    else
-      board_id = List.find(params[:card][:list_id]).board_id
-    end
+    board_id = if params[:id]
+                 Card.find(params[:id]).board.id
+               else
+                 List.find(params[:card][:list_id]).board_id
+               end
     require_board_access(board_id)
   end
 
   def check_parent_board_visibility
-    if params[:board_id]
-      board_id = params[:board_id]
-    else
-      board_id = Card.find(params[:id]).board.id
-    end
+    board_id = params[:board_id] || Card.find(params[:id]).board.id
     check_board_visibility(board_id)
   end
 end

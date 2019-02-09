@@ -1,8 +1,9 @@
-class Api::BoardsController < ApplicationController
+# frozen_string_literal: true
 
-  before_action :require_logged_in, only: [:create, :index, :shared_boards]
+class Api::BoardsController < ApplicationController
+  before_action :require_logged_in, only: %i[create index shared_boards]
   before_action :check_visibility, only: :show
-  before_action :require_creator, only: [:update, :destroy]
+  before_action :require_creator, only: %i[update destroy]
 
   def create
     @board = current_user.own_boards.new(board_params)
@@ -53,5 +54,4 @@ class Api::BoardsController < ApplicationController
   def check_visibility
     check_board_visibility(params[:id])
   end
-
 end

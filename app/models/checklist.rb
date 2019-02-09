@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: checklists
@@ -10,6 +12,7 @@
 #  updated_at :datetime         not null
 #
 
+# Checklists exist within cards and generally represent subtasks within a larger task
 class Checklist < ApplicationRecord
   include Orderable
   ORD_ASSOC_FIELD = :card_id
@@ -17,9 +20,6 @@ class Checklist < ApplicationRecord
   validates :title, :ord, :card, presence: true
 
   belongs_to :card
-
   has_one :list, through: :card
-
   has_one :board, through: :list
-
 end

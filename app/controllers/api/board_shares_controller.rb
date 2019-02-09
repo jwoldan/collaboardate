@@ -1,7 +1,8 @@
-class Api::BoardSharesController < ApplicationController
+# frozen_string_literal: true
 
+class Api::BoardSharesController < ApplicationController
   before_action :require_creator, only: [:show]
-  before_action :require_shared_board_creator, only: [:create, :destroy]
+  before_action :require_shared_board_creator, only: %i[create destroy]
 
   def create
     @board_share = BoardShare.new(board_share_params)
@@ -16,8 +17,8 @@ class Api::BoardSharesController < ApplicationController
 
   def index
     @board_shares = BoardShare
-      .includes(:sharee)
-      .where(board_id: params[:board_id])
+                    .includes(:sharee)
+                    .where(board_id: params[:board_id])
     render :index
   end
 
@@ -39,19 +40,20 @@ class Api::BoardSharesController < ApplicationController
   end
 
   def require_creator
-    board_share = BoardShare.find(params[:id])
-    if !current_user || board_share.sharer_id != current_user.id
-      render json: "Unauthorized access", status: 401
+    if logged_in?
+      board_share = BoardShare.find(params[:id])
+      return if board_share.sharer?(current_user)
     end
+
+    render json: 'Unauthorized access', status: 401
   end
 
   def require_shared_board_creator
-    if params[:board_share]
-      board_id = params[:board_share][:board_id]
-    else
-      board_id = BoardShare.find(params[:id]).board_id
-    end
+    board_id = if params[:board_share]
+                 params[:board_share][:board_id]
+               else
+                 BoardShare.find(params[:id]).board_id
+               end
     require_board_creator(board_id)
   end
-
 end

@@ -1,0 +1,32 @@
+inherit_from: .rubocop_todo.yml
+
+AllCops:
+  Exclude:
+    - 'bin/**/*'
+    - 'db/schema.rb'
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
+
+Metrics/LineLength:
+  Max: 100
+
+Metrics/MethodLength:
+  Exclude:
+    - 'db/migrate/*'
+
+Style/ClassAndModuleChildren:
+  Exclude:
+    - 'app/controllers/**/*'
+    - 'app/helpers/api/*'
+
+Style/Documentation:
+  Exclude:
+    - 'app/controllers/**/*'
+    - 'app/helpers/api/*'
+    - 'app/helpers/application_helper.rb'
+    - 'app/helpers/static_pages_helper.rb'
+    - 'app/mailers/application_mailer.rb'
+    - 'config/**/*'
+    - 'db/migrate/*'

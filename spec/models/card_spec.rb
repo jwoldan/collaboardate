@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Card, type: :model do
@@ -12,8 +14,7 @@ RSpec.describe Card, type: :model do
   end
 
   describe '#handle_list_change' do
-
-    it "updates ords in both the new and old list" do
+    it 'updates ords in both the new and old list' do
       card = object_1
       new_ord = 0
       expect(Card)
@@ -27,7 +28,5 @@ RSpec.describe Card, type: :model do
       card.ord = new_ord
       card.save
     end
-
   end
-
 end

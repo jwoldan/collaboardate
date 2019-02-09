@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: board_shares
@@ -10,36 +12,32 @@
 #  updated_at :datetime         not null
 #
 
+# Represents the "sharing" of a board with a user other than the creator of the board
 class BoardShare < ApplicationRecord
   validates :board, :sharer, :sharee, presence: true
   validates :sharee, uniqueness: { scope: :board }
   validate :sharer_owns_board, :no_self_shares
 
   belongs_to :board
+  belongs_to :sharer, class_name: 'User'
+  belongs_to :sharee, class_name: 'User'
 
-  belongs_to :sharer,
-    class_name: 'User'
-
-  belongs_to :sharee,
-    class_name: 'User'
+  def sharer?(user)
+    sharer_id == user.id
+  end
 
   private
 
   def sharer_owns_board
-    board = Board.find(self.board_id)
-    if board
-      if board.creator_id != self.sharer_id
-        @errors.add(:sharer, "is not the board creator")
-      end
-    end
+    return if Board.where(id: board_id, creator: sharer_id).exists?
+
+    @errors.add(:sharer, 'is not the board creator')
   end
 
   def no_self_shares
-    if self.sharer_id && self.sharee_id
-      if self.sharer_id == self.sharee_id
-        @errors.add(:sharee, "can not be the sharer")
-      end
-    end
-  end
+    return unless sharer_id && sharee_id
+    return unless sharer_id == sharee_id
 
+    @errors.add(:sharee, 'can not be the sharer')
+  end
 end
