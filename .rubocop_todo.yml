@@ -12,27 +12,6 @@ Lint/AssignmentInCondition:
   Exclude:
     - 'bin/spring'
 
-# Offense count: 14
-# Cop supports --auto-correct.
-# Configuration parameters: AutoCorrect, EnforcedStyle.
-# SupportedStyles: nested, compact
-Style/ClassAndModuleChildren:
-  Exclude:
-    - 'app/controllers/api/board_shares_controller.rb'
-    - 'app/controllers/api/boards_controller.rb'
-    - 'app/controllers/api/cards_controller.rb'
-    - 'app/controllers/api/comments_controller.rb'
-    - 'app/controllers/api/lists_controller.rb'
-    - 'app/controllers/api/sessions_controller.rb'
-    - 'app/controllers/api/users_controller.rb'
-    - 'app/helpers/api/board_shares_helper.rb'
-    - 'app/helpers/api/boards_helper.rb'
-    - 'app/helpers/api/cards_helper.rb'
-    - 'app/helpers/api/comments_helper.rb'
-    - 'app/helpers/api/lists_helper.rb'
-    - 'app/helpers/api/sessions_helper.rb'
-    - 'app/helpers/api/users_helper.rb'
-
 # Offense count: 41
 Style/Documentation:
   Enabled: false
