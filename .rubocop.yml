@@ -7,14 +7,14 @@ AllCops:
 
 Metrics/BlockLength:
   Exclude:
-    - spec/**/*
+    - 'spec/**/*'
 
 Metrics/LineLength:
   Max: 100
 
 Metrics/MethodLength:
   Exclude:
-    - db/migrate/*
+    - 'db/migrate/*'
 
 Style/ClassAndModuleChildren:
   Exclude:
