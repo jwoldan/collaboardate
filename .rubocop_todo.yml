@@ -16,15 +16,6 @@ Lint/AssignmentInCondition:
 Style/Documentation:
   Enabled: false
 
-# Offense count: 5
-# Cop supports --auto-correct.
-Style/IfUnlessModifier:
-  Exclude:
-    - 'app/controllers/api/board_shares_controller.rb'
-    - 'app/controllers/api/comments_controller.rb'
-    - 'app/controllers/application_controller.rb'
-    - 'app/models/board_share.rb'
-
 # Offense count: 2
 Style/MixinUsage:
   Exclude:
