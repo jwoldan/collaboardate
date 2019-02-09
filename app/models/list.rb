@@ -20,6 +20,5 @@ class List < ApplicationRecord
   validates :title, :ord, :board, presence: true
 
   belongs_to :board
-
   has_many :cards, dependent: :destroy
 end

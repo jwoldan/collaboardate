@@ -19,12 +19,8 @@ class BoardShare < ApplicationRecord
   validate :sharer_owns_board, :no_self_shares
 
   belongs_to :board
-
-  belongs_to :sharer,
-             class_name: 'User'
-
-  belongs_to :sharee,
-             class_name: 'User'
+  belongs_to :sharer, class_name: 'User'
+  belongs_to :sharee, class_name: 'User'
 
   def sharer?(user)
     sharer_id == user.id

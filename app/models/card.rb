@@ -26,13 +26,8 @@ class Card < ApplicationRecord
   validates :due_date_complete, inclusion: [true, false]
 
   belongs_to :list
-
-  belongs_to :author,
-             class_name: 'User'
-
-  has_one :board,
-          through: :list
-
+  belongs_to :author, class_name: 'User'
+  has_one :board, through: :list
   has_many :comments, dependent: :destroy
 
   after_validation :handle_list_change

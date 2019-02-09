@@ -43,19 +43,11 @@ class Board < ApplicationRecord
     BACKGROUND_GREY
   ]
 
-  belongs_to :creator,
-             class_name: 'User'
-
+  belongs_to :creator, class_name: 'User'
   has_many :lists, dependent: :destroy
-
-  has_many :cards,
-           through: :lists
-
-  has_many :shares,
-           class_name: 'BoardShare'
-
-  has_many :sharees,
-           through: :shares
+  has_many :cards, through: :lists
+  has_many :shares, class_name: 'BoardShare'
+  has_many :sharees, through: :shares
 
   def creator?(user)
     creator_id == user.id

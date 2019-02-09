@@ -20,8 +20,6 @@ class Checklist < ApplicationRecord
   validates :title, :ord, :card, presence: true
 
   belongs_to :card
-
   has_one :list, through: :card
-
   has_one :board, through: :list
 end

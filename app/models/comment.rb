@@ -17,15 +17,9 @@ class Comment < ApplicationRecord
   validates :body, :card, :author, presence: true
 
   belongs_to :card, counter_cache: true
-
-  belongs_to :author,
-             class_name: 'User'
-
-  has_one :list,
-          through: :card
-
-  has_one :board,
-          through: :list
+  belongs_to :author, class_name: 'User'
+  has_one :list, through: :card
+  has_one :board, through: :list
 
   delegate :board_id,
            to: :list
