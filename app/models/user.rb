@@ -62,7 +62,7 @@ class User < ApplicationRecord
       username_or_email
     ).first
 
-    user&.is_password?(password) ? user : nil
+    user&.password_matches?(password) ? user : nil
   end
 
   def password=(password)
@@ -70,7 +70,7 @@ class User < ApplicationRecord
     self.password_digest = BCrypt::Password.create(password)
   end
 
-  def is_password?(password)
+  def password_matches?(password)
     BCrypt::Password.new(password_digest).is_password?(password)
   end
 
