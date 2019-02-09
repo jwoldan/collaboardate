@@ -22,19 +22,18 @@
 
 # Represents a user of the application
 class User < ApplicationRecord
-  validates :email, :password_digest, :session_token, :full_name, presence: true
+  include Users::Authentication
+
+  validates :email, :full_name, presence: true
   validates :username, :initials, presence: true, on: :update
-  validates :username, :email, :session_token, uniqueness: true
-  validates :password, length: { minimum: 8, allow_nil: true }
+  validates :username, :email, uniqueness: true
   validates :full_name, length: { minimum: 3 }
   validates :initials, length: { maximum: 3 }
   validates :email, format: /@/
 
   before_validation :strip_whitespace
 
-  attr_reader :password
-
-  after_initialize :ensure_session_token, :generate_defaults
+  after_initialize :generate_defaults
 
   has_attached_file :avatar, default_url: ''
   validates_attachment_content_type :avatar, content_type: %r{\Aimage/.*\Z}
@@ -48,41 +47,6 @@ class User < ApplicationRecord
   has_many :shared_boards, through: :received_shares, source: :board
   has_many :comments, foreign_key: :author_id
 
-  def self.generate_session_token
-    token = nil
-    loop do
-      token = SecureRandom.urlsafe_base64
-      break unless User.where(session_token: token).exists?
-    end
-
-    token
-  end
-
-  def self.find_by_credentials(username_or_email, password)
-    user = User.where(
-      'username = ? OR email = ?',
-      username_or_email,
-      username_or_email
-    ).first
-
-    user&.password_matches?(password) ? user : nil
-  end
-
-  def password=(password)
-    @password = password
-    self.password_digest = BCrypt::Password.create(password)
-  end
-
-  def password_matches?(password)
-    BCrypt::Password.new(password_digest).is_password?(password)
-  end
-
-  def reset_session_token!
-    self.session_token = User.generate_session_token
-    save!
-    session_token
-  end
-
   def all_boards
     Board
       .includes(:creator)
@@ -95,10 +59,6 @@ class User < ApplicationRecord
   end
 
   private
-
-  def ensure_session_token
-    self.session_token ||= User.generate_session_token
-  end
 
   def strip_whitespace
     self.username = username&.strip
