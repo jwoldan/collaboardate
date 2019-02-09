@@ -49,9 +49,11 @@ class User < ApplicationRecord
 
   def self.generate_session_token
     token = nil
-    while !token || User.find_by(session_token: token)
+    loop do
       token = SecureRandom.urlsafe_base64
+      break unless User.where(session_token: token).exists?
     end
+
     token
   end
 

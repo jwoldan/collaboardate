@@ -16,12 +16,6 @@ Lint/AssignmentInCondition:
 Style/Documentation:
   Enabled: false
 
-# Offense count: 2
-# Cop supports --auto-correct.
-Style/WhileUntilModifier:
-  Exclude:
-    - 'app/models/user.rb'
-
 # Offense count: 40
 # Configuration parameters: AllowHeredoc, AllowURI, URISchemes, IgnoreCopDirectives, IgnoredPatterns.
 # URISchemes: http, https
