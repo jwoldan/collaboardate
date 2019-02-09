@@ -12,6 +12,7 @@
 #  updated_at :datetime         not null
 #
 
+# Represents the "sharing" of a board with a user other than the creator of the board
 class BoardShare < ApplicationRecord
   validates :board, :sharer, :sharee, presence: true
   validates :sharee, uniqueness: { scope: :board }

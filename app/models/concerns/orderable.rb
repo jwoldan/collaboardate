@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# Provides ordering/reordering functionality for a model,
+# within the context of a belong_to association.
 module Orderable
   extend ActiveSupport::Concern
 

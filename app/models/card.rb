@@ -17,6 +17,7 @@
 #  comments_count    :integer          default(0)
 #
 
+# Cards exist within a list and generally represent an individual task
 class Card < ApplicationRecord
   include Orderable
   ORD_ASSOC_FIELD = :list_id

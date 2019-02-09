@@ -11,7 +11,3 @@
 Lint/AssignmentInCondition:
   Exclude:
     - 'bin/spring'
-
-# Offense count: 41
-Style/Documentation:
-  Enabled: false

@@ -12,6 +12,7 @@
 #  ord        :integer          not null
 #
 
+# Lists have cards and generally represent a set of related tasks
 class List < ApplicationRecord
   include Orderable
   ORD_ASSOC_FIELD = :board_id

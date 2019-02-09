@@ -12,6 +12,7 @@
 #  updated_at :datetime         not null
 #
 
+# Comments represent discussion related to a particular card/task
 class Comment < ApplicationRecord
   validates :body, :card, :author, presence: true
 

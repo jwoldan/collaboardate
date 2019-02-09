@@ -12,6 +12,7 @@
 #  updated_at :datetime         not null
 #
 
+# Checklists exist within cards and generally represent subtasks within a larger task
 class Checklist < ApplicationRecord
   include Orderable
   ORD_ASSOC_FIELD = :card_id

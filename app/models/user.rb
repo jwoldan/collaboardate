@@ -20,6 +20,7 @@
 #  updated_at          :datetime         not null
 #
 
+# Represents a user of the application
 class User < ApplicationRecord
   validates :email, :password_digest, :session_token, :full_name, presence: true
   validates :username, :initials, presence: true, on: :update

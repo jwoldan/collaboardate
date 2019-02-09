@@ -14,6 +14,7 @@
 #  updated_at :datetime         not null
 #
 
+# Boards contain lists, cards, and comments and often represent a project
 class Board < ApplicationRecord
   VISIBILITY_PRIVATE = 'Private'
   VISIBILITY_PUBLIC = 'Public'
