@@ -129,7 +129,7 @@ class User < ApplicationRecord
 
     self. initials = full_name.split
                               .slice(0, 3)
-                              .map { word.first.upcase }
+                              .map { |word| word.first.upcase }
                               .join || ''
   end
 end
