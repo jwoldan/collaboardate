@@ -44,11 +44,7 @@ class Card < ApplicationRecord
 
     if old_list_id
       # Update ords in old list
-      old_ord = if changed.include?('ord')
-                  changed_attributes['ord']
-                else
-                  ord
-                end
+      old_ord = ord_changed? ? changed_attributes['ord'] : ord
       new_ord = Card.max_ord(old_list_id)
       Card.update_other_ords(old_list_id, old_ord, new_ord)
 

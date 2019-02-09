@@ -10,17 +10,18 @@ module Orderable
 
   class_methods do
     def update_other_ords(assoc_id, old_ord, new_ord)
-      unless old_ord == new_ord
-        if old_ord > new_ord
-          where_clause = "#{self::ORD_ASSOC_FIELD} = ? AND ord < ? AND ord >= ?"
-          update_clause = 'ord = ord + 1'
-        elsif old_ord < new_ord
-          where_clause = "#{self::ORD_ASSOC_FIELD} = ? AND ord > ? AND ord <= ?"
-          update_clause = 'ord = ord - 1'
-        end
-        where(where_clause, assoc_id, old_ord, new_ord)
-          .update_all(update_clause)
+      return if old_ord == new_ord
+
+      if old_ord > new_ord
+        where_clause = "#{self::ORD_ASSOC_FIELD} = ? AND ord < ? AND ord >= ?"
+        update_clause = 'ord = ord + 1'
+      elsif old_ord < new_ord
+        where_clause = "#{self::ORD_ASSOC_FIELD} = ? AND ord > ? AND ord <= ?"
+        update_clause = 'ord = ord - 1'
       end
+
+      where(where_clause, assoc_id, old_ord, new_ord)
+        .update_all(update_clause)
     end
 
     def max_ord(assoc_id)
@@ -55,18 +56,17 @@ module Orderable
   end
 
   def handle_ord_change
-    # if ord has been set
-    if changed.include?('ord')
-      # if there was an old value, set is as old_ord, else consider the next available ord the old_ord
-      old_ord = changed_attributes['ord'] || self.class.next_ord(send(self.class::ORD_ASSOC_FIELD))
-      if old_ord
-        new_ord = ord
-        self.class.update_other_ords(
-          send(self.class::ORD_ASSOC_FIELD),
-          old_ord,
-          new_ord
-        )
-      end
-    end
+    return unless ord_changed?
+
+    # if there was an old value, set is as old_ord, else consider the next available ord the old_ord
+    old_ord = changed_attributes['ord'] || self.class.next_ord(send(self.class::ORD_ASSOC_FIELD))
+    return unless old_ord
+
+    new_ord = ord
+    self.class.update_other_ords(
+      send(self.class::ORD_ASSOC_FIELD),
+      old_ord,
+      new_ord
+    )
   end
 end
