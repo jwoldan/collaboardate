@@ -13,7 +13,7 @@ gem 'puma', '~> 3.0'
 # Make server boot time faster with caching
 gem 'bootsnap', require: false
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0'
+gem 'sassc-rails'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
