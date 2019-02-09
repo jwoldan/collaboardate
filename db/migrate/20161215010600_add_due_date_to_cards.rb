@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddDueDateToCards < ActiveRecord::Migration[5.0]
   def change
     add_column :cards, :due_date, :datetime

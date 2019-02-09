@@ -1,5 +1,6 @@
-class Api::SessionsController < ApplicationController
+# frozen_string_literal: true
 
+class Api::SessionsController < ApplicationController
   def create
     @user = User.find_by_credentials(
       params[:user][:username],

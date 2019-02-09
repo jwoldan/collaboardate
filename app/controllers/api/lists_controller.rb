@@ -1,8 +1,9 @@
-class Api::ListsController < ApplicationController
+# frozen_string_literal: true
 
-  before_action :check_parent_board_visibility, only: [:index, :show]
+class Api::ListsController < ApplicationController
+  before_action :check_parent_board_visibility, only: %i[index show]
   before_action :require_parent_board_access,
-                only: [:create, :update, :destroy]
+                only: %i[create update destroy]
 
   def create
     @list = List.new(list_params)
@@ -47,21 +48,16 @@ class Api::ListsController < ApplicationController
   end
 
   def require_parent_board_access
-    if params[:id]
-      board_id = List.find(params[:id]).board_id
-    else
-      board_id = params[:list][:board_id]
-    end
+    board_id = if params[:id]
+                 List.find(params[:id]).board_id
+               else
+                 params[:list][:board_id]
+               end
     require_board_access(board_id)
   end
 
   def check_parent_board_visibility
-    if params[:board_id]
-      board_id = params[:board_id]
-    else
-      board_id = List.find(params[:id]).board_id
-    end
+    board_id = params[:board_id] || List.find(params[:id]).board_id
     check_board_visibility(board_id)
   end
-
 end

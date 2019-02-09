@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
@@ -25,13 +27,13 @@ class ApplicationController < ActionController::Base
   private
 
   def require_logged_in
-    render json: "Unauthorized access", status: 401 unless logged_in?
+    render json: 'Unauthorized access', status: 401 unless logged_in?
   end
 
   def require_board_creator(board_id)
     board = Board.find(board_id)
     if !current_user || board.creator_id != current_user.id
-      render json: "Unauthorized access", status: 401
+      render json: 'Unauthorized access', status: 401
     end
   end
 
@@ -39,12 +41,13 @@ class ApplicationController < ActionController::Base
     @board ||= Board.find(board_id)
     if current_user
       return if @board.creator_id == current_user.id
+
       authorized = false
       @board.shares.each do |share|
         authorized = true if share.sharee_id == current_user.id
       end
     end
-    render json: "Unauthorized access", status: 401 unless authorized
+    render json: 'Unauthorized access', status: 401 unless authorized
   end
 
   def check_board_visibility(board_id)
@@ -53,5 +56,4 @@ class ApplicationController < ActionController::Base
       require_board_access(board_id)
     end
   end
-
 end

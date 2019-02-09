@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: users
@@ -33,40 +35,39 @@ class User < ApplicationRecord
 
   after_initialize :ensure_session_token, :generate_defaults
 
-  has_attached_file :avatar, default_url: ""
-  validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
+  has_attached_file :avatar, default_url: ''
+  validates_attachment_content_type :avatar, content_type: %r{\Aimage/.*\Z}
 
   has_many :own_boards,
-    class_name: 'Board',
-    foreign_key: :creator_id
+           class_name: 'Board',
+           foreign_key: :creator_id
 
   has_many :own_lists,
-    through: :own_boards,
-    source: :lists
+           through: :own_boards,
+           source: :lists
 
   has_many :own_cards,
-    through: :own_lists,
-    source: :cards
+           through: :own_lists,
+           source: :cards
 
   has_many :authored_cards,
-    class_name: 'Card',
-    foreign_key: :author_id
+           class_name: 'Card',
+           foreign_key: :author_id
 
   has_many :given_shares,
-    class_name: 'BoardShare',
-    foreign_key: :sharer_id
+           class_name: 'BoardShare',
+           foreign_key: :sharer_id
 
   has_many :received_shares,
-    class_name: 'BoardShare',
-    foreign_key: :sharee_id
+           class_name: 'BoardShare',
+           foreign_key: :sharee_id
 
   has_many :shared_boards,
-    through: :received_shares,
-    source: :board
+           through: :received_shares,
+           source: :board
 
   has_many :comments,
-    foreign_key: :author_id
-
+           foreign_key: :author_id
 
   def self.generate_session_token
     token = nil
@@ -80,9 +81,10 @@ class User < ApplicationRecord
     user = User.where(
       'username = ? OR email = ?',
       username_or_email,
-      username_or_email).first
+      username_or_email
+    ).first
 
-    user && user.is_password?(password) ? user : nil
+    user&.is_password?(password) ? user : nil
   end
 
   def password=(password)
@@ -91,13 +93,13 @@ class User < ApplicationRecord
   end
 
   def is_password?(password)
-    BCrypt::Password.new(self.password_digest).is_password?(password)
+    BCrypt::Password.new(password_digest).is_password?(password)
   end
 
   def reset_session_token!
     self.session_token = User.generate_session_token
-    self.save!
-    self.session_token
+    save!
+    session_token
   end
 
   def all_boards
@@ -105,9 +107,9 @@ class User < ApplicationRecord
       .includes(:creator)
       .left_outer_joins(:shares)
       .where(
-        "boards.creator_id = ? OR board_shares.sharee_id = ?",
-        self.id,
-        self.id
+        'boards.creator_id = ? OR board_shares.sharee_id = ?',
+        id,
+        id
       )
   end
 
@@ -118,17 +120,16 @@ class User < ApplicationRecord
   end
 
   def strip_whitespace
-    self.username = self.username.strip unless self.username.nil?
-    self.email = self.email.strip unless self.email.nil?
-    self.full_name = self.full_name.strip unless self.full_name.nil?
-    self.initials = self.initials.strip unless self.initials.nil?
+    self.username = username.strip unless username.nil?
+    self.email = email.strip unless email.nil?
+    self.full_name = full_name.strip unless full_name.nil?
+    self.initials = initials.strip unless initials.nil?
   end
 
   def generate_defaults
-
-    if self.full_name
-      unless self.username
-        base_username = self.full_name.downcase.delete(' ')
+    if full_name
+      unless username
+        base_username = full_name.downcase.delete(' ')
         username = base_username
         number = 0
         while User.find_by(username: username)
@@ -138,16 +139,13 @@ class User < ApplicationRecord
         self.username = username
       end
 
-      unless self.initials
+      unless initials
         initials = ''
-        self.full_name.split(' ').each do |word|
+        full_name.split(' ').each do |word|
           initials += word[0].upcase
         end
         self.initials = initials.slice(0, 3)
       end
     end
-
   end
-
-
 end

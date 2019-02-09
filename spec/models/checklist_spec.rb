@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Checklist, type: :model do
@@ -9,5 +11,4 @@ RSpec.describe Checklist, type: :model do
   it 'is orderable' do
     expect_to_be_orderable
   end
-
 end

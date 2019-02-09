@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateCards < ActiveRecord::Migration[5.0]
   def change
     create_table :cards do |t|
@@ -9,7 +11,7 @@ class CreateCards < ActiveRecord::Migration[5.0]
 
       t.timestamps
     end
-    add_index :cards, [:list_id, :ord]
+    add_index :cards, %i[list_id ord]
     add_index :cards, :author_id
   end
 end

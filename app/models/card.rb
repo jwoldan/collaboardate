@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: cards
@@ -25,10 +27,10 @@ class Card < ApplicationRecord
   belongs_to :list
 
   belongs_to :author,
-    class_name: 'User'
+             class_name: 'User'
 
   has_one :board,
-    through: :list
+          through: :list
 
   has_many :comments, dependent: :destroy
 
@@ -38,24 +40,23 @@ class Card < ApplicationRecord
 
   # When a card's list changes, update ords in both the old and new list
   def handle_list_change
-    old_list_id = self.changed_attributes["list_id"]
+    old_list_id = changed_attributes['list_id']
 
     if old_list_id
       # Update ords in old list
-      if self.changed.include?("ord")
-        old_ord = self.changed_attributes["ord"]
-      else
-        old_ord = self.ord
-      end
+      old_ord = if changed.include?('ord')
+                  changed_attributes['ord']
+                else
+                  ord
+                end
       new_ord = Card.max_ord(old_list_id)
       Card.update_other_ords(old_list_id, old_ord, new_ord)
 
       # Update ords in new list
-      new_list_id = self.list_id
-      new_ord = self.ord
+      new_list_id = list_id
+      new_ord = ord
       old_ord = Card.next_ord(new_list_id)
       Card.update_other_ords(new_list_id, old_ord, new_ord)
     end
   end
-
 end

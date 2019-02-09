@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: boards
@@ -13,18 +15,17 @@
 #
 
 class Board < ApplicationRecord
-
-  VISIBILITY_PRIVATE = 'Private'.freeze
-  VISIBILITY_PUBLIC = 'Public'.freeze
-  BACKGROUND_BLUE = 'blue'.freeze
-  BACKGROUND_ORANGE = 'orange'.freeze
-  BACKGROUND_GREEN = 'green'.freeze
-  BACKGROUND_RED = 'red'.freeze
-  BACKGROUND_PURPLE = 'purple'.freeze
-  BACKGROUND_PINK = 'pink'.freeze
-  BACKGROUND_LIGHT_GREEN = 'light-green'.freeze
-  BACKGROUND_LIGHT_BLUE = 'light-blue'.freeze
-  BACKGROUND_GREY = 'grey'.freeze
+  VISIBILITY_PRIVATE = 'Private'
+  VISIBILITY_PUBLIC = 'Public'
+  BACKGROUND_BLUE = 'blue'
+  BACKGROUND_ORANGE = 'orange'
+  BACKGROUND_GREEN = 'green'
+  BACKGROUND_RED = 'red'
+  BACKGROUND_PURPLE = 'purple'
+  BACKGROUND_PINK = 'pink'
+  BACKGROUND_LIGHT_GREEN = 'light-green'
+  BACKGROUND_LIGHT_BLUE = 'light-blue'
+  BACKGROUND_GREY = 'grey'
 
   validates :title, :visibility, :background, :creator, presence: true
   validates :starred, inclusion: [true, false]
@@ -42,17 +43,16 @@ class Board < ApplicationRecord
   ]
 
   belongs_to :creator,
-    class_name: 'User'
+             class_name: 'User'
 
   has_many :lists, dependent: :destroy
 
   has_many :cards,
-    through: :lists
+           through: :lists
 
   has_many :shares,
-    class_name: 'BoardShare'
+           class_name: 'BoardShare'
 
   has_many :sharees,
-    through: :shares
-
+           through: :shares
 end

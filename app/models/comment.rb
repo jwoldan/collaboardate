@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: comments
@@ -16,12 +18,11 @@ class Comment < ApplicationRecord
   belongs_to :card, counter_cache: true
 
   belongs_to :author,
-    class_name: 'User'
+             class_name: 'User'
 
   has_one :list,
-    through: :card
+          through: :card
 
   has_one :board,
-    through: :list
-
+          through: :list
 end

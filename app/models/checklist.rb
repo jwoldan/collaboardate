@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: checklists
@@ -21,5 +23,4 @@ class Checklist < ApplicationRecord
   has_one :list, through: :card
 
   has_one :board, through: :list
-
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 def expect_to_be_orderable
   expect(object_1.ord).to be(0)
   expect(object_2.ord).to be(1)

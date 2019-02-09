@@ -1,10 +1,9 @@
-class Api::CommentsController < ApplicationController
+# frozen_string_literal: true
 
-  before_action :require_creator, only: [:update, :destroy]
+class Api::CommentsController < ApplicationController
+  before_action :require_creator, only: %i[update destroy]
   before_action :check_parent_board_visibility, only: [:show]
   before_action :require_parent_board_access, only: [:create]
-
-
 
   def create
     @comment = Comment.new(comment_params)
@@ -47,16 +46,16 @@ class Api::CommentsController < ApplicationController
   def require_creator
     comment = Comment.find(params[:id])
     if !current_user || comment.author_id != current_user.id
-      render json: "Unauthorized access", status: 401
+      render json: 'Unauthorized access', status: 401
     end
   end
 
   def require_parent_board_access
-    if params[:id]
-      board_id = Comment.find(params[:id]).board.id
-    else
-      board_id = Card.find(params[:comment][:card_id]).board.id
-    end
+    board_id = if params[:id]
+                 Comment.find(params[:id]).board.id
+               else
+                 Card.find(params[:comment][:card_id]).board.id
+               end
     require_board_access(board_id)
   end
 
@@ -64,5 +63,4 @@ class Api::CommentsController < ApplicationController
     board_id = Comment.find(params[:id]).board.id
     check_board_visibility(board_id)
   end
-
 end

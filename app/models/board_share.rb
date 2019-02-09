@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: board_shares
@@ -18,28 +20,26 @@ class BoardShare < ApplicationRecord
   belongs_to :board
 
   belongs_to :sharer,
-    class_name: 'User'
+             class_name: 'User'
 
   belongs_to :sharee,
-    class_name: 'User'
+             class_name: 'User'
 
   private
 
   def sharer_owns_board
-    board = Board.find(self.board_id)
+    board = Board.find(board_id)
     if board
-      if board.creator_id != self.sharer_id
-        @errors.add(:sharer, "is not the board creator")
+      if board.creator_id != sharer_id
+        @errors.add(:sharer, 'is not the board creator')
       end
     end
   end
 
   def no_self_shares
-    if self.sharer_id && self.sharee_id
-      if self.sharer_id == self.sharee_id
-        @errors.add(:sharee, "can not be the sharer")
-      end
-    end
-  end
+    return unless sharer_id && share_id
+    return unless sharer_id == sharee_id
 
+    @errors.add(:sharee, 'can not be the sharer')
+  end
 end
