@@ -11,6 +11,8 @@ Metrics/BlockLength:
 
 Metrics/LineLength:
   Max: 100
+  Exclude:
+    - 'config/**/*'
 
 Metrics/MethodLength:
   Exclude:
