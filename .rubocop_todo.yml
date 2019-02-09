@@ -17,20 +17,6 @@ Style/Documentation:
   Enabled: false
 
 # Offense count: 2
-Style/MixinUsage:
-  Exclude:
-    - 'bin/setup'
-    - 'bin/update'
-
-# Offense count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, ConsistentQuotesInMultiline.
-# SupportedStyles: single_quotes, double_quotes
-Style/StringLiterals:
-  Exclude:
-    - 'bin/spring'
-
-# Offense count: 2
 # Cop supports --auto-correct.
 Style/WhileUntilModifier:
   Exclude:
