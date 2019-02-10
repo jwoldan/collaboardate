@@ -1,5 +1,5 @@
 import React from 'react';
-import { withRouter, Link } from 'react-router';
+import { withRouter, Link } from 'react-router-dom';
 
 import ToggleMenu from '../general/toggle_menu';
 
@@ -13,7 +13,7 @@ class HomeProfileMenu extends ToggleMenu {
 
   logout () {
     this.props.logout().then(() => {
-      if (this.props.location.pathname !== '/') this.props.router.push("/");
+      if (this.props.location.pathname !== '/') this.props.history.push("/");
     });
   }
 
@@ -24,7 +24,7 @@ class HomeProfileMenu extends ToggleMenu {
     const menuContent = (
       <ul>
         <li>
-          <Link to={`/${currentUser.username}`} onClick={ this.toggle }>
+          <Link to={`/u/${currentUser.username}`} onClick={ this.toggle }>
             Profile
           </Link>
         </li>

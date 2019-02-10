@@ -1,5 +1,4 @@
 import React from 'react';
-import { withRouter } from 'react-router';
 import { DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 
@@ -12,9 +11,12 @@ import ListCreateContainer from '../lists/list_create_container';
 class Board extends React.Component {
 
   componentDidMount() {
-    let { boardId, cardId } = this.props.params;
+    const { params } = this.props.match;
+
+    let { boardId, cardId } = params;
     boardId = parseInt(boardId);
     cardId = parseInt(cardId);
+
     // check if boardId is NaN
     if (boardId === boardId) {
       this.fetchBoardAndContents(boardId);
@@ -24,20 +26,28 @@ class Board extends React.Component {
   }
 
   componentWillReceiveProps(newProps) {
-    let { boardId, cardId } = newProps.params;
-    boardId = parseInt(boardId);
-    cardId = parseInt(cardId);
-    if (parseInt(this.props.params.boardId) !== boardId &&
-        this.props.currentBoardId !== boardId &&
-        // check if boardId is NaN
-        boardId === boardId) {
-      this.fetchBoardAndContents(boardId);
-    } else if(parseInt(this.props.params.cardId) !== cardId &&
-        this.props.cardDetail.id !== cardId &&
-        newProps.cardDetail.id !== cardId &&
-        // check if cardId is NaN
-        cardId === cardId) {
-      this.fetchCardDetailAndBoard(cardId);
+    const oldParams = this.props.match.params;
+    const oldBoardId = parseInt(oldParams.boardId);
+    const oldCardId = parseInt(oldParams.cardId);
+    const newParams = newProps.match.params;
+    const newBoardId = parseInt(newParams.boardId);
+    const newCardId = parseInt(newParams.cardId);
+
+    if (
+      oldBoardId !== newBoardId &&
+      this.props.currentBoardId !== newBoardId &&
+      // check if boardId is NaN
+      newBoardId === newBoardId
+    ) {
+      this.fetchBoardAndContents(newBoardId);
+    } else if(
+      oldCardId !== newCardId &&
+      this.props.cardDetail.id !== newCardId &&
+      newProps.cardDetail.id !== newCardId &&
+      // check if cardId is NaN
+      newCardId === newCardId
+    ) {
+      this.fetchCardDetailAndBoard(newCardId);
     }
   }
 
@@ -66,7 +76,7 @@ class Board extends React.Component {
         );
 
       },
-      (error) => this.props.router.push('/')
+      (error) => this.props.history.push('/')
     );
   }
 
@@ -77,7 +87,7 @@ class Board extends React.Component {
           this.fetchBoardAndContents(card.board_id);
         }
       },
-      (error) => this.props.router.push('/')
+      (error) => this.props.history.push('/')
     );
   }
 
@@ -107,4 +117,4 @@ class Board extends React.Component {
   }
 }
 
-export default withRouter(DragDropContext(HTML5Backend)(Board));
+export default DragDropContext(HTML5Backend)(Board);

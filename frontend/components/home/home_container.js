@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router';
+import { withRouter } from 'react-router-dom';
 
 import Home from './home';
 
@@ -7,11 +7,7 @@ import { selectBoard } from '../../reducers/selectors';
 
 const mapStateToProps = (state, ownProps) => {
   return ({
-  board: selectBoard(
-    state,
-    parseInt(ownProps.params.boardId),
-    parseInt(ownProps.params.cardId)
-  ),
+    board: selectBoard(state, state.currentBoardId),
   });
 };
 

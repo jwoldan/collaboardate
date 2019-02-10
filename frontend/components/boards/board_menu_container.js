@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router';
+import { withRouter } from 'react-router-dom';
 import BoardMenu from './board_menu';
 
 import { checkSharedUser } from '../../reducers/selectors';

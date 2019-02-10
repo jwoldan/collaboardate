@@ -1,5 +1,5 @@
 import React from 'react';
-import { withRouter } from 'react-router';
+import { withRouter } from 'react-router-dom';
 
 import ToggleMenu from '../general/toggle_menu';
 
@@ -12,8 +12,10 @@ class BoardBackgroundMenu extends ToggleMenu {
   }
 
   updateBackground(background) {
+    const { params } = this.props.match;
+
     return (e) => this.props.updateBoard({
-      id: this.props.params.boardId,
+      id: params.boardId,
       background,
     });
   }

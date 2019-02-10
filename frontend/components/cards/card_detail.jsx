@@ -1,5 +1,5 @@
 import React from 'react';
-import { withRouter } from 'react-router';
+import { withRouter } from 'react-router-dom';
 import Modal from 'react-modal';
 
 import CardTitleEditableContainer from './card_title_editable_container';
@@ -26,14 +26,14 @@ class CardDetail extends React.Component {
   }
 
   resetCard() {
-    this.props.router.push(`/b/${this.props.card.board_id}`);
+    this.props.history.push(`/b/${this.props.card.board_id}`);
     this.props.receiveCardDetail({});
   }
 
   deleteCard() {
     const { card, deleteCard } = this.props;
     deleteCard(card.id).then(
-      deletedCard => this.props.router.push(`/b/${deletedCard.board_id}`)
+      deletedCard => this.props.history.push(`/b/${deletedCard.board_id}`)
     );
   }
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { withRouter, Link } from 'react-router';
+import { withRouter, Link } from 'react-router-dom';
 
 class LoginForm extends React.Component {
 
@@ -16,6 +16,12 @@ class LoginForm extends React.Component {
     this.loginGuest = this.loginGuest.bind(this);
   }
 
+  componentDidMount() {
+    if(this.props.currentUser) {
+      this.props.history.push('/');
+    }
+  }
+
   update(property) {
     return e => this.setState({ [property]: e.currentTarget.value });
   }
@@ -23,13 +29,13 @@ class LoginForm extends React.Component {
   submit(e) {
     e.preventDefault();
     this.props.login(this.state).then(
-      () => this.props.router.push('/')
+      () => this.props.history.push('/')
     );
   }
 
   loginGuest() {
     this.props.loginGuest().then(
-      () => this.props.router.push('/')
+      () => this.props.history.push('/')
     );
   }
 

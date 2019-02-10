@@ -13,17 +13,18 @@ import { fetchCardDetail } from '../../actions/card_detail_actions';
 
 
 const mapStateToProps = (state, ownProps) => {
+  const { params } = ownProps.match;
   const board = selectBoard(
     state,
-    parseInt(ownProps.params.boardId),
-    parseInt(ownProps.params.cardId)
+    parseInt(params.boardId),
+    parseInt(params.cardId)
   );
 
   return {
     currentUser: state.currentUser,
     disabled: checkDisabled(board, state.currentUser),
     board,
-    lists: selectLists(state, ownProps.params.boardId),
+    lists: selectLists(state, params.boardId),
     currentBoardId: state.currentBoardId,
     cardDetail: state.cardDetail,
   };

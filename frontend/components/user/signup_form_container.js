@@ -4,7 +4,8 @@ import { signup, login } from '../../actions/user_actions';
 
 import SignupForm from './signup_form';
 
-const mapStateToProps = ({ errors }) => ({
+const mapStateToProps = ({ currentUser, errors }) => ({
+  currentUser,
   errors: errors.signup
 });
 

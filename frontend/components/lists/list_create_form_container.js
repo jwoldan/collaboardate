@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router';
+import { withRouter } from 'react-router-dom';
 
 import ListCreateForm from './list_create_form';
 
@@ -7,9 +7,11 @@ import { selectBoard } from '../../reducers/selectors.js';
 import { createList } from '../../actions/list_actions';
 
 const mapStateToProps = (state, ownProps) => {
-  if(ownProps.params) {
+  const { params } = ownProps.match;
+
+  if(params.boardId) {
     return ({
-      board: selectBoard(state, parseInt(ownProps.params.boardId)),
+      board: selectBoard(state, parseInt(params.boardId)),
     });
   } else {
     return { board: {} };

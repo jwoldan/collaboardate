@@ -4,7 +4,8 @@ import { login } from '../../actions/user_actions';
 
 import LoginForm from './login_form';
 
-const mapStateToProps = ({ errors }) => ({
+const mapStateToProps = ({ currentUser, errors }) => ({
+  currentUser,
   errors: errors.login
 });
 

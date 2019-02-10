@@ -1,5 +1,5 @@
 import React from 'react';
-import { withRouter, Link } from 'react-router';
+import { withRouter, Link } from 'react-router-dom';
 
 import HomeBoardsMenuContainer from './home_boards_menu_container';
 import HomeSearch from './home_search';

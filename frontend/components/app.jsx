@@ -1,7 +1,14 @@
 import React from 'react';
+import { Route, Switch } from 'react-router-dom';
 
-import WelcomeContainer from './welcome/welcome_container';
+import BoardContainer from './boards/board_container';
+import BoardsIndexContainer from './boards/boards_index_container';
 import HomeContainer from './home/home_container';
+import ProfileContainer from './user/profile_container';
+import WelcomeContainer from './welcome/welcome_container';
+
+const boardRoute = <Route path="/b/:boardId" component={ BoardContainer } />;
+const cardRoute = <Route path="/c/:cardId" component={ BoardContainer } />;
 
 class App extends React.Component {
 
@@ -17,13 +24,30 @@ class App extends React.Component {
   }
 
   render() {
-    const { currentUser, children, params } = this.props;
+    const { currentUser, children, location } = this.props;
     let innerContent;
 
-    if (currentUser !== null ||
-        (typeof params.boardId !== 'undefined') ||
-        (typeof params.cardId !== 'undefined')) {
-      innerContent = <HomeContainer children={ children } />;
+    if (currentUser) {
+      innerContent = (
+        <HomeContainer>
+          <Switch>
+            <Route exact path="/" component={ BoardsIndexContainer } />
+            {boardRoute}
+            {cardRoute}
+            <Route path="/u/:username" component={ ProfileContainer } />
+          </Switch>
+        </HomeContainer>
+      );
+    // HACK: This isn't good, just trying to get it working
+    } else if (location.pathname.match(/\/(b|c)\/\d+/)) {
+      innerContent = (
+        <HomeContainer>
+          <Switch>
+            {boardRoute}
+            {cardRoute}
+          </Switch>
+        </HomeContainer>
+      );
     } else {
       innerContent = <WelcomeContainer />;
     }

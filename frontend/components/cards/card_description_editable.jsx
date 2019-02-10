@@ -87,7 +87,7 @@ class CardDescriptionEditable extends DynamicEditable {
 
     } else {
 
-      if (card.description === null || card.description.trim() === '') {
+      if (!card.description || card.description.trim() === '') {
         return (
           <section className="card-description">
             <span>

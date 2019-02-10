@@ -29,7 +29,7 @@ class CardTitleEditable extends DynamicEditable {
       this.setState({ menuKey: menuKeyBase });
       this.props.addMenu(this.state.menuKey);
     }
-    if (typeof newProps.card !== 'undefined') {
+    if (newProps.card && newProps.card.title) {
       this.setState({ title: newProps.card.title.slice() });
     }
   }

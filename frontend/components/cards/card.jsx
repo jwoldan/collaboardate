@@ -1,5 +1,5 @@
 import React from 'react';
-import { withRouter } from 'react-router';
+import { withRouter } from 'react-router-dom';
 import { DragSource } from 'react-dnd';
 import ItemTypes from '../dnd/item_types';
 
@@ -43,7 +43,7 @@ class Card extends DynamicEditable {
   }
 
   viewCardDetail() {
-    this.props.router.push(`/c/${this.props.card.id}`);
+    this.props.history.push(`/c/${this.props.card.id}`);
   }
 
   render() {

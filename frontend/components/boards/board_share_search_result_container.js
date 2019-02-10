@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router';
+import { withRouter } from 'react-router-dom';
 
 import BoardShareSearchResult from './board_share_search_result';
 
@@ -11,8 +11,10 @@ import {
 import { createShare, deleteShare } from '../../actions/board_share_actions';
 
 const mapStateToProps = (state, ownProps) => {
-  const board = selectBoard(state, parseInt(ownProps.params.boardId));
+  const { params } = ownProps.match;
+  const board = selectBoard(state, parseInt(params.boardId));
   const shares = state.shares;
+
   return {
     currentUser: state.currentUser,
     board,

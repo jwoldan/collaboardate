@@ -1,5 +1,5 @@
 import React from 'react';
-import { withRouter } from 'react-router';
+import { withRouter } from 'react-router-dom';
 
 import BoardVisibilityOptions from './board_visibility_options';
 
@@ -60,7 +60,7 @@ class BoardCreateForm extends React.Component {
       this.props.createBoard(newBoard).then((board) => {
         this.props.toggle();
         this.setState(Object.assign({}, defaultState));
-        this.props.router.push(`/b/${board.id}`);
+        this.props.history.push(`/b/${board.id}`);
         this.props.resetMenus();
       });
     }

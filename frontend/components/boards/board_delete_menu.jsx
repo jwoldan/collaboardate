@@ -1,5 +1,5 @@
 import React from 'react';
-import { withRouter } from 'react-router';
+import { withRouter } from 'react-router-dom';
 
 import ToggleMenu from '../general/toggle_menu';
 
@@ -12,8 +12,10 @@ class BoardDeleteMenu extends ToggleMenu {
   }
 
   deleteBoard() {
-    this.props.deleteBoard(this.props.params.boardId).then(() => {
-      this.props.router.push('/');
+    const { params } = this.props.match;
+
+    this.props.deleteBoard(params.boardId).then(() => {
+      this.props.history.push('/');
     });
   }
 

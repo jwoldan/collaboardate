@@ -1,5 +1,5 @@
 import React from 'react';
-import { withRouter } from 'react-router';
+import { withRouter } from 'react-router-dom';
 
 class Profile extends React.Component {
 
@@ -18,8 +18,9 @@ class Profile extends React.Component {
     this.updateProfile = this.updateProfile.bind(this);
   }
 
-  componentWillMount() {
-    const { currentUser, params, fetchProfile } = this.props;
+  componendDidMount() {
+    const { fetchProfile, match: { params } } = this.props;
+
     if (params.username !== currentUser.username) {
       fetchProfile(params.username);
     }
@@ -31,11 +32,15 @@ class Profile extends React.Component {
   }
 
   componentWillReceiveProps(newProps) {
-    const { params, fetchProfile } = this.props;
-    if (params.username !== newProps.params.username &&
-        newProps.params.username !== newProps.currentUser.username) {
+    const { fetchProfile, params: oldParams } = this.props;
+    const newParams = newProps.match.params;
+    const oldUserName = oldParams && oldParams.username;
+    const newUserName = newParams && newParams.username;
+
+    if (oldUserName !== newUserName &&
+        newUserName !== newProps.currentUser.username) {
       this.setState({ editing: false });
-      fetchProfile(newProps.params.username);
+      fetchProfile(newUserName);
     }
 
     if (newProps.editable && !this.props.editable) {
@@ -87,7 +92,7 @@ class Profile extends React.Component {
     this.props.updateUser(this.state.profile).then(
       (profile) => {
         this.toggleEdit();
-        this.props.router.push(`/${profile.username}`);
+        this.props.history.push(`/${profile.username}`);
       }
     );
   }

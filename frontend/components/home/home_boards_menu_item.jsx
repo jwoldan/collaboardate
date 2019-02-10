@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 
 export default ({ board, toggle }) => {
   const linkClass = `board-link ${board.background}`;

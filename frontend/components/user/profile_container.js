@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router';
+import { withRouter } from 'react-router-dom';
 
 import Profile from './profile';
 
@@ -13,9 +13,10 @@ import {
 } from '../../actions/user_actions';
 import { receiveProfileErrors } from '../../actions/errors_actions';
 
-
 const mapStateToProps = (state, ownProps) => {
-  const profile = selectProfile(state, ownProps.params.username);
+  const { params } = ownProps.match;
+  const profile = selectProfile(state, params.username);
+
   return {
     currentUser: state.currentUser,
     profile,
