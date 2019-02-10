@@ -1,25 +1,5 @@
 # frozen_string_literal: true
 
-# == Schema Information
-#
-# Table name: users
-#
-#  id                  :integer          not null, primary key
-#  username            :string           not null
-#  email               :string           not null
-#  password_digest     :string           not null
-#  session_token       :string           not null
-#  full_name           :string           not null
-#  initials            :string           not null
-#  bio                 :text
-#  avatar_file_name    :string
-#  avatar_content_type :string
-#  avatar_file_size    :integer
-#  avatar_updated_at   :datetime
-#  created_at          :datetime         not null
-#  updated_at          :datetime         not null
-#
-
 # Represents a user of the application
 class User < ApplicationRecord
   include Users::Authentication
@@ -96,3 +76,29 @@ class User < ApplicationRecord
                               .join || ''
   end
 end
+
+# == Schema Information
+#
+# Table name: users
+#
+#  id                  :integer          not null, primary key
+#  avatar_content_type :string
+#  avatar_file_name    :string
+#  avatar_file_size    :integer
+#  avatar_updated_at   :datetime
+#  bio                 :text
+#  email               :string           not null
+#  full_name           :string           not null
+#  initials            :string           not null
+#  password_digest     :string           not null
+#  session_token       :string           not null
+#  username            :string           not null
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
+#
+# Indexes
+#
+#  index_users_on_email          (email) UNIQUE
+#  index_users_on_session_token  (session_token) UNIQUE
+#  index_users_on_username       (username) UNIQUE
+#
