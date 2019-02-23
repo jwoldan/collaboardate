@@ -5,7 +5,6 @@ import DynamicEditable from '../general/dynamic_editable';
 const menuKeyBase = 'showCardCreate';
 
 class CardCreate extends DynamicEditable {
-
   constructor(props) {
     super(props);
 
@@ -25,7 +24,7 @@ class CardCreate extends DynamicEditable {
   }
 
   componentWillReceiveProps(newProps) {
-    if(this.props.list.id !== newProps.list.id) {
+    if (this.props.list.id !== newProps.list.id) {
       this.props.removeMenu(this.state.menuKey);
       this.setState({ menuKey: `${menuKeyBase}-${newProps.list.id}` });
       this.props.addMenu(this.state.menuKey);
@@ -41,7 +40,7 @@ class CardCreate extends DynamicEditable {
   }
 
   handleEnter(e) {
-    if(e.which === 13) {
+    if (e.which === 13) {
       e.preventDefault();
       this.submit();
     }
@@ -52,15 +51,13 @@ class CardCreate extends DynamicEditable {
     const title = this.state.title.trim();
     if (title !== '') {
       const { createCard, list } = this.props;
-      createCard({ title, list_id: list.id }).then(
-        () => {
-          this.setState({ title: '' });
-        }
-      );
+      createCard({ title, list_id: list.id }).then(() => {
+        this.setState({ title: '' });
+      });
     }
   }
 
-  render () {
+  render() {
     const { list, showStatus, disabled } = this.props;
     const { title, menuKey } = this.state;
     const show = this.props.showStatus(menuKey);
@@ -75,16 +72,18 @@ class CardCreate extends DynamicEditable {
       return (
         <form
           className="card-create-form editable"
-          onSubmit={ this.submit }
-          onClick={ this.stopPropagation }>
+          onSubmit={this.submit}
+          onClick={this.stopPropagation}
+        >
           <textarea
             className="input card-title-input"
             ref="titleTextarea"
-            value={ title }
-            onChange={ this.updateTitle }
-            onKeyDown= { this.handleEnter } />
+            value={title}
+            onChange={this.updateTitle}
+            onKeyDown={this.handleEnter}
+          />
           <input className="button green small" type="submit" value="Add" />
-          <span className="menu-close" onClick={ this.toggle } />
+          <span className="menu-close" onClick={this.toggle} />
         </form>
       );
     } else {
@@ -92,15 +91,13 @@ class CardCreate extends DynamicEditable {
         return <section className="card-create disabled" />;
       } else {
         return (
-          <section className="card-create" onClick={ this.toggle }>
+          <section className="card-create" onClick={this.toggle}>
             Add a card...
           </section>
         );
       }
     }
-
   }
-
 }
 
 export default CardCreate;

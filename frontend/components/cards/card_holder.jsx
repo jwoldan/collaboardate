@@ -8,9 +8,9 @@ import { receiveCard, updateCard } from '../../actions/card_actions';
 
 import CardContainer from './card_container';
 
-const mapDispatchToProps = (dispatch) => ({
-  receiveCard: (card) => dispatch(receiveCard(card)),
-  updateCard: (card) => dispatch(updateCard(card)),
+const mapDispatchToProps = dispatch => ({
+  receiveCard: card => dispatch(receiveCard(card)),
+  updateCard: card => dispatch(updateCard(card)),
 });
 
 const cardHolderTarget = {
@@ -36,23 +36,18 @@ const cardHolderTarget = {
   },
 };
 
-const collect = (dndConnect) => ({
-    connectDropTarget: dndConnect.dropTarget(),
+const collect = dndConnect => ({
+  connectDropTarget: dndConnect.dropTarget(),
 });
 
-const CardHolder = ({ card, disabled, connectDropTarget }) => (
+const CardHolder = ({ card, disabled, connectDropTarget }) =>
   connectDropTarget(
     <li>
-      <CardContainer card={ card } disabled= { disabled } />
+      <CardContainer card={card} disabled={disabled} />
     </li>
-  )
-);
+  );
 
 export default connect(
   null,
   mapDispatchToProps
-)(DropTarget(
-  ItemTypes.CARD,
-  cardHolderTarget,
-  collect
-)(CardHolder));
+)(DropTarget(ItemTypes.CARD, cardHolderTarget, collect)(CardHolder));

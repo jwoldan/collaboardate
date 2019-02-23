@@ -4,7 +4,7 @@ import HomeCreateMenu from './home_create_menu';
 
 import { toggleMenu } from '../../actions/menu_status_actions';
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   toggle: () => dispatch(toggleMenu('showHomeCreateMenu')),
 });
 

@@ -8,9 +8,9 @@ import Root from './components/root';
 document.addEventListener('DOMContentLoaded', () => {
   let preloadedState;
 
-  if(window.currentUser) {
+  if (window.currentUser) {
     preloadedState = {
-      currentUser: window.currentUser
+      currentUser: window.currentUser,
     };
   }
 
@@ -18,5 +18,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
   Modal.setAppElement(document.body);
   const root = document.getElementById('root');
-  ReactDOM.render(<Root store={ store }/>, root);
+  ReactDOM.render(<Root store={store} />, root);
 });

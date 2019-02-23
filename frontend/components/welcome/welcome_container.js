@@ -5,11 +5,14 @@ import { login } from '../../actions/user_actions';
 
 import Welcome from './welcome';
 
-const mapDispatchToProps = (dispatch) => ({
-  loginGuest: () => dispatch(login({
-    username: 'guest',
-    password: 'collaboardate'
-  })),
+const mapDispatchToProps = dispatch => ({
+  loginGuest: () =>
+    dispatch(
+      login({
+        username: 'guest',
+        password: 'collaboardate',
+      })
+    ),
 });
 
 export default withRouter(

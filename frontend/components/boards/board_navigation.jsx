@@ -5,7 +5,6 @@ import BoardVisibilityMenuContainer from './board_visibility_menu_container';
 import BoardMenuContainer from './board_menu_container';
 
 class BoardNavigation extends React.Component {
-
   constructor() {
     super();
 
@@ -18,30 +17,28 @@ class BoardNavigation extends React.Component {
     updateBoard(updatedBoard);
   }
 
-  render () {
+  render() {
     const { board, disabled } = this.props;
     const { title, visibility } = board;
 
     return (
       <nav className="board-nav clearfix">
-
         <ul className="nav-left clearfix">
           <BoardTitleMenuContainer
-            title={ title }
-            updateBoard={ this.updateBoard }
-            disabled={ disabled }
+            title={title}
+            updateBoard={this.updateBoard}
+            disabled={disabled}
           />
-        <BoardVisibilityMenuContainer
-            visibility={ visibility }
-            updateBoard= { this.updateBoard }
-            disabled={ disabled }
+          <BoardVisibilityMenuContainer
+            visibility={visibility}
+            updateBoard={this.updateBoard}
+            disabled={disabled}
           />
         </ul>
 
         <ul className="nav-right clearfix">
-          <BoardMenuContainer board={ board } disabled={ disabled }/>
+          <BoardMenuContainer board={board} disabled={disabled} />
         </ul>
-
       </nav>
     );
   }

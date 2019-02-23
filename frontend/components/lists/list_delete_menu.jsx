@@ -5,7 +5,6 @@ import DynamicToggleMenu from '../general/dynamic_toggle_menu';
 const menuKeyBase = 'showListDeleteMenu';
 
 class ListDeleteMenu extends DynamicToggleMenu {
-
   constructor() {
     super();
 
@@ -19,7 +18,7 @@ class ListDeleteMenu extends DynamicToggleMenu {
   }
 
   componentWillReceiveProps(newProps) {
-    if(this.props.list.id !== newProps.list.id) {
+    if (this.props.list.id !== newProps.list.id) {
       this.props.removeMenu(this.state.menuKey);
       this.setState({ menuKey: `${menuKeyBase}-${newProps.list.id}` });
       this.props.addMenu(this.state.menuKey);
@@ -31,20 +30,17 @@ class ListDeleteMenu extends DynamicToggleMenu {
   }
 
   deleteList() {
-    this.props.deleteList(this.props.list.id).then(
-      this.toggleMenu
-    );
+    this.props.deleteList(this.props.list.id).then(this.toggleMenu);
   }
 
   render() {
-
     const menuContent = (
       <section className="menu-section">
         <span className="small loud">
-          Deleting a list is permanent and can&#8217;t be undone!
-          If you&#8217;re sure, click the delete button below.
+          Deleting a list is permanent and can&#8217;t be undone! If you&#8217;re sure, click the
+          delete button below.
         </span>
-        <a onClick={ this.deleteList } className="button red">
+        <a onClick={this.deleteList} className="button red">
           Delete
         </a>
       </section>
@@ -52,10 +48,8 @@ class ListDeleteMenu extends DynamicToggleMenu {
 
     return (
       <section>
-        <a onClick={ this.toggle }>
-          Delete List
-        </a>
-        { this.renderMenu("Delete List?", menuContent, 'list-delete-menu') }
+        <a onClick={this.toggle}>Delete List</a>
+        {this.renderMenu('Delete List?', menuContent, 'list-delete-menu')}
       </section>
     );
   }

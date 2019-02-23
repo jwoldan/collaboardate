@@ -4,56 +4,50 @@ export const RECEIVE_SHARES = 'RECEIVE_SHARES';
 export const RECEIVE_SHARE = 'RECEIVE_SHARE';
 export const REMOVE_SHARE = 'REMOVE_SHARE';
 
-export const receiveShares = (shares) => {
+export const receiveShares = shares => {
   return {
     type: RECEIVE_SHARES,
     shares,
   };
 };
 
-export const receiveShare = (share) => {
+export const receiveShare = share => {
   return {
     type: RECEIVE_SHARE,
     share,
   };
 };
 
-export const removeShare = (share) => {
+export const removeShare = share => {
   return {
     type: REMOVE_SHARE,
     share,
   };
 };
 
-export const createShare = (share) => {
+export const createShare = share => {
   return dispatch => {
-    return BoardShareAPIUtil.createShare(share).then(
-      newShare => {
-        dispatch(receiveShare(newShare));
-        return newShare;
-      }
-    );
+    return BoardShareAPIUtil.createShare(share).then(newShare => {
+      dispatch(receiveShare(newShare));
+      return newShare;
+    });
   };
 };
 
-export const fetchShares = (boardId) => {
+export const fetchShares = boardId => {
   return dispatch => {
-    return BoardShareAPIUtil.fetchShares(boardId).then(
-      shares => {
-        dispatch(receiveShares(shares));
-        return shares;
-      }
-    );
+    return BoardShareAPIUtil.fetchShares(boardId).then(shares => {
+      dispatch(receiveShares(shares));
+      return shares;
+    });
   };
 };
 
-export const deleteShare = (id) => {
+export const deleteShare = id => {
   return dispatch => {
-    return BoardShareAPIUtil.deleteShare(id).then(
-      deletedShare => {
-        dispatch(removeShare(deletedShare));
-        return deletedShare;
-      }
-    );
+    return BoardShareAPIUtil.deleteShare(id).then(deletedShare => {
+      dispatch(removeShare(deletedShare));
+      return deletedShare;
+    });
   };
 };

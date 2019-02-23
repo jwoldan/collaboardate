@@ -9,9 +9,9 @@ const mapStateToProps = ({ menuStatus }) => ({
   show: menuStatus.showBoardDeleteMenu,
 });
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   toggle: () => dispatch(toggleMenu('showBoardDeleteMenu', true)),
-  deleteBoard: (id) => dispatch(deleteBoard(id)),
+  deleteBoard: id => dispatch(deleteBoard(id)),
 });
 
 export default connect(

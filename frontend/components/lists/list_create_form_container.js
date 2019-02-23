@@ -9,20 +9,22 @@ import { createList } from '../../actions/list_actions';
 const mapStateToProps = (state, ownProps) => {
   const { params } = ownProps.match;
 
-  if(params.boardId) {
-    return ({
+  if (params.boardId) {
+    return {
       board: selectBoard(state, parseInt(params.boardId)),
-    });
+    };
   } else {
     return { board: {} };
   }
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  createList: (list) => dispatch(createList(list)),
+const mapDispatchToProps = dispatch => ({
+  createList: list => dispatch(createList(list)),
 });
 
-export default withRouter(connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ListCreateForm));
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(ListCreateForm)
+);

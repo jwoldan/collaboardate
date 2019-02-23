@@ -6,13 +6,9 @@ import Home from './home';
 import { selectBoard } from '../../reducers/selectors';
 
 const mapStateToProps = (state, ownProps) => {
-  return ({
+  return {
     board: selectBoard(state, state.currentBoardId),
-  });
+  };
 };
 
-export default withRouter(
-  connect(
-    mapStateToProps
-  )(Home)
-);
+export default withRouter(connect(mapStateToProps)(Home));

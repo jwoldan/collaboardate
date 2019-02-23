@@ -6,15 +6,18 @@ import SignupForm from './signup_form';
 
 const mapStateToProps = ({ currentUser, errors }) => ({
   currentUser,
-  errors: errors.signup
+  errors: errors.signup,
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  signup: (user) => dispatch(signup(user)),
-  loginGuest: () => dispatch(login({
-    username: 'guest',
-    password: 'collaboardate'
-  })),
+const mapDispatchToProps = dispatch => ({
+  signup: user => dispatch(signup(user)),
+  loginGuest: () =>
+    dispatch(
+      login({
+        username: 'guest',
+        password: 'collaboardate',
+      })
+    ),
 });
 
 export default connect(

@@ -6,7 +6,6 @@ import ListDeleteMenuContainer from './list_delete_menu_container';
 const menuKeyBase = 'showListMenu';
 
 class ListMenu extends DynamicToggleMenu {
-
   componentDidMount() {
     const menuKey = `${menuKeyBase}-${this.props.list.id}`;
     this.setState({ menuKey });
@@ -14,7 +13,7 @@ class ListMenu extends DynamicToggleMenu {
   }
 
   componentWillReceiveProps(newProps) {
-    if(this.props.list.id !== newProps.list.id) {
+    if (this.props.list.id !== newProps.list.id) {
       this.props.removeMenu(this.state.menuKey);
       this.setState({ menuKey: `${menuKeyBase}-${newProps.list.id}` });
       this.props.addMenu(this.state.menuKey);
@@ -26,20 +25,15 @@ class ListMenu extends DynamicToggleMenu {
   }
 
   render() {
+    const menuContent = <ListDeleteMenuContainer list={this.props.list} />;
 
-    const menuContent = (
-      <ListDeleteMenuContainer list={ this.props.list }/>
-    );
-
-    let iconClass = "icon icon-more-black icon-list-menu";
-    if (this.props.disabled) iconClass += " hide";
+    let iconClass = 'icon icon-more-black icon-list-menu';
+    if (this.props.disabled) iconClass += ' hide';
 
     return (
       <section>
-        <span
-          className={ iconClass }
-          onClick={ this.toggle } />
-        { this.renderMenu("List Actions", menuContent, "list-menu") }
+        <span className={iconClass} onClick={this.toggle} />
+        {this.renderMenu('List Actions', menuContent, 'list-menu')}
       </section>
     );
   }

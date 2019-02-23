@@ -9,7 +9,6 @@ import ListHolderContainer from '../lists/list_holder_container';
 import ListCreateContainer from '../lists/list_create_container';
 
 class Board extends React.Component {
-
   componentDidMount() {
     const { params } = this.props.match;
 
@@ -40,7 +39,7 @@ class Board extends React.Component {
       newBoardId === newBoardId
     ) {
       this.fetchBoardAndContents(newBoardId);
-    } else if(
+    } else if (
       oldCardId !== newCardId &&
       this.props.cardDetail.id !== newCardId &&
       newProps.cardDetail.id !== newCardId &&
@@ -64,53 +63,42 @@ class Board extends React.Component {
     this.props.receiveShares({});
     this.props.receiveCurrentBoardId(boardId);
     return this.props.fetchBoard(boardId).then(
-      (board) => {
-        this.props.fetchLists(board.id).then(
-          (lists) => {
-            this.props.fetchCards(board.id).then(
-              (cards) => {
-                this.props.fetchShares(board.id);
-              }
-            );
-          }
-        );
-
+      board => {
+        this.props.fetchLists(board.id).then(lists => {
+          this.props.fetchCards(board.id).then(cards => {
+            this.props.fetchShares(board.id);
+          });
+        });
       },
-      (error) => this.props.history.push('/')
+      error => this.props.history.push('/')
     );
   }
 
   fetchCardDetailAndBoard(cardId) {
     return this.props.fetchCardDetail(cardId).then(
-      (card) => {
+      card => {
         if (this.props.currentBoardId !== card.board_id) {
           this.fetchBoardAndContents(card.board_id);
         }
       },
-      (error) => this.props.history.push('/')
+      error => this.props.history.push('/')
     );
   }
 
   render() {
     const { currentUser, board, lists, updateBoard, disabled } = this.props;
-    const navDisabled = disabled || (currentUser.id !== board.creator.id);
+    const navDisabled = disabled || currentUser.id !== board.creator.id;
 
     return (
       <section className="current-board">
-        <CardDetailContainer disabled={ disabled }/>
+        <CardDetailContainer disabled={disabled} />
         <CardEditModal />
-        <BoardNavigation
-          board={ board }
-          updateBoard={ updateBoard }
-          disabled={ navDisabled } />
+        <BoardNavigation board={board} updateBoard={updateBoard} disabled={navDisabled} />
         <ul className="lists clearfix">
-          { lists.map((list) => (
-            <ListHolderContainer
-              key={ list.id }
-              list={ list }
-              disabled={ disabled }/>
+          {lists.map(list => (
+            <ListHolderContainer key={list.id} list={list} disabled={disabled} />
           ))}
-          <ListCreateContainer disabled={ disabled }/>
+          <ListCreateContainer disabled={disabled} />
         </ul>
       </section>
     );

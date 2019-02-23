@@ -9,7 +9,6 @@ import HomeInformationMenuContainer from './home_information_menu_container';
 import HomeNotificationMenu from './home_notification_menu';
 
 class HomeNavigation extends React.Component {
-
   constructor() {
     super();
 
@@ -17,16 +16,16 @@ class HomeNavigation extends React.Component {
   }
 
   componentDidMount() {
-    if(this.props.currentUser) this.props.fetchBoards();
+    if (this.props.currentUser) this.props.fetchBoards();
   }
 
   toggleMenu(menu) {
-    return (e) => {
+    return e => {
       this.props.toggleMenu(menu);
     };
   }
 
-  render () {
+  render() {
     const { currentUser, menuStatus, toggleMenu } = this.props;
     const {
       showHomeBoardsMenu,
@@ -34,48 +33,47 @@ class HomeNavigation extends React.Component {
       showHomeProfileMenu,
       showHomeInformationMenu,
       showHomeNotificationMenu,
-    } =  menuStatus;
+    } = menuStatus;
 
     if (currentUser === null) {
-
       return (
         <nav className="home-nav clearfix">
           <Link to="/" className="logo" />
         </nav>
       );
-
     } else {
-
       return (
         <nav className="home-nav clearfix">
-
           <Link to="/" className="logo" />
 
           <ul className="nav-left clearfix">
             <HomeBoardsMenuContainer
-              show={ showHomeBoardsMenu }
-              toggle={ this.toggleMenu('showHomeBoardsMenu') } />
+              show={showHomeBoardsMenu}
+              toggle={this.toggleMenu('showHomeBoardsMenu')}
+            />
             <HomeSearch />
           </ul>
 
           <ul className="nav-right clearfix">
             <HomeCreateMenu
-              show={ showHomeCreateMenu }
-              toggle={ this.toggleMenu('showHomeCreateMenu') } />
+              show={showHomeCreateMenu}
+              toggle={this.toggleMenu('showHomeCreateMenu')}
+            />
             <HomeProfileMenuContainer
-              show={ showHomeProfileMenu }
-              toggle={ this.toggleMenu('showHomeProfileMenu') } />
+              show={showHomeProfileMenu}
+              toggle={this.toggleMenu('showHomeProfileMenu')}
+            />
             <HomeInformationMenuContainer
-              show={ showHomeInformationMenu }
-              toggle={ this.toggleMenu('showHomeInformationMenu') } />
+              show={showHomeInformationMenu}
+              toggle={this.toggleMenu('showHomeInformationMenu')}
+            />
             <HomeNotificationMenu
-              show={ showHomeNotificationMenu }
-              toggle={ this.toggleMenu('showHomeNotificationMenu') } />
+              show={showHomeNotificationMenu}
+              toggle={this.toggleMenu('showHomeNotificationMenu')}
+            />
           </ul>
-
         </nav>
       );
-
     }
   }
 }

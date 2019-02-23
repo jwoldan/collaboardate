@@ -10,11 +10,7 @@ const mapStateToProps = (state, ownProps) => {
 
   return {
     users: selectBoardUsers(state, parseInt(params.boardId)),
-  }
+  };
 };
 
-export default withRouter(
-  connect(
-    mapStateToProps
-  )(BoardMembers)
-);
+export default withRouter(connect(mapStateToProps)(BoardMembers));

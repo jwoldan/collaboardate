@@ -5,15 +5,15 @@ import { DropTarget } from 'react-dnd';
 import ItemTypes from '../dnd/item_types';
 import { receiveCard, updateCard } from '../../actions/card_actions';
 
-const mapDispatchToProps = (dispatch) => ({
-  receiveCard: (card) => dispatch(receiveCard(card)),
-  updateCard: (card) => dispatch(updateCard(card)),
+const mapDispatchToProps = dispatch => ({
+  receiveCard: card => dispatch(receiveCard(card)),
+  updateCard: card => dispatch(updateCard(card)),
 });
 
 const cardHolderTarget = {
   hover: (props, monitor) => {
     const sourceCard = monitor.getItem().card;
-    const cardIds = props.cards.map((card) => card.id);
+    const cardIds = props.cards.map(card => card.id);
     if (!cardIds.includes(sourceCard.id)) {
       const updatedSourceCard = Object.assign({}, sourceCard, {
         ord: props.cards.length,
@@ -24,7 +24,7 @@ const cardHolderTarget = {
   },
   drop: (props, monitor) => {
     const sourceCard = monitor.getItem().card;
-    if(sourceCard.list_id !== props.listId) {
+    if (sourceCard.list_id !== props.listId) {
       const updatedSourceCard = Object.assign({}, sourceCard, {
         ord: props.cards.length - 1,
         list_id: props.listId,
@@ -34,25 +34,15 @@ const cardHolderTarget = {
   },
 };
 
-const collect = (dndConnect) => ({
-    connectDropTarget: dndConnect.dropTarget(),
+const collect = dndConnect => ({
+  connectDropTarget: dndConnect.dropTarget(),
 });
 
 const CardTarget = ({ connectDropTarget, children }) => {
-
-  return connectDropTarget(
-    <li className="card-target">
-      { children }
-    </li>
-  );
-
+  return connectDropTarget(<li className="card-target">{children}</li>);
 };
 
 export default connect(
   null,
   mapDispatchToProps
-  )(DropTarget(
-    ItemTypes.CARD,
-    cardHolderTarget,
-    collect
-)(CardTarget));
+)(DropTarget(ItemTypes.CARD, cardHolderTarget, collect)(CardTarget));

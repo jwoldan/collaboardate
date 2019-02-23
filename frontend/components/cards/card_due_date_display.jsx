@@ -4,7 +4,6 @@ import moment from 'moment';
 import { dueDateClassName } from '../general/class_name_util';
 
 class CardDueDateDisplay extends React.Component {
-
   constructor(props) {
     super(props);
 
@@ -23,8 +22,7 @@ class CardDueDateDisplay extends React.Component {
   render() {
     const { card } = this.props;
 
-    if(card.due_date) {
-
+    if (card.due_date) {
       let dueDateText;
       let after = false;
       let diff = moment().diff(moment(card.due_date));
@@ -37,20 +35,20 @@ class CardDueDateDisplay extends React.Component {
         dueDateText = moment(card.due_date).fromNow();
       }
 
-      dueDateText +=
-        ` (${moment(card.due_date).format("MMM DD, YYYY [at] h:mm A")})`;
+      dueDateText += ` (${moment(card.due_date).format('MMM DD, YYYY [at] h:mm A')})`;
 
-      const  displayClass = "due-date-display" + dueDateClassName(card);
+      const displayClass = 'due-date-display' + dueDateClassName(card);
 
       return (
         <section>
-          <span className="quiet">Due Date</span><br/>
-          <span className={ displayClass } onClick={ this.toggle }>
-            <span className="icon icon-checkbox" />{ dueDateText }
+          <span className="quiet">Due Date</span>
+          <br />
+          <span className={displayClass} onClick={this.toggle}>
+            <span className="icon icon-checkbox" />
+            {dueDateText}
           </span>
         </section>
       );
-
     } else {
       return null;
     }

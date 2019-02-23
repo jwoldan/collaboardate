@@ -1,7 +1,6 @@
 import React from 'react';
 
 class DynamicEditable extends React.Component {
-
   constructor() {
     super();
 
@@ -21,9 +20,8 @@ class DynamicEditable extends React.Component {
   }
 
   stopPropagation(e) {
-    if(e) e.stopPropagation();
+    if (e) e.stopPropagation();
   }
-
 }
 
 export default DynamicEditable;

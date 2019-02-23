@@ -5,7 +5,6 @@ export default (state = {}, action) => {
   let newState;
 
   switch (action.type) {
-
     case BoardShareActions.RECEIVE_SHARES:
       return Object.assign({}, action.shares);
 
@@ -18,7 +17,7 @@ export default (state = {}, action) => {
       newState = Object.assign({}, state);
       delete newState[action.share.id];
       return newState;
-      
+
     default:
       return state;
   }

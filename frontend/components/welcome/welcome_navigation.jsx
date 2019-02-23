@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 class WelcomeNavigation extends React.Component {
-
   constructor(props) {
     super(props);
 
@@ -23,7 +22,7 @@ class WelcomeNavigation extends React.Component {
   }
 
   handleScroll(event) {
-    if(event.srcElement.body.scrollTop > 100) {
+    if (event.srcElement.body.scrollTop > 100) {
       this.setState({ scrolled: true });
     } else {
       this.setState({ scrolled: false });
@@ -31,16 +30,20 @@ class WelcomeNavigation extends React.Component {
   }
 
   navClass() {
-    return "welcome-nav clearfix" + (this.state.scrolled ? " scrolled" : "");
+    return 'welcome-nav clearfix' + (this.state.scrolled ? ' scrolled' : '');
   }
 
   render() {
     return (
-      <nav className={ this.navClass() }>
-        <span className="logo"/>
+      <nav className={this.navClass()}>
+        <span className="logo" />
         <section className="buttons">
-          <Link to="/login" className="button">Log In</Link>
-          <Link to="/signup" className="button green bold">Sign Up</Link>
+          <Link to="/login" className="button">
+            Log In
+          </Link>
+          <Link to="/signup" className="button green bold">
+            Sign Up
+          </Link>
         </section>
       </nav>
     );

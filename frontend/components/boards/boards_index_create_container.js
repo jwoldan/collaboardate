@@ -8,7 +8,7 @@ const mapStateToProps = ({ menuStatus }) => ({
   show: menuStatus.showBoardsIndexCreate,
 });
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   toggle: () => dispatch(toggleMenu('showBoardsIndexCreate', true)),
 });
 

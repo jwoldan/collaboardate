@@ -10,10 +10,5 @@ if (process.env.NODE_ENV !== 'production') {
   middlewares.push(logger);
 }
 
-export default(preloadedState ={}) => (
-  createStore(
-    rootReducer,
-    preloadedState,
-    applyMiddleware(...middlewares)
-  )
-);
+export default (preloadedState = {}) =>
+  createStore(rootReducer, preloadedState, applyMiddleware(...middlewares));

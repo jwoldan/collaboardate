@@ -6,7 +6,6 @@ import DynamicEditable from '../general/dynamic_editable';
 const menuKeyBase = 'showCardQuickEdit';
 
 class CardQuickEdit extends DynamicEditable {
-
   constructor() {
     super();
 
@@ -28,7 +27,7 @@ class CardQuickEdit extends DynamicEditable {
   }
 
   componentWillReceiveProps(newProps) {
-    if(this.props.card.id !== newProps.card.id) {
+    if (this.props.card.id !== newProps.card.id) {
       this.props.removeMenu(this.state.menuKey);
       this.setState({ menuKey: `${menuKeyBase}-${newProps.card.id}` });
       this.props.addMenu(this.state.menuKey);
@@ -54,7 +53,7 @@ class CardQuickEdit extends DynamicEditable {
   }
 
   handleEnter(e) {
-    if(e.which === 13) {
+    if (e.which === 13) {
       e.preventDefault();
       this.submit();
     }
@@ -66,27 +65,22 @@ class CardQuickEdit extends DynamicEditable {
     if (title !== '') {
       const { card, updateCard } = this.props;
       const updatedCard = Object.assign({}, card, { title });
-      updateCard(updatedCard).then(
-        () => this.toggle()
-      );
+      updateCard(updatedCard).then(() => this.toggle());
     }
   }
 
   deleteCard() {
     const { card, deleteCard } = this.props;
-    deleteCard(card.id).then(
-      () => this.props.toggleModal()
-    );
-
+    deleteCard(card.id).then(() => this.props.toggleModal());
   }
 
   render() {
     const { card, showStatus, disabled } = this.props;
     const { title, menuKey } = this.state;
     const show = showStatus(menuKey);
-    let menuContent = "";
-    let iconClass = "icon icon-edit";
-    if (disabled) iconClass += " hide";
+    let menuContent = '';
+    let iconClass = 'icon icon-edit';
+    if (disabled) iconClass += ' hide';
 
     if (show) {
       setTimeout(() => {
@@ -95,38 +89,31 @@ class CardQuickEdit extends DynamicEditable {
 
       menuContent = (
         <section className="editable card-quick-edit-modal clearfix">
-          <form onSubmit={ this.submit }>
+          <form onSubmit={this.submit}>
             <textarea
               className="input"
               ref="titleTextarea"
-              value={ title }
-              onChange={ this.updateTitle }
-              onKeyDown= { this.handleEnter }
-              onFocus={ (e) => e.target.select() } />
+              value={title}
+              onChange={this.updateTitle}
+              onKeyDown={this.handleEnter}
+              onFocus={e => e.target.select()}
+            />
             <input type="submit" className="button green" value="Save" />
           </form>
           <ul className="card-quick-edit-actions">
-            <li onClick={ this.deleteCard }>Delete</li>
+            <li onClick={this.deleteCard}>Delete</li>
           </ul>
         </section>
       );
     }
 
-
-
     return (
-      <section
-        className="card-quick-edit"
-        onClick={ (e) => e.stopPropagation() }>
-        <span className={ iconClass } onClick={ this.toggleWithModal }/>
-        { menuContent }
+      <section className="card-quick-edit" onClick={e => e.stopPropagation()}>
+        <span className={iconClass} onClick={this.toggleWithModal} />
+        {menuContent}
       </section>
     );
   }
-
-
 }
-
-
 
 export default CardQuickEdit;

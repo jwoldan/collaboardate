@@ -6,13 +6,13 @@ import { checkSharedUser } from '../../reducers/selectors';
 import { toggleMenu } from '../../actions/menu_status_actions';
 
 const mapStateToProps = ({ menuStatus, shares, currentUser }, ownProps) => {
-  return ({
+  return {
     shared: checkSharedUser(shares, currentUser),
     show: menuStatus.showBoardMenu,
-  });
+  };
 };
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   toggle: () => dispatch(toggleMenu('showBoardMenu')),
 });
 

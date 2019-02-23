@@ -10,9 +10,9 @@ const mapStateToProps = ({ currentUser, menuStatus }) => ({
   menuStatus,
 });
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   fetchBoards: () => dispatch(fetchBoards()),
-  toggleMenu: (menu) => dispatch(toggleMenu(menu)),
+  toggleMenu: menu => dispatch(toggleMenu(menu)),
 });
 
 export default connect(

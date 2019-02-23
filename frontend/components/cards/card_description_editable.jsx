@@ -5,7 +5,6 @@ import DynamicEditable from '../general/dynamic_editable';
 const menuKeyBase = 'showCardDescriptionEditable';
 
 class CardDescriptionEditable extends DynamicEditable {
-
   constructor(props) {
     super(props);
 
@@ -25,7 +24,7 @@ class CardDescriptionEditable extends DynamicEditable {
 
   componentWillReceiveProps(newProps) {
     const { card } = newProps;
-    if(this.props.card.id !== card.id) {
+    if (this.props.card.id !== card.id) {
       this.props.removeMenu(this.state.menuKey);
       this.setState({ menuKey: menuKeyBase });
       this.props.addMenu(this.state.menuKey);
@@ -48,16 +47,14 @@ class CardDescriptionEditable extends DynamicEditable {
     const description = this.state.description.trim();
     const { card, updateCard } = this.props;
     const updatedCard = Object.assign({}, card, { description });
-    updateCard(updatedCard).then(
-      () => this.toggle()
-    );
+    updateCard(updatedCard).then(() => this.toggle());
   }
 
   render() {
     const { card, showStatus, disabled } = this.props;
     const { description, menuKey } = this.state;
     const show = this.props.showStatus(menuKey);
-    const hideClass = disabled ? "hide" : "";
+    const hideClass = disabled ? 'hide' : '';
 
     if (show) {
       setTimeout(() => {
@@ -69,29 +66,26 @@ class CardDescriptionEditable extends DynamicEditable {
       return (
         <form
           className="card-description-editable"
-          onClick={ (e) => e.stopPropagation() }
-          onSubmit={ this.submit }>
+          onClick={e => e.stopPropagation()}
+          onSubmit={this.submit}
+        >
           <textarea
             className="card-description-textarea"
             ref="descriptionTextarea"
-            value={ description }
-            onChange={ this.updateDescription }
-            onFocus={ (e) => e.target.select() } />
-          <input
-            type="submit"
-            className="button green"
-            value="Save" />
-          <span className="menu-close" onClick={ this.toggle } />
+            value={description}
+            onChange={this.updateDescription}
+            onFocus={e => e.target.select()}
+          />
+          <input type="submit" className="button green" value="Save" />
+          <span className="menu-close" onClick={this.toggle} />
         </form>
       );
-
     } else {
-
       if (!card.description || card.description.trim() === '') {
         return (
           <section className="card-description">
             <span>
-              <a className={ hideClass } onClick={ this.toggle }>
+              <a className={hideClass} onClick={this.toggle}>
                 Edit the description...
               </a>
             </span>
@@ -102,17 +96,15 @@ class CardDescriptionEditable extends DynamicEditable {
           <section className="card-description">
             <span className="quiet">
               Description
-              <a className={ hideClass } onClick={ this.toggle }>Edit</a>
+              <a className={hideClass} onClick={this.toggle}>
+                Edit
+              </a>
             </span>
-            <p>
-              { card.description }
-            </p>
+            <p>{card.description}</p>
           </section>
         );
       }
-
     }
-
   }
 }
 

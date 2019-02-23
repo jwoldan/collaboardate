@@ -6,20 +6,15 @@ export default ({ title, boards, toggle }) => {
   if (boards.length > 0) {
     return (
       <section>
-        <section className="menu-header">
-          { title }
-        </section>
+        <section className="menu-header">{title}</section>
         <ul>
-          { boards.map((board) => (
-            <HomeBoardsMenuItem
-              key={ board.id }
-              board={ board }
-              toggle={ toggle } />
+          {boards.map(board => (
+            <HomeBoardsMenuItem key={board.id} board={board} toggle={toggle} />
           ))}
         </ul>
       </section>
     );
   } else {
-     return null;
+    return null;
   }
 };

@@ -9,9 +9,9 @@ const mapStateToProps = ({ menuStatus }) => ({
   show: menuStatus.showCardDueDateMenu,
 });
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   toggle: () => dispatch(toggleMenu('showCardDueDateMenu')),
-  updateCard: (card) => dispatch(updateCard(card)),
+  updateCard: card => dispatch(updateCard(card)),
 });
 
 export default connect(

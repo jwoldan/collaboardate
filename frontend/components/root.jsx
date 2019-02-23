@@ -7,12 +7,12 @@ import SignupFormContainer from './user/signup_form_container';
 import LoginFormContainer from './user/login_form_container';
 
 export default ({ store }) => (
-  <Provider store={ store }>
+  <Provider store={store}>
     <HashRouter>
       <Switch>
-        <Route exact path="/signup" component={ SignupFormContainer } />
-        <Route exaxt path="/login" component={ LoginFormContainer } />
-        <Route path="/" component={ AppContainer } />
+        <Route exact path="/signup" component={SignupFormContainer} />
+        <Route exaxt path="/login" component={LoginFormContainer} />
+        <Route path="/" component={AppContainer} />
       </Switch>
     </HashRouter>
   </Provider>

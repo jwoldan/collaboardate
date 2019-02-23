@@ -10,7 +10,7 @@ const mapStateToProps = ({ menuStatus }) => ({
   show: menuStatus.showBoardShareMenu,
 });
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   toggle: () => dispatch(toggleMenu('showBoardShareMenu', true)),
 });
 

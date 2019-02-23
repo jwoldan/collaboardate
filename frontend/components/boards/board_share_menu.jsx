@@ -2,24 +2,22 @@ import React from 'react';
 
 import ToggleMenu from '../general/toggle_menu';
 
-import BoardShareSearchResultContainer
-  from './board_share_search_result_container';
+import BoardShareSearchResultContainer from './board_share_search_result_container';
 
 class BoardShareMenu extends ToggleMenu {
-
   constructor() {
     super();
 
     this.state = {
       query: '',
-      results: []
+      results: [],
     };
 
     this.handleInput = this.handleInput.bind(this);
   }
 
   componentWillReceiveProps(newProps) {
-    if(this.props.show !== newProps.show) {
+    if (this.props.show !== newProps.show) {
       this.setState({ query: '', results: [] });
     }
   }
@@ -27,16 +25,12 @@ class BoardShareMenu extends ToggleMenu {
   handleInput(e) {
     const query = e.currentTarget.value;
     this.setState({ query });
-    if(query.trim() !== '') {
-      this.props.search(query).then(
-        (results) => this.setState({ results })
-      );
+    if (query.trim() !== '') {
+      this.props.search(query).then(results => this.setState({ results }));
     } else {
       this.setState({ results: [] });
     }
   }
-
-
 
   render() {
     const { show } = this.props;
@@ -46,30 +40,24 @@ class BoardShareMenu extends ToggleMenu {
       <section className="menu-section">
         <span className="small loud">
           <span className="quiet">Type to search by username:</span>
-          <input
-            className="input"
-            onChange={ this.handleInput }
-            ref="searchInput"
-            value={ query } />
+          <input className="input" onChange={this.handleInput} ref="searchInput" value={query} />
           <ul>
-            { results.map((user) =>
-              <BoardShareSearchResultContainer key={ user.id } user={ user }/>
-            ) }
+            {results.map(user => (
+              <BoardShareSearchResultContainer key={user.id} user={user} />
+            ))}
           </ul>
         </span>
       </section>
     );
 
-    if(show) {
+    if (show) {
       setTimeout(() => this.refs.searchInput.focus(), 1);
     }
 
     return (
       <section className="board-menu-item">
-        <a onClick={ this.toggle }>
-          Edit Sharing
-        </a>
-        { this.renderMenu("Sharing", menuContent) }
+        <a onClick={this.toggle}>Edit Sharing</a>
+        {this.renderMenu('Sharing', menuContent)}
       </section>
     );
   }

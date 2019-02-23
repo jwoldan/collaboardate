@@ -6,15 +6,18 @@ import LoginForm from './login_form';
 
 const mapStateToProps = ({ currentUser, errors }) => ({
   currentUser,
-  errors: errors.login
+  errors: errors.login,
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  login: (user) => dispatch(login(user)),
-  loginGuest: () => dispatch(login({
-    username: 'guest',
-    password: 'collaboardate'
-  })),
+const mapDispatchToProps = dispatch => ({
+  login: user => dispatch(login(user)),
+  loginGuest: () =>
+    dispatch(
+      login({
+        username: 'guest',
+        password: 'collaboardate',
+      })
+    ),
 });
 
 export default connect(

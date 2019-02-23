@@ -4,21 +4,15 @@ import ToggleMenu from '../general/toggle_menu';
 import BoardCreateFormContainer from './board_create_form_container';
 
 class BoardsIndexCreate extends ToggleMenu {
-
   render() {
-
     const menuContent = (
-      <BoardCreateFormContainer
-        show={ this.props.show }
-        toggle={ this.props.toggle }/>
+      <BoardCreateFormContainer show={this.props.show} toggle={this.props.toggle} />
     );
 
     return (
-      <li className="board board-create" >
-        <section onClick={ this.toggle }>
-          Create new board...
-        </section>
-        { this.renderMenu('Create', menuContent, 'board-create-menu') }
+      <li className="board board-create">
+        <section onClick={this.toggle}>Create new board...</section>
+        {this.renderMenu('Create', menuContent, 'board-create-menu')}
       </li>
     );
   }

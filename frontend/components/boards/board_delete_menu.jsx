@@ -4,7 +4,6 @@ import { withRouter } from 'react-router-dom';
 import ToggleMenu from '../general/toggle_menu';
 
 class BoardDeleteMenu extends ToggleMenu {
-
   constructor() {
     super();
 
@@ -20,14 +19,13 @@ class BoardDeleteMenu extends ToggleMenu {
   }
 
   render() {
-
     const menuContent = (
       <section className="menu-section">
         <span className="small loud">
-          Deleting a board is permanent and can&#8217;t be undone!
-          If you&#8217;re sure, click the delete button below.
+          Deleting a board is permanent and can&#8217;t be undone! If you&#8217;re sure, click the
+          delete button below.
         </span>
-        <a onClick={ this.deleteBoard } className="button red">
+        <a onClick={this.deleteBoard} className="button red">
           Delete
         </a>
       </section>
@@ -35,10 +33,8 @@ class BoardDeleteMenu extends ToggleMenu {
 
     return (
       <section className="board-menu-item">
-        <a onClick={ this.toggle }>
-          Delete Board
-        </a>
-        { this.renderMenu("Delete Board?", menuContent) }
+        <a onClick={this.toggle}>Delete Board</a>
+        {this.renderMenu('Delete Board?', menuContent)}
       </section>
     );
   }

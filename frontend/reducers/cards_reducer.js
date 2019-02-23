@@ -6,7 +6,6 @@ export default (state = {}, action) => {
   let newState;
 
   switch (action.type) {
-
     case CardActions.RECEIVE_CARDS:
       return Object.assign({}, action.cards);
 
@@ -37,9 +36,7 @@ export default (state = {}, action) => {
     case CardActions.REMOVE_CARD:
       const { list_id, ord } = action.card;
 
-      newState = Object.assign({}, state,
-        updateOtherCardOrds(state, list_id, ord, null)
-      );
+      newState = Object.assign({}, state, updateOtherCardOrds(state, list_id, ord, null));
       delete newState[action.card.id];
       return newState;
 
@@ -50,12 +47,12 @@ export default (state = {}, action) => {
       }
       return newState;
 
-      case CardActions.DECREMENT_COMMENT_COUNT:
-        newState = Object.assign({}, state);
-        if (state[action.cardId]) {
-          state[action.cardId].comment_count -= 1;
-        }
-        return newState;
+    case CardActions.DECREMENT_COMMENT_COUNT:
+      newState = Object.assign({}, state);
+      if (state[action.cardId]) {
+        state[action.cardId].comment_count -= 1;
+      }
+      return newState;
 
     default:
       return state;
@@ -63,38 +60,37 @@ export default (state = {}, action) => {
 };
 
 const updateOtherCardOrds = (state, listId, currentOrd, newOrd) => {
-    const newState = {};
+  const newState = {};
 
-    // Get an array of just the cards in the current list
-    const listCards = Object.keys(state)
-      .map((key) => state[key])
-      .filter((card) => card.list_id === listId);
+  // Get an array of just the cards in the current list
+  const listCards = Object.keys(state)
+    .map(key => state[key])
+    .filter(card => card.list_id === listId);
 
-    // Initial value of -1 would only be returned if no cards exist,
-    // Otherwise we get the max ord.  Either way, add 1.
-    const nextOrd = listCards.map((card) => card.ord)
-      .reduce((x, y) => ((x > y) ? x : y), -1) + 1;
+  // Initial value of -1 would only be returned if no cards exist,
+  // Otherwise we get the max ord.  Either way, add 1.
+  const nextOrd = listCards.map(card => card.ord).reduce((x, y) => (x > y ? x : y), -1) + 1;
 
-    if (newOrd === null) newOrd = nextOrd;
-    if (currentOrd === null) currentOrd = nextOrd;
+  if (newOrd === null) newOrd = nextOrd;
+  if (currentOrd === null) currentOrd = nextOrd;
 
-    if (currentOrd > newOrd) {
-      listCards.forEach((card) => {
-        if (card.ord < currentOrd && card.ord >= newOrd) {
-          newState[card.id] = Object.assign({}, card, { ord: card.ord + 1 });
-        } else {
-          newState[card.id] = card;
-        }
-      });
-    } else if (currentOrd < newOrd) {
-      listCards.forEach((card) => {
-        if(card.ord > currentOrd && card.ord <= newOrd) {
-          newState[card.id] = Object.assign({}, card, { ord: card.ord - 1 });
-        } else {
-          newState[card.id] = card;
-        }
-      });
-    }
+  if (currentOrd > newOrd) {
+    listCards.forEach(card => {
+      if (card.ord < currentOrd && card.ord >= newOrd) {
+        newState[card.id] = Object.assign({}, card, { ord: card.ord + 1 });
+      } else {
+        newState[card.id] = card;
+      }
+    });
+  } else if (currentOrd < newOrd) {
+    listCards.forEach(card => {
+      if (card.ord > currentOrd && card.ord <= newOrd) {
+        newState[card.id] = Object.assign({}, card, { ord: card.ord - 1 });
+      } else {
+        newState[card.id] = card;
+      }
+    });
+  }
 
-    return newState;
+  return newState;
 };

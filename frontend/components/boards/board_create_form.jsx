@@ -13,7 +13,6 @@ const defaultState = {
 };
 
 class BoardCreateForm extends React.Component {
-
   constructor() {
     super();
 
@@ -25,31 +24,23 @@ class BoardCreateForm extends React.Component {
   }
 
   updateNewBoard(property) {
-
     return e => {
       Object.freeze(this.state);
-      const value = (
-        typeof e.currentTarget.value !== 'undefined' ?
-        e.currentTarget.value :
-        e.currentTarget.dataset.value
-      );
+      const value =
+        typeof e.currentTarget.value !== 'undefined'
+          ? e.currentTarget.value
+          : e.currentTarget.dataset.value;
       const board = Object.assign({}, this.state.board, {
-        [property]: value
+        [property]: value,
       });
 
-      const showVisibility = (
-        property === 'visibility' ?
-        false :
-        this.state.showVisibility
-      );
+      const showVisibility = property === 'visibility' ? false : this.state.showVisibility;
 
       this.setState({
         board,
         showVisibility,
       });
-
     };
-
   }
 
   createBoard(e) {
@@ -57,7 +48,7 @@ class BoardCreateForm extends React.Component {
     const newBoard = Object.assign({}, this.state.board);
     newBoard.title = newBoard.title.trim();
     if (newBoard.title !== '') {
-      this.props.createBoard(newBoard).then((board) => {
+      this.props.createBoard(newBoard).then(board => {
         this.props.toggle();
         this.setState(Object.assign({}, defaultState));
         this.props.history.push(`/b/${board.id}`);
@@ -79,42 +70,39 @@ class BoardCreateForm extends React.Component {
       setTimeout(() => this.refs.titleInput.focus(), 1);
     }
 
-    let visibilityTextClass = "menu-form-text quiet";
-    let visibilityMenuClass = "";
+    let visibilityTextClass = 'menu-form-text quiet';
+    let visibilityMenuClass = '';
     if (showVisibility) {
-      visibilityTextClass += " hide";
+      visibilityTextClass += ' hide';
     } else {
-      visibilityMenuClass += " hide";
+      visibilityMenuClass += ' hide';
     }
 
     return (
-      <form className="menu-form" onSubmit={ this.createBoard }>
+      <form className="menu-form" onSubmit={this.createBoard}>
         <label>
           Title
           <input
             type="text"
             className="input"
             ref="titleInput"
-            placeholder="Like &quot;Wedding Planning&quot;"
-            value={ title }
-            onChange={ this.updateNewBoard('title') }
+            placeholder='Like "Wedding Planning"'
+            value={title}
+            onChange={this.updateNewBoard('title')}
           />
         </label>
 
-        <span
-          className={ visibilityTextClass }
-          onClick={ this.toggleVisibility }
-        >
-          This board will be { visibility }.&nbsp;
+        <span className={visibilityTextClass} onClick={this.toggleVisibility}>
+          This board will be {visibility}.&nbsp;
           <a>Change.</a>
         </span>
 
         <BoardVisibilityOptions
-          visibilityClass={ visibilityMenuClass }
-          updateVisibility={ this.updateNewBoard('visibility') }
+          visibilityClass={visibilityMenuClass}
+          updateVisibility={this.updateNewBoard('visibility')}
         />
 
-        <input type="submit" className="button green" value="Create"/>
+        <input type="submit" className="button green" value="Create" />
       </form>
     );
   }

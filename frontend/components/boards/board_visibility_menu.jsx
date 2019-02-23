@@ -4,7 +4,6 @@ import ToggleMenu from '../general/toggle_menu';
 import BoardVisibilityOptions from './board_visibility_options';
 
 class BoardVisibilityMenu extends ToggleMenu {
-
   constructor() {
     super();
 
@@ -20,19 +19,17 @@ class BoardVisibilityMenu extends ToggleMenu {
   render() {
     const { visibility, updateVisibility, disabled } = this.props;
 
-    let buttonClass = "nav-button";
-    if (disabled) buttonClass += " disabled";
+    let buttonClass = 'nav-button';
+    if (disabled) buttonClass += ' disabled';
 
-    const menuContent = (
-      <BoardVisibilityOptions updateVisibility={ this.updateVisibility }/>
-    );
+    const menuContent = <BoardVisibilityOptions updateVisibility={this.updateVisibility} />;
 
     return (
       <li className="visibility">
-        <section className={ buttonClass } onClick={ this.toggle }>
-          { visibility }
+        <section className={buttonClass} onClick={this.toggle}>
+          {visibility}
         </section>
-        { this.renderMenu("Change Visibility", menuContent) }
+        {this.renderMenu('Change Visibility', menuContent)}
       </li>
     );
   }

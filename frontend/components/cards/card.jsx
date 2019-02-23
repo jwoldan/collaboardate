@@ -9,15 +9,11 @@ import CardDueDateBadge from './card_due_date_badge';
 import CardDetailContainer from './card_detail_container';
 
 const cardSource = {
-  beginDrag: (props) => ({
-    card: props.card
+  beginDrag: props => ({
+    card: props.card,
   }),
-  canDrag: ({ disabled }) => (
-    !disabled
-  ),
-  isDragging: (props, monitor) => (
-    props.card.id === monitor.getItem().card.id
-  ),
+  canDrag: ({ disabled }) => !disabled,
+  isDragging: (props, monitor) => props.card.id === monitor.getItem().card.id,
 };
 
 const collect = (connect, monitor) => ({
@@ -26,7 +22,6 @@ const collect = (connect, monitor) => ({
 });
 
 class Card extends DynamicEditable {
-
   constructor() {
     super();
 
@@ -47,13 +42,13 @@ class Card extends DynamicEditable {
   }
 
   render() {
-    const { card, disabled, connectDragSource,  isDragging } = this.props;
+    const { card, disabled, connectDragSource, isDragging } = this.props;
     const { active } = this.state;
-    let cardClass = isDragging ? "card dragging" : "card";
-    if (active) cardClass += " active";
+    let cardClass = isDragging ? 'card dragging' : 'card';
+    if (active) cardClass += ' active';
 
     let descIcon;
-    if(card.description) {
+    if (card.description) {
       descIcon = <span className="icon icon-desc" />;
     } else {
       descIcon = null;
@@ -61,13 +56,9 @@ class Card extends DynamicEditable {
 
     let commentIcon;
     let commentCount;
-    if(card.comment_count > 0) {
+    if (card.comment_count > 0) {
       commentIcon = <span className="icon icon-comment" />;
-      commentCount = (
-        <span className="comment-count">
-          { card.comment_count }
-        </span>
-      );
+      commentCount = <span className="comment-count">{card.comment_count}</span>;
     } else {
       commentIcon = null;
       commentCount = null;
@@ -75,26 +66,22 @@ class Card extends DynamicEditable {
 
     return connectDragSource(
       <section
-        className={ cardClass }
-        onMouseEnter={ this.activate(true) }
-        onMouseLeave={ this.activate(false) }
-        onClick={ this.viewCardDetail }>
-        <CardQuickEditContainer card={ card } disabled={ disabled } />
+        className={cardClass}
+        onMouseEnter={this.activate(true)}
+        onMouseLeave={this.activate(false)}
+        onClick={this.viewCardDetail}
+      >
+        <CardQuickEditContainer card={card} disabled={disabled} />
         <h4 className="card-title">
-          <section className="card-summary">{ card.title }</section>
+          <section className="card-summary">{card.title}</section>
         </h4>
         <section className="card-icons">
-          <CardDueDateBadge card={ card }/>
-          { descIcon } { commentIcon } { commentCount }
+          <CardDueDateBadge card={card} />
+          {descIcon} {commentIcon} {commentCount}
         </section>
       </section>
     );
-
   }
 }
 
-export default DragSource(
-  ItemTypes.CARD,
-  cardSource,
-  collect
-)(withRouter(Card));
+export default DragSource(ItemTypes.CARD, cardSource, collect)(withRouter(Card));

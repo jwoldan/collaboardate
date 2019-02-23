@@ -7,7 +7,6 @@ import BoardBackgroundMenuContainer from './board_background_menu_container';
 import BoardDeleteMenuContainer from './board_delete_menu_container';
 
 class BoardMenu extends ToggleMenu {
-
   constructor() {
     super();
 
@@ -23,18 +22,23 @@ class BoardMenu extends ToggleMenu {
   }
 
   render() {
-
-    let buttonClass = "nav-button";
+    let buttonClass = 'nav-button';
     const { disabled, shared } = this.props;
-    if (disabled && !shared) buttonClass += " disabled";
+    if (disabled && !shared) buttonClass += ' disabled';
 
     let menuItems = null;
     if (!disabled) {
       menuItems = (
         <ul>
-          <li><BoardShareMenuContainer /></li>
-          <li><BoardBackgroundMenuContainer /></li>
-          <li><BoardDeleteMenuContainer /></li>
+          <li>
+            <BoardShareMenuContainer />
+          </li>
+          <li>
+            <BoardBackgroundMenuContainer />
+          </li>
+          <li>
+            <BoardDeleteMenuContainer />
+          </li>
         </ul>
       );
     }
@@ -42,20 +46,20 @@ class BoardMenu extends ToggleMenu {
     const menuContent = (
       <section>
         <BoardMembersContainer />
-        { menuItems }
+        {menuItems}
       </section>
     );
 
     return (
       <li className="board-menu">
-        <section className={ buttonClass } onClick={ this.toggle }>
-          <span className="icon icon-more-white icon-show-menu" />Show Menu
+        <section className={buttonClass} onClick={this.toggle}>
+          <span className="icon icon-more-white icon-show-menu" />
+          Show Menu
         </section>
-        { this.renderMenu("Menu", menuContent) }
+        {this.renderMenu('Menu', menuContent)}
       </li>
     );
   }
-
 }
 
 export default BoardMenu;

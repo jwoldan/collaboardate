@@ -1,11 +1,10 @@
 import React from 'react';
 
 const defaultState = {
-  title: ''
+  title: '',
 };
 
 class ListCreateForm extends React.Component {
-
   constructor() {
     super();
 
@@ -23,9 +22,9 @@ class ListCreateForm extends React.Component {
     e.preventDefault();
     const newList = Object.assign({}, this.state);
     newList.title = newList.title.trim();
-    if(newList.title !== '') {
+    if (newList.title !== '') {
       newList.board_id = this.props.board.id;
-      this.props.createList(newList).then((list) => {
+      this.props.createList(newList).then(list => {
         this.setState(Object.assign({}, defaultState));
       });
     }
@@ -37,20 +36,20 @@ class ListCreateForm extends React.Component {
     if (this.props.show) this.refs.titleInput.focus();
 
     return (
-      <form className="list-create-form" onSubmit={ this.createList }>
+      <form className="list-create-form" onSubmit={this.createList}>
         <input
           type="text"
           className="input"
           ref="titleInput"
           placeholder="Add a list..."
-          value={ title }
-          onChange={ this.updateTitle } />
+          value={title}
+          onChange={this.updateTitle}
+        />
         <input className="button green small" type="submit" value="Save" />
-        <span className="menu-close" onClick={ this.props.toggle } />
+        <span className="menu-close" onClick={this.props.toggle} />
       </form>
     );
   }
-
 }
 
 export default ListCreateForm;

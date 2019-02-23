@@ -9,9 +9,9 @@ const mapStateToProps = ({ menuStatus }) => ({
   show: menuStatus.showBoardBackgroundMenu,
 });
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   toggle: () => dispatch(toggleMenu('showBoardBackgroundMenu', true)),
-  updateBoard: (id) => dispatch(updateBoard(id)),
+  updateBoard: id => dispatch(updateBoard(id)),
 });
 
 export default connect(

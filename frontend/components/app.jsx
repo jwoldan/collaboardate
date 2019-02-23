@@ -7,11 +7,10 @@ import HomeContainer from './home/home_container';
 import ProfileContainer from './user/profile_container';
 import WelcomeContainer from './welcome/welcome_container';
 
-const boardRoute = <Route path="/b/:boardId" component={ BoardContainer } />;
-const cardRoute = <Route path="/c/:cardId" component={ BoardContainer } />;
+const boardRoute = <Route path="/b/:boardId" component={BoardContainer} />;
+const cardRoute = <Route path="/c/:cardId" component={BoardContainer} />;
 
 class App extends React.Component {
-
   constructor() {
     super();
 
@@ -31,14 +30,14 @@ class App extends React.Component {
       innerContent = (
         <HomeContainer>
           <Switch>
-            <Route exact path="/" component={ BoardsIndexContainer } />
+            <Route exact path="/" component={BoardsIndexContainer} />
             {boardRoute}
             {cardRoute}
-            <Route path="/u/:username" component={ ProfileContainer } />
+            <Route path="/u/:username" component={ProfileContainer} />
           </Switch>
         </HomeContainer>
       );
-    // HACK: This isn't good, just trying to get it working
+      // HACK: This isn't good, just trying to get it working
     } else if (location.pathname.match(/\/(b|c)\/\d+/)) {
       innerContent = (
         <HomeContainer>
@@ -53,8 +52,8 @@ class App extends React.Component {
     }
 
     return (
-      <div id="app" onClick= { this.resetMenus }>
-        { innerContent }
+      <div id="app" onClick={this.resetMenus}>
+        {innerContent}
       </div>
     );
   }

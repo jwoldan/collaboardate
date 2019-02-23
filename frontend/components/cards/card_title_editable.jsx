@@ -5,7 +5,6 @@ import DynamicEditable from '../general/dynamic_editable';
 const menuKeyBase = 'showCardTitleEditable';
 
 class CardTitleEditable extends DynamicEditable {
-
   constructor(props) {
     super(props);
 
@@ -24,7 +23,7 @@ class CardTitleEditable extends DynamicEditable {
   }
 
   componentWillReceiveProps(newProps) {
-    if(this.props.card.id !== newProps.card.id) {
+    if (this.props.card.id !== newProps.card.id) {
       this.props.removeMenu(this.state.menuKey);
       this.setState({ menuKey: menuKeyBase });
       this.props.addMenu(this.state.menuKey);
@@ -48,9 +47,7 @@ class CardTitleEditable extends DynamicEditable {
     if (title !== '') {
       const { card, updateCard } = this.props;
       const updatedCard = Object.assign({}, card, { title });
-      updateCard(updatedCard).then(
-        () => this.toggle()
-      );
+      updateCard(updatedCard).then(() => this.toggle());
     }
   }
 
@@ -59,34 +56,30 @@ class CardTitleEditable extends DynamicEditable {
     const { title, menuKey } = this.state;
     const show = this.props.showStatus(menuKey);
 
-    if(show) {
+    if (show) {
       setTimeout(() => {
         if (this.refs.titleInput) this.refs.titleInput.focus();
       }, 1);
 
       return (
-        <form className="card-title-editable" onSubmit={ this.submit }>
+        <form className="card-title-editable" onSubmit={this.submit}>
           <input
             type="text"
             className="input card-title-input"
             ref="titleInput"
-            value={ title }
-            onChange={ this.updateTitle }
-            onFocus={ (e) => e.target.select() }
+            value={title}
+            onChange={this.updateTitle}
+            onFocus={e => e.target.select()}
           />
         </form>
       );
-
     } else {
-
       return (
-        <h4 className="card-title" onClick={ this.toggle }>
-          { card.title }
+        <h4 className="card-title" onClick={this.toggle}>
+          {card.title}
         </h4>
       );
-
     }
-
   }
 }
 

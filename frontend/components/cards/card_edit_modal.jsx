@@ -5,22 +5,23 @@ import { connect } from 'react-redux';
 import { toggleMenu } from '../../actions/menu_status_actions';
 
 const mapStateToProps = ({ menuStatus }) => {
-  return ({
-  show: menuStatus.showCardEditModal,
-});
+  return {
+    show: menuStatus.showCardEditModal,
+  };
 };
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   toggle: () => dispatch(toggleMenu('showCardEditModal')),
 });
 
 const CardEditModal = ({ show, toggle }) => (
   <Modal
-    isOpen={ show }
+    isOpen={show}
     contentLabel="Modal"
     className="card-quick-edit-modal"
     overlayClassName="modal-overlay"
-    onRequestClose={ toggle } />
+    onRequestClose={toggle}
+  />
 );
 
 export default connect(

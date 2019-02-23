@@ -4,11 +4,11 @@ import Card from './card';
 
 import { receiveCardDetail } from '../../actions/card_detail_actions';
 
-const mapDispatchToProps = (dispatch) => ({
-  receiveCardDetail: (card) => dispatch(receiveCardDetail(card)),
+const mapDispatchToProps = dispatch => ({
+  receiveCardDetail: card => dispatch(receiveCardDetail(card)),
 });
 
-  export default connect(
-    null,
-    mapDispatchToProps
-  )(Card);
+export default connect(
+  null,
+  mapDispatchToProps
+)(Card);

@@ -17,7 +17,7 @@ class SignupForm extends React.Component {
   }
 
   componentDidMount() {
-    if(this.props.currentUser) {
+    if (this.props.currentUser) {
       this.props.history.push('/');
     }
   }
@@ -28,28 +28,24 @@ class SignupForm extends React.Component {
 
   submit(e) {
     e.preventDefault();
-    this.props.signup(this.state).then(
-      () => this.props.history.push('/')
-    );
+    this.props.signup(this.state).then(() => this.props.history.push('/'));
   }
 
   loginGuest() {
-    this.props.loginGuest().then(
-      () => this.props.history.push('/')
-    );
+    this.props.loginGuest().then(() => this.props.history.push('/'));
   }
 
   errorsToStrings(errors) {
     const errorStrings = [];
-    Object.keys(errors).forEach((key) => {
+    Object.keys(errors).forEach(key => {
       let errorString;
-      if(key === 'full_name') {
+      if (key === 'full_name') {
         errorString = 'Name';
       } else {
         errorString = key.charAt(0).toUpperCase() + key.slice(1);
       }
 
-      errorString += " " + errors[key].join(', ');
+      errorString += ' ' + errors[key].join(', ');
       errorStrings.push(errorString);
     });
     return errorStrings;
@@ -58,12 +54,12 @@ class SignupForm extends React.Component {
   errorList(errors) {
     const errorStrings = this.errorsToStrings(errors);
 
-    if(errorStrings.length > 0) {
+    if (errorStrings.length > 0) {
       return (
         <section className="user-errors">
           <ul>
-            { errorStrings.map((error, idx) => (
-              <li key={ idx }>{ error }</li>
+            {errorStrings.map((error, idx) => (
+              <li key={idx}>{error}</li>
             ))}
           </ul>
         </section>
@@ -71,7 +67,6 @@ class SignupForm extends React.Component {
     } else {
       return '';
     }
-
   }
 
   render() {
@@ -96,49 +91,50 @@ class SignupForm extends React.Component {
 
     return (
       <section className="user-form signup-form">
-
-        { errorList }
+        {errorList}
 
         <h1>Create a Collaboardate Account</h1>
-        <form onSubmit={ this.submit }>
-
+        <form onSubmit={this.submit}>
           <label htmlFor="signup-name">Name</label>
-          <input id="signup-name"
-            className={ fullNameClass }
+          <input
+            id="signup-name"
+            className={fullNameClass}
             type="text"
             placeholder="e.g., Calvin"
-            value={ full_name }
-            onChange={ this.update('full_name') }
+            value={full_name}
+            onChange={this.update('full_name')}
           />
 
           <label htmlFor="signup-email">Email</label>
-          <input id="signup-email"
-            className={ emailClass }
+          <input
+            id="signup-email"
+            className={emailClass}
             type="text"
             placeholder="e.g., spaceman.spiff@gross.club"
-            value={ email }
-            onChange={ this.update('email') }
+            value={email}
+            onChange={this.update('email')}
           />
 
           <label htmlFor="signup-password">Password</label>
-          <input id="signup-password"
-            className={ passwordClass }
+          <input
+            id="signup-password"
+            className={passwordClass}
             type="password"
-            value={ password }
+            value={password}
             placeholder="e.g., ∙∙∙∙∙∙∙∙∙∙∙∙"
-            onChange={ this.update('password') }
+            onChange={this.update('password')}
           />
 
           <input type="submit" className="submit" value="Create New Account" />
-
         </form>
 
         <p>
           Already have an account?&nbsp;
           <Link to="/login">Log in.</Link>
         </p>
-        <p>Just want to try it out?&nbsp;
-          <a className="loud bold" onClick={ this.loginGuest }>
+        <p>
+          Just want to try it out?&nbsp;
+          <a className="loud bold" onClick={this.loginGuest}>
             Log in as Guest.
           </a>
         </p>

@@ -1,7 +1,6 @@
 import React from 'react';
 
 class DynamicToggleMenu extends React.Component {
-
   constructor() {
     super();
 
@@ -21,7 +20,7 @@ class DynamicToggleMenu extends React.Component {
   }
 
   stopPropagation(e) {
-    if(e) e.stopPropagation();
+    if (e) e.stopPropagation();
   }
 
   renderMenu(menuTitle, menuContent, customClass = '') {
@@ -30,30 +29,25 @@ class DynamicToggleMenu extends React.Component {
     const show = showStatus(this.state.menuKey);
 
     let menuClass = `menu ${customClass}`;
-    if (show) menuClass += " show";
+    if (show) menuClass += ' show';
 
     let titleContent = '';
-    if(menuTitle) {
+    if (menuTitle) {
       titleContent = (
-        <section onClick={ this.stopPropagation }>
-          <span
-            className="menu-close"
-            onClick={ this.toggle } />
-          <section className="menu-header">
-            { menuTitle }
-          </section>
+        <section onClick={this.stopPropagation}>
+          <span className="menu-close" onClick={this.toggle} />
+          <section className="menu-header">{menuTitle}</section>
         </section>
       );
     }
 
     return (
-      <section className={ menuClass }>
-        { titleContent }
-        { menuContent }
+      <section className={menuClass}>
+        {titleContent}
+        {menuContent}
       </section>
     );
   }
-
 }
 
 export default DynamicToggleMenu;

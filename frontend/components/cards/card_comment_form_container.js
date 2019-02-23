@@ -9,8 +9,8 @@ const mapStateToProps = ({ cardDetail, currentUser }) => ({
   cardDetail,
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  createComment: (comment) => dispatch(createComment(comment)),
+const mapDispatchToProps = dispatch => ({
+  createComment: comment => dispatch(createComment(comment)),
 });
 
 export default connect(

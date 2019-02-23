@@ -8,7 +8,6 @@ export default (state = {}, action) => {
   let share;
 
   switch (action.type) {
-
     case BoardActions.RECEIVE_BOARDS:
       return Object.assign({}, action.boards);
 

@@ -5,7 +5,6 @@ import DynamicEditable from '../general/dynamic_editable';
 const menuKeyBase = 'showListTitleEditable';
 
 class ListTitleEditable extends DynamicEditable {
-
   constructor(props) {
     super(props);
 
@@ -24,7 +23,7 @@ class ListTitleEditable extends DynamicEditable {
   }
 
   componentWillReceiveProps(newProps) {
-    if(this.props.list.id !== newProps.list.id) {
+    if (this.props.list.id !== newProps.list.id) {
       this.props.removeMenu(this.state.menuKey);
       this.setState({ menuKey: `${menuKeyBase}-${newProps.list.id}` });
       this.props.addMenu(this.state.menuKey);
@@ -48,9 +47,7 @@ class ListTitleEditable extends DynamicEditable {
     if (title !== '') {
       const { list, updateList } = this.props;
       const updatedList = Object.assign({}, list, { title });
-      updateList(updatedList).then(
-        () => this.toggle()
-      );
+      updateList(updatedList).then(() => this.toggle());
     }
   }
 
@@ -59,37 +56,30 @@ class ListTitleEditable extends DynamicEditable {
     const { title, menuKey } = this.state;
     const show = this.props.showStatus(menuKey);
 
-    if(show) {
+    if (show) {
       setTimeout(() => {
         if (this.refs.titleInput) this.refs.titleInput.focus();
       }, 1);
 
       return (
-        <form
-          className="list-title-editable"
-          onSubmit={ this.submit }
-          onClick={ this.stopPropagation }>
+        <form className="list-title-editable" onSubmit={this.submit} onClick={this.stopPropagation}>
           <input
             type="text"
             className="input list-title-input"
             ref="titleInput"
-            value={ title }
-            onChange={ this.updateTitle }
-            onFocus={ (e) => e.target.select() }
+            value={title}
+            onChange={this.updateTitle}
+            onFocus={e => e.target.select()}
           />
         </form>
       );
-
     } else {
-
       return (
-        <h3 className="list-title" onClick={ this.toggle }>
-          { list.title }
+        <h3 className="list-title" onClick={this.toggle}>
+          {list.title}
         </h3>
       );
-
     }
-
   }
 }
 

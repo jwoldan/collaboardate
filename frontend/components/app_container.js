@@ -5,7 +5,7 @@ import App from './app';
 import { menuIsOpen } from '../reducers/selectors';
 import { resetMenus } from '../actions/menu_status_actions';
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   currentUser: state.currentUser,
   menuIsOpen: menuIsOpen(state),
 });

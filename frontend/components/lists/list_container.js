@@ -9,9 +9,8 @@ const mapStateToProps = (state, { list }) => ({
   cards: selectCards(state, list.id),
 });
 
-const mapDispatchToProps = (dispatch) => ({
-
-  updateList: (list) => dispatch(updateList(list)),
+const mapDispatchToProps = dispatch => ({
+  updateList: list => dispatch(updateList(list)),
 });
 
 export default connect(

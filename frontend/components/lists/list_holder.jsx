@@ -25,20 +25,15 @@ const listHolderTarget = {
   },
 };
 
-const collect = (connect) => ({
-    connectDropTarget: connect.dropTarget(),
+const collect = connect => ({
+  connectDropTarget: connect.dropTarget(),
 });
 
-const ListHolder = ({ list, disabled, connectDropTarget }) => (
+const ListHolder = ({ list, disabled, connectDropTarget }) =>
   connectDropTarget(
     <li>
-      <ListContainer list={ list } disabled= { disabled } />
+      <ListContainer list={list} disabled={disabled} />
     </li>
-  )
-);
+  );
 
-export default DropTarget(
-  ItemTypes.LIST,
-  listHolderTarget,
-  collect
-)(ListHolder);
+export default DropTarget(ItemTypes.LIST, listHolderTarget, collect)(ListHolder);

@@ -3,7 +3,6 @@ import React from 'react';
 import ToggleMenu from '../general/toggle_menu';
 
 class BoardTitleMenu extends ToggleMenu {
-
   constructor(props) {
     super(props);
 
@@ -38,38 +37,38 @@ class BoardTitleMenu extends ToggleMenu {
     const { show, disabled } = this.props;
     const { title } = this.state;
 
-    let buttonClass = "nav-button";
-    if (disabled) buttonClass += " disabled";
+    let buttonClass = 'nav-button';
+    if (disabled) buttonClass += ' disabled';
 
     const menuContent = (
-      <form className="menu-form" onSubmit={ this.submit }>
+      <form className="menu-form" onSubmit={this.submit}>
         <label>
           Title
           <input
             type="text"
             className="input"
             ref="titleInput"
-            value={ title }
-            onChange={ this.updateTitle }
-            onFocus={ (e) => e.target.select() }
+            value={title}
+            onChange={this.updateTitle}
+            onFocus={e => e.target.select()}
           />
         </label>
-        <input type="submit" className="button green" value="Rename"/>
+        <input type="submit" className="button green" value="Rename" />
       </form>
     );
 
     // This setTimeout seems to be required because the menuContent
     // is produced using the renderMenu method.
-    if(show) {
+    if (show) {
       setTimeout(() => this.refs.titleInput.focus(), 1);
     }
 
     return (
       <li className="title">
-        <section className={ buttonClass } onClick={ this.toggle }>
-          <h2>{ this.props.title }</h2>
+        <section className={buttonClass} onClick={this.toggle}>
+          <h2>{this.props.title}</h2>
         </section>
-        { this.renderMenu("Rename Board", menuContent) }
+        {this.renderMenu('Rename Board', menuContent)}
       </li>
     );
   }

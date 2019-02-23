@@ -4,15 +4,13 @@ import ToggleMenu from '../general/toggle_menu';
 import HomeCreateMenuBoardContainer from './home_create_menu_board_container';
 
 class HomeCreateMenu extends ToggleMenu {
-
   componentWillReceiveProps(newProps) {
-    if(newProps.show === false) {
+    if (newProps.show === false) {
       this.setState({ showMenu: false });
     }
   }
 
   render() {
-
     const menuContent = (
       <ul>
         <li>
@@ -23,13 +21,12 @@ class HomeCreateMenu extends ToggleMenu {
 
     return (
       <li className="nav-item">
-        <div className="nav-button" onClick={ this.toggle }>
+        <div className="nav-button" onClick={this.toggle}>
           <span className="icon icon-add" />
         </div>
-        { this.renderMenu('Create', menuContent, 'dropdown dropdown-create') }
+        {this.renderMenu('Create', menuContent, 'dropdown dropdown-create')}
       </li>
     );
-
   }
 }
 

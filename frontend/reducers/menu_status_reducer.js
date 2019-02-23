@@ -24,7 +24,6 @@ export default (state = initialState, action) => {
   let newState;
 
   switch (action.type) {
-
     case MenuStatusActions.ADD_MENU:
       newState = Object.assign({}, state);
       newState[action.menu] = false;
@@ -37,8 +36,8 @@ export default (state = initialState, action) => {
 
     case MenuStatusActions.TOGGLE_MENU:
       newState = {};
-      Object.keys(state).forEach((currentMenu) => {
-        if(currentMenu === action.menu) {
+      Object.keys(state).forEach(currentMenu => {
+        if (currentMenu === action.menu) {
           newState[currentMenu] = !state[currentMenu];
         } else if (!action.leaveOthers) {
           newState[currentMenu] = false;
@@ -50,7 +49,7 @@ export default (state = initialState, action) => {
 
     case MenuStatusActions.RESET_MENUS:
       newState = Object.assign({}, state);
-      Object.keys(newState).forEach((key) => {
+      Object.keys(newState).forEach(key => {
         newState[key] = false;
       });
       return newState;

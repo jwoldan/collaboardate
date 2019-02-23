@@ -9,7 +9,7 @@ import {
   receiveProfile,
   updateUser,
   updateUserAvatar,
-  removeUserAvatar
+  removeUserAvatar,
 } from '../../actions/user_actions';
 import { receiveProfileErrors } from '../../actions/errors_actions';
 
@@ -25,12 +25,12 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   clearProfile: () => dispatch(receiveProfile({})),
-  fetchProfile: (username) => dispatch(fetchProfile(username)),
-  updateUser: (user) => dispatch(updateUser(user)),
+  fetchProfile: username => dispatch(fetchProfile(username)),
+  updateUser: user => dispatch(updateUser(user)),
   updateUserAvatar: (id, formData) => dispatch(updateUserAvatar(id, formData)),
-  removeUserAvatar: (id) => dispatch(removeUserAvatar(id)),
+  removeUserAvatar: id => dispatch(removeUserAvatar(id)),
   clearProfileErrors: () => dispatch(receiveProfileErrors({})),
 });
 

@@ -9,19 +9,18 @@ export default (state = {}, action) => {
   let comments;
 
   switch (action.type) {
-
     case CardDetailActions.RECEIVE_CARD_DETAIL:
       return Object.assign({}, action.card);
 
     case CardActions.RECEIVE_CARD:
-      if (action.card.id === state.id)  {
+      if (action.card.id === state.id) {
         return Object.assign({}, state, action.card);
       } else {
         return state;
       }
 
     case CardActions.REMOVE_CARD:
-      if(action.card.id === state.id) {
+      if (action.card.id === state.id) {
         return {};
       } else {
         return state;
@@ -32,9 +31,7 @@ export default (state = {}, action) => {
       if (state.id === comment.card_id) {
         newState = Object.assign({}, state);
         comments = newState.comments;
-        comments = Object.assign({}, comments,
-          { [comment.id]: comment }
-        );
+        comments = Object.assign({}, comments, { [comment.id]: comment });
         newState.comments = comments;
         return newState;
       } else {
@@ -56,6 +53,5 @@ export default (state = {}, action) => {
 
     default:
       return state;
-
   }
 };

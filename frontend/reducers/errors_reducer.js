@@ -10,8 +10,7 @@ const initialState = {
 export default (state = initialState, action) => {
   Object.freeze(state);
 
-  switch(action.type) {
-
+  switch (action.type) {
     case ErrorsActions.RECEIVE_SIGNUP_ERRORS:
       return Object.assign({}, state, {
         signup: action.errors,

@@ -26,7 +26,6 @@ const appReducer = combineReducers({
   menuStatus,
 });
 
-
 export default (state, action) => {
   if (action.type === RECEIVE_LOGOUT) {
     state = undefined;
