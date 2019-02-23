@@ -26,7 +26,9 @@
   },
   "homepage": "https://collaboardate.com",
   "dependencies": {
+    "lodash": "^4.17.11",
     "moment": "^2.24.0",
+    "normalizr": "^3.3.0",
     "querystring": "^0.2.0",
     "react": "^16.8.3",
     "react-dnd": "^7.0.2",

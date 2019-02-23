@@ -1,4 +1,7 @@
+import { normalize } from 'normalizr';
+
 import * as BoardAPIUtil from '../util/board_api_util';
+import { boardListSchema, boardSchema } from '../schema';
 
 export const RECEIVE_BOARDS = 'RECEIVE_BOARDS';
 export const RECEIVE_BOARD = 'RECEIVE_BOARD';
@@ -7,21 +10,21 @@ export const REMOVE_BOARD = 'REMOVE_BOARD';
 export const receiveBoards = boards => {
   return {
     type: RECEIVE_BOARDS,
-    boards,
+    payload: normalize(boards, boardListSchema),
   };
 };
 
 export const receiveBoard = board => {
   return {
     type: RECEIVE_BOARD,
-    board,
+    payload: normalize(board, boardSchema),
   };
 };
 
 export const removeBoard = board => {
   return {
     type: REMOVE_BOARD,
-    board,
+    payload: normalize(board, boardSchema),
   };
 };
 

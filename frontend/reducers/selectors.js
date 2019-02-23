@@ -1,3 +1,7 @@
+import { denormalize } from 'normalizr';
+
+import { boardSchema } from '../schema';
+
 /* Menus */
 
 export const menuIsOpen = ({ menuStatus }) =>
@@ -18,33 +22,38 @@ export const selectProfile = (state, username) => {
 
 /* Boards */
 
-export const selectPersonalBoards = ({ boards, currentUser }) =>
-  Object.keys(boards)
-    .map(key => boards[key])
-    .filter(board => board.creator.id === currentUser.id);
+const denormalizeBoard = (board, entities) => denormalize(board, boardSchema, entities);
 
-export const selectSharedBoards = ({ boards, currentUser }) => {
-  const boardArray = Object.keys(boards).map(key => boards[key]);
+export const selectPersonalBoards = ({ entities, currentUser }) => {
+  const boards = entities.boards;
+  return Object.keys(boards)
+    .map(key => denormalizeBoard(boards[key], entities))
+    .filter(board => board.creator.id === currentUser.id);
+};
+
+export const selectSharedBoards = ({ entities, currentUser }) => {
+  const boards = entities.boards;
+  const boardArray = Object.keys(boards).map(key => denormalizeBoard(boards[key], entities));
   return boardArray.filter(board => {
     return board.creator.id !== currentUser.id;
   });
 };
 
-export const selectBoard = ({ boards, cards, cardDetail }, id, cardId) => {
-  if (boards[id]) {
-    return boards[id];
-    // optional cardId value can be used when on card detail page
-  } else if (cardId) {
-    if (cards[cardId] && boards[cards[cardId].board_id]) {
-      return boards[cards[cardId].board_id];
-    } else if (cardDetail.id === cardId && boards[cardDetail.board_id]) {
-      return boards[cardDetail.board_id];
-    }
+export const selectBoard = ({ entities, cardDetail }, id, cardId) => {
+  const { boards, cards } = entities;
+  const boardId =
+    id ||
+    (cards[cardId] && cards[cardId].board_id) ||
+    (cardDetail.id == cardId && cardDetail.board_id);
+
+  if (boards && boards[boardId]) {
+    return denormalizeBoard(entities.boards[boardId], entities);
   }
+
   return {};
 };
 
-export const selectBoardUsers = ({ boards, shares, currentUser }, boardId) => {
+export const selectBoardUsers = ({ entities: { boards }, shares, currentUser }, boardId) => {
   let users = [];
   const board = boards[boardId];
 
@@ -88,13 +97,7 @@ export const selectShareId = (shares, currentUser) => {
 
 /* Lists */
 
-export const selectLists = ({ lists }, boardId) => {
-  return Object.keys(lists)
-    .map(key => lists[key])
-    .sort(ordSort);
-};
-
-export const selectListByCardId = ({ lists, cards }, cardId) => {
+export const selectListByCardId = ({ entities: { cards, lists } }, cardId) => {
   if (cards[cardId]) {
     return lists[cards[cardId].list_id];
   } else {
@@ -104,7 +107,7 @@ export const selectListByCardId = ({ lists, cards }, cardId) => {
 
 /* Cards */
 
-export const selectCards = ({ cards }, listId) => {
+export const selectCards = ({ entities: { cards } }, listId) => {
   return Object.keys(cards)
     .map(key => cards[key])
     .filter(card => card.list_id === listId)

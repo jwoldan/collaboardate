@@ -12,19 +12,23 @@ export default (state = {}, action) => {
     case CardDetailActions.RECEIVE_CARD_DETAIL:
       return Object.assign({}, action.card);
 
-    case CardActions.RECEIVE_CARD:
-      if (action.card.id === state.id) {
-        return Object.assign({}, state, action.card);
+    case CardActions.RECEIVE_CARD: {
+      const cardId = action.payload.result;
+      const card = action.payload.entities.cards[cardId];
+      if (cardId === state.id) {
+        return Object.assign({}, state, card);
       } else {
         return state;
       }
-
-    case CardActions.REMOVE_CARD:
-      if (action.card.id === state.id) {
+    }
+    case CardActions.REMOVE_CARD: {
+      const cardId = action.payload.result;
+      if (cardId === state.id) {
         return {};
       } else {
         return state;
       }
+    }
 
     case CommentActions.RECEIVE_COMMENT:
       comment = action.comment;

@@ -8,10 +8,10 @@ class Card < ApplicationRecord
   validates :title, :ord, :list, :author, presence: true
   validates :due_date_complete, inclusion: [true, false]
 
-  belongs_to :list
-  belongs_to :author, class_name: 'User'
-  has_one :board, through: :list
-  has_many :comments, dependent: :destroy
+  belongs_to :list, inverse_of: :cards
+  belongs_to :author, class_name: 'User', inverse_of: :authored_cards
+  has_one :board, through: :list, inverse_of: :cards
+  has_many :comments, inverse_of: :card, dependent: :destroy
 
   after_validation :handle_list_change
 

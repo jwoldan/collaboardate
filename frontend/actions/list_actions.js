@@ -1,4 +1,7 @@
+import { normalize } from 'normalizr';
+
 import * as ListAPIUtil from '../util/list_api_util';
+import { listListSchema, listSchema } from '../schema';
 
 export const RECEIVE_LISTS = 'RECEIVE_LISTS';
 export const RECEIVE_LIST = 'RECEIVE_LIST';
@@ -7,21 +10,21 @@ export const REMOVE_LIST = 'REMOVE_LIST';
 export const receiveLists = lists => {
   return {
     type: RECEIVE_LISTS,
-    lists,
+    payload: normalize(lists, listListSchema),
   };
 };
 
 export const receiveList = list => {
   return {
     type: RECEIVE_LIST,
-    list,
+    payload: normalize(list, listSchema),
   };
 };
 
 export const removeList = list => {
   return {
     type: REMOVE_LIST,
-    list,
+    payload: normalize(list, listSchema),
   };
 };
 

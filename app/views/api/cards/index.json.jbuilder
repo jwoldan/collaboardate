@@ -2,6 +2,6 @@
 
 @cards.each do |card|
   json.set! card.id do
-    json.partial! 'api/cards/card', card: card
+    json.partial! 'api/cards/card_summary', card: card
   end
 end

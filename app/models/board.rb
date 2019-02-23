@@ -30,10 +30,13 @@ class Board < ApplicationRecord
   ]
 
   belongs_to :creator, class_name: 'User'
-  has_many :lists, dependent: :destroy
-  has_many :cards, through: :lists
-  has_many :shares, class_name: 'BoardShare'
-  has_many :sharees, through: :shares
+  has_many :lists, inverse_of: :board, dependent: :destroy
+  has_many :ordered_lists, -> { order(:ord) }, class_name: 'List', inverse_of: :board
+  has_many :cards, through: :lists, inverse_of: :board
+  has_many :shares, class_name: 'BoardShare', inverse_of: :board
+  has_many :sharees, through: :shares, inverse_of: :received_shares
+
+  scope :with_details, -> { includes(:creator, ordered_lists: :ordered_cards) }
 
   def creator?(user)
     creator_id == user.id

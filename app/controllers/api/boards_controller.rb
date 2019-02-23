@@ -27,11 +27,15 @@ class Api::BoardsController < ApplicationController
 
   def index
     @boards = current_user.all_boards
+                          .includes(:creator)
+
     render :index
   end
 
   def show
-    @board = Board.find(params[:id])
+    @board = Board.with_details
+                  .find(params[:id])
+
     render :show
   end
 

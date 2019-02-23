@@ -21,7 +21,8 @@ const collect = (connect, monitor) => ({
   isDragging: monitor.isDragging(),
 });
 
-const List = ({ list, cards, disabled, connectDragSource, isDragging }) => {
+const List = ({ list, disabled, connectDragSource, isDragging }) => {
+  const cards = list.cards;
   const listClass = isDragging ? 'list dragging' : 'list';
 
   return connectDragSource(
@@ -30,9 +31,7 @@ const List = ({ list, cards, disabled, connectDragSource, isDragging }) => {
       <ListMenuContainer list={list} disabled={disabled} />
 
       <ul className="cards">
-        {cards.map(card => (
-          <CardHolder key={card.id} card={card} disabled={disabled} />
-        ))}
+        {cards && cards.map(card => <CardHolder key={card.id} card={card} disabled={disabled} />)}
         <CardTarget listId={list.id} cards={cards}>
           <CardCreateContainer list={list} disabled={disabled} />
         </CardTarget>

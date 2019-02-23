@@ -1,4 +1,7 @@
+import { normalize } from 'normalizr';
+
 import * as CardAPIUtil from '../util/card_api_util';
+import { cardListSchema, cardSchema } from '../schema';
 
 export const RECEIVE_CARDS = 'RECEIVE_CARDS';
 export const RECEIVE_CARD = 'RECEIVE_CARD';
@@ -9,21 +12,21 @@ export const DECREMENT_COMMENT_COUNT = 'DECREMENT_COMMENT_COUNT';
 export const receiveCards = cards => {
   return {
     type: RECEIVE_CARDS,
-    cards,
+    payload: normalize(cards, cardListSchema),
   };
 };
 
 export const receiveCard = card => {
   return {
     type: RECEIVE_CARD,
-    card,
+    payload: normalize(card, cardSchema),
   };
 };
 
 export const removeCard = card => {
   return {
     type: REMOVE_CARD,
-    card,
+    payload: normalize(card, cardSchema),
   };
 };
 

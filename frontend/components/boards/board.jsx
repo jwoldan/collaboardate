@@ -51,27 +51,16 @@ class Board extends React.Component {
   }
 
   componentWillUnmount() {
-    this.props.receiveLists({});
-    this.props.receiveCards({});
     this.props.receiveShares({});
     this.props.receiveCurrentBoardId(null);
   }
 
   fetchBoardAndContents(boardId) {
-    this.props.receiveLists({});
-    this.props.receiveCards({});
     this.props.receiveShares({});
     this.props.receiveCurrentBoardId(boardId);
-    return this.props.fetchBoard(boardId).then(
-      board => {
-        this.props.fetchLists(board.id).then(lists => {
-          this.props.fetchCards(board.id).then(cards => {
-            this.props.fetchShares(board.id);
-          });
-        });
-      },
-      error => this.props.history.push('/')
-    );
+    return this.props
+      .fetchBoard(boardId)
+      .then(board => this.props.fetchShares(board.id), error => this.props.history.push('/'));
   }
 
   fetchCardDetailAndBoard(cardId) {
@@ -86,7 +75,8 @@ class Board extends React.Component {
   }
 
   render() {
-    const { currentUser, board, lists, updateBoard, disabled } = this.props;
+    const { currentUser, board, updateBoard, disabled } = this.props;
+    const lists = board.lists;
     const navDisabled = disabled || currentUser.id !== board.creator.id;
 
     return (
@@ -95,9 +85,10 @@ class Board extends React.Component {
         <CardEditModal />
         <BoardNavigation board={board} updateBoard={updateBoard} disabled={navDisabled} />
         <ul className="lists clearfix">
-          {lists.map(list => (
-            <ListHolderContainer key={list.id} list={list} disabled={disabled} />
-          ))}
+          {lists &&
+            lists.map(list => (
+              <ListHolderContainer key={list.id} list={list} disabled={disabled} />
+            ))}
           <ListCreateContainer disabled={disabled} />
         </ul>
       </section>

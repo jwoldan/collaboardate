@@ -7,8 +7,9 @@ class List < ApplicationRecord
 
   validates :title, :ord, :board, presence: true
 
-  belongs_to :board
-  has_many :cards, dependent: :destroy
+  belongs_to :board, inverse_of: :lists
+  has_many :cards, inverse_of: :list, dependent: :destroy
+  has_many :ordered_cards, -> { order(:ord) }, class_name: 'Card', inverse_of: :list
 end
 
 # == Schema Information
