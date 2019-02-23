@@ -4,33 +4,22 @@ const path = require('path');
 module.exports = {
   context: __dirname,
   entry: './frontend/collaboardate.jsx',
+  mode: 'production',
   output: {
     path: path.join(__dirname, 'app', 'assets', 'javascripts'),
     filename: 'bundle.js'
   },
-  plugins:[
-    new webpack.DefinePlugin({
-      'process.env':{
-        'NODE_ENV': JSON.stringify('production')
-      }
-    }),
-    new webpack.optimize.UglifyJsPlugin({
-      compress:{
-        warnings: true
-      }
-    })
-  ],
   resolve: {
-    extensions: ['', '.js', '.jsx']
+    extensions: ['.js', '.jsx']
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.jsx?$/,
         exclude: /(node_modules|bower_components)/,
-        loader: 'babel',
-        query: {
-          presets: ['react', 'es2015']
+        loader: 'babel-loader',
+        options: {
+          presets: ['@babel/react', '@babel/preset-env']
         }
       }
     ]
