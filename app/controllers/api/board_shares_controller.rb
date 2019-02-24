@@ -11,7 +11,7 @@ class Api::BoardSharesController < ApplicationController
     if @board_share.save
       render :show
     else
-      render json: @board_share.errors, status: 422
+      render json: @board_share.errors, status: :unprocessable_entity
     end
   end
 
@@ -45,7 +45,7 @@ class Api::BoardSharesController < ApplicationController
       return if board_share.sharer?(current_user)
     end
 
-    render json: 'Unauthorized access', status: 401
+    render json: 'Unauthorized access', status: :unauthorized
   end
 
   def require_shared_board_creator

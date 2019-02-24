@@ -134,7 +134,7 @@ BoardShare.create!(
 List.destroy_all
 
 CSV.foreach(
-  "#{Rails.root}/db/csv/lists.csv",
+  Rails.root.join('db', 'csv', 'lists.csv'),
   headers: true,
   header_converters: :symbol
 ) do |row|
@@ -147,7 +147,7 @@ end
 Card.destroy_all
 
 CSV.foreach(
-  "#{Rails.root}/db/csv/cards.csv",
+  Rails.root.join('db', 'csv', 'cards.csv'),
   headers: true,
   header_converters: :symbol
 ) do |row|
@@ -158,8 +158,8 @@ CSV.foreach(
     list: List.find_by(title: row[:list_title])
   )
   if row[:due_date]
-    due_date = Time.now + row[:due_date].to_i.days
-    card.due_date = Time.at(rand(due_date.to_i...(due_date + 1.days).to_i))
+    due_date = Time.now.utc + row[:due_date].to_i.days
+    card.due_date = Time.at(rand(due_date.to_i...(due_date + 1.day).to_i)).utc
   end
   card.due_date_complete = true if row[:due_date_complete] == 'TRUE'
   card.save
@@ -168,7 +168,7 @@ end
 Comment.destroy_all
 
 CSV.foreach(
-  "#{Rails.root}/db/csv/comments.csv",
+  Rails.root.join('db', 'csv', 'comments.csv'),
   headers: true,
   header_converters: :symbol
 ) do |row|

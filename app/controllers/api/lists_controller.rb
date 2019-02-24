@@ -11,7 +11,7 @@ class Api::ListsController < ApplicationController
     if @list.save
       render :show
     else
-      render json: @list.errors, status: 422
+      render json: @list.errors, status: :unprocessable_entity
     end
   end
 
@@ -21,7 +21,7 @@ class Api::ListsController < ApplicationController
     if @list.update(list_params)
       render :show
     else
-      render json: @list.errors, status: 422
+      render json: @list.errors, status: :unprocessable_entity
     end
   end
 

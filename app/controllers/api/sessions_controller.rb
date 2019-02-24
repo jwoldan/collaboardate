@@ -11,7 +11,7 @@ class Api::SessionsController < ApplicationController
       login(@user)
       render :show
     else
-      render json: ['Invalid credentials'], status: 401
+      render json: ['Invalid credentials'], status: :unauthorized
     end
   end
 
@@ -21,7 +21,7 @@ class Api::SessionsController < ApplicationController
       @user = User.new
       render :show
     else
-      render json: ['No user to logout'], status: 404
+      render json: ['No user to logout'], status: :not_found
     end
   end
 end

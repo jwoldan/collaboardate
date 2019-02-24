@@ -11,7 +11,7 @@ class Api::UsersController < ApplicationController
       login(@user)
       render :show
     else
-      render json: @user.errors, status: 422
+      render json: @user.errors, status: :unprocessable_entity
     end
   end
 
@@ -21,7 +21,7 @@ class Api::UsersController < ApplicationController
     if @user.update(user_params)
       render :show
     else
-      render json: @user.errors, status: 422
+      render json: @user.errors, status: :unprocessable_entity
     end
   end
 
@@ -31,7 +31,7 @@ class Api::UsersController < ApplicationController
     if @user
       render :show
     else
-      render json: ['User not found'], status: 404
+      render json: ['User not found'], status: :not_found
     end
   end
 
@@ -44,7 +44,7 @@ class Api::UsersController < ApplicationController
       @user.save
       render :show
     else
-      render json: ['An error occurred'], status: 422
+      render json: ['An error occurred'], status: :unprocessable_entity
     end
   end
 
@@ -79,7 +79,7 @@ class Api::UsersController < ApplicationController
     require_logged_in
     if current_user.id != params[:id].to_i &&
        current_user.id != params[:user_id].to_i
-      render json: 'Unauthorized access', status: 401
+      render json: 'Unauthorized access', status: :unauthorized
     end
   end
 end

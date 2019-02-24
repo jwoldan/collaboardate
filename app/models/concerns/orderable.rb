@@ -23,7 +23,7 @@ module Orderable
       end
 
       where(where_clause, assoc_id, old_ord, new_ord)
-        .update_all(update_clause)
+        .update_all(update_clause) # rubocop:disable Rails/SkipsModelValidations
     end
 
     def max_ord(assoc_id)

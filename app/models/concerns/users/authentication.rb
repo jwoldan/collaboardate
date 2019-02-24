@@ -27,11 +27,11 @@ module Users
       end
 
       def find_by_credentials(username_or_email, password)
-        user = User.where(
+        user = User.find_by(
           'username = ? OR email = ?',
           username_or_email,
           username_or_email
-        ).first
+        )
 
         user&.password_matches?(password) ? user : nil
       end

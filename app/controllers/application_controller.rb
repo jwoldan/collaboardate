@@ -27,7 +27,7 @@ class ApplicationController < ActionController::Base
   private
 
   def require_logged_in
-    render json: 'Unauthorized access', status: 401 unless logged_in?
+    render json: 'Unauthorized access', status: :unauthorized unless logged_in?
   end
 
   def require_board_creator(board_id)
@@ -36,7 +36,7 @@ class ApplicationController < ActionController::Base
       return if board.creator?(current_user)
     end
 
-    render json: 'Unauthorized access', status: 401
+    render json: 'Unauthorized access', status: :unauthorized
   end
 
   def require_board_access(board_id)
@@ -46,7 +46,7 @@ class ApplicationController < ActionController::Base
       return if board.shared_with?(current_user)
     end
 
-    render json: 'Unauthorized access', status: 401 unless authorized
+    render json: 'Unauthorized access', status: :unauthorized unless authorized
   end
 
   def check_board_visibility(board_id)

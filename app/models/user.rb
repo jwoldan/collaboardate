@@ -18,14 +18,33 @@ class User < ApplicationRecord
   has_attached_file :avatar, default_url: ''
   validates_attachment_content_type :avatar, content_type: %r{\Aimage/.*\Z}
 
-  has_many :own_boards, class_name: 'Board', foreign_key: :creator_id
+  has_many :own_boards,
+           class_name: 'Board',
+           foreign_key: :creator_id,
+           inverse_of: :creator,
+           dependent: :destroy
   has_many :own_lists, through: :own_boards, source: :lists
   has_many :own_cards, through: :own_lists, source: :cards
-  has_many :authored_cards, class_name: 'Card', foreign_key: :author_id
-  has_many :given_shares, class_name: 'BoardShare', foreign_key: :sharer_id
-  has_many :received_shares, class_name: 'BoardShare', foreign_key: :sharee_id
+  has_many :authored_cards,
+           class_name: 'Card',
+           foreign_key: :author_id,
+           inverse_of: :author,
+           dependent: :destroy
+  has_many :given_shares,
+           class_name: 'BoardShare',
+           foreign_key: :sharer_id,
+           inverse_of: :sharer,
+           dependent: :destroy
+  has_many :received_shares,
+           class_name: 'BoardShare',
+           foreign_key: :sharee_id,
+           inverse_of: :sharee,
+           dependent: :destroy
   has_many :shared_boards, through: :received_shares, source: :board
-  has_many :comments, foreign_key: :author_id
+  has_many :comments,
+           foreign_key: :author_id,
+           inverse_of: :author,
+           dependent: :destroy
 
   def all_boards
     Board

@@ -1,8 +1,10 @@
-
 AllCops:
   Exclude:
     - 'bin/**/*'
     - 'db/schema.rb'
+
+Rails:
+  Enabled: true
 
 Metrics/BlockLength:
   Exclude:
@@ -16,6 +18,10 @@ Metrics/LineLength:
 Metrics/MethodLength:
   Exclude:
     - 'db/migrate/*'
+
+Rails/DynamicFindBy:
+  Whitelist:
+    - 'find_by_credentials'
 
 Style/ClassAndModuleChildren:
   Exclude:

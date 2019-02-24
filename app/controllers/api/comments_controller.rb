@@ -12,7 +12,7 @@ class Api::CommentsController < ApplicationController
     if @comment.save
       render :show
     else
-      render json: @comment.errors, status: 422
+      render json: @comment.errors, status: :unprocessable_entity
     end
   end
 
@@ -22,7 +22,7 @@ class Api::CommentsController < ApplicationController
     if @comment.update(comment_params)
       render :show
     else
-      render json: @comment.errors, status: 422
+      render json: @comment.errors, status: :unprocessable_entity
     end
   end
 
@@ -49,7 +49,7 @@ class Api::CommentsController < ApplicationController
       return if comment.author?(current_user)
     end
 
-    render json: 'Unauthorized access', status: 401
+    render json: 'Unauthorized access', status: :unauthorized
   end
 
   def require_parent_board_access

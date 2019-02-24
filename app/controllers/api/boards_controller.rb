@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Api::BoardsController < ApplicationController
-  before_action :require_logged_in, only: %i[create index shared_boards]
+  before_action :require_logged_in, only: %i[create index]
   before_action :check_visibility, only: :show
   before_action :require_creator, only: %i[update destroy]
 
@@ -11,7 +11,7 @@ class Api::BoardsController < ApplicationController
     if @board.save
       render :show
     else
-      render json: @board.errors, status: 422
+      render json: @board.errors, status: :unprocessable_entity
     end
   end
 
@@ -21,7 +21,7 @@ class Api::BoardsController < ApplicationController
     if @board.update(board_params)
       render :show
     else
-      render json: @board.errors, status: 422
+      render json: @board.errors, status: :unprocessable_entity
     end
   end
 
