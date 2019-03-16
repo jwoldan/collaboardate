@@ -18,7 +18,7 @@ module.exports = {
         exclude: /(node_modules|bower_components)/,
         loader: 'babel-loader',
         options: {
-          plugins: ['@babel/plugin-proposal-class-properties'],
+          plugins: ['@babel/plugin-proposal-class-properties', 'babel-plugin-lodash'],
           presets: ['@babel/react', '@babel/preset-env'],
         },
       },
