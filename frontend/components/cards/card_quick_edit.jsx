@@ -1,6 +1,8 @@
 import React from 'react';
 import Modal from 'react-modal';
 
+import { tryStopPropagation } from '../../util/event_util';
+
 const menuKeyBase = 'showCardQuickEdit';
 
 class CardQuickEdit extends React.Component {
@@ -42,10 +44,6 @@ class CardQuickEdit extends React.Component {
     }
   };
 
-  stopPropagation = e => {
-    if (e) e.stopPropagation();
-  };
-
   submit = e => {
     if (e) e.preventDefault();
     const title = this.state.title.trim();
@@ -57,7 +55,7 @@ class CardQuickEdit extends React.Component {
   };
 
   toggle = e => {
-    this.stopPropagation(e);
+    tryStopPropagation(e);
     if (!this.props.disabled) {
       this.props.toggle(this.state.menuKey);
     }
@@ -108,7 +106,7 @@ class CardQuickEdit extends React.Component {
     }
 
     return (
-      <section className="card-quick-edit" onClick={this.stopPropagation}>
+      <section className="card-quick-edit" onClick={tryStopPropagation}>
         <span className={iconClass} onClick={this.toggleWithModal} />
         {menuContent}
       </section>

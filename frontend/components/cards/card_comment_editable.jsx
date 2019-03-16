@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { tryStopPropagation } from '../../util/event_util';
+
 import UserIcon from '../user/user_icon';
 
 const menuKeyBase = 'showCommentEditable';
@@ -35,10 +37,6 @@ class CardCommentEditable extends React.Component {
     this.props.deleteComment(this.props.comment.id);
   };
 
-  stopPropagation = e => {
-    if (e) e.stopPropagation();
-  };
-
   submit = e => {
     e.preventDefault();
     const body = this.state.body.trim();
@@ -50,7 +48,7 @@ class CardCommentEditable extends React.Component {
   };
 
   toggle = e => {
-    this.stopPropagation(e);
+    tryStopPropagation(e);
     if (!this.props.disabled) {
       this.props.toggle(this.state.menuKey);
     }
@@ -86,11 +84,7 @@ class CardCommentEditable extends React.Component {
       if (body.trim() === '') inputClass += ' disabled';
 
       commentContent = (
-        <form
-          className="card-comment-editable"
-          onClick={this.stopPropagation}
-          onSubmit={this.submit}
-        >
+        <form className="card-comment-editable" onClick={tryStopPropagation} onSubmit={this.submit}>
           <textarea
             className="card-comment-textarea"
             ref="bodyTextarea"

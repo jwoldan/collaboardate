@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { tryStopPropagation } from '../../util/event_util';
+
 const menuKeyBase = 'showCardTitleEditable';
 
 class CardTitleEditable extends React.Component {
@@ -29,10 +31,6 @@ class CardTitleEditable extends React.Component {
     this.props.removeMenu(this.state.menuKey);
   }
 
-  stopPropagation = e => {
-    if (e) e.stopPropagation();
-  };
-
   submit = e => {
     e.preventDefault();
     const title = this.state.title.trim();
@@ -44,7 +42,7 @@ class CardTitleEditable extends React.Component {
   };
 
   toggle = e => {
-    this.stopPropagation(e);
+    tryStopPropagation(e);
     if (!this.props.disabled) {
       this.props.toggle(this.state.menuKey);
     }

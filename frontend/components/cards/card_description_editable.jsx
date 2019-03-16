@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { tryStopPropagation } from '../../util/event_util';
+
 const menuKeyBase = 'showCardDescriptionEditable';
 
 class CardDescriptionEditable extends React.Component {
@@ -30,10 +32,6 @@ class CardDescriptionEditable extends React.Component {
     this.props.removeMenu(this.state.menuKey);
   }
 
-  stopPropagation = e => {
-    if (e) e.stopPropagation();
-  };
-
   submit = e => {
     e.preventDefault();
     const description = this.state.description.trim();
@@ -43,7 +41,7 @@ class CardDescriptionEditable extends React.Component {
   };
 
   toggle = e => {
-    this.stopPropagation(e);
+    tryStopPropagation(e);
     if (!this.props.disabled) {
       this.props.toggle(this.state.menuKey);
     }
@@ -69,7 +67,7 @@ class CardDescriptionEditable extends React.Component {
       return (
         <form
           className="card-description-editable"
-          onClick={this.stopPropagation}
+          onClick={tryStopPropagation}
           onSubmit={this.submit}
         >
           <textarea

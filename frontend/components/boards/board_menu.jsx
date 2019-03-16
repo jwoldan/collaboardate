@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { tryStopPropagation } from '../../util/event_util';
+
 import ToggleMenu from '../general/toggle_menu';
 import BoardMembersContainer from './board_members_container';
 import BoardShareMenuContainer from './board_share_menu_container';
@@ -8,7 +10,7 @@ import BoardDeleteMenuContainer from './board_delete_menu_container';
 
 class BoardMenu extends ToggleMenu {
   toggle = e => {
-    this.stopPropagation(e);
+    tryStopPropagation(e);
     const { disabled, shared } = this.props;
     if (!disabled || shared) {
       this.props.toggle();

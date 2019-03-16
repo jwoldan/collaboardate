@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { tryStopPropagation } from '../../util/event_util';
+
 const menuKeyBase = 'showListTitleEditable';
 
 class ListTitleEditable extends React.Component {
@@ -29,10 +31,6 @@ class ListTitleEditable extends React.Component {
     this.props.removeMenu(this.state.menuKey);
   }
 
-  stopPropagation = e => {
-    if (e) e.stopPropagation();
-  };
-
   submit = e => {
     e.preventDefault();
     const title = this.state.title.trim();
@@ -44,7 +42,7 @@ class ListTitleEditable extends React.Component {
   };
 
   toggle = e => {
-    this.stopPropagation(e);
+    tryStopPropagation(e);
     if (!this.props.disabled) {
       this.props.toggle(this.state.menuKey);
     }
@@ -65,7 +63,7 @@ class ListTitleEditable extends React.Component {
       }, 1);
 
       return (
-        <form className="list-title-editable" onSubmit={this.submit} onClick={this.stopPropagation}>
+        <form className="list-title-editable" onSubmit={this.submit} onClick={tryStopPropagation}>
           <input
             type="text"
             className="input list-title-input"

@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { tryStopPropagation } from '../../util/event_util';
+
 const menuKeyBase = 'showCardCreate';
 
 class CardCreate extends React.Component {
@@ -33,10 +35,6 @@ class CardCreate extends React.Component {
     }
   };
 
-  stopPropagation = e => {
-    if (e) e.stopPropagation();
-  };
-
   submit = e => {
     if (e) e.preventDefault();
     const title = this.state.title.trim();
@@ -49,7 +47,7 @@ class CardCreate extends React.Component {
   };
 
   toggle = e => {
-    this.stopPropagation(e);
+    tryStopPropagation(e);
     if (!this.props.disabled) {
       this.props.toggle(this.state.menuKey);
     }
@@ -75,7 +73,7 @@ class CardCreate extends React.Component {
         <form
           className="card-create-form editable"
           onSubmit={this.submit}
-          onClick={this.stopPropagation}
+          onClick={tryStopPropagation}
         >
           <textarea
             className="input card-title-input"

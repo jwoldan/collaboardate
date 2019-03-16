@@ -1,12 +1,10 @@
 import React from 'react';
 
-class ToggleMenu extends React.Component {
-  stopPropagation = e => {
-    if (e) e.stopPropagation();
-  };
+import { tryStopPropagation } from '../../util/event_util';
 
+class ToggleMenu extends React.Component {
   toggle = e => {
-    this.stopPropagation(e);
+    tryStopPropagation(e);
     if (!this.props.disabled) {
       this.props.toggle();
     }
@@ -29,7 +27,7 @@ class ToggleMenu extends React.Component {
     }
 
     return (
-      <section className={menuClass} onClick={this.stopPropagation}>
+      <section className={menuClass} onClick={tryStopPropagation}>
         {titleContent}
         {menuContent}
       </section>
