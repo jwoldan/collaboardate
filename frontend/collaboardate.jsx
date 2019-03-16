@@ -8,9 +8,9 @@ import Root from './components/root';
 document.addEventListener('DOMContentLoaded', () => {
   let preloadedState;
 
-  if (window.currentUser) {
+  if (window.preloadedUser) {
     preloadedState = {
-      currentUser: window.currentUser,
+      currentUser: window.preloadedUser,
     };
   }
 

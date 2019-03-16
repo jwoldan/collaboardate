@@ -12,8 +12,8 @@ class HomeProfileMenu extends React.Component {
   };
 
   renderMenuContent(toggle) {
-    let { currentUser } = this.props;
-    currentUser = currentUser ? currentUser : {};
+    const { currentUser } = this.props;
+    if (!currentUser) return null;
 
     return (
       <ul>
@@ -30,6 +30,9 @@ class HomeProfileMenu extends React.Component {
   }
 
   render() {
+    const { currentUser } = this.props;
+    if (!currentUser) return null;
+
     let userIcon;
     let nameClass = null;
     if (currentUser.avatar_url) {
