@@ -5,20 +5,9 @@ const defaultState = {
 };
 
 class ListCreateForm extends React.Component {
-  constructor() {
-    super();
+  state = defaultState;
 
-    this.state = Object.assign({}, defaultState);
-
-    this.updateTitle = this.updateTitle.bind(this);
-    this.createList = this.createList.bind(this);
-  }
-
-  updateTitle(e) {
-    this.setState({ title: e.currentTarget.value });
-  }
-
-  createList(e) {
+  createList = e => {
     e.preventDefault();
     const newList = Object.assign({}, this.state);
     newList.title = newList.title.trim();
@@ -28,7 +17,11 @@ class ListCreateForm extends React.Component {
         this.setState(Object.assign({}, defaultState));
       });
     }
-  }
+  };
+
+  updateTitle = e => {
+    this.setState({ title: e.currentTarget.value });
+  };
 
   render() {
     const { title } = this.state;

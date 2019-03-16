@@ -4,17 +4,11 @@ import { withRouter, Link } from 'react-router-dom';
 import ToggleMenu from '../general/toggle_menu';
 
 class HomeProfileMenu extends ToggleMenu {
-  constructor() {
-    super();
-
-    this.logout = this.logout.bind(this);
-  }
-
-  logout() {
+  logout = () => {
     this.props.logout().then(() => {
       if (this.props.location.pathname !== '/') this.props.history.push('/');
     });
-  }
+  };
 
   render() {
     let { currentUser } = this.props;

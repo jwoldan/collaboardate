@@ -3,7 +3,6 @@ import { withRouter } from 'react-router-dom';
 import { DragSource } from 'react-dnd';
 import ItemTypes from '../dnd/item_types';
 
-import DynamicEditable from '../general/dynamic_editable';
 import CardQuickEditContainer from './card_quick_edit_container';
 import CardDueDateBadge from './card_due_date_badge';
 import CardDetailContainer from './card_detail_container';
@@ -21,25 +20,19 @@ const collect = (connect, monitor) => ({
   isDragging: monitor.isDragging(),
 });
 
-class Card extends DynamicEditable {
-  constructor() {
-    super();
+class Card extends React.Component {
+  state = {
+    active: false,
+    menuKey: null,
+  };
 
-    this.state = {
-      active: false,
-    };
-
-    this.activate = this.activate.bind(this);
-    this.viewCardDetail = this.viewCardDetail.bind(this);
-  }
-
-  activate(active) {
+  activate = active => {
     return e => this.setState({ active });
-  }
+  };
 
-  viewCardDetail() {
+  viewCardDetail = () => {
     this.props.history.push(`/c/${this.props.card.id}`);
-  }
+  };
 
   render() {
     const { card, disabled, connectDragSource, isDragging } = this.props;

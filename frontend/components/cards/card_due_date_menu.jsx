@@ -4,18 +4,10 @@ import moment from 'moment';
 import ToggleMenu from '../general/toggle_menu';
 
 class CardDueDateMenu extends ToggleMenu {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      dueDate: '',
-      dueTime: '',
-    };
-
-    this.update = this.update.bind(this);
-    this.clearDueDate = this.clearDueDate.bind(this);
-    this.submit = this.submit.bind(this);
-  }
+  state = {
+    dueDate: '',
+    dueTime: '',
+  };
 
   componentWillReceiveProps(newProps) {
     if (typeof newProps.card !== 'undefined') {
@@ -36,11 +28,7 @@ class CardDueDateMenu extends ToggleMenu {
     }
   }
 
-  update(property) {
-    return e => this.setState({ [property]: e.currentTarget.value });
-  }
-
-  clearDueDate() {
+  clearDueDate = () => {
     this.props
       .updateCard({
         id: this.props.card.id,
@@ -48,9 +36,9 @@ class CardDueDateMenu extends ToggleMenu {
         due_date_complete: false,
       })
       .then(() => this.toggle());
-  }
+  };
 
-  submit(e) {
+  submit = e => {
     e.preventDefault();
     const { dueDate, dueTime } = this.state;
     const momentDateTime = moment(`${dueDate} ${dueTime}`, 'YYYY-MM-DD HH:mm', true);
@@ -62,7 +50,11 @@ class CardDueDateMenu extends ToggleMenu {
       });
       this.toggle();
     }
-  }
+  };
+
+  update = property => {
+    return e => this.setState({ [property]: e.currentTarget.value });
+  };
 
   render() {
     const { card, show, disabled } = this.props;

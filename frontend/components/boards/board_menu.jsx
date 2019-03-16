@@ -7,19 +7,13 @@ import BoardBackgroundMenuContainer from './board_background_menu_container';
 import BoardDeleteMenuContainer from './board_delete_menu_container';
 
 class BoardMenu extends ToggleMenu {
-  constructor() {
-    super();
-
-    this.toggle = this.toggle.bind(this);
-  }
-
-  toggle(e) {
+  toggle = e => {
     this.stopPropagation(e);
     const { disabled, shared } = this.props;
     if (!disabled || shared) {
       this.props.toggle();
     }
-  }
+  };
 
   render() {
     let buttonClass = 'nav-button';

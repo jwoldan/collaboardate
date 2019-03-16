@@ -1,13 +1,7 @@
 import React from 'react';
 
 class BoardShareSearchResult extends React.Component {
-  constructor() {
-    super();
-
-    this.handleClick = this.handleClick.bind(this);
-  }
-
-  handleClick() {
+  handleClick = () => {
     const { board, user, alreadyShared, shareId } = this.props;
     if (alreadyShared) {
       this.props.deleteShare(shareId);
@@ -17,7 +11,7 @@ class BoardShareSearchResult extends React.Component {
         sharee_id: user.id,
       });
     }
-  }
+  };
 
   render() {
     const { user, alreadyShared } = this.props;

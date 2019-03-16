@@ -4,17 +4,11 @@ import ToggleMenu from '../general/toggle_menu';
 import BoardVisibilityOptions from './board_visibility_options';
 
 class BoardVisibilityMenu extends ToggleMenu {
-  constructor() {
-    super();
-
-    this.updateVisibility = this.updateVisibility.bind(this);
-  }
-
-  updateVisibility(e) {
+  updateVisibility = e => {
     const update = { visibility: e.currentTarget.dataset.value };
     this.props.updateBoard(update);
     this.toggle();
-  }
+  };
 
   render() {
     const { visibility, updateVisibility, disabled } = this.props;

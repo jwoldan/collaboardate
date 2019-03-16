@@ -4,21 +4,15 @@ import { withRouter, Link } from 'react-router-dom';
 import WelcomeNavigation from './welcome_navigation';
 
 class Welcome extends React.Component {
-  constructor() {
-    super();
-
-    this.loginGuest = this.loginGuest.bind(this);
-  }
-
   componentDidMount() {
     if (this.props.location.pathname !== '/') {
       this.props.history.push('/');
     }
   }
 
-  loginGuest() {
+  loginGuest = () => {
     this.props.loginGuest().then(() => this.props.history.push('/'));
-  }
+  };
 
   render() {
     return (

@@ -4,20 +4,14 @@ import moment from 'moment';
 import { dueDateClassName } from '../general/class_name_util';
 
 class CardDueDateDisplay extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.toggle = this.toggle.bind(this);
-  }
-
-  toggle() {
+  toggle = () => {
     const { card, updateCard } = this.props;
 
     this.props.updateCard({
       id: card.id,
       due_date_complete: !card.due_date_complete,
     });
-  }
+  };
 
   render() {
     const { card } = this.props;

@@ -3,22 +3,11 @@ import React from 'react';
 import UserIcon from '../user/user_icon';
 
 class CardCommentForm extends React.Component {
-  constructor(props) {
-    super(props);
+  state = {
+    body: '',
+  };
 
-    this.state = {
-      body: '',
-    };
-
-    this.updateBody = this.updateBody.bind(this);
-    this.submit = this.submit.bind(this);
-  }
-
-  updateBody(e) {
-    this.setState({ body: e.currentTarget.value });
-  }
-
-  submit(e) {
+  submit = e => {
     e.preventDefault();
     const body = this.state.body.trim();
     if (body !== '') {
@@ -29,7 +18,11 @@ class CardCommentForm extends React.Component {
       };
       createComment(comment).then(() => this.setState({ body: '' }));
     }
-  }
+  };
+
+  updateBody = e => {
+    this.setState({ body: e.currentTarget.value });
+  };
 
   render() {
     const { disabled, currentUser } = this.props;

@@ -1,20 +1,12 @@
 import React from 'react';
 
-import DynamicEditable from '../general/dynamic_editable';
-
 const menuKeyBase = 'showListTitleEditable';
 
-class ListTitleEditable extends DynamicEditable {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      title: '',
-    };
-
-    this.updateTitle = this.updateTitle.bind(this);
-    this.submit = this.submit.bind(this);
-  }
+class ListTitleEditable extends React.Component {
+  state = {
+    menuKey: null,
+    title: '',
+  };
 
   componentDidMount() {
     const menuKey = `${menuKeyBase}-${this.props.list.id}`;
@@ -37,11 +29,11 @@ class ListTitleEditable extends DynamicEditable {
     this.props.removeMenu(this.state.menuKey);
   }
 
-  updateTitle(e) {
-    this.setState({ title: e.currentTarget.value });
-  }
+  stopPropagation = e => {
+    if (e) e.stopPropagation();
+  };
 
-  submit(e) {
+  submit = e => {
     e.preventDefault();
     const title = this.state.title.trim();
     if (title !== '') {
@@ -49,7 +41,18 @@ class ListTitleEditable extends DynamicEditable {
       const updatedList = Object.assign({}, list, { title });
       updateList(updatedList).then(() => this.toggle());
     }
-  }
+  };
+
+  toggle = e => {
+    this.stopPropagation(e);
+    if (!this.props.disabled) {
+      this.props.toggle(this.state.menuKey);
+    }
+  };
+
+  updateTitle = e => {
+    this.setState({ title: e.currentTarget.value });
+  };
 
   render() {
     const { list, showStatus } = this.props;

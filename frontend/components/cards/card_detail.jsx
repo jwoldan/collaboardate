@@ -10,28 +10,20 @@ import CardCommentEditableContainer from './card_comment_editable_container';
 import CardDueDateMenuContainer from './card_due_date_menu_container';
 
 class CardDetail extends React.Component {
-  constructor() {
-    super();
-
-    this.resetCard = this.resetCard.bind(this);
-    this.resetMenus = this.resetMenus.bind(this);
-    this.deleteCard = this.deleteCard.bind(this);
-  }
-
-  resetMenus() {
-    const { menuIsOpen, resetMenus } = this.props;
-    if (menuIsOpen) resetMenus();
-  }
-
-  resetCard() {
-    this.props.history.push(`/b/${this.props.card.board_id}`);
-    this.props.receiveCardDetail({});
-  }
-
-  deleteCard() {
+  deleteCard = () => {
     const { card, deleteCard } = this.props;
     deleteCard(card.id).then(deletedCard => this.props.history.push(`/b/${deletedCard.board_id}`));
-  }
+  };
+
+  resetCard = () => {
+    this.props.history.push(`/b/${this.props.card.board_id}`);
+    this.props.receiveCardDetail({});
+  };
+
+  resetMenus = () => {
+    const { menuIsOpen, resetMenus } = this.props;
+    if (menuIsOpen) resetMenus();
+  };
 
   render() {
     const { card, comments, list, updateCard, resetMenus, disabled } = this.props;

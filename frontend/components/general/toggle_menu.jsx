@@ -1,23 +1,16 @@
 import React from 'react';
 
 class ToggleMenu extends React.Component {
-  constructor() {
-    super();
+  stopPropagation = e => {
+    if (e) e.stopPropagation();
+  };
 
-    this.toggle = this.toggle.bind(this);
-    this.stopPropagation = this.stopPropagation.bind(this);
-  }
-
-  toggle(e) {
+  toggle = e => {
     this.stopPropagation(e);
     if (!this.props.disabled) {
       this.props.toggle();
     }
-  }
-
-  stopPropagation(e) {
-    if (e) e.stopPropagation();
-  }
+  };
 
   renderMenu(menuTitle, menuContent, customClass = '') {
     const { children, show, disabled } = this.props;

@@ -1,20 +1,12 @@
 import React from 'react';
 
-import DynamicEditable from '../general/dynamic_editable';
-
 const menuKeyBase = 'showCardTitleEditable';
 
-class CardTitleEditable extends DynamicEditable {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      title: '',
-    };
-
-    this.updateTitle = this.updateTitle.bind(this);
-    this.submit = this.submit.bind(this);
-  }
+class CardTitleEditable extends React.Component {
+  state = {
+    menuKey: null,
+    title: '',
+  };
 
   componentDidMount() {
     const menuKey = menuKeyBase;
@@ -37,11 +29,11 @@ class CardTitleEditable extends DynamicEditable {
     this.props.removeMenu(this.state.menuKey);
   }
 
-  updateTitle(e) {
-    this.setState({ title: e.currentTarget.value });
-  }
+  stopPropagation = e => {
+    if (e) e.stopPropagation();
+  };
 
-  submit(e) {
+  submit = e => {
     e.preventDefault();
     const title = this.state.title.trim();
     if (title !== '') {
@@ -49,7 +41,18 @@ class CardTitleEditable extends DynamicEditable {
       const updatedCard = Object.assign({}, card, { title });
       updateCard(updatedCard).then(() => this.toggle());
     }
-  }
+  };
+
+  toggle = e => {
+    this.stopPropagation(e);
+    if (!this.props.disabled) {
+      this.props.toggle(this.state.menuKey);
+    }
+  };
+
+  updateTitle = e => {
+    this.setState({ title: e.currentTarget.value });
+  };
 
   render() {
     const { card, showStatus } = this.props;
