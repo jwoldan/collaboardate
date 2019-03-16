@@ -17,8 +17,9 @@ class Profile extends React.Component {
     this.updateProfile = this.updateProfile.bind(this);
   }
 
-  componendDidMount() {
+  componentDidMount() {
     const {
+      currentUser,
       fetchProfile,
       match: { params },
     } = this.props;
@@ -92,7 +93,7 @@ class Profile extends React.Component {
     e.preventDefault();
     this.props.updateUser(this.state.profile).then(profile => {
       this.toggleEdit();
-      this.props.history.push(`/${profile.username}`);
+      this.props.history.push(`/u/${profile.username}`);
     });
   }
 
@@ -224,7 +225,11 @@ class Profile extends React.Component {
           <label>
             <span className="bold">Bio</span>
             <span className="quiet">(optional)</span>
-            <textarea className="input" value={editableProfile.bio} onChange={this.update('bio')} />
+            <textarea
+              className="input"
+              value={editableProfile.bio || ''}
+              onChange={this.update('bio')}
+            />
           </label>
           <input type="submit" className="button green" value="Save" />
           <input type="button" className="button" onClick={this.toggleEdit} value="Cancel" />
