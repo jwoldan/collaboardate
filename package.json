@@ -12,6 +12,7 @@
     "prettier": "./node_modules/.bin/prettier --write 'frontend/**/*.{js,jsx}'",
     "test": "echo \"Error: no test specified\" && exit 1",
     "webpack": "./node_modules/.bin/webpack --watch",
+    "webpack-analyze": "./node_modules/.bin/webpack --config webpack.config.prod.js --profile --json > ./tmp/webpack-stats.json && ./node_modules/.bin/webpack-bundle-analyzer ./tmp/webpack-stats.json",
     "webpack-once": "./node_modules/.bin/webpack"
   },
   "repository": {
@@ -56,6 +57,7 @@
     "prettier": "1.16.4",
     "pretty-quick": "^1.10.0",
     "webpack": "^4.29.6",
+    "webpack-bundle-analyzer": "^3.1.0",
     "webpack-cli": "^3.3.0"
   },
   "husky": {
