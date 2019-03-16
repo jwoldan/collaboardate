@@ -1,10 +1,16 @@
 import React from 'react';
 
+import { tryStopPropagation } from '../../util/event_util';
+
 import DynamicToggleMenu from '../general/dynamic_toggle_menu';
 
 const menuKeyBase = 'showListDeleteMenu';
 
-class ListDeleteMenu extends DynamicToggleMenu {
+class ListDeleteMenu extends React.Component {
+  state = {
+    menuKey: null,
+  };
+
   componentDidMount() {
     const menuKey = `${menuKeyBase}-${this.props.list.id}`;
     this.setState({ menuKey });
@@ -27,7 +33,15 @@ class ListDeleteMenu extends DynamicToggleMenu {
     this.props.deleteList(this.props.list.id).then(this.toggleMenu);
   };
 
+  toggle = e => {
+    tryStopPropagation(e);
+    if (!this.props.disabled) {
+      this.props.toggle(this.state.menuKey);
+    }
+  };
+
   render() {
+    const { disabled, showStatus } = this.props;
     const menuContent = (
       <section className="menu-section">
         <span className="small loud">
@@ -43,7 +57,15 @@ class ListDeleteMenu extends DynamicToggleMenu {
     return (
       <section>
         <a onClick={this.toggle}>Delete List</a>
-        {this.renderMenu('Delete List?', menuContent, 'list-delete-menu')}
+        <DynamicToggleMenu
+          className="list-delete-menu"
+          disabled={disabled}
+          menuTitle="Delete List?"
+          show={showStatus(this.state.menuKey)}
+          toggle={this.toggle}
+        >
+          {menuContent}
+        </DynamicToggleMenu>
       </section>
     );
   }
