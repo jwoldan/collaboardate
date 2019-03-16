@@ -1,32 +1,35 @@
 import React from 'react';
 
 import ToggleMenu from '../general/toggle_menu';
-import BoardVisibilityOptions from './board_visibility_options';
+import WithMenuStatus from '../general/with_menu_status';
 
-class BoardVisibilityMenu extends ToggleMenu {
-  updateVisibility = e => {
-    const update = { visibility: e.currentTarget.dataset.value };
-    this.props.updateBoard(update);
-    this.toggle();
-  };
+import BoardVisibilityUpdateContainer from './board_visibility_update_container';
 
-  render() {
-    const { visibility, updateVisibility, disabled } = this.props;
+const BoardVisibilityMenu = ({ disabled, visibility }) => {
+  let buttonClass = 'nav-button';
+  if (disabled) buttonClass += ' disabled';
 
-    let buttonClass = 'nav-button';
-    if (disabled) buttonClass += ' disabled';
-
-    const menuContent = <BoardVisibilityOptions updateVisibility={this.updateVisibility} />;
-
-    return (
-      <li className="visibility">
-        <section className={buttonClass} onClick={this.toggle}>
-          {visibility}
-        </section>
-        {this.renderMenu('Change Visibility', menuContent)}
-      </li>
-    );
-  }
-}
+  return (
+    <li className="visibility">
+      <WithMenuStatus menuKey="showBoardVisibilityMenu">
+        {({ show, toggle }) => (
+          <>
+            <section className={buttonClass} onClick={toggle}>
+              {visibility}
+            </section>
+            <ToggleMenu
+              disabled={disabled}
+              menuTitle="Change Visibility"
+              show={show}
+              toggle={toggle}
+            >
+              <BoardVisibilityUpdateContainer toggle={toggle} />
+            </ToggleMenu>
+          </>
+        )}
+      </WithMenuStatus>
+    </li>
+  );
+};
 
 export default BoardVisibilityMenu;

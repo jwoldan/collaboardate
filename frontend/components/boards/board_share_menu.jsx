@@ -1,60 +1,23 @@
 import React from 'react';
 
 import ToggleMenu from '../general/toggle_menu';
+import WithMenuStatus from '../general/with_menu_status';
 
-import BoardShareSearchResultContainer from './board_share_search_result_container';
+import BoardShareMenuContentContainer from './board_share_menu_content_container';
 
-class BoardShareMenu extends ToggleMenu {
-  state = {
-    query: '',
-    results: [],
-  };
-
-  componentWillReceiveProps(newProps) {
-    if (this.props.show !== newProps.show) {
-      this.setState({ query: '', results: [] });
-    }
-  }
-
-  handleInput = e => {
-    const query = e.currentTarget.value;
-    this.setState({ query });
-    if (query.trim() !== '') {
-      this.props.search(query).then(results => this.setState({ results }));
-    } else {
-      this.setState({ results: [] });
-    }
-  };
-
-  render() {
-    const { show } = this.props;
-    const { query, results } = this.state;
-
-    const menuContent = (
-      <section className="menu-section">
-        <span className="small loud">
-          <span className="quiet">Type to search by username:</span>
-          <input className="input" onChange={this.handleInput} ref="searchInput" value={query} />
-          <ul>
-            {results.map(user => (
-              <BoardShareSearchResultContainer key={user.id} user={user} />
-            ))}
-          </ul>
-        </span>
-      </section>
-    );
-
-    if (show) {
-      setTimeout(() => this.refs.searchInput.focus(), 1);
-    }
-
-    return (
-      <section className="board-menu-item">
-        <a onClick={this.toggle}>Edit Sharing</a>
-        {this.renderMenu('Sharing', menuContent)}
-      </section>
-    );
-  }
-}
+const BoardShareMenu = ({ disabled }) => (
+  <section className="board-menu-item">
+    <WithMenuStatus menuKey="showBoardShareMenu" leaveOthers>
+      {({ show, toggle }) => (
+        <>
+          <a onClick={toggle}>Edit Sharing</a>
+          <ToggleMenu disabled={disabled} menuTitle="Sharing" show={show} toggle={toggle}>
+            <BoardShareMenuContentContainer />
+          </ToggleMenu>
+        </>
+      )}
+    </WithMenuStatus>
+  </section>
+);
 
 export default BoardShareMenu;

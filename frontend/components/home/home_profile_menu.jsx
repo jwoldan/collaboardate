@@ -2,22 +2,23 @@ import React from 'react';
 import { withRouter, Link } from 'react-router-dom';
 
 import ToggleMenu from '../general/toggle_menu';
+import WithMenuStatus from '../general/with_menu_status';
 
-class HomeProfileMenu extends ToggleMenu {
+class HomeProfileMenu extends React.Component {
   logout = () => {
     this.props.logout().then(() => {
       if (this.props.location.pathname !== '/') this.props.history.push('/');
     });
   };
 
-  render() {
+  renderMenuContent(toggle) {
     let { currentUser } = this.props;
     currentUser = currentUser ? currentUser : {};
 
-    const menuContent = (
+    return (
       <ul>
         <li>
-          <Link to={`/u/${currentUser.username}`} onClick={this.toggle}>
+          <Link to={`/u/${currentUser.username}`} onClick={toggle}>
             Profile
           </Link>
         </li>
@@ -26,7 +27,9 @@ class HomeProfileMenu extends ToggleMenu {
         </li>
       </ul>
     );
+  }
 
+  render() {
     let userIcon;
     let nameClass = null;
     if (currentUser.avatar_url) {
@@ -42,15 +45,24 @@ class HomeProfileMenu extends ToggleMenu {
 
     return (
       <li className="nav-item">
-        <div className="nav-button profile-button" onClick={this.toggle}>
-          {userIcon}
-          <span className={nameClass}>{currentUser.full_name}</span>
-        </div>
-        {this.renderMenu(
-          `${currentUser.full_name} (${currentUser.username})`,
-          menuContent,
-          'dropdown dropdown-profile'
-        )}
+        <WithMenuStatus menuKey="showHomeProfileMenu">
+          {({ show, toggle }) => (
+            <>
+              <div className="nav-button profile-button" onClick={toggle}>
+                {userIcon}
+                <span className={nameClass}>{currentUser.full_name}</span>
+              </div>
+              <ToggleMenu
+                className="dropdown dropdown-profile"
+                menuTitle={`${currentUser.full_name} (${currentUser.username})`}
+                show={show}
+                toggle={toggle}
+              >
+                {this.renderMenuContent(toggle)}
+              </ToggleMenu>
+            </>
+          )}
+        </WithMenuStatus>
       </li>
     );
   }

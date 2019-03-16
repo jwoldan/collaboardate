@@ -1,7 +1,7 @@
 import React from 'react';
 
-import BoardTitleMenuContainer from './board_title_menu_container';
-import BoardVisibilityMenuContainer from './board_visibility_menu_container';
+import BoardTitleMenu from './board_title_menu';
+import BoardVisibilityMenu from './board_visibility_menu';
 import BoardMenuContainer from './board_menu_container';
 
 class BoardNavigation extends React.Component {
@@ -18,12 +18,8 @@ class BoardNavigation extends React.Component {
     return (
       <nav className="board-nav clearfix">
         <ul className="nav-left clearfix">
-          <BoardTitleMenuContainer
-            title={title}
-            updateBoard={this.updateBoard}
-            disabled={disabled}
-          />
-          <BoardVisibilityMenuContainer
+          <BoardTitleMenu title={title} updateBoard={this.updateBoard} disabled={disabled} />
+          <BoardVisibilityMenu
             visibility={visibility}
             updateBoard={this.updateBoard}
             disabled={disabled}

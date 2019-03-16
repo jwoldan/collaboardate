@@ -2,37 +2,27 @@ import React from 'react';
 
 import { tryStopPropagation } from '../../util/event_util';
 
-class ToggleMenu extends React.Component {
-  toggle = e => {
-    tryStopPropagation(e);
-    if (!this.props.disabled) {
-      this.props.toggle();
-    }
-  };
+const ToggleMenu = ({ children, className = '', disabled, menuTitle, show, toggle }) => {
+  if (!show) return null;
 
-  renderMenu(menuTitle, menuContent, customClass = '') {
-    const { children, show, disabled } = this.props;
+  let menuClass = `menu show ${className}`;
 
-    let menuClass = `menu ${customClass}`;
-    if (show) menuClass += ' show';
-
-    let titleContent = '';
-    if (menuTitle) {
-      titleContent = (
-        <section>
-          <span className="menu-close" onClick={this.toggle} />
-          <section className="menu-header">{menuTitle}</section>
-        </section>
-      );
-    }
-
-    return (
-      <section className={menuClass} onClick={tryStopPropagation}>
-        {titleContent}
-        {menuContent}
+  let titleContent = '';
+  if (menuTitle) {
+    titleContent = (
+      <section>
+        <span className="menu-close" onClick={toggle} />
+        <section className="menu-header">{menuTitle}</section>
       </section>
     );
   }
-}
+
+  return (
+    <section className={menuClass} onClick={tryStopPropagation}>
+      {titleContent}
+      {children}
+    </section>
+  );
+};
 
 export default ToggleMenu;

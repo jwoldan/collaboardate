@@ -1,7 +1,7 @@
 import React from 'react';
 
 import BoardsIndexItem from './boards_index_item';
-import BoardsIndexCreateContainer from './boards_index_create_container';
+import BoardsIndexCreate from './boards_index_create';
 
 export default ({ title, boards, create }) => {
   if (boards.length > 0 || create) {
@@ -12,7 +12,7 @@ export default ({ title, boards, create }) => {
           {boards.map(board => (
             <BoardsIndexItem key={board.id} board={board} />
           ))}
-          {create ? <BoardsIndexCreateContainer /> : ''}
+          {create ? <BoardsIndexCreate /> : ''}
         </ul>
       </section>
     );

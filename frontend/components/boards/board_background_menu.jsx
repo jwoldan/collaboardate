@@ -2,8 +2,21 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 
 import ToggleMenu from '../general/toggle_menu';
+import WithMenuStatus from '../general/with_menu_status';
 
-class BoardBackgroundMenu extends ToggleMenu {
+const colors = [
+  'blue',
+  'orange',
+  'green',
+  'red',
+  'purple',
+  'pink',
+  'light-green',
+  'light-blue',
+  'grey',
+];
+
+class BoardBackgroundMenu extends React.Component {
   updateBackground = background => {
     const { params } = this.props.match;
 
@@ -15,26 +28,35 @@ class BoardBackgroundMenu extends ToggleMenu {
   };
 
   render() {
+    const { disabled } = this.props;
+
     const menuContent = (
       <section className="menu-section">
         <ul className="board-background-options">
-          <li className="blue" onClick={this.updateBackground('blue')} />
-          <li className="orange" onClick={this.updateBackground('orange')} />
-          <li className="green" onClick={this.updateBackground('green')} />
-          <li className="red" onClick={this.updateBackground('red')} />
-          <li className="purple" onClick={this.updateBackground('purple')} />
-          <li className="pink" onClick={this.updateBackground('pink')} />
-          <li className="light-green" onClick={this.updateBackground('light-green')} />
-          <li className="light-blue" onClick={this.updateBackground('light-blue')} />
-          <li className="grey" onClick={this.updateBackground('grey')} />
+          {colors.map(color => (
+            <li key={color} className={color} onClick={this.updateBackground(color)} />
+          ))}
         </ul>
       </section>
     );
 
     return (
       <section className="board-menu-item">
-        <a onClick={this.toggle}>Change Background</a>
-        {this.renderMenu('Change Background', menuContent)}
+        <WithMenuStatus menuKey="showBoardBackgroundMenu" leaveOthers>
+          {({ show, toggle }) => (
+            <>
+              <a onClick={toggle}>Change Background</a>
+              <ToggleMenu
+                disabled={disabled}
+                menuTitle="Change Background"
+                show={show}
+                toggle={toggle}
+              >
+                {menuContent}
+              </ToggleMenu>
+            </>
+          )}
+        </WithMenuStatus>
       </section>
     );
   }

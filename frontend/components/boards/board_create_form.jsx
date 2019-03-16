@@ -42,7 +42,6 @@ class BoardCreateForm extends React.Component {
     if (newBoard.title !== '') {
       this.props.createBoard(newBoard).then(board => {
         this.props.toggle();
-        this.setState(Object.assign({}, defaultState));
         this.props.history.push(`/b/${board.id}`);
         this.props.resetMenus();
       });
@@ -83,17 +82,14 @@ class BoardCreateForm extends React.Component {
             onChange={this.updateNewBoard('title')}
           />
         </label>
-
         <span className={visibilityTextClass} onClick={this.toggleVisibility}>
           This board will be {visibility}.&nbsp;
           <a>Change.</a>
         </span>
-
         <BoardVisibilityOptions
-          visibilityClass={visibilityMenuClass}
+          className={visibilityMenuClass}
           updateVisibility={this.updateNewBoard('visibility')}
         />
-
         <input type="submit" className="button green" value="Create" />
       </form>
     );

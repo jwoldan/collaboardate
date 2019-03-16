@@ -1,70 +1,30 @@
 import React from 'react';
 
 import ToggleMenu from '../general/toggle_menu';
+import WithMenuStatus from '../general/with_menu_status';
 
-class BoardTitleMenu extends ToggleMenu {
-  state = {
-    title: '',
-  };
+import BoardTitleMenuContentContainer from './board_title_menu_content_container';
 
-  componentWillReceiveProps(newProps) {
-    if (typeof newProps.title !== 'undefined') {
-      this.setState({ title: newProps.title.slice() });
-    }
-  }
+const BoardTitleMenu = ({ disabled, title }) => {
+  let buttonClass = 'nav-button';
+  if (disabled) buttonClass += ' disabled';
 
-  updateTitle = e => {
-    this.setState({ title: e.currentTarget.value });
-  };
-
-  submit = e => {
-    e.preventDefault();
-    const title = this.state.title.trim();
-    if (title !== '') {
-      this.props.updateBoard({ title });
-      this.toggle();
-    }
-  };
-
-  render() {
-    const { show, disabled } = this.props;
-    const { title } = this.state;
-
-    let buttonClass = 'nav-button';
-    if (disabled) buttonClass += ' disabled';
-
-    const menuContent = (
-      <form className="menu-form" onSubmit={this.submit}>
-        <label>
-          Title
-          <input
-            type="text"
-            className="input"
-            ref="titleInput"
-            value={title}
-            onChange={this.updateTitle}
-            onFocus={e => e.target.select()}
-          />
-        </label>
-        <input type="submit" className="button green" value="Rename" />
-      </form>
-    );
-
-    // This setTimeout seems to be required because the menuContent
-    // is produced using the renderMenu method.
-    if (show) {
-      setTimeout(() => this.refs.titleInput.focus(), 1);
-    }
-
-    return (
-      <li className="title">
-        <section className={buttonClass} onClick={this.toggle}>
-          <h2>{this.props.title}</h2>
-        </section>
-        {this.renderMenu('Rename Board', menuContent)}
-      </li>
-    );
-  }
-}
+  return (
+    <li className="title">
+      <WithMenuStatus menuKey="showBoardTitleMenu">
+        {({ show, toggle }) => (
+          <>
+            <section className={buttonClass} onClick={toggle}>
+              <h2>{title}</h2>
+            </section>
+            <ToggleMenu disabled={disabled} menuTitle="Rename Board" show={show} toggle={toggle}>
+              <BoardTitleMenuContentContainer title={title} toggle={toggle} />
+            </ToggleMenu>
+          </>
+        )}
+      </WithMenuStatus>
+    </li>
+  );
+};
 
 export default BoardTitleMenu;

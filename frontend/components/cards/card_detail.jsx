@@ -7,7 +7,7 @@ import CardDueDateDisplay from './card_due_date_display';
 import CardDescriptionEditableContainer from './card_description_editable_container';
 import CardCommentFormContainer from './card_comment_form_container';
 import CardCommentEditableContainer from './card_comment_editable_container';
-import CardDueDateMenuContainer from './card_due_date_menu_container';
+import CardDueDateMenu from './card_due_date_menu';
 
 class CardDetail extends React.Component {
   deleteCard = () => {
@@ -74,7 +74,7 @@ class CardDetail extends React.Component {
             <h5>Actions</h5>
             <ul className="card-detail-actions">
               <li onClick={this.deleteCard}>Delete</li>
-              <CardDueDateMenuContainer card={card} updateCard={updateCard} disabled={disabled} />
+              <CardDueDateMenu card={card} updateCard={updateCard} disabled={disabled} />
             </ul>
           </section>
         </section>

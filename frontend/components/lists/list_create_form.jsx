@@ -5,7 +5,17 @@ const defaultState = {
 };
 
 class ListCreateForm extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.input = React.createRef();
+  }
+
   state = defaultState;
+
+  componentDidMount() {
+    this.input.current.focus();
+  }
 
   createList = e => {
     e.preventDefault();
@@ -15,6 +25,7 @@ class ListCreateForm extends React.Component {
       newList.board_id = this.props.board.id;
       this.props.createList(newList).then(list => {
         this.setState(Object.assign({}, defaultState));
+        this.input.current.focus();
       });
     }
   };
@@ -26,14 +37,12 @@ class ListCreateForm extends React.Component {
   render() {
     const { title } = this.state;
 
-    if (this.props.show) this.refs.titleInput.focus();
-
     return (
       <form className="list-create-form" onSubmit={this.createList}>
         <input
           type="text"
           className="input"
-          ref="titleInput"
+          ref={this.input}
           placeholder="Add a list..."
           value={title}
           onChange={this.updateTitle}
