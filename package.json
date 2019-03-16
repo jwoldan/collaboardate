@@ -8,7 +8,7 @@
     "test": "test"
   },
   "scripts": {
-    "heroku-postbuild": "./node_modules/.bin/webpack --config webpack.config.prod.js",
+    "build": "./node_modules/.bin/webpack --config webpack.config.prod.js",
     "prettier": "./node_modules/.bin/prettier --write 'frontend/**/*.{js,jsx}'",
     "test": "echo \"Error: no test specified\" && exit 1",
     "webpack": "./node_modules/.bin/webpack --watch",
