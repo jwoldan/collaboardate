@@ -1,8 +1,8 @@
-import moment from 'moment';
+import dayjs from 'dayjs';
 
 export const dueDateClassName = card => {
-  let dayDiff = moment().diff(moment(card.due_date), 'days');
-  let hourDiff = moment().diff(moment(card.due_date), 'hours');
+  let dayDiff = dayjs().diff(dayjs(card.due_date), 'days');
+  let hourDiff = dayjs().diff(dayjs(card.due_date), 'hours');
 
   let displayClass = '';
 

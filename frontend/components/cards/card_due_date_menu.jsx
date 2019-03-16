@@ -1,5 +1,4 @@
 import React from 'react';
-import moment from 'moment';
 
 import ToggleMenu from '../general/toggle_menu';
 import WithMenuStatus from '../general/with_menu_status';

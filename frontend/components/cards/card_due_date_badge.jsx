@@ -1,10 +1,10 @@
 import React from 'react';
-import moment from 'moment';
+import dayjs from 'dayjs';
 
 import { dueDateClassName } from '../general/class_name_util';
 
 export default ({ card }) => {
-  const dueDateText = moment(card.due_date).format('MMM DD, YYYY');
+  const dueDateText = dayjs(card.due_date).format('MMM DD, YYYY');
 
   const displayClass = 'due-date-badge' + dueDateClassName(card);
 

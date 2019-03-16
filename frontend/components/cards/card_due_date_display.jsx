@@ -1,7 +1,10 @@
 import React from 'react';
-import moment from 'moment';
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
 
 import { dueDateClassName } from '../general/class_name_util';
+
+dayjs.extend(relativeTime);
 
 class CardDueDateDisplay extends React.Component {
   toggle = () => {
@@ -19,17 +22,17 @@ class CardDueDateDisplay extends React.Component {
     if (card.due_date) {
       let dueDateText;
       let after = false;
-      let diff = moment().diff(moment(card.due_date));
+      let diff = dayjs().diff(dayjs(card.due_date));
 
       if (diff > 0) after = true;
 
       if (after) {
-        dueDateText = moment().to(card.due_date);
+        dueDateText = dayjs().to(card.due_date);
       } else {
-        dueDateText = moment(card.due_date).fromNow();
+        dueDateText = dayjs(card.due_date).fromNow();
       }
 
-      dueDateText += ` (${moment(card.due_date).format('MMM DD, YYYY [at] h:mm A')})`;
+      dueDateText += ` (${dayjs(card.due_date).format('MMM DD, YYYY [at] h:mm A')})`;
 
       const displayClass = 'due-date-display' + dueDateClassName(card);
 

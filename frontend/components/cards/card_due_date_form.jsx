@@ -1,15 +1,15 @@
 import React from 'react';
-import moment from 'moment';
+import dayjs from 'dayjs';
 
 class CardDueDateForm extends React.Component {
   constructor(props) {
     super(props);
 
     if (typeof props.card !== 'undefined') {
-      const momentDateTime = moment(props.card.due_date);
-      if (momentDateTime.isValid()) {
-        const dueDate = momentDateTime.format('YYYY-MM-DD');
-        const dueTime = momentDateTime.format('HH:mm');
+      const dayjsDateTime = dayjs(props.card.due_date);
+      if (dayjsDateTime.isValid()) {
+        const dueDate = dayjsDateTime.format('YYYY-MM-DD');
+        const dueTime = dayjsDateTime.format('HH:mm');
         this.state = {
           dueDate,
           dueTime,
@@ -36,12 +36,12 @@ class CardDueDateForm extends React.Component {
   submit = e => {
     e.preventDefault();
     const { dueDate, dueTime } = this.state;
-    const momentDateTime = moment(`${dueDate} ${dueTime}`, 'YYYY-MM-DD HH:mm', true);
+    const dayjsDateTime = dayjs(`${dueDate} ${dueTime}`, 'YYYY-MM-DD HH:mm', true);
 
-    if (momentDateTime.isValid()) {
+    if (dayjsDateTime.isValid()) {
       this.props.updateCard({
         id: this.props.card.id,
-        due_date: momentDateTime.format(),
+        due_date: dayjsDateTime.format(),
         due_date_complete: false,
       });
       this.props.toggle();
