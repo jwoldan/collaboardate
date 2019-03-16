@@ -2,20 +2,10 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 
 class Profile extends React.Component {
-  constructor() {
-    super();
-
-    this.state = {
-      editing: false,
-      profile: {},
-    };
-
-    this.toggleEdit = this.toggleEdit.bind(this);
-    this.update = this.update.bind(this);
-    this.updateAvatar = this.updateAvatar.bind(this);
-    this.removeAvatar = this.removeAvatar.bind(this);
-    this.updateProfile = this.updateProfile.bind(this);
-  }
+  state = {
+    editing: false,
+    profile: {},
+  };
 
   componentDidMount() {
     const {
@@ -55,23 +45,27 @@ class Profile extends React.Component {
     this.props.clearProfile();
   }
 
-  toggleEdit() {
+  removeAvatar = () => {
+    this.props.removeUserAvatar(this.state.profile.id);
+  };
+
+  toggleEdit = () => {
     this.setState({ editing: !this.state.editing });
     if (this.state.editing) {
       this.props.clearProfileErrors();
       this.setState({ profile: this.props.profile });
     }
-  }
+  };
 
-  update(property) {
+  update = property => {
     return e => {
       const profile = Object.assign({}, this.state.profile);
       profile[property] = e.currentTarget.value;
       this.setState({ profile });
     };
-  }
+  };
 
-  updateAvatar(e) {
+  updateAvatar = e => {
     const file = e.currentTarget.files[0];
     var fileReader = new FileReader();
     fileReader.onloadend = () => {
@@ -83,19 +77,15 @@ class Profile extends React.Component {
     if (file) {
       fileReader.readAsDataURL(file);
     }
-  }
+  };
 
-  removeAvatar() {
-    this.props.removeUserAvatar(this.state.profile.id);
-  }
-
-  updateProfile(e) {
+  updateProfile = e => {
     e.preventDefault();
     this.props.updateUser(this.state.profile).then(profile => {
       this.toggleEdit();
       this.props.history.push(`/u/${profile.username}`);
     });
-  }
+  };
 
   errorsToStrings(errors) {
     const errorStrings = [];

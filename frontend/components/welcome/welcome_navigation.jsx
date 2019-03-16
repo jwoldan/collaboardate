@@ -2,16 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 class WelcomeNavigation extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      scrolled: false,
-    };
-
-    this.handleScroll = this.handleScroll.bind(this);
-    this.navClass = this.navClass.bind(this);
-  }
+  state = {
+    scrolled: false,
+  };
 
   componentDidMount() {
     window.addEventListener('scroll', this.handleScroll);
@@ -21,13 +14,13 @@ class WelcomeNavigation extends React.Component {
     window.removeEventListener('scroll', this.handleScroll);
   }
 
-  handleScroll(event) {
+  handleScroll = event => {
     if (event.srcElement.body.scrollTop > 100) {
       this.setState({ scrolled: true });
     } else {
       this.setState({ scrolled: false });
     }
-  }
+  };
 
   navClass() {
     return 'welcome-nav clearfix' + (this.state.scrolled ? ' scrolled' : '');

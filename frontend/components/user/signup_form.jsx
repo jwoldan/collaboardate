@@ -2,19 +2,11 @@ import React from 'react';
 import { withRouter, Link } from 'react-router-dom';
 
 class SignupForm extends React.Component {
-  constructor() {
-    super();
-
-    this.state = {
-      full_name: '',
-      email: '',
-      password: '',
-    };
-
-    this.update = this.update.bind(this);
-    this.submit = this.submit.bind(this);
-    this.loginGuest = this.loginGuest.bind(this);
-  }
+  state = {
+    full_name: '',
+    email: '',
+    password: '',
+  };
 
   componentDidMount() {
     if (this.props.currentUser) {
@@ -22,18 +14,18 @@ class SignupForm extends React.Component {
     }
   }
 
-  update(property) {
-    return e => this.setState({ [property]: e.currentTarget.value });
-  }
+  loginGuest = () => {
+    this.props.loginGuest().then(() => this.props.history.push('/'));
+  };
 
-  submit(e) {
+  submit = e => {
     e.preventDefault();
     this.props.signup(this.state).then(() => this.props.history.push('/'));
-  }
+  };
 
-  loginGuest() {
-    this.props.loginGuest().then(() => this.props.history.push('/'));
-  }
+  update = property => {
+    return e => this.setState({ [property]: e.currentTarget.value });
+  };
 
   errorsToStrings(errors) {
     const errorStrings = [];

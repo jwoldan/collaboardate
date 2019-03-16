@@ -1,22 +1,14 @@
 import React from 'react';
 
-import DynamicEditable from '../general/dynamic_editable';
 import UserIcon from '../user/user_icon';
 
 const menuKeyBase = 'showCommentEditable';
 
-class CardCommentEditable extends DynamicEditable {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      body: '',
-    };
-
-    this.updateBody = this.updateBody.bind(this);
-    this.submit = this.submit.bind(this);
-    this.deleteComment = this.deleteComment.bind(this);
-  }
+class CardCommentEditable extends React.Component {
+  state = {
+    body: '',
+    menuKey: null,
+  };
 
   componentDidMount() {
     const menuKey = `${menuKeyBase}-${this.props.comment.id}`;
@@ -39,11 +31,15 @@ class CardCommentEditable extends DynamicEditable {
     this.props.removeMenu(this.state.menuKey);
   }
 
-  updateBody(e) {
-    this.setState({ body: e.currentTarget.value });
-  }
+  deleteComment = () => {
+    this.props.deleteComment(this.props.comment.id);
+  };
 
-  submit(e) {
+  stopPropagation = e => {
+    if (e) e.stopPropagation();
+  };
+
+  submit = e => {
     e.preventDefault();
     const body = this.state.body.trim();
     if (body !== '') {
@@ -51,14 +47,21 @@ class CardCommentEditable extends DynamicEditable {
       const updatedComment = Object.assign({}, comment, { body });
       updateComment(updatedComment).then(() => this.toggle());
     }
-  }
+  };
 
-  deleteComment() {
-    this.props.deleteComment(this.props.comment.id);
-  }
+  toggle = e => {
+    this.stopPropagation(e);
+    if (!this.props.disabled) {
+      this.props.toggle(this.state.menuKey);
+    }
+  };
+
+  updateBody = e => {
+    this.setState({ body: e.currentTarget.value });
+  };
 
   render() {
-    const { comment, showStatus, disabled, deleteComment, currentUser } = this.props;
+    const { comment, showStatus, disabled, currentUser } = this.props;
     const { body, menuKey } = this.state;
     const show = showStatus(menuKey);
     const hideClass = disabled || comment.author.id !== currentUser.id ? 'hide' : '';
@@ -85,7 +88,7 @@ class CardCommentEditable extends DynamicEditable {
       commentContent = (
         <form
           className="card-comment-editable"
-          onClick={e => e.stopPropagation()}
+          onClick={this.stopPropagation}
           onSubmit={this.submit}
         >
           <textarea

@@ -5,12 +5,6 @@ import DynamicToggleMenu from '../general/dynamic_toggle_menu';
 const menuKeyBase = 'showListDeleteMenu';
 
 class ListDeleteMenu extends DynamicToggleMenu {
-  constructor() {
-    super();
-
-    this.deleteList = this.deleteList.bind(this);
-  }
-
   componentDidMount() {
     const menuKey = `${menuKeyBase}-${this.props.list.id}`;
     this.setState({ menuKey });
@@ -29,9 +23,9 @@ class ListDeleteMenu extends DynamicToggleMenu {
     this.props.removeMenu(this.state.menuKey);
   }
 
-  deleteList() {
+  deleteList = () => {
     this.props.deleteList(this.props.list.id).then(this.toggleMenu);
-  }
+  };
 
   render() {
     const menuContent = (

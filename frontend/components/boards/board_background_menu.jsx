@@ -4,13 +4,7 @@ import { withRouter } from 'react-router-dom';
 import ToggleMenu from '../general/toggle_menu';
 
 class BoardBackgroundMenu extends ToggleMenu {
-  constructor() {
-    super();
-
-    this.updateBackground = this.updateBackground.bind(this);
-  }
-
-  updateBackground(background) {
+  updateBackground = background => {
     const { params } = this.props.match;
 
     return e =>
@@ -18,7 +12,7 @@ class BoardBackgroundMenu extends ToggleMenu {
         id: params.boardId,
         background,
       });
-  }
+  };
 
   render() {
     const menuContent = (

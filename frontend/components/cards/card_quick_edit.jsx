@@ -1,24 +1,13 @@
 import React from 'react';
 import Modal from 'react-modal';
 
-import DynamicEditable from '../general/dynamic_editable';
-
 const menuKeyBase = 'showCardQuickEdit';
 
-class CardQuickEdit extends DynamicEditable {
-  constructor() {
-    super();
-
-    this.state = {
-      title: '',
-    };
-
-    this.toggleWithModal = this.toggleWithModal.bind(this);
-    this.updateTitle = this.updateTitle.bind(this);
-    this.handleEnter = this.handleEnter.bind(this);
-    this.submit = this.submit.bind(this);
-    this.deleteCard = this.deleteCard.bind(this);
-  }
+class CardQuickEdit extends React.Component {
+  state = {
+    menuKey: null,
+    title: '',
+  };
 
   componentDidMount() {
     const menuKey = `${menuKeyBase}-${this.props.card.id}`;
@@ -41,25 +30,23 @@ class CardQuickEdit extends DynamicEditable {
     this.props.removeMenu(this.state.menuKey);
   }
 
-  toggleWithModal(e) {
-    if (!this.props.disabled) {
-      this.toggle(e);
-      this.props.toggleModal();
-    }
-  }
+  deleteCard = () => {
+    const { card, deleteCard } = this.props;
+    deleteCard(card.id).then(() => this.props.toggleModal());
+  };
 
-  updateTitle(e) {
-    this.setState({ title: e.currentTarget.value });
-  }
-
-  handleEnter(e) {
+  handleEnter = e => {
     if (e.which === 13) {
       e.preventDefault();
       this.submit();
     }
-  }
+  };
 
-  submit(e) {
+  stopPropagation = e => {
+    if (e) e.stopPropagation();
+  };
+
+  submit = e => {
     if (e) e.preventDefault();
     const title = this.state.title.trim();
     if (title !== '') {
@@ -67,12 +54,25 @@ class CardQuickEdit extends DynamicEditable {
       const updatedCard = Object.assign({}, card, { title });
       updateCard(updatedCard).then(() => this.toggle());
     }
-  }
+  };
 
-  deleteCard() {
-    const { card, deleteCard } = this.props;
-    deleteCard(card.id).then(() => this.props.toggleModal());
-  }
+  toggle = e => {
+    this.stopPropagation(e);
+    if (!this.props.disabled) {
+      this.props.toggle(this.state.menuKey);
+    }
+  };
+
+  toggleWithModal = e => {
+    if (!this.props.disabled) {
+      this.toggle(e);
+      this.props.toggleModal();
+    }
+  };
+
+  updateTitle = e => {
+    this.setState({ title: e.currentTarget.value });
+  };
 
   render() {
     const { card, showStatus, disabled } = this.props;
@@ -108,7 +108,7 @@ class CardQuickEdit extends DynamicEditable {
     }
 
     return (
-      <section className="card-quick-edit" onClick={e => e.stopPropagation()}>
+      <section className="card-quick-edit" onClick={this.stopPropagation}>
         <span className={iconClass} onClick={this.toggleWithModal} />
         {menuContent}
       </section>

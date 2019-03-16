@@ -3,16 +3,9 @@ import React from 'react';
 import ToggleMenu from '../general/toggle_menu';
 
 class BoardTitleMenu extends ToggleMenu {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      title: '',
-    };
-
-    this.updateTitle = this.updateTitle.bind(this);
-    this.submit = this.submit.bind(this);
-  }
+  state = {
+    title: '',
+  };
 
   componentWillReceiveProps(newProps) {
     if (typeof newProps.title !== 'undefined') {
@@ -20,18 +13,18 @@ class BoardTitleMenu extends ToggleMenu {
     }
   }
 
-  updateTitle(e) {
+  updateTitle = e => {
     this.setState({ title: e.currentTarget.value });
-  }
+  };
 
-  submit(e) {
+  submit = e => {
     e.preventDefault();
     const title = this.state.title.trim();
     if (title !== '') {
       this.props.updateBoard({ title });
       this.toggle();
     }
-  }
+  };
 
   render() {
     const { show, disabled } = this.props;

@@ -1,27 +1,20 @@
 import React from 'react';
 
 class DynamicToggleMenu extends React.Component {
-  constructor() {
-    super();
+  state = {
+    menuKey: null,
+  };
 
-    this.state = {
-      menuKey: null,
-    };
+  stopPropagation = e => {
+    if (e) e.stopPropagation();
+  };
 
-    this.toggle = this.toggle.bind(this);
-    this.stopPropagation = this.stopPropagation.bind(this);
-  }
-
-  toggle(e) {
+  toggle = e => {
     this.stopPropagation(e);
     if (!this.props.disabled) {
       this.props.toggle(this.state.menuKey);
     }
-  }
-
-  stopPropagation(e) {
-    if (e) e.stopPropagation();
-  }
+  };
 
   renderMenu(menuTitle, menuContent, customClass = '') {
     const { children, showStatus, disabled } = this.props;

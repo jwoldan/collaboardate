@@ -5,17 +5,11 @@ import BoardVisibilityMenuContainer from './board_visibility_menu_container';
 import BoardMenuContainer from './board_menu_container';
 
 class BoardNavigation extends React.Component {
-  constructor() {
-    super();
-
-    this.updateBoard = this.updateBoard.bind(this);
-  }
-
-  updateBoard(update) {
+  updateBoard = update => {
     const { board, updateBoard } = this.props;
     const updatedBoard = Object.assign({}, board, update);
     updateBoard(updatedBoard);
-  }
+  };
 
   render() {
     const { board, disabled } = this.props;

@@ -13,17 +13,9 @@ const defaultState = {
 };
 
 class BoardCreateForm extends React.Component {
-  constructor() {
-    super();
+  state = defaultState;
 
-    this.state = Object.assign({}, defaultState);
-
-    this.updateNewBoard = this.updateNewBoard.bind(this);
-    this.toggleVisibility = this.toggleVisibility.bind(this);
-    this.createBoard = this.createBoard.bind(this);
-  }
-
-  updateNewBoard(property) {
+  updateNewBoard = property => {
     return e => {
       Object.freeze(this.state);
       const value =
@@ -41,9 +33,9 @@ class BoardCreateForm extends React.Component {
         showVisibility,
       });
     };
-  }
+  };
 
-  createBoard(e) {
+  createBoard = e => {
     e.preventDefault();
     const newBoard = Object.assign({}, this.state.board);
     newBoard.title = newBoard.title.trim();
@@ -55,11 +47,11 @@ class BoardCreateForm extends React.Component {
         this.props.resetMenus();
       });
     }
-  }
+  };
 
-  toggleVisibility() {
+  toggleVisibility = () => {
     this.setState({ showVisibility: true });
-  }
+  };
 
   render() {
     const { board, showVisibility } = this.state;

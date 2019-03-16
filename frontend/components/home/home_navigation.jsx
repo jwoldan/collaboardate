@@ -9,21 +9,15 @@ import HomeInformationMenuContainer from './home_information_menu_container';
 import HomeNotificationMenu from './home_notification_menu';
 
 class HomeNavigation extends React.Component {
-  constructor() {
-    super();
-
-    this.toggleMenu = this.toggleMenu.bind(this);
-  }
-
   componentDidMount() {
     if (this.props.currentUser) this.props.fetchBoards();
   }
 
-  toggleMenu(menu) {
+  toggleMenu = menu => {
     return e => {
       this.props.toggleMenu(menu);
     };
-  }
+  };
 
   render() {
     const { currentUser, menuStatus, toggleMenu } = this.props;

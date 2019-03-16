@@ -5,16 +5,10 @@ import ToggleMenu from '../general/toggle_menu';
 import BoardShareSearchResultContainer from './board_share_search_result_container';
 
 class BoardShareMenu extends ToggleMenu {
-  constructor() {
-    super();
-
-    this.state = {
-      query: '',
-      results: [],
-    };
-
-    this.handleInput = this.handleInput.bind(this);
-  }
+  state = {
+    query: '',
+    results: [],
+  };
 
   componentWillReceiveProps(newProps) {
     if (this.props.show !== newProps.show) {
@@ -22,7 +16,7 @@ class BoardShareMenu extends ToggleMenu {
     }
   }
 
-  handleInput(e) {
+  handleInput = e => {
     const query = e.currentTarget.value;
     this.setState({ query });
     if (query.trim() !== '') {
@@ -30,7 +24,7 @@ class BoardShareMenu extends ToggleMenu {
     } else {
       this.setState({ results: [] });
     }
-  }
+  };
 
   render() {
     const { show } = this.props;

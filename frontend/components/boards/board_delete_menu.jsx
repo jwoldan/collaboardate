@@ -4,19 +4,13 @@ import { withRouter } from 'react-router-dom';
 import ToggleMenu from '../general/toggle_menu';
 
 class BoardDeleteMenu extends ToggleMenu {
-  constructor() {
-    super();
-
-    this.deleteBoard = this.deleteBoard.bind(this);
-  }
-
-  deleteBoard() {
+  deleteBoard = () => {
     const { params } = this.props.match;
 
     this.props.deleteBoard(params.boardId).then(() => {
       this.props.history.push('/');
     });
-  }
+  };
 
   render() {
     const menuContent = (

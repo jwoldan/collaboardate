@@ -11,16 +11,10 @@ const boardRoute = <Route path="/b/:boardId" component={BoardContainer} />;
 const cardRoute = <Route path="/c/:cardId" component={BoardContainer} />;
 
 class App extends React.Component {
-  constructor() {
-    super();
-
-    this.resetMenus = this.resetMenus.bind(this);
-  }
-
-  resetMenus() {
+  resetMenus = () => {
     const { menuIsOpen, resetMenus } = this.props;
     if (menuIsOpen) resetMenus();
-  }
+  };
 
   render() {
     const { currentUser, children, location } = this.props;

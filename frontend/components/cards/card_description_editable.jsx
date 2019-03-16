@@ -1,20 +1,12 @@
 import React from 'react';
 
-import DynamicEditable from '../general/dynamic_editable';
-
 const menuKeyBase = 'showCardDescriptionEditable';
 
-class CardDescriptionEditable extends DynamicEditable {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      description: '',
-    };
-
-    this.updateDescription = this.updateDescription.bind(this);
-    this.submit = this.submit.bind(this);
-  }
+class CardDescriptionEditable extends React.Component {
+  state = {
+    description: '',
+    menuKey: null,
+  };
 
   componentDidMount() {
     const menuKey = menuKeyBase;
@@ -38,17 +30,28 @@ class CardDescriptionEditable extends DynamicEditable {
     this.props.removeMenu(this.state.menuKey);
   }
 
-  updateDescription(e) {
-    this.setState({ description: e.currentTarget.value });
-  }
+  stopPropagation = e => {
+    if (e) e.stopPropagation();
+  };
 
-  submit(e) {
+  submit = e => {
     e.preventDefault();
     const description = this.state.description.trim();
     const { card, updateCard } = this.props;
     const updatedCard = Object.assign({}, card, { description });
     updateCard(updatedCard).then(() => this.toggle());
-  }
+  };
+
+  toggle = e => {
+    this.stopPropagation(e);
+    if (!this.props.disabled) {
+      this.props.toggle(this.state.menuKey);
+    }
+  };
+
+  updateDescription = e => {
+    this.setState({ description: e.currentTarget.value });
+  };
 
   render() {
     const { card, showStatus, disabled } = this.props;
@@ -66,7 +69,7 @@ class CardDescriptionEditable extends DynamicEditable {
       return (
         <form
           className="card-description-editable"
-          onClick={e => e.stopPropagation()}
+          onClick={this.stopPropagation}
           onSubmit={this.submit}
         >
           <textarea

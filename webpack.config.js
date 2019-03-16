@@ -6,10 +6,10 @@ module.exports = {
   mode: 'development',
   output: {
     path: path.join(__dirname, 'app', 'assets', 'javascripts'),
-    filename: 'bundle.js'
+    filename: 'bundle.js',
   },
   resolve: {
-    extensions: ['.js', '.jsx']
+    extensions: ['.js', '.jsx'],
   },
   module: {
     rules: [
@@ -18,10 +18,11 @@ module.exports = {
         exclude: /(node_modules|bower_components)/,
         loader: 'babel-loader',
         options: {
-          presets: ['@babel/react', '@babel/preset-env']
-        }
-      }
-    ]
+          plugins: ['@babel/plugin-proposal-class-properties'],
+          presets: ['@babel/react', '@babel/preset-env'],
+        },
+      },
+    ],
   },
-  devtool: 'source-maps'
+  devtool: 'source-maps',
 };
