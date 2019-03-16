@@ -3,7 +3,7 @@ import { DragSource } from 'react-dnd';
 import ItemTypes from '../dnd/item_types';
 
 import ListTitleEditableContainer from './list_title_editable_container';
-import ListMenuContainer from './list_menu_container';
+import ListMenu from './list_menu';
 import CardHolder from '../cards/card_holder';
 import CardTarget from '../cards/card_target';
 import CardCreateContainer from '../cards/card_create_container';
@@ -28,7 +28,7 @@ const List = ({ list, disabled, connectDragSource, isDragging }) => {
   return connectDragSource(
     <section className={listClass}>
       <ListTitleEditableContainer list={list} disabled={disabled} />
-      <ListMenuContainer list={list} disabled={disabled} />
+      <ListMenu list={list} disabled={disabled} />
 
       <ul className="cards">
         {cards && cards.map(card => <CardHolder key={card.id} card={card} disabled={disabled} />)}

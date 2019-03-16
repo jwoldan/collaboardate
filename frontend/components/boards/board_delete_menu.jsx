@@ -2,8 +2,9 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 
 import ToggleMenu from '../general/toggle_menu';
+import WithMenuStatus from '../general/with_menu_status';
 
-class BoardDeleteMenu extends ToggleMenu {
+class BoardDeleteMenu extends React.Component {
   deleteBoard = () => {
     const { params } = this.props.match;
 
@@ -12,8 +13,8 @@ class BoardDeleteMenu extends ToggleMenu {
     });
   };
 
-  render() {
-    const menuContent = (
+  renderMenuContent() {
+    return (
       <section className="menu-section">
         <span className="small loud">
           Deleting a board is permanent and can&#8217;t be undone! If you&#8217;re sure, click the
@@ -24,11 +25,23 @@ class BoardDeleteMenu extends ToggleMenu {
         </a>
       </section>
     );
+  }
+
+  render() {
+    const { disabled } = this.props;
 
     return (
       <section className="board-menu-item">
-        <a onClick={this.toggle}>Delete Board</a>
-        {this.renderMenu('Delete Board?', menuContent)}
+        <WithMenuStatus menuKey="showBoardDeleteMenu" leaveOthers>
+          {({ show, toggle }) => (
+            <>
+              <a onClick={toggle}>Delete Board</a>
+              <ToggleMenu disabled={disabled} menuTitle="Delete Board?" show={show} toggle={toggle}>
+                {this.renderMenuContent()}
+              </ToggleMenu>
+            </>
+          )}
+        </WithMenuStatus>
       </section>
     );
   }

@@ -6,7 +6,7 @@ import CardDetailContainer from '../cards/card_detail_container';
 import CardEditModal from '../cards/card_edit_modal';
 import BoardNavigation from './board_navigation';
 import ListHolderContainer from '../lists/list_holder_container';
-import ListCreateContainer from '../lists/list_create_container';
+import ListCreate from '../lists/list_create';
 
 class Board extends React.Component {
   componentDidMount() {
@@ -89,7 +89,7 @@ class Board extends React.Component {
             lists.map(list => (
               <ListHolderContainer key={list.id} list={list} disabled={disabled} />
             ))}
-          <ListCreateContainer disabled={disabled} />
+          <ListCreate disabled={disabled} />
         </ul>
       </section>
     );
