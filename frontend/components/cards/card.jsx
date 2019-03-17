@@ -5,7 +5,6 @@ import ItemTypes from '../dnd/item_types';
 
 import CardQuickEditContainer from './card_quick_edit_container';
 import CardDueDateBadge from './card_due_date_badge';
-import CardDetailContainer from './card_detail_container';
 
 const cardSource = {
   beginDrag: props => ({

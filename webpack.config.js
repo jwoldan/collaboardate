@@ -6,7 +6,13 @@ module.exports = {
   mode: 'development',
   output: {
     path: path.join(__dirname, 'app', 'assets', 'javascripts'),
-    filename: 'bundle.js',
+    filename: '[name].bundle.js',
+    chunkFilename: '[name].bundle.js',
+  },
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+    },
   },
   resolve: {
     extensions: ['.js', '.jsx'],
@@ -18,8 +24,12 @@ module.exports = {
         exclude: /(node_modules|bower_components)/,
         loader: 'babel-loader',
         options: {
-          plugins: ['@babel/plugin-proposal-class-properties', 'babel-plugin-lodash'],
-          presets: ['@babel/react', '@babel/preset-env'],
+          plugins: [
+            'babel-plugin-lodash',
+            '@babel/plugin-proposal-class-properties',
+            '@babel/plugin-syntax-dynamic-import',
+          ],
+          presets: ['@babel/preset-env', '@babel/react'],
         },
       },
     ],

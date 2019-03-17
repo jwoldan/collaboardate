@@ -18,8 +18,8 @@
 
 # Javascript ignores
 node_modules
-bundle.js
-bundle.js.map
+*.bundle.js
+*.bundle.js.map
 npm-debug.log
 
 # Mac OS X ignores

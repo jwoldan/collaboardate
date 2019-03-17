@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
-import BoardContainer from './boards/board_container';
+const BoardContainer = React.lazy(() =>
+  import(/* webpackChunkName: "BoardContainer" */ './boards/board_container')
+);
 import BoardsIndexContainer from './boards/boards_index_container';
 import HomeContainer from './home/home_container';
-import ProfileContainer from './user/profile_container';
+const ProfileContainer = React.lazy(() =>
+  import(/* webpackChunkName: "ProfileContainer" */ './user/profile_container')
+);
 import WelcomeContainer from './welcome/welcome_container';
 
 const boardRoute = <Route path="/b/:boardId" component={BoardContainer} />;
@@ -23,12 +27,14 @@ class App extends React.Component {
     if (currentUser) {
       innerContent = (
         <HomeContainer>
-          <Switch>
-            <Route exact path="/" component={BoardsIndexContainer} />
-            {boardRoute}
-            {cardRoute}
-            <Route path="/u/:username" component={ProfileContainer} />
-          </Switch>
+          <Suspense fallback={null}>
+            <Switch>
+              <Route exact path="/" component={BoardsIndexContainer} />
+              {boardRoute}
+              {cardRoute}
+              <Route path="/u/:username" component={ProfileContainer} />
+            </Switch>
+          </Suspense>
         </HomeContainer>
       );
       // HACK: This isn't good, just trying to get it working

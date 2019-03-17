@@ -12,7 +12,7 @@
     "prettier": "./node_modules/.bin/prettier --write 'frontend/**/*.{js,jsx}'",
     "test": "echo \"Error: no test specified\" && exit 1",
     "webpack": "./node_modules/.bin/webpack --watch",
-    "webpack-analyze": "./node_modules/.bin/webpack --config webpack.config.prod.js --profile --json > ./tmp/webpack-stats.json && ./node_modules/.bin/webpack-bundle-analyzer ./tmp/webpack-stats.json",
+    "webpack-analyze": "./node_modules/.bin/webpack --config webpack.config.prod.js --profile --json > ./tmp/webpack-stats.json && ./node_modules/.bin/webpack-bundle-analyzer ./tmp/webpack-stats.json ./app/assets/javascripts",
     "webpack-once": "./node_modules/.bin/webpack"
   },
   "repository": {
@@ -49,6 +49,7 @@
   "devDependencies": {
     "@babel/core": "^7.3.4",
     "@babel/plugin-proposal-class-properties": "^7.3.4",
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "@babel/preset-env": "^7.3.4",
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.5",

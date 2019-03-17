@@ -1,11 +1,17 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 
-import CardDetailContainer from '../cards/card_detail_container';
-import CardEditModal from '../cards/card_edit_modal';
+const CardDetailContainer = React.lazy(() =>
+  import(/* webpackChunkName: "CardDetailContainer" */ '../cards/card_detail_container')
+);
+const CardEditModal = React.lazy(() =>
+  import(/* webpackChunkName: "CardEditModal" */ '../cards/card_edit_modal')
+);
 import BoardNavigation from './board_navigation';
-import ListHolderContainer from '../lists/list_holder_container';
+const ListHolderContainer = React.lazy(() =>
+  import(/* webpackChunkName: "ListHolderContainer" */ '../lists/list_holder_container')
+);
 import ListCreate from '../lists/list_create';
 
 class Board extends React.Component {
@@ -81,16 +87,19 @@ class Board extends React.Component {
 
     return (
       <section className="current-board">
-        <CardDetailContainer disabled={disabled} />
-        <CardEditModal />
-        <BoardNavigation board={board} updateBoard={updateBoard} disabled={navDisabled} />
-        <ul className="lists clearfix">
-          {lists &&
-            lists.map(list => (
-              <ListHolderContainer key={list.id} list={list} disabled={disabled} />
-            ))}
-          <ListCreate disabled={disabled} />
-        </ul>
+        <Suspense fallback={null}>
+          <CardDetailContainer disabled={disabled} />
+          <CardEditModal />
+
+          <BoardNavigation board={board} updateBoard={updateBoard} disabled={navDisabled} />
+          <ul className="lists clearfix">
+            {lists &&
+              lists.map(list => (
+                <ListHolderContainer key={list.id} list={list} disabled={disabled} />
+              ))}
+            <ListCreate disabled={disabled} />
+          </ul>
+        </Suspense>
       </section>
     );
   }
