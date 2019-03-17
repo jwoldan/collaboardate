@@ -11,5 +11,5 @@
 // about supported directives.
 //
 //= require jquery
-//= require main.bundle
-//= require vendors~main.bundle
+//= require jquery_ujs
+//= require_tree .
