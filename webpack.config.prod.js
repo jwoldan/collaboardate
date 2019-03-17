@@ -9,6 +9,7 @@ module.exports = {
     path: path.join(__dirname, 'app', 'assets', 'javascripts'),
     filename: '[name].bundle.js',
     chunkFilename: '[name].bundle.js',
+    publicPath: '/assets/',
   },
   optimization: {
     splitChunks: {
