@@ -258,19 +258,19 @@ PLATFORMS
 DEPENDENCIES
   annotate
   aws-sdk-s3
-  bcrypt (~> 3.1.7)
+  bcrypt
   bootsnap
   byebug
   factory_bot_rails
   faker
   figaro
-  jbuilder (~> 2.7)
+  jbuilder
   jquery-rails
   listen
   paperclip (~> 6.1)
   pg
   pry-rails
-  puma (~> 3.0)
+  puma
   rails (~> 6.1)
   rspec-rails
   rubocop (~> 0.63.1)
@@ -281,7 +281,7 @@ DEPENDENCIES
   web-console
 
 RUBY VERSION
-   ruby 2.6.8p205
+   ruby 2.7.4p191
 
 BUNDLED WITH
-   1.17.2
+   2.2.22
