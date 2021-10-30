@@ -27,7 +27,9 @@ gem 'bcrypt'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+# ActiveStorage-related gems
 gem 'aws-sdk-s3'
+gem 'mini_magick'
 gem 'figaro'
 
 group :development, :test do
