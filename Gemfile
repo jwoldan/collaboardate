@@ -5,9 +5,9 @@ source 'https://rubygems.org'
 ruby '2.6.8'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 6.0'
+gem 'rails', '~> 6.1'
 # Use postgresql as the database for Active Record
-gem 'pg', '~> 0.18'
+gem 'pg'
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
 # Make server boot time faster with caching
@@ -27,15 +27,15 @@ gem 'bcrypt', '~> 3.1.7'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-gem 'aws-sdk', '~>2'
+gem 'aws-sdk-s3'
 gem 'figaro'
-gem 'paperclip', '~>5.2'
+gem 'paperclip', '~>6.1'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
   gem 'factory_bot_rails'
-  gem 'faker', '~>1.7.2'
+  gem 'faker'
   gem 'pry-rails'
   gem 'rspec-rails'
   gem 'rubocop', '~> 0.63.1'
@@ -43,12 +43,12 @@ end
 
 group :development do
   gem 'annotate'
-  gem 'listen', '~> 3.0.5'
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
+  gem 'listen'
   gem 'web-console'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'spring-watcher-listen'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
