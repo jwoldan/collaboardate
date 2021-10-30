@@ -39,9 +39,7 @@ class Api::UsersController < ApplicationController
     @user = User.find(params[:user_id])
 
     if @user
-      @user.avatar.destroy
-      @user.avatar.clear
-      @user.save
+      @user.avatar.purge
       render :show
     else
       render json: ['An error occurred'], status: :unprocessable_entity

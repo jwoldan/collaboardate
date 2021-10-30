@@ -15,7 +15,11 @@
 
 require 'csv'
 
+User.find_each do |user|
+  user.avatar.purge
+end
 User.destroy_all
+Board.destroy_all
 
 guest = User.create!(
   full_name: 'Guest',
@@ -27,35 +31,49 @@ reviewer = User.create!(
   full_name: 'Reviewer',
   email: 'reviewer@collaboardate.com',
   password: 'collaboardate',
-  avatar: File.open('app/assets/images/seeds/33.jpg'),
   bio: 'Husband, father, full stack project reviewer'
+)
+reviewer.avatar.attach(
+  io: File.open('app/assets/images/seeds/33.jpg'),
+  filename: '33.jpg',
+  content_type: 'image/jpeg'
 )
 
 friend = User.create!(
   full_name: 'Friend',
   email: 'friend@collaboardate.com',
   password: 'collaboardate',
-  avatar: File.open('app/assets/images/seeds/40.jpg'),
   bio: 'Bowler extraordinaire'
+)
+friend.avatar.attach(
+  io: File.open('app/assets/images/seeds/40.jpg'),
+  filename: '40.jpg',
+  content_type: 'image/jpeg'
 )
 
 collaborator = User.create!(
   full_name: 'Collaborator',
   email: 'collaborator@collaboardate.com',
   password: 'collaboardate',
-  avatar: File.open('app/assets/images/seeds/53.jpg'),
   bio: 'Aspiring full stack developer'
+)
+collaborator.avatar.attach(
+  io: File.open('app/assets/images/seeds/53.jpg'),
+  filename: '53.jpg',
+  content_type: 'image/jpeg'
 )
 
 head_chef = User.create!(
   full_name: 'Head Chef',
   email: 'headchef@collaboardate.com',
   password: 'collaboardate',
-  avatar: File.open('app/assets/images/seeds/61.jpg'),
   bio: 'Nine year restaurant industry veteran, head chef for three'
 )
-
-Board.destroy_all
+head_chef.avatar.attach(
+  io: File.open('app/assets/images/seeds/61.jpg'),
+  filename: '61.jpg',
+  content_type: 'image/jpeg'
+)
 
 full_stack_project = Board.create!(
   title: 'Full Stack Project',
@@ -99,8 +117,6 @@ bowling_league = Board.create!(
   creator_id: friend.id
 )
 
-BoardShare.destroy_all
-
 BoardShare.create!(
   board_id: full_stack_project.id,
   sharer_id: guest.id,
@@ -131,8 +147,6 @@ BoardShare.create!(
   sharee_id: guest.id
 )
 
-List.destroy_all
-
 CSV.foreach(
   Rails.root.join('db', 'csv', 'lists.csv'),
   headers: true,
@@ -143,8 +157,6 @@ CSV.foreach(
     board: Board.find_by(title: row[:board_title])
   )
 end
-
-Card.destroy_all
 
 CSV.foreach(
   Rails.root.join('db', 'csv', 'cards.csv'),
@@ -164,8 +176,6 @@ CSV.foreach(
   card.due_date_complete = true if row[:due_date_complete] == 'TRUE'
   card.save
 end
-
-Comment.destroy_all
 
 CSV.foreach(
   Rails.root.join('db', 'csv', 'comments.csv'),

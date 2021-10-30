@@ -14,8 +14,7 @@ class User < ApplicationRecord
   after_initialize :generate_defaults
   before_validation :strip_whitespace
 
-  has_attached_file :avatar, default_url: ''
-  validates_attachment_content_type :avatar, content_type: %r{\Aimage/.*\Z}
+  has_one_attached :avatar
 
   has_many :own_boards,
            class_name: 'Board',
