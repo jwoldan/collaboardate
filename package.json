@@ -43,8 +43,8 @@
     "redux-thunk": "^2.3.0"
   },
   "engines": {
-    "node": "10.15.1",
-    "npm": "6.8.0"
+    "node": "16.13.0",
+    "npm": "8.1.2"
   },
   "devDependencies": {
     "@babel/core": "^7.3.4",
