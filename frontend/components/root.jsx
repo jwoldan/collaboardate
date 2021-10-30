@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { Provider } from 'react-redux';
 import { HashRouter, Route, Switch } from 'react-router-dom';
 
@@ -8,12 +8,14 @@ import LoginFormContainer from './user/login_form_container';
 
 export default ({ store }) => (
   <Provider store={store}>
-    <HashRouter>
-      <Switch>
-        <Route exact path="/signup" component={SignupFormContainer} />
-        <Route exaxt path="/login" component={LoginFormContainer} />
-        <Route path="/" component={AppContainer} />
-      </Switch>
-    </HashRouter>
+    <Suspense fallback={null}>
+      <HashRouter>
+        <Switch>
+          <Route exact path="/signup" component={SignupFormContainer} />
+          <Route exaxt path="/login" component={LoginFormContainer} />
+          <Route path="/" component={AppContainer} />
+        </Switch>
+      </HashRouter>
+    </Suspense>
   </Provider>
 );
