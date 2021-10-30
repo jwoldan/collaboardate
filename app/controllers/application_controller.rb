@@ -46,7 +46,7 @@ class ApplicationController < ActionController::Base
       return if board.shared_with?(current_user)
     end
 
-    render json: 'Unauthorized access', status: :unauthorized unless authorized
+    render json: 'Unauthorized access', status: :unauthorized
   end
 
   def check_board_visibility(board_id)
