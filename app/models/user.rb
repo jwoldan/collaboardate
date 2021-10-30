@@ -11,9 +11,8 @@ class User < ApplicationRecord
   validates :initials, length: { maximum: 3 }
   validates :email, format: /@/
 
-  before_validation :strip_whitespace
-
   after_initialize :generate_defaults
+  before_validation :strip_whitespace
 
   has_attached_file :avatar, default_url: ''
   validates_attachment_content_type :avatar, content_type: %r{\Aimage/.*\Z}
@@ -78,7 +77,7 @@ class User < ApplicationRecord
     base_username = full_name.downcase.delete(' ')
     username = base_username
     number = 0
-    while User.where(username: username).exists?
+    while User.exists?(username: username)
       number += 1
       username = "#{base_username}#{number}"
     end
@@ -89,10 +88,10 @@ class User < ApplicationRecord
     return if initials
     return unless full_name
 
-    self. initials = full_name.split
-                              .slice(0, 3)
-                              .map { |word| word.first.upcase }
-                              .join || ''
+    self.initials = full_name.split
+                             .slice(0, 3)
+                             .map { |word| word.first.upcase }
+                             .join || ''
   end
 end
 

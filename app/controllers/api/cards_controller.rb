@@ -29,7 +29,7 @@ class Api::CardsController < ApplicationController
     @cards = Card
              .includes(:list, :comments)
              .joins(:list)
-             .where('lists.board_id = ?', params[:board_id])
+             .where(lists: { board_id: params[:board_id] })
     render :index
   end
 

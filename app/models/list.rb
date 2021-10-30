@@ -9,7 +9,11 @@ class List < ApplicationRecord
 
   belongs_to :board, inverse_of: :lists
   has_many :cards, inverse_of: :list, dependent: :destroy
-  has_many :ordered_cards, -> { order(:ord) }, class_name: 'Card', inverse_of: :list
+  has_many :ordered_cards,
+           -> { order(:ord) },
+           class_name: 'Card',
+           inverse_of: :list,
+           dependent: :destroy
 end
 
 # == Schema Information

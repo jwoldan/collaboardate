@@ -20,7 +20,7 @@ module Users
         token = nil
         loop do
           token = SecureRandom.urlsafe_base64
-          break unless User.where(session_token: token).exists?
+          break unless User.exists?(session_token: token)
         end
 
         token

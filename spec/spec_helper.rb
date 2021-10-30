@@ -98,6 +98,6 @@ RSpec.configure do |config|
   #   Kernel.srand config.seed
 end
 
-Dir[File.expand_path(
+Dir[File.expand_path( # rubocop:disable Lint/NonDeterministicRequireOrder
   File.join(File.dirname(__FILE__), 'support', '*.rb')
 )].each { |f| require f }

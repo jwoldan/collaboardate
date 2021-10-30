@@ -1,16 +1,18 @@
+require:
+  - rubocop-rails
+  - rubocop-rspec
+
 AllCops:
+  NewCops: enable
   Exclude:
     - 'bin/**/*'
     - 'db/schema.rb'
-
-Rails:
-  Enabled: true
 
 Metrics/BlockLength:
   Exclude:
     - 'spec/**/*'
 
-Metrics/LineLength:
+Layout/LineLength:
   Max: 100
   Exclude:
     - 'config/**/*'
@@ -22,6 +24,9 @@ Metrics/MethodLength:
 Rails/DynamicFindBy:
   Whitelist:
     - 'find_by_credentials'
+
+Rails/FilePath:
+  EnforcedStyle: arguments
 
 Style/ClassAndModuleChildren:
   Exclude:

@@ -38,7 +38,9 @@ group :development, :test do
   gem 'faker'
   gem 'pry-rails'
   gem 'rspec-rails'
-  gem 'rubocop', '~> 0.63.1'
+  gem 'rubocop'
+  gem 'rubocop-rails'
+  gem 'rubocop-rspec'
 end
 
 group :development do

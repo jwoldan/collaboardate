@@ -17,7 +17,7 @@ class BoardShare < ApplicationRecord
   private
 
   def sharer_owns_board
-    return if Board.where(id: board_id, creator: sharer_id).exists?
+    return if Board.exists?(id: board_id, creator: sharer_id)
 
     @errors.add(:sharer, 'is not the board creator')
   end
