@@ -1,14 +1,24 @@
-import { connect } from 'react-redux';
+import React from 'react';
+import { useDispatch } from 'react-redux';
+import { useHistory, useParams } from 'react-router-dom';
 
 import BoardDeleteMenu from './board_delete_menu';
 
 import { deleteBoard } from '../../actions/board_actions';
 
-const mapDispatchToProps = dispatch => ({
-  deleteBoard: id => dispatch(deleteBoard(id)),
-});
+const BoardDeleteMenuContainer = () => {
+  const history = useHistory();
+  const { boardId } = useParams();
 
-export default connect(
-  null,
-  mapDispatchToProps
-)(BoardDeleteMenu);
+  const dispatch = useDispatch();
+
+  return (
+    <BoardDeleteMenu
+      history={history}
+      boardId={boardId}
+      deleteBoard={id => dispatch(deleteBoard(id))}
+    />
+  );
+};
+
+export default BoardDeleteMenuContainer;

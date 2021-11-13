@@ -1,5 +1,5 @@
 import React from 'react';
-import { withRouter, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import ToggleMenu from '../general/toggle_menu';
 import WithMenuStatus from '../general/with_menu_status';
@@ -71,4 +71,4 @@ class HomeProfileMenu extends React.Component {
   }
 }
 
-export default withRouter(HomeProfileMenu);
+export default HomeProfileMenu;

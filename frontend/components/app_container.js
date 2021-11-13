@@ -1,20 +1,29 @@
-import { connect } from 'react-redux';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useLocation } from 'react-router';
 
 import App from './app';
 
 import { menuIsOpen } from '../reducers/selectors';
 import { resetMenus } from '../actions/menu_status_actions';
 
-const mapStateToProps = state => ({
-  currentUser: state.currentUser,
-  menuIsOpen: menuIsOpen(state),
-});
+const AppContainer = () => {
+  const location = useLocation();
 
-const mapDispatchToProps = (dispatch, ownProps) => ({
-  resetMenus: () => dispatch(resetMenus()),
-});
+  const { currentUser, menuIsOpenState } = useSelector(state => ({
+    currentUser: state.currentUser,
+    menuIsOpenState: menuIsOpen(state),
+  }));
+  const dispatch = useDispatch();
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(App);
+  return (
+    <App
+      location={location}
+      currentUser={currentUser}
+      menuIsOpen={menuIsOpenState}
+      resetMenus={() => dispatch(resetMenus())}
+    />
+  );
+};
+
+export default AppContainer;

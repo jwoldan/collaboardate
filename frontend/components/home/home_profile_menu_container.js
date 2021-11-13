@@ -1,18 +1,28 @@
-import { connect } from 'react-redux';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory, useLocation } from 'react-router-dom';
 
 import HomeProfileMenu from './home_profile_menu';
 
 import { logout } from '../../actions/user_actions';
 
-const mapStateToProps = ({ currentUser }) => ({
-  currentUser,
-});
+const HomeProfileMenuContainer = () => {
+  const history = useHistory();
+  const location = useLocation();
 
-const mapDispatchToProps = dispatch => ({
-  logout: () => dispatch(logout()),
-});
+  const { currentUser } = useSelector(state => ({
+    currentUser: state.currentUser,
+  }));
+  const dispatch = useDispatch();
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(HomeProfileMenu);
+  return (
+    <HomeProfileMenu
+      history={history}
+      location={location}
+      currentUser={currentUser}
+      logout={() => dispatch(logout())}
+    />
+  );
+};
+
+export default HomeProfileMenuContainer;

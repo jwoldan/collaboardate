@@ -1,16 +1,19 @@
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
 import BoardMembers from './board_members';
 
 import { selectBoardUsers } from '../../reducers/selectors';
 
-const mapStateToProps = (state, ownProps) => {
-  const { params } = ownProps.match;
+const BoardMembersContainer = () => {
+  const { boardId } = useParams();
 
-  return {
-    users: selectBoardUsers(state, parseInt(params.boardId)),
-  };
+  const { users } = useSelector(state => ({
+    users: selectBoardUsers(state, parseInt(boardId)),
+  }));
+
+  return <BoardMembers users={users} />;
 };
 
-export default withRouter(connect(mapStateToProps)(BoardMembers));
+export default BoardMembersContainer;

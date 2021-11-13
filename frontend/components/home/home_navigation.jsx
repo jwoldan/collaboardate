@@ -1,5 +1,5 @@
 import React from 'react';
-import { withRouter, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import HomeBoardsMenuContainer from './home_boards_menu_container';
 import HomeSearch from './home_search';
@@ -44,4 +44,4 @@ class HomeNavigation extends React.Component {
   }
 }
 
-export default withRouter(HomeNavigation);
+export default HomeNavigation;

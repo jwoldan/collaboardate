@@ -1,5 +1,5 @@
 import React from 'react';
-import { withRouter, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import WelcomeNavigation from './welcome_navigation';
 
@@ -69,4 +69,4 @@ class Welcome extends React.Component {
   }
 }
 
-export default withRouter(Welcome);
+export default Welcome;

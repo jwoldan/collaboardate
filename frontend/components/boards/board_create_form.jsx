@@ -1,5 +1,4 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
 
 import BoardVisibilityOptions from './board_visibility_options';
 
@@ -96,4 +95,4 @@ class BoardCreateForm extends React.Component {
   }
 }
 
-export default withRouter(BoardCreateForm);
+export default BoardCreateForm;

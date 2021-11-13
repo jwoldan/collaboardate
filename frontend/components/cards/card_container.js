@@ -1,14 +1,12 @@
-import { connect } from 'react-redux';
+import React from 'react';
+import { useHistory } from 'react-router-dom';
 
 import Card from './card';
 
-import { receiveCardDetail } from '../../actions/card_detail_actions';
+const CardContainer = props => {
+  const history = useHistory();
 
-const mapDispatchToProps = dispatch => ({
-  receiveCardDetail: card => dispatch(receiveCardDetail(card)),
-});
+  return <Card history={history} {...props} />;
+};
 
-export default connect(
-  null,
-  mapDispatchToProps
-)(Card);
+export default CardContainer;

@@ -1,5 +1,6 @@
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory, useParams } from 'react-router-dom';
 
 import Profile from './profile';
 
@@ -13,30 +14,38 @@ import {
 } from '../../actions/user_actions';
 import { receiveProfileErrors } from '../../actions/errors_actions';
 
-const mapStateToProps = (state, ownProps) => {
-  const { params } = ownProps.match;
-  const profile = selectProfile(state, params.username);
+const ProfileContainer = () => {
+  const history = useHistory();
+  const { username } = useParams();
 
-  return {
-    currentUser: state.currentUser,
-    profile,
-    editable: profile.id === state.currentUser.id,
-    errors: state.errors.profile,
-  };
+  const { currentUser, profile, editable, errors } = useSelector(state => {
+    const profile = selectProfile(state, username);
+
+    return {
+      currentUser: state.currentUser,
+      profile,
+      editable: profile.id === state.currentUser.id,
+      errors: state.errors.profile,
+    };
+  });
+  const dispatch = useDispatch();
+
+  return (
+    <Profile
+      history={history}
+      username={username}
+      currentUser={currentUser}
+      profile={profile}
+      editable={editable}
+      errors={errors}
+      clearProfile={() => dispatch(receiveProfile({}))}
+      fetchProfile={username => dispatch(fetchProfile(username))}
+      updateUser={user => dispatch(updateUser(user))}
+      updateUserAvatar={(id, formData) => dispatch(updateUserAvatar(id, formData))}
+      removeUserAvatar={id => dispatch(removeUserAvatar(id))}
+      clearProfileErrors={() => dispatch(receiveProfileErrors({}))}
+    />
+  );
 };
 
-const mapDispatchToProps = dispatch => ({
-  clearProfile: () => dispatch(receiveProfile({})),
-  fetchProfile: username => dispatch(fetchProfile(username)),
-  updateUser: user => dispatch(updateUser(user)),
-  updateUserAvatar: (id, formData) => dispatch(updateUserAvatar(id, formData)),
-  removeUserAvatar: id => dispatch(removeUserAvatar(id)),
-  clearProfileErrors: () => dispatch(receiveProfileErrors({})),
-});
-
-export default withRouter(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(Profile)
-);
+export default ProfileContainer;

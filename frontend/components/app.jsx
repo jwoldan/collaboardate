@@ -11,8 +11,16 @@ const ProfileContainer = React.lazy(() =>
 );
 import WelcomeContainer from './welcome/welcome_container';
 
-const boardRoute = <Route path="/b/:boardId" component={BoardContainer} />;
-const cardRoute = <Route path="/c/:cardId" component={BoardContainer} />;
+const boardRoute = (
+  <Route path="/b/:boardId">
+    <BoardContainer />
+  </Route>
+);
+const cardRoute = (
+  <Route path="/c/:cardId">
+    <BoardContainer />
+  </Route>
+);
 
 class App extends React.Component {
   resetMenus = () => {
@@ -29,10 +37,14 @@ class App extends React.Component {
         <HomeContainer>
           <Suspense fallback={null}>
             <Switch>
-              <Route exact path="/" component={BoardsIndexContainer} />
+              <Route exact path="/">
+                <BoardsIndexContainer />
+              </Route>
               {boardRoute}
               {cardRoute}
-              <Route path="/u/:username" component={ProfileContainer} />
+              <Route path="/u/:username">
+                <ProfileContainer />
+              </Route>
             </Switch>
           </Suspense>
         </HomeContainer>

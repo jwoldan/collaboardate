@@ -1,5 +1,4 @@
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
 
 import BoardVisibilityUpdate from './board_visibility_update';
 
@@ -9,9 +8,7 @@ const mapDispatchToProps = dispatch => ({
   updateBoard: board => dispatch(updateBoard(board)),
 });
 
-export default withRouter(
-  connect(
-    null,
-    mapDispatchToProps
-  )(BoardVisibilityUpdate)
-);
+export default connect(
+  null,
+  mapDispatchToProps
+)(BoardVisibilityUpdate);

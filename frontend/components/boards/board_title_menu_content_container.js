@@ -1,5 +1,4 @@
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
 
 import BoardTitleMenuContent from './board_title_menu_content';
 
@@ -9,9 +8,7 @@ const mapDispatchToProps = dispatch => ({
   updateBoard: board => dispatch(updateBoard(board)),
 });
 
-export default withRouter(
-  connect(
-    null,
-    mapDispatchToProps
-  )(BoardTitleMenuContent)
-);
+export default connect(
+  null,
+  mapDispatchToProps
+)(BoardTitleMenuContent);

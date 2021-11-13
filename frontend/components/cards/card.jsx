@@ -1,5 +1,4 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
 import { DragSource } from 'react-dnd';
 import ItemTypes from '../dnd/item_types';
 
@@ -76,4 +75,4 @@ class Card extends React.Component {
   }
 }
 
-export default DragSource(ItemTypes.CARD, cardSource, collect)(withRouter(Card));
+export default DragSource(ItemTypes.CARD, cardSource, collect)(Card);

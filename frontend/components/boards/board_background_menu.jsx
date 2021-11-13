@@ -1,5 +1,4 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
 
 import ToggleMenu from '../general/toggle_menu';
 import WithMenuStatus from '../general/with_menu_status';
@@ -18,11 +17,11 @@ const colors = [
 
 class BoardBackgroundMenu extends React.Component {
   updateBackground = background => {
-    const { params } = this.props.match;
+    const { boardId } = this.props;
 
     return e =>
       this.props.updateBoard({
-        id: params.boardId,
+        id: boardId,
         background,
       });
   };
@@ -62,4 +61,4 @@ class BoardBackgroundMenu extends React.Component {
   }
 }
 
-export default withRouter(BoardBackgroundMenu);
+export default BoardBackgroundMenu;

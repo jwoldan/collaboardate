@@ -11,9 +11,15 @@ export default ({ store }) => (
     <Suspense fallback={null}>
       <HashRouter>
         <Switch>
-          <Route exact path="/signup" component={SignupFormContainer} />
-          <Route exaxt path="/login" component={LoginFormContainer} />
-          <Route path="/" component={AppContainer} />
+          <Route exact path="/signup">
+            <SignupFormContainer />
+          </Route>
+          <Route exaxt path="/login">
+            <LoginFormContainer />
+          </Route>
+          <Route path="/">
+            <AppContainer />
+          </Route>
         </Switch>
       </HashRouter>
     </Suspense>

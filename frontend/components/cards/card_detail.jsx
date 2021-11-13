@@ -1,5 +1,4 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
 import Modal from 'react-modal';
 
 import CardTitleEditableContainer from './card_title_editable_container';
@@ -83,4 +82,4 @@ class CardDetail extends React.Component {
   }
 }
 
-export default withRouter(CardDetail);
+export default CardDetail;

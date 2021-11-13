@@ -1,26 +1,36 @@
-import { connect } from 'react-redux';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 import { login } from '../../actions/user_actions';
 
 import LoginForm from './login_form';
 
-const mapStateToProps = ({ currentUser, errors }) => ({
-  currentUser,
-  errors: errors.login,
-});
+const LoginFormContainer = () => {
+  const history = useHistory();
 
-const mapDispatchToProps = dispatch => ({
-  login: user => dispatch(login(user)),
-  loginGuest: () =>
-    dispatch(
-      login({
-        username: 'guest',
-        password: 'collaboardate',
-      })
-    ),
-});
+  const { currentUser, errors } = useSelector(state => ({
+    currentUser: state.currentUser,
+    errors: state.errors.login,
+  }));
+  const dispatch = useDispatch();
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(LoginForm);
+  return (
+    <LoginForm
+      history={history}
+      currentUser={currentUser}
+      errors={errors}
+      login={user => dispatch(login(user))}
+      loginGuest={() =>
+        dispatch(
+          login({
+            username: 'guest',
+            password: 'collaboardate',
+          })
+        )
+      }
+    />
+  );
+};
+
+export default LoginFormContainer;

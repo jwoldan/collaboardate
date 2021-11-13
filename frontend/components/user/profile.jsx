@@ -1,5 +1,4 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
 
 class Profile extends React.Component {
   state = {
@@ -8,14 +7,10 @@ class Profile extends React.Component {
   };
 
   componentDidMount() {
-    const {
-      currentUser,
-      fetchProfile,
-      match: { params },
-    } = this.props;
+    const { username, currentUser, fetchProfile } = this.props;
 
-    if (params.username !== currentUser.username) {
-      fetchProfile(params.username);
+    if (username !== currentUser.username) {
+      fetchProfile(username);
     }
 
     if (this.props.editable) {
@@ -25,10 +20,8 @@ class Profile extends React.Component {
   }
 
   componentWillReceiveProps(newProps) {
-    const { fetchProfile, params: oldParams } = this.props;
-    const newParams = newProps.match.params;
-    const oldUserName = oldParams && oldParams.username;
-    const newUserName = newParams && newParams.username;
+    const { fetchProfile, username: oldUserName } = this.props;
+    const newUserName = newProps.username;
 
     if (oldUserName !== newUserName && newUserName !== newProps.currentUser.username) {
       this.setState({ editing: false });

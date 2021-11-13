@@ -1,6 +1,7 @@
 import React, { Suspense } from 'react';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
+import { isNumber } from 'lodash';
 
 const CardDetailContainer = React.lazy(() =>
   import(/* webpackChunkName: "CardDetailContainer" */ '../cards/card_detail_container')
@@ -16,14 +17,9 @@ import ListCreate from '../lists/list_create';
 
 class Board extends React.Component {
   componentDidMount() {
-    const { params } = this.props.match;
+    const { boardId, cardId } = this.props;
 
-    let { boardId, cardId } = params;
-    boardId = parseInt(boardId);
-    cardId = parseInt(cardId);
-
-    // check if boardId is NaN
-    if (boardId === boardId) {
+    if (isNumber(boardId)) {
       this.fetchBoardAndContents(boardId);
     } else {
       this.fetchCardDetailAndBoard(cardId);
@@ -31,26 +27,23 @@ class Board extends React.Component {
   }
 
   componentWillReceiveProps(newProps) {
-    const oldParams = this.props.match.params;
-    const oldBoardId = parseInt(oldParams.boardId);
-    const oldCardId = parseInt(oldParams.cardId);
-    const newParams = newProps.match.params;
-    const newBoardId = parseInt(newParams.boardId);
-    const newCardId = parseInt(newParams.cardId);
+    const oldProps = this.props;
+    const oldBoardId = oldProps.boardId;
+    const oldCardId = oldProps.cardId;
+    const newBoardId = newProps.boardId;
+    const newCardId = newProps.cardId;
 
     if (
       oldBoardId !== newBoardId &&
       this.props.currentBoardId !== newBoardId &&
-      // check if boardId is NaN
-      newBoardId === newBoardId
+      isNumber(newBoardId)
     ) {
       this.fetchBoardAndContents(newBoardId);
     } else if (
       oldCardId !== newCardId &&
       this.props.cardDetail.id !== newCardId &&
       newProps.cardDetail.id !== newCardId &&
-      // check if cardId is NaN
-      newCardId === newCardId
+      isNumber(newCardId)
     ) {
       this.fetchCardDetailAndBoard(newCardId);
     }
