@@ -22,10 +22,11 @@ const appReducer = combineReducers({
   menuStatus,
 });
 
-export default (state, action) => {
+export default (state, action = {}) => {
+  let appState = state;
   if (action.type === RECEIVE_LOGOUT) {
-    state = undefined;
+    appState = undefined;
   }
 
-  return appReducer(state, action);
+  return appReducer(appState, action);
 };

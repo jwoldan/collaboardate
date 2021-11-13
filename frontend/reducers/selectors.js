@@ -15,9 +15,11 @@ export const selectProfile = (state, username) => {
   const { currentUser, profile } = state;
   if (currentUser.username === username) {
     return currentUser;
-  } else if (profile.username === username) {
+  }
+  if (profile.username === username) {
     return profile;
-  } else return {};
+  }
+  return {};
 };
 
 /* Boards */
@@ -25,18 +27,16 @@ export const selectProfile = (state, username) => {
 const denormalizeBoard = (board, entities) => denormalize(board, boardSchema, entities);
 
 export const selectPersonalBoards = ({ entities, currentUser }) => {
-  const boards = entities.boards;
+  const { boards } = entities;
   return Object.keys(boards)
     .map(key => denormalizeBoard(boards[key], entities))
     .filter(board => board.creator.id === currentUser.id);
 };
 
 export const selectSharedBoards = ({ entities, currentUser }) => {
-  const boards = entities.boards;
+  const { boards } = entities;
   const boardArray = Object.keys(boards).map(key => denormalizeBoard(boards[key], entities));
-  return boardArray.filter(board => {
-    return board.creator.id !== currentUser.id;
-  });
+  return boardArray.filter(board => board.creator.id !== currentUser.id);
 };
 
 export const selectBoard = ({ entities, cardDetail }, id, cardId) => {
@@ -44,7 +44,7 @@ export const selectBoard = ({ entities, cardDetail }, id, cardId) => {
   const boardId =
     id ||
     (cards[cardId] && cards[cardId].board_id) ||
-    (cardDetail.id == cardId && cardDetail.board_id);
+    (cardDetail.id === cardId && cardDetail.board_id);
 
   if (boards && boards[boardId]) {
     return denormalizeBoard(entities.boards[boardId], entities);
@@ -53,7 +53,7 @@ export const selectBoard = ({ entities, cardDetail }, id, cardId) => {
   return {};
 };
 
-export const selectBoardUsers = ({ entities: { boards }, shares, currentUser }, boardId) => {
+export const selectBoardUsers = ({ entities: { boards }, shares }, boardId) => {
   let users = [];
   const board = boards[boardId];
 
@@ -63,6 +63,14 @@ export const selectBoardUsers = ({ entities: { boards }, shares, currentUser }, 
   users = users.concat(otherUsers);
 
   return users;
+};
+
+export const checkSharedUser = (shares, currentUser) => {
+  if (shares && currentUser) {
+    const userIds = Object.keys(shares).map(key => shares[key].sharee.id);
+    if (userIds.includes(currentUser.id)) return true;
+  }
+  return false;
 };
 
 export const checkDisabled = (board, currentUser) => {
@@ -75,18 +83,10 @@ export const checkDisabled = (board, currentUser) => {
   return true;
 };
 
-export const checkSharedUser = (shares, currentUser) => {
-  if (shares && currentUser) {
-    const userIds = Object.keys(shares).map(key => shares[key].sharee.id);
-    if (userIds.includes(currentUser.id)) return true;
-  }
-  return false;
-};
-
 export const selectShareId = (shares, currentUser) => {
   if (shares && currentUser) {
     const shareArray = Object.keys(shares).map(key => shares[key]);
-    for (let i = 0; i < shareArray.length; i++) {
+    for (let i = 0; i < shareArray.length; i += 1) {
       if (shareArray[i].sharee.id === currentUser.id) {
         return shareArray[i].id;
       }
@@ -100,19 +100,27 @@ export const selectShareId = (shares, currentUser) => {
 export const selectListByCardId = ({ entities: { cards, lists } }, cardId) => {
   if (cards[cardId]) {
     return lists[cards[cardId].list_id];
-  } else {
-    return {};
   }
+  return {};
 };
 
 /* Cards */
 
-export const selectCards = ({ entities: { cards } }, listId) => {
-  return Object.keys(cards)
+const ordSort = (a, b) => {
+  if (a.ord < b.ord) {
+    return -1;
+  }
+  if (a.ord > b.ord) {
+    return 1;
+  }
+  return 0;
+};
+
+export const selectCards = ({ entities: { cards } }, listId) =>
+  Object.keys(cards)
     .map(key => cards[key])
     .filter(card => card.list_id === listId)
     .sort(ordSort);
-};
 
 /* Comments */
 
@@ -123,23 +131,12 @@ export const selectComments = ({ cardDetail }) => {
       .sort((a, b) => {
         if (a.created_at_i > b.created_at_i) {
           return -1;
-        } else if (a.created_at_i < b.created_at_i) {
-          return 1;
-        } else {
-          return 0;
         }
+        if (a.created_at_i < b.created_at_i) {
+          return 1;
+        }
+        return 0;
       });
-  } else {
-    return [];
   }
-};
-
-const ordSort = (a, b) => {
-  if (a.ord < b.ord) {
-    return -1;
-  } else if (a.ord > b.ord) {
-    return 1;
-  } else {
-    return 0;
-  }
+  return [];
 };

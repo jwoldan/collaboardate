@@ -6,6 +6,7 @@ const middlewares = [thunk];
 
 if (process.env.NODE_ENV !== 'production') {
   // Don't load logger in production
+  /* eslint-disable global-require */
   const logger = require('redux-logger').default;
   middlewares.push(logger);
 }

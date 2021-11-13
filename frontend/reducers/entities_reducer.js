@@ -1,5 +1,4 @@
 import { unset, update } from 'lodash/fp';
-import { denormalize, normalize } from 'normalizr';
 
 import * as CardActions from '../actions/card_actions';
 import * as BoardActions from '../actions/board_actions';
@@ -13,9 +12,10 @@ const initialState = {
   lists: {},
 };
 
-export default (state = initialState, action) => {
+export default (state = initialState, action = {}) => {
   Object.freeze(state);
 
+  /* eslint-disable default-case */
   switch (action.type) {
     case CardActions.RECEIVE_CARD: {
       const cardId = action.payload.result;
@@ -75,14 +75,14 @@ export default (state = initialState, action) => {
     }
 
     case CardActions.INCREMENT_COMMENT_COUNT: {
-      const cardId = action.cardId;
+      const { cardId } = action;
       if (!state.cards[cardId]) break;
 
       return update(['cards', cardId, 'comment_count'], count => count + 1)(state);
     }
 
     case CardActions.DECREMENT_COMMENT_COUNT: {
-      const cardId = action.cardId;
+      const { cardId } = action;
       if (!state.cards[cardId]) break;
 
       return update(['cards', cardId, 'comment_count'], count => count - 1)(state);
@@ -129,10 +129,10 @@ export default (state = initialState, action) => {
   }
 
   if (action.payload && action.payload.entities) {
-    const newState = Object.assign({}, state);
+    const newState = { ...state };
 
     Object.keys(action.payload.entities).forEach(key => {
-      newState[key] = Object.assign({}, newState[key], action.payload.entities[key]);
+      newState[key] = { ...newState[key], ...action.payload.entities[key] };
     });
     return newState;
   }

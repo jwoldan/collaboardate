@@ -19,18 +19,18 @@ const initialState = {
   showCardDueDateMenu: false,
 };
 
-export default (state = initialState, action) => {
+export default (state = initialState, action = {}) => {
   Object.freeze(state);
   let newState;
 
   switch (action.type) {
     case MenuStatusActions.ADD_MENU:
-      newState = Object.assign({}, state);
+      newState = { ...state };
       newState[action.menu] = false;
       return newState;
 
     case MenuStatusActions.REMOVE_MENU:
-      newState = Object.assign({}, state);
+      newState = { ...state };
       delete newState[action.menu];
       return state;
 
@@ -48,7 +48,7 @@ export default (state = initialState, action) => {
       return newState;
 
     case MenuStatusActions.RESET_MENUS:
-      newState = Object.assign({}, state);
+      newState = { ...state };
       Object.keys(newState).forEach(key => {
         newState[key] = false;
       });

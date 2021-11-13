@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 
 import ListCreateForm from './list_create_form';
 
-import { selectBoard } from '../../reducers/selectors.js';
+import { selectBoard } from '../../reducers/selectors';
 import { createList } from '../../actions/list_actions';
 
 const ListCreateFormContainer = () => {
@@ -13,11 +13,10 @@ const ListCreateFormContainer = () => {
   const { board } = useSelector(state => {
     if (boardId) {
       return {
-        board: selectBoard(state, parseInt(boardId)),
+        board: selectBoard(state, parseInt(boardId, 10)),
       };
-    } else {
-      return { board: {} };
     }
+    return { board: {} };
   });
   const dispatch = useDispatch();
 

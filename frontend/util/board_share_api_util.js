@@ -1,8 +1,8 @@
-export const createShare = (board_share, success, error) =>
+export const createShare = (boardShare, success, error) =>
   $.ajax({
     method: 'POST',
     url: '/api/board_shares',
-    data: { board_share },
+    data: { board_share: boardShare },
     success,
     error,
   });

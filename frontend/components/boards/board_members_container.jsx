@@ -10,7 +10,7 @@ const BoardMembersContainer = () => {
   const { boardId } = useParams();
 
   const { users } = useSelector(state => ({
-    users: selectBoardUsers(state, parseInt(boardId)),
+    users: selectBoardUsers(state, parseInt(boardId, 10)),
   }));
 
   return <BoardMembers users={users} />;

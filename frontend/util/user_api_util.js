@@ -62,6 +62,7 @@ export const logout = (success, error) =>
     // When you load the page and are already logged in, we cache the logged in user
     // at window.loggedInUser in a script tag (outside of React).  Reloading the page
     // when we logout ensures the cached user is cleared.
+    /* eslint-disable no-restricted-globals */
     () => location.reload(true)
   );
 

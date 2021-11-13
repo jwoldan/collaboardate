@@ -4,8 +4,8 @@ import BoardShareMenuContent from './board_share_menu_content';
 
 import { search } from '../../util/user_api_util';
 
-const mapStateToProps = ({ menuStatus }) => ({
-  search: search,
+const mapStateToProps = () => ({
+  search,
 });
 
 export default connect(

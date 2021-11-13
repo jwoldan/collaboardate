@@ -6,25 +6,29 @@ import { tryStopPropagation } from '../../util/event_util';
 
 class WithMenuStatus extends React.Component {
   componentDidMount() {
-    this.props.addMenu(this.props.menuKey);
+    const { add, menuKey } = this.props;
+    add(menuKey);
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.menuKey !== this.props.menuKey) {
-      this.props.removeMenu(prevProps.menuKey);
-      this.props.addMenu(this.props.menuKey);
+    const { add, menuKey, remove } = this.props;
+    if (prevProps.menuKey !== menuKey) {
+      remove(prevProps.menuKey);
+      add(menuKey);
     }
   }
 
   componentWillUnmount() {
-    this.props.removeMenu(this.props.menuKey);
+    const { menuKey, remove } = this.props;
+    remove(menuKey);
   }
 
   toggle = e => {
+    const { disabled, toggle } = this.props;
     tryStopPropagation(e);
-    if (this.props.disabled) return;
+    if (disabled) return;
 
-    this.props.toggle();
+    toggle();
   };
 
   render() {
@@ -39,8 +43,8 @@ const mapStateToProps = ({ menuStatus }, { menuKey }) => ({
 });
 
 const mapDispatchToProps = (dispatch, { leaveOthers, menuKey }) => ({
-  addMenu: menu => dispatch(addMenu(menu)),
-  removeMenu: menu => dispatch(removeMenu(menu)),
+  add: menu => dispatch(addMenu(menu)),
+  remove: menu => dispatch(removeMenu(menu)),
   toggle: () => dispatch(toggleMenu(menuKey, leaveOthers)),
 });
 

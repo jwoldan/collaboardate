@@ -2,7 +2,7 @@ import * as CardDetailActions from '../actions/card_detail_actions';
 import * as CardActions from '../actions/card_actions';
 import * as CommentActions from '../actions/comment_actions';
 
-export default (state = {}, action) => {
+export default (state = {}, action = {}) => {
   Object.freeze(state);
   let newState;
   let comment;
@@ -10,50 +10,46 @@ export default (state = {}, action) => {
 
   switch (action.type) {
     case CardDetailActions.RECEIVE_CARD_DETAIL:
-      return Object.assign({}, action.card);
+      return { ...action.card };
 
     case CardActions.RECEIVE_CARD: {
       const cardId = action.payload.result;
       const card = action.payload.entities.cards[cardId];
       if (cardId === state.id) {
-        return Object.assign({}, state, card);
-      } else {
-        return state;
+        return { ...state, ...card };
       }
+      return state;
     }
     case CardActions.REMOVE_CARD: {
       const cardId = action.payload.result;
       if (cardId === state.id) {
         return {};
-      } else {
-        return state;
       }
+      return state;
     }
 
     case CommentActions.RECEIVE_COMMENT:
       comment = action.comment;
       if (state.id === comment.card_id) {
-        newState = Object.assign({}, state);
+        newState = { ...state };
         comments = newState.comments;
-        comments = Object.assign({}, comments, { [comment.id]: comment });
+        comments = { ...comments, [comment.id]: comment };
         newState.comments = comments;
         return newState;
-      } else {
-        return state;
       }
+      return state;
 
     case CommentActions.REMOVE_COMMENT:
       comment = action.comment;
       if (state.id === comment.card_id) {
-        newState = Object.assign({}, state);
+        newState = { ...state };
         comments = newState.comments;
-        comments = Object.assign({}, comments);
+        comments = { ...comments };
         delete comments[action.comment.id];
         newState.comments = comments;
         return newState;
-      } else {
-        return state;
       }
+      return state;
 
     default:
       return state;

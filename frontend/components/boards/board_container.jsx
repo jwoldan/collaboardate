@@ -30,15 +30,15 @@ const BoardContainer = () => {
   return (
     <Board
       history={history}
-      boardId={parseInt(boardId) || null}
-      cardId={parseInt(cardId) || null}
+      boardId={parseInt(boardId, 10) || null}
+      cardId={parseInt(cardId, 10) || null}
       currentUser={currentUser}
       disabled={disabled}
       board={board}
       currentBoardId={currentBoardId}
       cardDetail={cardDetail}
-      fetchBoard={board => dispatch(fetchBoard(board))}
-      updateBoard={board => dispatch(updateBoard(board))}
+      fetchBoard={boardId => dispatch(fetchBoard(boardId))}
+      updateBoard={boardUpdates => dispatch(updateBoard(boardUpdates))}
       fetchCardDetail={cardId => dispatch(fetchCardDetail(cardId))}
       receiveCurrentBoardId={boardId => dispatch(receiveCurrentBoardId(boardId))}
       fetchShares={boardId => dispatch(fetchShares(boardId))}

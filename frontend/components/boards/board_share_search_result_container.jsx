@@ -7,19 +7,19 @@ import BoardShareSearchResult from './board_share_search_result';
 import { selectBoard, checkSharedUser, selectShareId } from '../../reducers/selectors';
 import { createShare, deleteShare } from '../../actions/board_share_actions';
 
-const BoardShareSearchResultContainer = props => {
+const BoardShareSearchResultContainer = ({ user }) => {
   const { boardId } = useParams();
 
   const { currentUser, board, shares, alreadyShared, shareId } = useSelector(state => {
-    const board = selectBoard(state, parseInt(boardId));
-    const shares = state.shares;
+    const board = selectBoard(state, parseInt(boardId, 10));
+    const { shares } = state;
 
     return {
       currentUser: state.currentUser,
       board,
       shares,
-      alreadyShared: checkSharedUser(shares, props.user),
-      shareId: selectShareId(shares, props.user),
+      alreadyShared: checkSharedUser(shares, user),
+      shareId: selectShareId(shares, user),
     };
   });
   const dispatch = useDispatch();
