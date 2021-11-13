@@ -1,6 +1,6 @@
 import React, { Suspense } from 'react';
-import { DragDropContext } from 'react-dnd';
-import HTML5Backend from 'react-dnd-html5-backend';
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
 
 const CardDetailContainer = React.lazy(() =>
   import(/* webpackChunkName: "CardDetailContainer" */ '../cards/card_detail_container')
@@ -86,23 +86,25 @@ class Board extends React.Component {
     const navDisabled = disabled || currentUser.id !== board.creator.id;
 
     return (
-      <section className="current-board">
-        <Suspense fallback={null}>
-          <CardDetailContainer disabled={disabled} />
-          <CardEditModal />
+      <DndProvider backend={HTML5Backend}>
+        <section className="current-board">
+          <Suspense fallback={null}>
+            <CardDetailContainer disabled={disabled} />
+            <CardEditModal />
 
-          <BoardNavigation board={board} updateBoard={updateBoard} disabled={navDisabled} />
-          <ul className="lists clearfix">
-            {lists &&
-              lists.map(list => (
-                <ListHolderContainer key={list.id} list={list} disabled={disabled} />
-              ))}
-            <ListCreate disabled={disabled} />
-          </ul>
-        </Suspense>
-      </section>
+            <BoardNavigation board={board} updateBoard={updateBoard} disabled={navDisabled} />
+            <ul className="lists clearfix">
+              {lists &&
+                lists.map(list => (
+                  <ListHolderContainer key={list.id} list={list} disabled={disabled} />
+                ))}
+              <ListCreate disabled={disabled} />
+            </ul>
+          </Suspense>
+        </section>
+      </DndProvider>
     );
   }
 }
 
-export default DragDropContext(HTML5Backend)(Board);
+export default Board;
