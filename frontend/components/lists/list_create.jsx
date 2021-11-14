@@ -5,7 +5,7 @@ import WithMenuStatus from '../general/with_menu_status';
 
 import ListCreateFormContainer from './list_create_form_container';
 
-const renderMenuContent = toggle => (
+const renderMenuContent = (toggle) => (
   <section>
     <ListCreateFormContainer toggle={toggle} />
   </section>

@@ -17,13 +17,13 @@ class LoginForm extends React.Component {
     this.props.loginGuest().then(() => this.props.navigate('/'));
   };
 
-  submit = e => {
+  submit = (e) => {
     e.preventDefault();
     this.props.login(this.state).then(() => this.props.navigate('/'));
   };
 
-  update = property => {
-    return e => this.setState({ [property]: e.currentTarget.value });
+  update = (property) => {
+    return (e) => this.setState({ [property]: e.currentTarget.value });
   };
 
   errorList(errors) {

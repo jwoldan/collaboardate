@@ -9,7 +9,7 @@ import CardTarget from '../cards/card_target';
 import CardCreateContainer from '../cards/card_create_container';
 
 const listSource = {
-  beginDrag: props => ({
+  beginDrag: (props) => ({
     list: props.list,
   }),
   canDrag: ({ disabled }) => !disabled,
@@ -31,7 +31,7 @@ const List = ({ list, disabled, connectDragSource, isDragging }) => {
       <ListMenu list={list} disabled={disabled} />
 
       <ul className="cards">
-        {cards && cards.map(card => <CardHolder key={card.id} card={card} disabled={disabled} />)}
+        {cards && cards.map((card) => <CardHolder key={card.id} card={card} disabled={disabled} />)}
         <CardTarget listId={list.id} cards={cards}>
           <CardCreateContainer list={list} disabled={disabled} />
         </CardTarget>

@@ -10,7 +10,7 @@ const mapStateToProps = ({ menuStatus }) => {
   };
 };
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   toggle: () => dispatch(toggleMenu('showCardEditModal')),
 });
 
@@ -24,7 +24,4 @@ const CardEditModal = ({ show, toggle }) => (
   />
 );
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(CardEditModal);
+export default connect(mapStateToProps, mapDispatchToProps)(CardEditModal);

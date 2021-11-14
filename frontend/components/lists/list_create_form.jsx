@@ -17,20 +17,20 @@ class ListCreateForm extends React.Component {
     this.input.current.focus();
   }
 
-  createList = e => {
+  createList = (e) => {
     e.preventDefault();
     const newList = Object.assign({}, this.state);
     newList.title = newList.title.trim();
     if (newList.title !== '') {
       newList.board_id = this.props.board.id;
-      this.props.createList(newList).then(list => {
+      this.props.createList(newList).then((list) => {
         this.setState(Object.assign({}, defaultState));
         this.input.current.focus();
       });
     }
   };
 
-  updateTitle = e => {
+  updateTitle = (e) => {
     this.setState({ title: e.currentTarget.value });
   };
 

@@ -6,17 +6,14 @@ import { addMenu, removeMenu, toggleMenu } from '../../actions/menu_status_actio
 import { updateList } from '../../actions/list_actions';
 
 const mapStateToProps = ({ menuStatus }) => ({
-  showStatus: menu => menuStatus[menu],
+  showStatus: (menu) => menuStatus[menu],
 });
 
-const mapDispatchToProps = dispatch => ({
-  addMenu: menu => dispatch(addMenu(menu)),
-  removeMenu: menu => dispatch(removeMenu(menu)),
-  toggle: menu => dispatch(toggleMenu(menu)),
-  updateList: list => dispatch(updateList(list)),
+const mapDispatchToProps = (dispatch) => ({
+  addMenu: (menu) => dispatch(addMenu(menu)),
+  removeMenu: (menu) => dispatch(removeMenu(menu)),
+  toggle: (menu) => dispatch(toggleMenu(menu)),
+  updateList: (list) => dispatch(updateList(list)),
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ListTitleEditable);
+export default connect(mapStateToProps, mapDispatchToProps)(ListTitleEditable);

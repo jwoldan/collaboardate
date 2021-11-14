@@ -8,9 +8,9 @@ import { receiveCard, updateCard } from '../../actions/card_actions';
 
 import CardContainer from './card_container';
 
-const mapDispatchToProps = dispatch => ({
-  receiveCard: card => dispatch(receiveCard(card)),
-  updateCard: card => dispatch(updateCard(card)),
+const mapDispatchToProps = (dispatch) => ({
+  receiveCard: (card) => dispatch(receiveCard(card)),
+  updateCard: (card) => dispatch(updateCard(card)),
 });
 
 const cardHolderTarget = {
@@ -36,7 +36,7 @@ const cardHolderTarget = {
   },
 };
 
-const collect = dndConnect => ({
+const collect = (dndConnect) => ({
   connectDropTarget: dndConnect.dropTarget(),
 });
 

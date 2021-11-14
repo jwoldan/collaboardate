@@ -18,18 +18,18 @@ class SignupForm extends React.Component {
     this.props.loginGuest().then(() => this.props.navigate('/'));
   };
 
-  submit = e => {
+  submit = (e) => {
     e.preventDefault();
     this.props.signup(this.state).then(() => this.props.navigate('/'));
   };
 
-  update = property => {
-    return e => this.setState({ [property]: e.currentTarget.value });
+  update = (property) => {
+    return (e) => this.setState({ [property]: e.currentTarget.value });
   };
 
   errorsToStrings(errors) {
     const errorStrings = [];
-    Object.keys(errors).forEach(key => {
+    Object.keys(errors).forEach((key) => {
       let errorString;
       if (key === 'full_name') {
         errorString = 'Name';

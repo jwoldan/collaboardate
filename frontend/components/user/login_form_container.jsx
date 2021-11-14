@@ -9,7 +9,7 @@ import LoginForm from './login_form';
 const LoginFormContainer = () => {
   const navigate = useNavigate();
 
-  const { currentUser, errors } = useSelector(state => ({
+  const { currentUser, errors } = useSelector((state) => ({
     currentUser: state.currentUser,
     errors: state.errors.login,
   }));
@@ -20,7 +20,7 @@ const LoginFormContainer = () => {
       navigate={navigate}
       currentUser={currentUser}
       errors={errors}
-      login={user => dispatch(login(user))}
+      login={(user) => dispatch(login(user))}
       loginGuest={() =>
         dispatch(
           login({

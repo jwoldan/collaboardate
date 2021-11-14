@@ -9,11 +9,11 @@ export const reorder = ({ orderables, orderable, oldOrd = null, newOrd = null })
   if (oldOrd === null) {
     updatedOrderables.push(orderable);
   } else if (newOrd === null) {
-    updatedOrderables = updatedOrderables.filter(anOrderable => anOrderable.id !== orderable.id);
+    updatedOrderables = updatedOrderables.filter((anOrderable) => anOrderable.id !== orderable.id);
   }
 
   return flow(
-    map(anOrderable => {
+    map((anOrderable) => {
       if (anOrderable.id === orderable.id) {
         return orderable;
       }

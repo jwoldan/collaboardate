@@ -37,14 +37,14 @@ class CardQuickEdit extends React.Component {
     deleteCard(card.id).then(() => this.props.toggleModal());
   };
 
-  handleEnter = e => {
+  handleEnter = (e) => {
     if (e.which === 13) {
       e.preventDefault();
       this.submit();
     }
   };
 
-  submit = e => {
+  submit = (e) => {
     if (e) e.preventDefault();
     const title = this.state.title.trim();
     if (title !== '') {
@@ -54,21 +54,21 @@ class CardQuickEdit extends React.Component {
     }
   };
 
-  toggle = e => {
+  toggle = (e) => {
     tryStopPropagation(e);
     if (!this.props.disabled) {
       this.props.toggle(this.state.menuKey);
     }
   };
 
-  toggleWithModal = e => {
+  toggleWithModal = (e) => {
     if (!this.props.disabled) {
       this.toggle(e);
       this.props.toggleModal();
     }
   };
 
-  updateTitle = e => {
+  updateTitle = (e) => {
     this.setState({ title: e.currentTarget.value });
   };
 
@@ -94,7 +94,7 @@ class CardQuickEdit extends React.Component {
               value={title}
               onChange={this.updateTitle}
               onKeyDown={this.handleEnter}
-              onFocus={e => e.target.select()}
+              onFocus={(e) => e.target.select()}
             />
             <input type="submit" className="button green" value="Save" />
           </form>

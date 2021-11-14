@@ -23,7 +23,7 @@ class WithMenuStatus extends React.Component {
     remove(menuKey);
   }
 
-  toggle = e => {
+  toggle = (e) => {
     const { disabled, toggle } = this.props;
     tryStopPropagation(e);
     if (disabled) return;
@@ -43,12 +43,9 @@ const mapStateToProps = ({ menuStatus }, { menuKey }) => ({
 });
 
 const mapDispatchToProps = (dispatch, { leaveOthers, menuKey }) => ({
-  add: menu => dispatch(addMenu(menu)),
-  remove: menu => dispatch(removeMenu(menu)),
+  add: (menu) => dispatch(addMenu(menu)),
+  remove: (menu) => dispatch(removeMenu(menu)),
   toggle: () => dispatch(toggleMenu(menuKey, leaveOthers)),
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(WithMenuStatus);
+export default connect(mapStateToProps, mapDispatchToProps)(WithMenuStatus);

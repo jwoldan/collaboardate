@@ -18,11 +18,11 @@ class BoardShareMenuContent extends React.Component {
     this.input.current.focus();
   }
 
-  handleInput = e => {
+  handleInput = (e) => {
     const query = e.currentTarget.value;
     this.setState({ query });
     if (query.trim() !== '') {
-      this.props.search(query).then(results => this.setState({ results }));
+      this.props.search(query).then((results) => this.setState({ results }));
     } else {
       this.setState({ results: [] });
     }
@@ -37,7 +37,7 @@ class BoardShareMenuContent extends React.Component {
           <span className="quiet">Type to search by username:</span>
           <input className="input" onChange={this.handleInput} ref={this.input} value={query} />
           <ul>
-            {results.map(user => (
+            {results.map((user) => (
               <BoardShareSearchResultContainer key={user.id} user={user} />
             ))}
           </ul>

@@ -4,7 +4,7 @@ import Home from './home';
 
 import { selectBoard } from '../../reducers/selectors';
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   board: selectBoard(state, state.currentBoardId),
 });
 

@@ -16,7 +16,7 @@ const BoardDeleteMenuContainer = () => {
     <BoardDeleteMenu
       navigate={navigate}
       boardId={boardId}
-      deleteBoard={id => dispatch(deleteBoard(id))}
+      deleteBoard={(id) => dispatch(deleteBoard(id))}
     />
   );
 };

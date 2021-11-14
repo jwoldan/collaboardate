@@ -14,7 +14,7 @@ const visibilities = [
 
 const BoardVisibilityOptions = ({ className, updateVisibility }) => (
   <ul className={className}>
-    {visibilities.map(visibility => (
+    {visibilities.map((visibility) => (
       <li key={visibility.value}>
         <a data-value={visibility.value} onClick={updateVisibility}>
           <h4>{visibility.value}</h4>

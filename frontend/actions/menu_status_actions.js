@@ -13,12 +13,12 @@ export const resetMenus = () => ({
   type: RESET_MENUS,
 });
 
-export const addMenu = menu => ({
+export const addMenu = (menu) => ({
   type: ADD_MENU,
   menu,
 });
 
-export const removeMenu = menu => ({
+export const removeMenu = (menu) => ({
   type: REMOVE_MENU,
   menu,
 });

@@ -10,7 +10,7 @@ import { resetMenus } from '../actions/menu_status_actions';
 const AppContainer = () => {
   const location = useLocation();
 
-  const { currentUser, menuIsOpenState } = useSelector(state => ({
+  const { currentUser, menuIsOpenState } = useSelector((state) => ({
     currentUser: state.currentUser,
     menuIsOpenState: menuIsOpen(state),
   }));

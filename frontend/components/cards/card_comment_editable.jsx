@@ -37,7 +37,7 @@ class CardCommentEditable extends React.Component {
     this.props.deleteComment(this.props.comment.id);
   };
 
-  submit = e => {
+  submit = (e) => {
     e.preventDefault();
     const body = this.state.body.trim();
     if (body !== '') {
@@ -47,14 +47,14 @@ class CardCommentEditable extends React.Component {
     }
   };
 
-  toggle = e => {
+  toggle = (e) => {
     tryStopPropagation(e);
     if (!this.props.disabled) {
       this.props.toggle(this.state.menuKey);
     }
   };
 
-  updateBody = e => {
+  updateBody = (e) => {
     this.setState({ body: e.currentTarget.value });
   };
 
@@ -90,7 +90,7 @@ class CardCommentEditable extends React.Component {
             ref="bodyTextarea"
             value={body}
             onChange={this.updateBody}
-            onFocus={e => e.target.select()}
+            onFocus={(e) => e.target.select()}
           />
           <input type="submit" className={inputClass} value="Save" />
           <span className="menu-close" onClick={this.toggle} />

@@ -28,14 +28,14 @@ class CardCreate extends React.Component {
     this.props.removeMenu(this.state.menuKey);
   }
 
-  handleEnter = e => {
+  handleEnter = (e) => {
     if (e.which === 13) {
       e.preventDefault();
       this.submit();
     }
   };
 
-  submit = e => {
+  submit = (e) => {
     if (e) e.preventDefault();
     const title = this.state.title.trim();
     if (title !== '') {
@@ -46,14 +46,14 @@ class CardCreate extends React.Component {
     }
   };
 
-  toggle = e => {
+  toggle = (e) => {
     tryStopPropagation(e);
     if (!this.props.disabled) {
       this.props.toggle(this.state.menuKey);
     }
   };
 
-  updateTitle = e => {
+  updateTitle = (e) => {
     this.setState({ title: e.currentTarget.value });
   };
 

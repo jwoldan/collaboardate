@@ -8,7 +8,4 @@ const mapStateToProps = () => ({
   search,
 });
 
-export default connect(
-  mapStateToProps,
-  null
-)(BoardShareMenuContent);
+export default connect(mapStateToProps, null)(BoardShareMenuContent);

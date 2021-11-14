@@ -16,10 +16,10 @@ const colors = [
 ];
 
 class BoardBackgroundMenu extends React.Component {
-  updateBackground = background => {
+  updateBackground = (background) => {
     const { boardId } = this.props;
 
-    return e =>
+    return (e) =>
       this.props.updateBoard({
         id: boardId,
         background,
@@ -32,7 +32,7 @@ class BoardBackgroundMenu extends React.Component {
     const menuContent = (
       <section className="menu-section">
         <ul className="board-background-options">
-          {colors.map(color => (
+          {colors.map((color) => (
             <li key={color} className={color} onClick={this.updateBackground(color)} />
           ))}
         </ul>

@@ -10,7 +10,7 @@ import { createShare, deleteShare } from '../../actions/board_share_actions';
 const BoardShareSearchResultContainer = ({ user }) => {
   const { boardId } = useParams();
 
-  const { currentUser, board, shares, alreadyShared, shareId } = useSelector(state => {
+  const { currentUser, board, shares, alreadyShared, shareId } = useSelector((state) => {
     const board = selectBoard(state, parseInt(boardId, 10));
     const { shares } = state;
 
@@ -31,8 +31,8 @@ const BoardShareSearchResultContainer = ({ user }) => {
       shares={shares}
       alreadyShared={alreadyShared}
       shareId={shareId}
-      createShare={share => dispatch(createShare(share))}
-      deleteShare={id => dispatch(deleteShare(id))}
+      createShare={(share) => dispatch(createShare(share))}
+      deleteShare={(id) => dispatch(deleteShare(id))}
       {...props}
     />
   );

@@ -25,7 +25,7 @@ const listHolderTarget = {
   },
 };
 
-const collect = connect => ({
+const collect = (connect) => ({
   connectDropTarget: connect.dropTarget(),
 });
 

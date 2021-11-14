@@ -8,11 +8,8 @@ const mapStateToProps = ({ currentUser }) => ({
   currentUser,
 });
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   fetchBoards: () => dispatch(fetchBoards()),
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(HomeNavigation);
+export default connect(mapStateToProps, mapDispatchToProps)(HomeNavigation);

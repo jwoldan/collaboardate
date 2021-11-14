@@ -11,7 +11,7 @@ import CardDueDateMenu from './card_due_date_menu';
 class CardDetail extends React.Component {
   deleteCard = () => {
     const { card, deleteCard } = this.props;
-    deleteCard(card.id).then(deletedCard => this.props.navigate(`/b/${deletedCard.board_id}`));
+    deleteCard(card.id).then((deletedCard) => this.props.navigate(`/b/${deletedCard.board_id}`));
   };
 
   resetCard = () => {
@@ -59,7 +59,7 @@ class CardDetail extends React.Component {
             <CardCommentFormContainer disabled={disabled} />
             {card.comment_count > 0 ? <h5>Comments</h5> : null}
             <ul>
-              {comments.map(comment => (
+              {comments.map((comment) => (
                 <CardCommentEditableContainer
                   key={comment.id}
                   comment={comment}

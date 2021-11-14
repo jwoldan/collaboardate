@@ -33,7 +33,7 @@ class CardDueDateForm extends React.Component {
       .then(() => this.props.toggle());
   };
 
-  submit = e => {
+  submit = (e) => {
     e.preventDefault();
     const { dueDate, dueTime } = this.state;
     const dayjsDateTime = dayjs(`${dueDate} ${dueTime}`, 'YYYY-MM-DD HH:mm', true);
@@ -48,8 +48,8 @@ class CardDueDateForm extends React.Component {
     }
   };
 
-  update = property => {
-    return e => this.setState({ [property]: e.currentTarget.value });
+  update = (property) => {
+    return (e) => this.setState({ [property]: e.currentTarget.value });
   };
 
   render() {

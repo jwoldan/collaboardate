@@ -12,7 +12,7 @@ const BoardBackgroundMenuContainer = () => {
   const dispatch = useDispatch();
 
   return (
-    <BoardBackgroundMenu boardId={boardId} updateBoard={board => dispatch(updateBoard(board))} />
+    <BoardBackgroundMenu boardId={boardId} updateBoard={(board) => dispatch(updateBoard(board))} />
   );
 };
 

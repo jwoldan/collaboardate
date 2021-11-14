@@ -14,8 +14,8 @@ const defaultState = {
 class BoardCreateForm extends React.Component {
   state = defaultState;
 
-  updateNewBoard = property => {
-    return e => {
+  updateNewBoard = (property) => {
+    return (e) => {
       Object.freeze(this.state);
       const value =
         typeof e.currentTarget.value !== 'undefined'
@@ -34,12 +34,12 @@ class BoardCreateForm extends React.Component {
     };
   };
 
-  createBoard = e => {
+  createBoard = (e) => {
     e.preventDefault();
     const newBoard = Object.assign({}, this.state.board);
     newBoard.title = newBoard.title.trim();
     if (newBoard.title !== '') {
-      this.props.createBoard(newBoard).then(board => {
+      this.props.createBoard(newBoard).then((board) => {
         this.props.toggle();
         this.props.navigate(`/b/${board.id}`);
         this.props.resetMenus();

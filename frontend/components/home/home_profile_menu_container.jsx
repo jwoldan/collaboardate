@@ -10,7 +10,7 @@ const HomeProfileMenuContainer = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const { currentUser } = useSelector(state => ({
+  const { currentUser } = useSelector((state) => ({
     currentUser: state.currentUser,
   }));
   const dispatch = useDispatch();

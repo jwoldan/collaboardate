@@ -9,7 +9,7 @@ import { selectBoardUsers } from '../../reducers/selectors';
 const BoardMembersContainer = () => {
   const { boardId } = useParams();
 
-  const { users } = useSelector(state => ({
+  const { users } = useSelector((state) => ({
     users: selectBoardUsers(state, parseInt(boardId, 10)),
   }));
 

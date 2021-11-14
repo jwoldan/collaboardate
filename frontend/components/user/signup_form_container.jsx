@@ -9,7 +9,7 @@ import SignupForm from './signup_form';
 const SignupFormContainer = () => {
   const navigate = useNavigate();
 
-  const { currentUser, errors } = useSelector(state => ({
+  const { currentUser, errors } = useSelector((state) => ({
     currentUser: state.currentUser,
     errors: state.errors.signup,
   }));
@@ -20,7 +20,7 @@ const SignupFormContainer = () => {
       navigate={navigate}
       currentUser={currentUser}
       errors={errors}
-      signup={user => dispatch(signup(user))}
+      signup={(user) => dispatch(signup(user))}
       loginGuest={() =>
         dispatch(
           login({

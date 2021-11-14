@@ -8,7 +8,7 @@ export default ({ title, boards, toggle }) => {
       <section>
         <section className="menu-header">{title}</section>
         <ul>
-          {boards.map(board => (
+          {boards.map((board) => (
             <HomeBoardsMenuItem key={board.id} board={board} toggle={toggle} />
           ))}
         </ul>

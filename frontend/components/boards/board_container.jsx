@@ -14,7 +14,7 @@ const BoardContainer = () => {
   const navigate = useNavigate();
   const { boardId, cardId } = useParams();
 
-  const { currentUser, disabled, board, currentBoardId, cardDetail } = useSelector(state => {
+  const { currentUser, disabled, board, currentBoardId, cardDetail } = useSelector((state) => {
     const board = selectBoard(state, parseInt(boardId), parseInt(cardId));
 
     return {
@@ -37,12 +37,12 @@ const BoardContainer = () => {
       board={board}
       currentBoardId={currentBoardId}
       cardDetail={cardDetail}
-      fetchBoard={boardId => dispatch(fetchBoard(boardId))}
-      updateBoard={boardUpdates => dispatch(updateBoard(boardUpdates))}
-      fetchCardDetail={cardId => dispatch(fetchCardDetail(cardId))}
-      receiveCurrentBoardId={boardId => dispatch(receiveCurrentBoardId(boardId))}
-      fetchShares={boardId => dispatch(fetchShares(boardId))}
-      receiveShares={shares => dispatch(receiveShares(shares))}
+      fetchBoard={(boardId) => dispatch(fetchBoard(boardId))}
+      updateBoard={(boardUpdates) => dispatch(updateBoard(boardUpdates))}
+      fetchCardDetail={(cardId) => dispatch(fetchCardDetail(cardId))}
+      receiveCurrentBoardId={(boardId) => dispatch(receiveCurrentBoardId(boardId))}
+      fetchShares={(boardId) => dispatch(fetchShares(boardId))}
+      receiveShares={(shares) => dispatch(receiveShares(shares))}
     />
   );
 };

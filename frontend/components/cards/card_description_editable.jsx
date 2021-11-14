@@ -32,7 +32,7 @@ class CardDescriptionEditable extends React.Component {
     this.props.removeMenu(this.state.menuKey);
   }
 
-  submit = e => {
+  submit = (e) => {
     e.preventDefault();
     const description = this.state.description.trim();
     const { card, updateCard } = this.props;
@@ -40,14 +40,14 @@ class CardDescriptionEditable extends React.Component {
     updateCard(updatedCard).then(() => this.toggle());
   };
 
-  toggle = e => {
+  toggle = (e) => {
     tryStopPropagation(e);
     if (!this.props.disabled) {
       this.props.toggle(this.state.menuKey);
     }
   };
 
-  updateDescription = e => {
+  updateDescription = (e) => {
     this.setState({ description: e.currentTarget.value });
   };
 
@@ -75,7 +75,7 @@ class CardDescriptionEditable extends React.Component {
             ref="descriptionTextarea"
             value={description}
             onChange={this.updateDescription}
-            onFocus={e => e.target.select()}
+            onFocus={(e) => e.target.select()}
           />
           <input type="submit" className="button green" value="Save" />
           <span className="menu-close" onClick={this.toggle} />

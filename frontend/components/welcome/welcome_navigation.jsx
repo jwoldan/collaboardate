@@ -14,7 +14,7 @@ class WelcomeNavigation extends React.Component {
     window.removeEventListener('scroll', this.handleScroll);
   }
 
-  handleScroll = event => {
+  handleScroll = (event) => {
     if (event.srcElement.body.scrollTop > 100) {
       this.setState({ scrolled: true });
     } else {

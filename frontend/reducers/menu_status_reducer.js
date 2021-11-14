@@ -36,7 +36,7 @@ export default (state = initialState, action = {}) => {
 
     case MenuStatusActions.TOGGLE_MENU:
       newState = {};
-      Object.keys(state).forEach(currentMenu => {
+      Object.keys(state).forEach((currentMenu) => {
         if (currentMenu === action.menu) {
           newState[currentMenu] = !state[currentMenu];
         } else if (!action.leaveOthers) {
@@ -49,7 +49,7 @@ export default (state = initialState, action = {}) => {
 
     case MenuStatusActions.RESET_MENUS:
       newState = { ...state };
-      Object.keys(newState).forEach(key => {
+      Object.keys(newState).forEach((key) => {
         newState[key] = false;
       });
       return newState;

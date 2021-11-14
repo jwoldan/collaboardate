@@ -4,11 +4,8 @@ import List from './list';
 
 import { updateList } from '../../actions/list_actions';
 
-const mapDispatchToProps = dispatch => ({
-  updateList: list => dispatch(updateList(list)),
+const mapDispatchToProps = (dispatch) => ({
+  updateList: (list) => dispatch(updateList(list)),
 });
 
-export default connect(
-  null,
-  mapDispatchToProps
-)(List);
+export default connect(null, mapDispatchToProps)(List);

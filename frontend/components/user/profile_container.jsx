@@ -18,7 +18,7 @@ const ProfileContainer = () => {
   const navigate = useNavigate();
   const { username } = useParams();
 
-  const { currentUser, profile, editable, errors } = useSelector(state => {
+  const { currentUser, profile, editable, errors } = useSelector((state) => {
     const profile = selectProfile(state, username);
 
     return {
@@ -39,10 +39,10 @@ const ProfileContainer = () => {
       editable={editable}
       errors={errors}
       clearProfile={() => dispatch(receiveProfile({}))}
-      fetchProfile={username => dispatch(fetchProfile(username))}
-      updateUser={user => dispatch(updateUser(user))}
+      fetchProfile={(username) => dispatch(fetchProfile(username))}
+      updateUser={(user) => dispatch(updateUser(user))}
       updateUserAvatar={(id, formData) => dispatch(updateUserAvatar(id, formData))}
-      removeUserAvatar={id => dispatch(removeUserAvatar(id))}
+      removeUserAvatar={(id) => dispatch(removeUserAvatar(id))}
       clearProfileErrors={() => dispatch(receiveProfileErrors({}))}
     />
   );

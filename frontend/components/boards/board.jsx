@@ -57,19 +57,20 @@ class Board extends React.Component {
   fetchBoardAndContents(boardId) {
     this.props.receiveShares({});
     this.props.receiveCurrentBoardId(boardId);
-    return this.props
-      .fetchBoard(boardId)
-      .then(board => this.props.fetchShares(board.id), error => this.props.navigate('/'));
+    return this.props.fetchBoard(boardId).then(
+      (board) => this.props.fetchShares(board.id),
+      (error) => this.props.navigate('/')
+    );
   }
 
   fetchCardDetailAndBoard(cardId) {
     return this.props.fetchCardDetail(cardId).then(
-      card => {
+      (card) => {
         if (this.props.currentBoardId !== card.board_id) {
           this.fetchBoardAndContents(card.board_id);
         }
       },
-      error => this.props.navigate('/')
+      (error) => this.props.navigate('/')
     );
   }
 
@@ -88,7 +89,7 @@ class Board extends React.Component {
             <BoardNavigation board={board} updateBoard={updateBoard} disabled={navDisabled} />
             <ul className="lists clearfix">
               {lists &&
-                lists.map(list => (
+                lists.map((list) => (
                   <ListHolderContainer key={list.id} list={list} disabled={disabled} />
                 ))}
               <ListCreate disabled={disabled} />

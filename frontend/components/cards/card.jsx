@@ -6,7 +6,7 @@ import CardQuickEditContainer from './card_quick_edit_container';
 import CardDueDateBadge from './card_due_date_badge';
 
 const cardSource = {
-  beginDrag: props => ({
+  beginDrag: (props) => ({
     card: props.card,
   }),
   canDrag: ({ disabled }) => !disabled,
@@ -24,8 +24,8 @@ class Card extends React.Component {
     menuKey: null,
   };
 
-  activate = active => {
-    return e => this.setState({ active });
+  activate = (active) => {
+    return (e) => this.setState({ active });
   };
 
   viewCardDetail = () => {

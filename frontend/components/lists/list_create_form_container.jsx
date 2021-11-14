@@ -10,7 +10,7 @@ import { createList } from '../../actions/list_actions';
 const ListCreateFormContainer = () => {
   const { boardId } = useParams();
 
-  const { board } = useSelector(state => {
+  const { board } = useSelector((state) => {
     if (boardId) {
       return {
         board: selectBoard(state, parseInt(boardId, 10)),
@@ -20,7 +20,7 @@ const ListCreateFormContainer = () => {
   });
   const dispatch = useDispatch();
 
-  return <ListCreateForm board={board} createList={list => dispatch(createList(list))} />;
+  return <ListCreateForm board={board} createList={(list) => dispatch(createList(list))} />;
 };
 
 export default ListCreateFormContainer;

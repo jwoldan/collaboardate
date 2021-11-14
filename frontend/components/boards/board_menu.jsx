@@ -10,7 +10,7 @@ import BoardShareMenu from './board_share_menu';
 import BoardBackgroundMenuContainer from './board_background_menu_container';
 import BoardDeleteMenuContainer from './board_delete_menu_container';
 
-const renderMenuContent = disabled => {
+const renderMenuContent = (disabled) => {
   let menuItems = null;
   if (!disabled) {
     menuItems = (

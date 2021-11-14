@@ -9,7 +9,7 @@ export default ({ title, boards, create }) => {
       <section>
         <h2>{title}</h2>
         <ul className="boards-list">
-          {boards.map(board => (
+          {boards.map((board) => (
             <BoardsIndexItem key={board.id} board={board} />
           ))}
           {create ? <BoardsIndexCreate /> : ''}

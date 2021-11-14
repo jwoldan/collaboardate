@@ -50,15 +50,15 @@ class Profile extends React.Component {
     }
   };
 
-  update = property => {
-    return e => {
+  update = (property) => {
+    return (e) => {
       const profile = Object.assign({}, this.state.profile);
       profile[property] = e.currentTarget.value;
       this.setState({ profile });
     };
   };
 
-  updateAvatar = e => {
+  updateAvatar = (e) => {
     const file = e.currentTarget.files[0];
     var fileReader = new FileReader();
     fileReader.onloadend = () => {
@@ -72,9 +72,9 @@ class Profile extends React.Component {
     }
   };
 
-  updateProfile = e => {
+  updateProfile = (e) => {
     e.preventDefault();
-    this.props.updateUser(this.state.profile).then(profile => {
+    this.props.updateUser(this.state.profile).then((profile) => {
       this.toggleEdit();
       this.props.navigate(`/u/${profile.username}`);
     });
@@ -82,7 +82,7 @@ class Profile extends React.Component {
 
   errorsToStrings(errors) {
     const errorStrings = [];
-    Object.keys(errors).forEach(key => {
+    Object.keys(errors).forEach((key) => {
       let errorString;
       if (key === 'full_name') {
         errorString = 'Name';

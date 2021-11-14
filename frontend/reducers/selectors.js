@@ -6,7 +6,7 @@ import { boardSchema } from '../schema';
 
 export const menuIsOpen = ({ menuStatus }) =>
   Object.keys(menuStatus)
-    .map(key => menuStatus[key])
+    .map((key) => menuStatus[key])
     .reduce((a, b) => a || b);
 
 /* Profile */
@@ -29,14 +29,14 @@ const denormalizeBoard = (board, entities) => denormalize(board, boardSchema, en
 export const selectPersonalBoards = ({ entities, currentUser }) => {
   const { boards } = entities;
   return Object.keys(boards)
-    .map(key => denormalizeBoard(boards[key], entities))
-    .filter(board => board.creator.id === currentUser.id);
+    .map((key) => denormalizeBoard(boards[key], entities))
+    .filter((board) => board.creator.id === currentUser.id);
 };
 
 export const selectSharedBoards = ({ entities, currentUser }) => {
   const { boards } = entities;
-  const boardArray = Object.keys(boards).map(key => denormalizeBoard(boards[key], entities));
-  return boardArray.filter(board => board.creator.id !== currentUser.id);
+  const boardArray = Object.keys(boards).map((key) => denormalizeBoard(boards[key], entities));
+  return boardArray.filter((board) => board.creator.id !== currentUser.id);
 };
 
 export const selectBoard = ({ entities, cardDetail }, id, cardId) => {
@@ -59,7 +59,7 @@ export const selectBoardUsers = ({ entities: { boards }, shares }, boardId) => {
 
   if (board) users.push(board.creator);
 
-  const otherUsers = Object.keys(shares).map(key => shares[key].sharee);
+  const otherUsers = Object.keys(shares).map((key) => shares[key].sharee);
   users = users.concat(otherUsers);
 
   return users;
@@ -67,7 +67,7 @@ export const selectBoardUsers = ({ entities: { boards }, shares }, boardId) => {
 
 export const checkSharedUser = (shares, currentUser) => {
   if (shares && currentUser) {
-    const userIds = Object.keys(shares).map(key => shares[key].sharee.id);
+    const userIds = Object.keys(shares).map((key) => shares[key].sharee.id);
     if (userIds.includes(currentUser.id)) return true;
   }
   return false;
@@ -85,7 +85,7 @@ export const checkDisabled = (board, currentUser) => {
 
 export const selectShareId = (shares, currentUser) => {
   if (shares && currentUser) {
-    const shareArray = Object.keys(shares).map(key => shares[key]);
+    const shareArray = Object.keys(shares).map((key) => shares[key]);
     for (let i = 0; i < shareArray.length; i += 1) {
       if (shareArray[i].sharee.id === currentUser.id) {
         return shareArray[i].id;
@@ -118,8 +118,8 @@ const ordSort = (a, b) => {
 
 export const selectCards = ({ entities: { cards } }, listId) =>
   Object.keys(cards)
-    .map(key => cards[key])
-    .filter(card => card.list_id === listId)
+    .map((key) => cards[key])
+    .filter((card) => card.list_id === listId)
     .sort(ordSort);
 
 /* Comments */
@@ -127,7 +127,7 @@ export const selectCards = ({ entities: { cards } }, listId) =>
 export const selectComments = ({ cardDetail }) => {
   if (cardDetail && cardDetail.comments) {
     return Object.keys(cardDetail.comments)
-      .map(key => cardDetail.comments[key])
+      .map((key) => cardDetail.comments[key])
       .sort((a, b) => {
         if (a.created_at_i > b.created_at_i) {
           return -1;

@@ -78,14 +78,14 @@ export default (state = initialState, action = {}) => {
       const { cardId } = action;
       if (!state.cards[cardId]) break;
 
-      return update(['cards', cardId, 'comment_count'], count => count + 1)(state);
+      return update(['cards', cardId, 'comment_count'], (count) => count + 1)(state);
     }
 
     case CardActions.DECREMENT_COMMENT_COUNT: {
       const { cardId } = action;
       if (!state.cards[cardId]) break;
 
-      return update(['cards', cardId, 'comment_count'], count => count - 1)(state);
+      return update(['cards', cardId, 'comment_count'], (count) => count - 1)(state);
     }
 
     case BoardActions.REMOVE_BOARD: {
@@ -131,7 +131,7 @@ export default (state = initialState, action = {}) => {
   if (action.payload && action.payload.entities) {
     const newState = { ...state };
 
-    Object.keys(action.payload.entities).forEach(key => {
+    Object.keys(action.payload.entities).forEach((key) => {
       newState[key] = { ...newState[key], ...action.payload.entities[key] };
     });
     return newState;

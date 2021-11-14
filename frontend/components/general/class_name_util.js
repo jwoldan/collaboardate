@@ -1,7 +1,7 @@
 import dayjs from 'dayjs';
 
 /* eslint-disable import/prefer-default-export */
-export const dueDateClassName = card => {
+export const dueDateClassName = (card) => {
   const dayDiff = dayjs().diff(dayjs(card.due_date), 'days');
   const hourDiff = dayjs().diff(dayjs(card.due_date), 'hours');
 

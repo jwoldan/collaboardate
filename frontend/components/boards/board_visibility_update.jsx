@@ -3,7 +3,7 @@ import React from 'react';
 import BoardVisibilityOptions from './board_visibility_options';
 
 class BoardVisibilityUpdate extends React.Component {
-  updateVisibility = e => {
+  updateVisibility = (e) => {
     const {
       match: {
         params: { boardId },

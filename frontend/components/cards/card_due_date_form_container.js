@@ -4,11 +4,8 @@ import CardDueDateForm from './card_due_date_form';
 
 import { updateCard } from '../../actions/card_actions';
 
-const mapDispatchToProps = dispatch => ({
-  updateCard: card => dispatch(updateCard(card)),
+const mapDispatchToProps = (dispatch) => ({
+  updateCard: (card) => dispatch(updateCard(card)),
 });
 
-export default connect(
-  null,
-  mapDispatchToProps
-)(CardDueDateForm);
+export default connect(null, mapDispatchToProps)(CardDueDateForm);

@@ -4,11 +4,8 @@ import BoardTitleMenuContent from './board_title_menu_content';
 
 import { updateBoard } from '../../actions/board_actions';
 
-const mapDispatchToProps = dispatch => ({
-  updateBoard: board => dispatch(updateBoard(board)),
+const mapDispatchToProps = (dispatch) => ({
+  updateBoard: (board) => dispatch(updateBoard(board)),
 });
 
-export default connect(
-  null,
-  mapDispatchToProps
-)(BoardTitleMenuContent);
+export default connect(null, mapDispatchToProps)(BoardTitleMenuContent);

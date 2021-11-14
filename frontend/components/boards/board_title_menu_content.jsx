@@ -16,11 +16,11 @@ class BoardTitleMenuContent extends React.Component {
     this.input.current.focus();
   }
 
-  updateTitle = e => {
+  updateTitle = (e) => {
     this.setState({ title: e.currentTarget.value });
   };
 
-  submit = e => {
+  submit = (e) => {
     e.preventDefault();
     const {
       match: {
@@ -45,7 +45,7 @@ class BoardTitleMenuContent extends React.Component {
             ref={this.input}
             value={this.state.title}
             onChange={this.updateTitle}
-            onFocus={e => e.target.select()}
+            onFocus={(e) => e.target.select()}
           />
         </label>
         <input type="submit" className="button green" value="Rename" />

@@ -7,7 +7,7 @@ class CardCommentForm extends React.Component {
     body: '',
   };
 
-  submit = e => {
+  submit = (e) => {
     e.preventDefault();
     const body = this.state.body.trim();
     if (body !== '') {
@@ -20,7 +20,7 @@ class CardCommentForm extends React.Component {
     }
   };
 
-  updateBody = e => {
+  updateBody = (e) => {
     this.setState({ body: e.currentTarget.value });
   };
 

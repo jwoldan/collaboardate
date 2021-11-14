@@ -31,7 +31,7 @@ class ListTitleEditable extends React.Component {
     this.props.removeMenu(this.state.menuKey);
   }
 
-  submit = e => {
+  submit = (e) => {
     e.preventDefault();
     const title = this.state.title.trim();
     if (title !== '') {
@@ -41,14 +41,14 @@ class ListTitleEditable extends React.Component {
     }
   };
 
-  toggle = e => {
+  toggle = (e) => {
     tryStopPropagation(e);
     if (!this.props.disabled) {
       this.props.toggle(this.state.menuKey);
     }
   };
 
-  updateTitle = e => {
+  updateTitle = (e) => {
     this.setState({ title: e.currentTarget.value });
   };
 
@@ -70,7 +70,7 @@ class ListTitleEditable extends React.Component {
             ref="titleInput"
             value={title}
             onChange={this.updateTitle}
-            onFocus={e => e.target.select()}
+            onFocus={(e) => e.target.select()}
           />
         </form>
       );

@@ -7,7 +7,7 @@ import BoardCreateForm from './board_create_form';
 import { createBoard } from '../../actions/board_actions';
 import { resetMenus } from '../../actions/menu_status_actions';
 
-const BoardCreateFormContainer = props => {
+const BoardCreateFormContainer = (props) => {
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
@@ -15,7 +15,7 @@ const BoardCreateFormContainer = props => {
   return (
     <BoardCreateForm
       navigate={navigate}
-      createBoard={board => dispatch(createBoard(board))}
+      createBoard={(board) => dispatch(createBoard(board))}
       resetMenus={() => dispatch(resetMenus())}
       {...props}
     />
