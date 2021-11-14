@@ -1,12 +1,12 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import Card from './card';
 
 const CardContainer = props => {
-  const history = useHistory();
+  const navigate = useNavigate();
 
-  return <Card history={history} {...props} />;
+  return <Card navigate={navigate} {...props} />;
 };
 
 export default CardContainer;

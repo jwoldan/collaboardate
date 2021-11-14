@@ -11,11 +11,11 @@ import CardDueDateMenu from './card_due_date_menu';
 class CardDetail extends React.Component {
   deleteCard = () => {
     const { card, deleteCard } = this.props;
-    deleteCard(card.id).then(deletedCard => this.props.history.push(`/b/${deletedCard.board_id}`));
+    deleteCard(card.id).then(deletedCard => this.props.navigate(`/b/${deletedCard.board_id}`));
   };
 
   resetCard = () => {
-    this.props.history.push(`/b/${this.props.card.board_id}`);
+    this.props.navigate(`/b/${this.props.card.board_id}`);
     this.props.receiveCardDetail({});
   };
 

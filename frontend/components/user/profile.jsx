@@ -76,7 +76,7 @@ class Profile extends React.Component {
     e.preventDefault();
     this.props.updateUser(this.state.profile).then(profile => {
       this.toggleEdit();
-      this.props.history.push(`/u/${profile.username}`);
+      this.props.navigate(`/u/${profile.username}`);
     });
   };
 

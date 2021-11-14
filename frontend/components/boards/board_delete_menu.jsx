@@ -6,7 +6,7 @@ import WithMenuStatus from '../general/with_menu_status';
 class BoardDeleteMenu extends React.Component {
   deleteBoard = () => {
     this.props.deleteBoard(this.props.boardId).then(() => {
-      this.props.history.push('/');
+      this.props.navigate('/');
     });
   };
 

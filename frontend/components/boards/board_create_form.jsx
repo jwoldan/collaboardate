@@ -41,7 +41,7 @@ class BoardCreateForm extends React.Component {
     if (newBoard.title !== '') {
       this.props.createBoard(newBoard).then(board => {
         this.props.toggle();
-        this.props.history.push(`/b/${board.id}`);
+        this.props.navigate(`/b/${board.id}`);
         this.props.resetMenus();
       });
     }

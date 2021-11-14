@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import CardDetail from './card_detail';
 
@@ -10,7 +10,7 @@ import { receiveCardDetail } from '../../actions/card_detail_actions';
 import { resetMenus } from '../../actions/menu_status_actions';
 
 const CardDetailContainer = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const { card, comments, list, menuIsOpenState } = useSelector(state => ({
     card: state.cardDetail,
@@ -22,7 +22,7 @@ const CardDetailContainer = () => {
 
   return (
     <CardDetail
-      history={history}
+      navigate={navigate}
       card={card}
       comments={comments}
       list={list}

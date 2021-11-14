@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import Profile from './profile';
 
@@ -15,7 +15,7 @@ import {
 import { receiveProfileErrors } from '../../actions/errors_actions';
 
 const ProfileContainer = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const { username } = useParams();
 
   const { currentUser, profile, editable, errors } = useSelector(state => {
@@ -32,7 +32,7 @@ const ProfileContainer = () => {
 
   return (
     <Profile
-      history={history}
+      navigate={navigate}
       username={username}
       currentUser={currentUser}
       profile={profile}

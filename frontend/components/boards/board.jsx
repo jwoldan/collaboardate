@@ -59,7 +59,7 @@ class Board extends React.Component {
     this.props.receiveCurrentBoardId(boardId);
     return this.props
       .fetchBoard(boardId)
-      .then(board => this.props.fetchShares(board.id), error => this.props.history.push('/'));
+      .then(board => this.props.fetchShares(board.id), error => this.props.navigate('/'));
   }
 
   fetchCardDetailAndBoard(cardId) {
@@ -69,7 +69,7 @@ class Board extends React.Component {
           this.fetchBoardAndContents(card.board_id);
         }
       },
-      error => this.props.history.push('/')
+      error => this.props.navigate('/')
     );
   }
 

@@ -1,20 +1,20 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 import { login } from '../../actions/user_actions';
 
 import Welcome from './welcome';
 
 const WelcomeContainer = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const location = useLocation();
 
   const dispatch = useDispatch();
 
   return (
     <Welcome
-      history={history}
+      navigate={navigate}
       location={location}
       loginGuest={() =>
         dispatch(

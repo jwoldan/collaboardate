@@ -1,5 +1,5 @@
 import React, { Suspense } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 
 const BoardContainer = React.lazy(() =>
   import(/* webpackChunkName: "BoardContainer" */ './boards/board_container')
@@ -11,16 +11,8 @@ const ProfileContainer = React.lazy(() =>
 );
 import WelcomeContainer from './welcome/welcome_container';
 
-const boardRoute = (
-  <Route path="/b/:boardId">
-    <BoardContainer />
-  </Route>
-);
-const cardRoute = (
-  <Route path="/c/:cardId">
-    <BoardContainer />
-  </Route>
-);
+const boardRoute = <Route path="/b/:boardId" element={<BoardContainer />} />;
+const cardRoute = <Route path="/c/:cardId" element={<BoardContainer />} />;
 
 class App extends React.Component {
   resetMenus = () => {
@@ -36,16 +28,12 @@ class App extends React.Component {
       innerContent = (
         <HomeContainer>
           <Suspense fallback={null}>
-            <Switch>
-              <Route exact path="/">
-                <BoardsIndexContainer />
-              </Route>
+            <Routes>
+              <Route path="/" element={<BoardsIndexContainer />} />
               {boardRoute}
               {cardRoute}
-              <Route path="/u/:username">
-                <ProfileContainer />
-              </Route>
-            </Switch>
+              <Route path="/u/:username" element={<ProfileContainer />} />
+            </Routes>
           </Suspense>
         </HomeContainer>
       );
@@ -53,10 +41,10 @@ class App extends React.Component {
     } else if (location.pathname.match(/\/(b|c)\/\d+/)) {
       innerContent = (
         <HomeContainer>
-          <Switch>
+          <Routes>
             {boardRoute}
             {cardRoute}
-          </Switch>
+          </Routes>
         </HomeContainer>
       );
     } else {

@@ -7,7 +7,7 @@ import WithMenuStatus from '../general/with_menu_status';
 class HomeProfileMenu extends React.Component {
   logout = () => {
     this.props.logout().then(() => {
-      if (this.props.location.pathname !== '/') this.props.history.push('/');
+      if (this.props.location.pathname !== '/') this.props.navigate('/');
     });
   };
 

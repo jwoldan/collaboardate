@@ -1,13 +1,13 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { login } from '../../actions/user_actions';
 
 import LoginForm from './login_form';
 
 const LoginFormContainer = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const { currentUser, errors } = useSelector(state => ({
     currentUser: state.currentUser,
@@ -17,7 +17,7 @@ const LoginFormContainer = () => {
 
   return (
     <LoginForm
-      history={history}
+      navigate={navigate}
       currentUser={currentUser}
       errors={errors}
       login={user => dispatch(login(user))}

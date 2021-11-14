@@ -6,12 +6,12 @@ import WelcomeNavigation from './welcome_navigation';
 class Welcome extends React.Component {
   componentDidMount() {
     if (this.props.location.pathname !== '/') {
-      this.props.history.push('/');
+      this.props.navigate('/');
     }
   }
 
   loginGuest = () => {
-    this.props.loginGuest().then(() => this.props.history.push('/'));
+    this.props.loginGuest().then(() => this.props.navigate('/'));
   };
 
   render() {

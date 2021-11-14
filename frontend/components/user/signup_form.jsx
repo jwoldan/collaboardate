@@ -10,17 +10,17 @@ class SignupForm extends React.Component {
 
   componentDidMount() {
     if (this.props.currentUser) {
-      this.props.history.push('/');
+      this.props.navigate('/');
     }
   }
 
   loginGuest = () => {
-    this.props.loginGuest().then(() => this.props.history.push('/'));
+    this.props.loginGuest().then(() => this.props.navigate('/'));
   };
 
   submit = e => {
     e.preventDefault();
-    this.props.signup(this.state).then(() => this.props.history.push('/'));
+    this.props.signup(this.state).then(() => this.props.navigate('/'));
   };
 
   update = property => {

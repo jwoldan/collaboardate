@@ -29,7 +29,7 @@ class Card extends React.Component {
   };
 
   viewCardDetail = () => {
-    this.props.history.push(`/c/${this.props.card.id}`);
+    this.props.navigate(`/c/${this.props.card.id}`);
   };
 
   render() {
