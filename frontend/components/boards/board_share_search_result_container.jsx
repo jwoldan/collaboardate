@@ -7,8 +7,9 @@ import BoardShareSearchResult from './board_share_search_result';
 import { selectBoard, checkSharedUser, selectShareId } from '../../reducers/selectors';
 import { createShare, deleteShare } from '../../actions/board_share_actions';
 
-const BoardShareSearchResultContainer = ({ user }) => {
+const BoardShareSearchResultContainer = (props) => {
   const { boardId } = useParams();
+  const { user } = props;
 
   const { currentUser, board, shares, alreadyShared, shareId } = useSelector((state) => {
     const board = selectBoard(state, parseInt(boardId, 10));

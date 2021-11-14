@@ -10,7 +10,7 @@ import { fetchShares, receiveShares } from '../../actions/board_share_actions';
 import { receiveCurrentBoardId } from '../../actions/current_board_id_actions';
 import { fetchCardDetail } from '../../actions/card_detail_actions';
 
-const BoardContainer = () => {
+const BoardContainer = (props) => {
   const navigate = useNavigate();
   const { boardId, cardId } = useParams();
 
@@ -43,6 +43,7 @@ const BoardContainer = () => {
       receiveCurrentBoardId={(boardId) => dispatch(receiveCurrentBoardId(boardId))}
       fetchShares={(boardId) => dispatch(fetchShares(boardId))}
       receiveShares={(shares) => dispatch(receiveShares(shares))}
+      {...props}
     />
   );
 };

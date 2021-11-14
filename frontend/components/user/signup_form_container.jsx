@@ -6,7 +6,7 @@ import { signup, login } from '../../actions/user_actions';
 
 import SignupForm from './signup_form';
 
-const SignupFormContainer = () => {
+const SignupFormContainer = (props) => {
   const navigate = useNavigate();
 
   const { currentUser, errors } = useSelector((state) => ({
@@ -29,6 +29,7 @@ const SignupFormContainer = () => {
           })
         )
       }
+      {...props}
     />
   );
 };

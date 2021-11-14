@@ -7,7 +7,7 @@ import App from './app';
 import { menuIsOpen } from '../reducers/selectors';
 import { resetMenus } from '../actions/menu_status_actions';
 
-const AppContainer = () => {
+const AppContainer = (props) => {
   const location = useLocation();
 
   const { currentUser, menuIsOpenState } = useSelector((state) => ({
@@ -22,6 +22,7 @@ const AppContainer = () => {
       currentUser={currentUser}
       menuIsOpen={menuIsOpenState}
       resetMenus={() => dispatch(resetMenus())}
+      {...props}
     />
   );
 };

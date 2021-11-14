@@ -6,7 +6,7 @@ import HomeProfileMenu from './home_profile_menu';
 
 import { logout } from '../../actions/user_actions';
 
-const HomeProfileMenuContainer = () => {
+const HomeProfileMenuContainer = (props) => {
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -21,6 +21,7 @@ const HomeProfileMenuContainer = () => {
       location={location}
       currentUser={currentUser}
       logout={() => dispatch(logout())}
+      {...props}
     />
   );
 };

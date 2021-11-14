@@ -6,13 +6,17 @@ import BoardBackgroundMenu from './board_background_menu';
 
 import { updateBoard } from '../../actions/board_actions';
 
-const BoardBackgroundMenuContainer = () => {
+const BoardBackgroundMenuContainer = (props) => {
   const { boardId } = useParams();
 
   const dispatch = useDispatch();
 
   return (
-    <BoardBackgroundMenu boardId={boardId} updateBoard={(board) => dispatch(updateBoard(board))} />
+    <BoardBackgroundMenu
+      boardId={boardId}
+      updateBoard={(board) => dispatch(updateBoard(board))}
+      {...props}
+    />
   );
 };
 

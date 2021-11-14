@@ -7,7 +7,7 @@ import ListCreateForm from './list_create_form';
 import { selectBoard } from '../../reducers/selectors';
 import { createList } from '../../actions/list_actions';
 
-const ListCreateFormContainer = () => {
+const ListCreateFormContainer = (props) => {
   const { boardId } = useParams();
 
   const { board } = useSelector((state) => {
@@ -20,7 +20,13 @@ const ListCreateFormContainer = () => {
   });
   const dispatch = useDispatch();
 
-  return <ListCreateForm board={board} createList={(list) => dispatch(createList(list))} />;
+  return (
+    <ListCreateForm
+      board={board}
+      createList={(list) => dispatch(createList(list))}
+      {...props}
+    />
+  );
 };
 
 export default ListCreateFormContainer;

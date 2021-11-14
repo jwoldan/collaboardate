@@ -14,7 +14,7 @@ import {
 } from '../../actions/user_actions';
 import { receiveProfileErrors } from '../../actions/errors_actions';
 
-const ProfileContainer = () => {
+const ProfileContainer = (props) => {
   const navigate = useNavigate();
   const { username } = useParams();
 
@@ -44,6 +44,7 @@ const ProfileContainer = () => {
       updateUserAvatar={(id, formData) => dispatch(updateUserAvatar(id, formData))}
       removeUserAvatar={(id) => dispatch(removeUserAvatar(id))}
       clearProfileErrors={() => dispatch(receiveProfileErrors({}))}
+      {...props}
     />
   );
 };

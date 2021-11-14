@@ -9,7 +9,7 @@ import { updateCard, deleteCard } from '../../actions/card_actions';
 import { receiveCardDetail } from '../../actions/card_detail_actions';
 import { resetMenus } from '../../actions/menu_status_actions';
 
-const CardDetailContainer = () => {
+const CardDetailContainer = (props) => {
   const navigate = useNavigate();
 
   const { card, comments, list, menuIsOpenState } = useSelector((state) => ({
@@ -31,6 +31,7 @@ const CardDetailContainer = () => {
       deleteCard={(id) => dispatch(deleteCard(id))}
       receiveCardDetail={(card) => dispatch(receiveCardDetail(card))}
       resetMenus={() => dispatch(resetMenus())}
+      {...props}
     />
   );
 };

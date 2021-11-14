@@ -6,7 +6,7 @@ import { login } from '../../actions/user_actions';
 
 import Welcome from './welcome';
 
-const WelcomeContainer = () => {
+const WelcomeContainer = (props) => {
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -24,6 +24,7 @@ const WelcomeContainer = () => {
           })
         )
       }
+      {...props}
     />
   );
 };

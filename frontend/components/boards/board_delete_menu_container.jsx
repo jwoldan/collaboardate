@@ -6,7 +6,7 @@ import BoardDeleteMenu from './board_delete_menu';
 
 import { deleteBoard } from '../../actions/board_actions';
 
-const BoardDeleteMenuContainer = () => {
+const BoardDeleteMenuContainer = (props) => {
   const navigate = useNavigate();
   const { boardId } = useParams();
 
@@ -17,6 +17,7 @@ const BoardDeleteMenuContainer = () => {
       navigate={navigate}
       boardId={boardId}
       deleteBoard={(id) => dispatch(deleteBoard(id))}
+      {...props}
     />
   );
 };

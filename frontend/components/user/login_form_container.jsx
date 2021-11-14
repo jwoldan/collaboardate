@@ -6,7 +6,7 @@ import { login } from '../../actions/user_actions';
 
 import LoginForm from './login_form';
 
-const LoginFormContainer = () => {
+const LoginFormContainer = (props) => {
   const navigate = useNavigate();
 
   const { currentUser, errors } = useSelector((state) => ({
@@ -29,6 +29,7 @@ const LoginFormContainer = () => {
           })
         )
       }
+      {...props}
     />
   );
 };
