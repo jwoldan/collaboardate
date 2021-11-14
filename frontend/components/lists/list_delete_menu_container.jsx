@@ -8,12 +8,7 @@ import { deleteList } from '../../actions/list_actions';
 const ListDeleteMenuContainer = (props) => {
   const dispatch = useDispatch();
 
-  return (
-    <ListDeleteMenu
-      deleteList={(id) => dispatch(deleteList(id))}
-      {...props}
-    />
-  );
+  return <ListDeleteMenu deleteList={(id) => dispatch(deleteList(id))} {...props} />;
 };
 
 export default ListDeleteMenuContainer;

@@ -21,11 +21,7 @@ const ListCreateFormContainer = (props) => {
   const dispatch = useDispatch();
 
   return (
-    <ListCreateForm
-      board={board}
-      createList={(list) => dispatch(createList(list))}
-      {...props}
-    />
+    <ListCreateForm board={board} createList={(list) => dispatch(createList(list))} {...props} />
   );
 };
 

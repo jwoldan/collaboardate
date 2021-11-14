@@ -7,9 +7,7 @@ import { addMenu, removeMenu, toggleMenu } from '../../actions/menu_status_actio
 import { updateList } from '../../actions/list_actions';
 
 const ListTitleEditableContainer = (props) => {
-  const {
-    showStatus,
-  } = useSelector((state) => ({
+  const { showStatus } = useSelector((state) => ({
     showStatus: (menu) => state.menuStatus[menu],
   }));
   const dispatch = useDispatch();

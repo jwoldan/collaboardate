@@ -7,9 +7,7 @@ import { addMenu, removeMenu, toggleMenu } from '../../actions/menu_status_actio
 import { updateCard, deleteCard } from '../../actions/card_actions';
 
 const CardQuickEditContainer = (props) => {
-  const {
-    showStatus,
-  } = useSelector((state) => ({
+  const { showStatus } = useSelector((state) => ({
     showStatus: (menu) => state.menuStatus[menu],
   }));
   const dispatch = useDispatch();

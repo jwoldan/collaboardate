@@ -8,12 +8,7 @@ import { updateCard } from '../../actions/card_actions';
 const CardDueDateFormContainer = (props) => {
   const dispatch = useDispatch();
 
-  return (
-    <CardDueDateForm
-      updateCard={(card) => dispatch(updateCard(card))}
-      {...props}
-    />
-  );
+  return <CardDueDateForm updateCard={(card) => dispatch(updateCard(card))} {...props} />;
 };
 
 export default CardDueDateFormContainer;

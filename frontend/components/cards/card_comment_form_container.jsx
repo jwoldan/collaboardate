@@ -6,10 +6,7 @@ import CardCommentForm from './card_comment_form';
 import { createComment } from '../../actions/comment_actions';
 
 const CardCommentFormContainer = (props) => {
-  const {
-    currentUser,
-    cardDetail,
-  } = useSelector((state) => ({
+  const { currentUser, cardDetail } = useSelector((state) => ({
     currentUser: state.currentUser,
     cardDetail: state.cardDetail,
   }));

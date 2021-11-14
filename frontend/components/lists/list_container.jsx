@@ -8,12 +8,7 @@ import { updateList } from '../../actions/list_actions';
 const ListContainer = (props) => {
   const dispatch = useDispatch();
 
-  return (
-    <List
-      updateList={(list) => dispatch(updateList(list))}
-      {...props}
-    />
-  );
+  return <List updateList={(list) => dispatch(updateList(list))} {...props} />;
 };
 
 export default ListContainer;

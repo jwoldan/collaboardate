@@ -7,10 +7,7 @@ import { addMenu, removeMenu, toggleMenu } from '../../actions/menu_status_actio
 import { updateComment, deleteComment } from '../../actions/comment_actions';
 
 const CardCommentEditableContainer = (props) => {
-  const {
-    currentUser,
-    showStatus,
-  } = useSelector((state) => ({
+  const { currentUser, showStatus } = useSelector((state) => ({
     currentUser: state.currentUser,
     showStatus: (menu) => state.menuStatus[menu],
   }));

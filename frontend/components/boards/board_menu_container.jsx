@@ -5,18 +5,11 @@ import BoardMenu from './board_menu';
 import { checkSharedUser } from '../../reducers/selectors';
 
 const BoardMenuContainer = (props) => {
-  const {
-    shared
-  } = useSelector((state) => ({
+  const { shared } = useSelector((state) => ({
     shared: checkSharedUser(state.shares, state.currentUser),
   }));
 
-  return (
-    <BoardMenu
-      shared={shared}
-      {...props}
-    />
-  );
+  return <BoardMenu shared={shared} {...props} />;
 };
 
 export default BoardMenuContainer;

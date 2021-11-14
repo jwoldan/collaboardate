@@ -8,12 +8,7 @@ import { updateBoard } from '../../actions/board_actions';
 const BoardTitleMenuContentContainer = (props) => {
   const dispatch = useDispatch();
 
-  return (
-    <BoardTitleMenuContent
-      updateBoard={(board) => dispatch(updateBoard(board))}
-      {...props}
-    />
-  );
+  return <BoardTitleMenuContent updateBoard={(board) => dispatch(updateBoard(board))} {...props} />;
 };
 
 export default BoardTitleMenuContentContainer;

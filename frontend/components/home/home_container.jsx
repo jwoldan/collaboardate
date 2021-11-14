@@ -6,9 +6,7 @@ import Home from './home';
 import { selectBoard } from '../../reducers/selectors';
 
 const HomeContainer = (props) => {
-  const {
-    board,
-  } = useSelector((state) => ({
+  const { board } = useSelector((state) => ({
     board: selectBoard(state, state.currentBoardId),
   }));
 

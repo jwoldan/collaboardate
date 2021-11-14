@@ -6,9 +6,7 @@ import CardDescriptionEditable from './card_description_editable';
 import { addMenu, removeMenu, toggleMenu } from '../../actions/menu_status_actions';
 
 const CardDescriptionEditableContainer = (props) => {
-  const {
-    showStatus,
-  } = useSelector((state) => ({
+  const { showStatus } = useSelector((state) => ({
     showStatus: (menu) => state.menuStatus[menu],
   }));
   const dispatch = useDispatch();

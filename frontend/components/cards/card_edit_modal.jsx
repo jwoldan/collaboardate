@@ -5,13 +5,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { toggleMenu } from '../../actions/menu_status_actions';
 
 const CardEditModal = () => {
-  const {
-    show,
-  } = useSelector((state) => ({
+  const { show } = useSelector((state) => ({
     show: state.menuStatus.showCardEditModal,
   }));
   const dispatch = useDispatch();
-
 
   return (
     <Modal

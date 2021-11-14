@@ -6,9 +6,7 @@ import HomeNavigation from './home_navigation';
 import { fetchBoards } from '../../actions/board_actions';
 
 const HomeNavigationContainer = (props) => {
-  const {
-    currentUser,
-  } = useSelector((state) => ({
+  const { currentUser } = useSelector((state) => ({
     currentUser: state.currentUser,
   }));
 

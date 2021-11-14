@@ -6,11 +6,7 @@ import HomeBoardsMenu from './home_boards_menu';
 import { selectPersonalBoards, selectSharedBoards } from '../../reducers/selectors';
 
 const HomeBoardsMenuContainer = (props) => {
-  const {
-    currentUser,
-    personalBoards,
-    sharedBoards,
-  } = useSelector((state) => ({
+  const { currentUser, personalBoards, sharedBoards } = useSelector((state) => ({
     currentUser: state.currentUser,
     personalBoards: selectPersonalBoards(state),
     sharedBoards: selectSharedBoards(state),
@@ -23,7 +19,7 @@ const HomeBoardsMenuContainer = (props) => {
       sharedBoards={sharedBoards}
       {...props}
     />
-  )
+  );
 };
 
 export default HomeBoardsMenuContainer;

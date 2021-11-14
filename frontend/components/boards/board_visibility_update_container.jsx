@@ -8,12 +8,7 @@ import { updateBoard } from '../../actions/board_actions';
 const BoardVisibilityUpdateContainer = (props) => {
   const dispatch = useDispatch();
 
-  return (
-    <BoardVisibilityUpdate
-      updateBoard={(board) => dispatch(updateBoard(board))}
-      {...props}
-    />
-  );
+  return <BoardVisibilityUpdate updateBoard={(board) => dispatch(updateBoard(board))} {...props} />;
 };
 
 export default BoardVisibilityUpdateContainer;
